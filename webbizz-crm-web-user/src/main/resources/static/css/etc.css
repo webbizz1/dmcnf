@@ -224,7 +224,7 @@
   background-size: contain;
 }
 
-@media (max-width: 768px) {
+@media only screen and (max-width: 768px) {
   .survey-view-wrap .info-box {
     font-size: 16px;
     margin-bottom: 20px;
@@ -338,6 +338,4 @@
   .survey-view-wrap .survey-area .radiobox .label {
     font-size: 17px;
   }
-}
-
-/*# sourceMappingURL=etc.css.map */
+}/*# sourceMappingURL=etc.css.map */

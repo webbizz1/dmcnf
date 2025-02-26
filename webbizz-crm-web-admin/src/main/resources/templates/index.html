@@ -4,13 +4,27 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
       layout:decorate="~{layouts/layout_main}">
-
 <section layout:fragment="content">
     <div class="container is-fullhd">
-        <p class="title is-4 c-primary has-text-dark">
+        <!-- <p class="title is-4 c-primary has-text-dark">
             <i class="fa-regular fa-clock"></i>
             <th:block th:text="${#temporals.format(#temporals.createNow(), 'yyyy. MM. dd (EEE)', #locale.KOREA)}">2024. 11. 28 (목)</th:block>
-        </p>
+        </p> -->
+        <strong class="title is-5 saira">
+            <i class="ri-calendar-line" aria-hidden="true"></i>
+            <th:block th:text="${#temporals.format(#temporals.createNow(), 'yyyy. MM. dd (EEE)', #locale.KOREA)}">2025. 02. 26 (수)</th:block>
+        </strong>
+        <div class="box mt-5 has-background-info-soft">
+            <div class="is-flex is-align-items-center">
+                <div class="tag list-tag">
+                    <span>공지사항</span>
+                </div>
+                <div class="is-flex-grow-1 is-overflow-hidden">
+                    <a class="is-block has-text-black-00-invert is-ellipsis" href="#">교육원 소개</a>
+                    
+                </div>
+            </div>
+        </div>
         <div class="columns is-4">
             <div class="column is-one-quarter">
                 <div class="block-wrap block">
@@ -75,7 +89,7 @@
                 </div>
             </div>
             <div class="column">
-                <div class="block box">
+                <!-- <div class="block box">
                     <div class="grid is-col-min-2">
                         <div class="cell tag is-dark is-size-6 list-tag">
                             <span>공지사항</span>
@@ -93,7 +107,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <div class="grid">
                     <div class="block-wrap">
                         <div class="cell box marginless p-2">

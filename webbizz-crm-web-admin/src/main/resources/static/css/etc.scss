@@ -1,0 +1,44 @@
+.main-container {
+    .box {
+        .list-tag {
+    flex-shrink: 0;
+    font-weight: 700;
+    font-size: 18px;
+    // color: #405180; 
+    padding-right: 40px;
+    background: transparent;
+        }
+    }
+  }
+
+//  breadcrumb li 간격
+.breadcrumb {
+    li {
+        div {
+            margin: 0 12px;
+          }
+    }
+}
+// 검색 table 
+.search-table {
+    table-layout: fixed;
+  }
+  .search-table td,
+  .search-table th {
+    border: 0 none;
+    vertical-align: middle;
+  }
+  .search-table th:not([align]) {
+    text-align: left;
+  }
+
+//   체크 박스 , 라디오
+  .checkbox, .radio {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    position: relative;
+    font-size: 16px;
+    line-height: 20px;
+    vertical-align: middle;
+  }
