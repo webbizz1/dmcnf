@@ -1,0 +1,14 @@
+<svg id="calendar-month" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+  <path id="패스_28983" data-name="패스 28983" d="M0,0H24V24H0Z" fill="none"/>
+  <path id="패스_28984" data-name="패스 28984" d="M4,7A2,2,0,0,1,6,5H18a2,2,0,0,1,2,2V19a2,2,0,0,1-2,2H6a2,2,0,0,1-2-2Z" fill="none" stroke="#666" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+  <path id="패스_28985" data-name="패스 28985" d="M16,3V7" fill="none" stroke="#666" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+  <path id="패스_28986" data-name="패스 28986" d="M8,3V7" fill="none" stroke="#666" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+  <path id="패스_28987" data-name="패스 28987" d="M4,11H20" fill="none" stroke="#666" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+  <path id="패스_28988" data-name="패스 28988" d="M7,14h.013" fill="none" stroke="#666" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+  <path id="패스_28989" data-name="패스 28989" d="M10.01,14h.005" fill="none" stroke="#666" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+  <path id="패스_28990" data-name="패스 28990" d="M13.01,14h.005" fill="none" stroke="#666" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+  <path id="패스_28991" data-name="패스 28991" d="M16.015,14h0" fill="none" stroke="#666" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+  <path id="패스_28992" data-name="패스 28992" d="M13.015,17h.005" fill="none" stroke="#666" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+  <path id="패스_28993" data-name="패스 28993" d="M7.01,17h.005" fill="none" stroke="#666" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+  <path id="패스_28994" data-name="패스 28994" d="M10.01,17h.005" fill="none" stroke="#666" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+</svg>

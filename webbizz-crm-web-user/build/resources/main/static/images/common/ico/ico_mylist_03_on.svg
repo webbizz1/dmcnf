@@ -1,0 +1,6 @@
+<svg id="logout" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
+  <path id="패스_64971" data-name="패스 64971" d="M0,0H48V48H0Z" fill="none"/>
+  <path id="패스_64972" data-name="패스 64972" d="M25,12V8a4,4,0,0,0-4-4H7A4,4,0,0,0,3,8V32a4,4,0,0,0,4,4H21a4,4,0,0,0,4-4V28" transform="translate(3 4)" fill="none" stroke="#274694" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+  <path id="패스_64973" data-name="패스 64973" d="M9,15H33L27,9" transform="translate(9 9)" fill="none" stroke="#274694" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+  <path id="패스_64974" data-name="패스 64974" d="M18,18l6-6" transform="translate(18 12)" fill="none" stroke="#274694" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+</svg>

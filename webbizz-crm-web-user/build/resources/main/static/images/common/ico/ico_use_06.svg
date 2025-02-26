@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="56" height="56" viewBox="0 0 56 56">
+  <defs>
+    <linearGradient id="linear-gradient" x1="-0.322" y1="1.146" x2="-0.315" y2="1.146" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#0042a6"/>
+      <stop offset="1" stop-color="#123161"/>
+    </linearGradient>
+    <clipPath id="clip-path">
+      <rect id="사각형_25550" data-name="사각형 25550" width="28.079" height="10.446" fill="url(#linear-gradient)"/>
+    </clipPath>
+  </defs>
+  <g id="fax" transform="translate(-342 -1393)">
+    <g id="그룹_52520" data-name="그룹 52520" transform="translate(348.473 1401.493)">
+      <path id="패스_63380" data-name="패스 63380" d="M34.627,115v8.593H8.061V115H0v19.614H43.054V115Z" transform="translate(0 -94.484)" fill="#3579ff"/>
+      <rect id="사각형_25548" data-name="사각형 25548" width="26.3" height="21.527" transform="translate(8.377 -0.117)" fill="#fff"/>
+      <g id="그룹_52518" data-name="그룹 52518" transform="translate(7.488 19.539)" clip-path="url(#clip-path)">
+        <path id="패스_63381" data-name="패스 63381" d="M2.383,2.661,31.914,0,29.532,27.471,0,30.131Z" transform="translate(-8.97 0.741) rotate(-38.928)" fill="url(#linear-gradient)"/>
+      </g>
+      <rect id="사각형_25551" data-name="사각형 25551" width="14.975" height="1.872" transform="translate(14.494 6.297)"/>
+      <rect id="사각형_25552" data-name="사각형 25552" width="14.975" height="1.872" transform="translate(14.494 12.691)"/>
+      <rect id="사각형_25553" data-name="사각형 25553" width="11.232" height="1.872" transform="translate(28.125 34.625)" fill="#fff"/>
+    </g>
+    <rect id="사각형_25560" data-name="사각형 25560" width="56" height="56" transform="translate(342 1393)" fill="none"/>
+  </g>
+</svg>

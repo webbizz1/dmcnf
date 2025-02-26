@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}"
+      x-ref="html" x-data="preview()">
+<head>
+    <title>설문 관리 &gt; 설문 결과</title>
+</head>
+
+<aside layout:fragment="lnb" th:replace="~{fragments/lnb_survey :: lnb}"></aside>
+<section layout:fragment="content">
+    <!-- 브레드크럼 -->
+    <nav class="breadcrumb" aria-label="breadcrumbs">
+        <ul>
+            <li><a href="/">홈</a></li>
+            <li><a href="/survey">설문 관리</a></li>
+            <li class="is-active"><a href="#" aria-current="page">설문 조사</a></li>
+        </ul>
+    </nav>
+
+    <!-- 제목 -->
+    <h2 class="title is-4">설문 리스트</h2>
+
+    <div class="box has-background-info-light">
+        <div class="card-content">
+            <div class="field is-horizontal  is-align-items-center">
+                <p><strong th:text="${survey.title}">설문 제목</strong><br/>기간:
+                    <th:block th:text="${#temporals.format(survey.startDate, 'yyyy-MM-dd')}"/>
+                    ~
+                    <th:block th:text="${#temporals.format(survey.endDate, 'yyyy-MM-dd')}"/>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="box">
+        <nav class="level is-flex-direction-row">
+            <div class="level-left">
+                <div class="level-item">
+                    <p class="subtitle is-6">총 <strong class="has-text-danger" th:text="${#numbers.formatInteger(list.totalElements, 1, 'COMMA')}">123</strong> 건</p>
+                </div>
+            </div>
+            <div class="level-right">
+                <div class="level-item">
+                    <a class="button" th:href="@{/survey/{surveyId}/statistics/(surveyId=${survey.id})}">
+                        <span class="icon">
+                            <i class="fa-regular fa-chart-bar" aria-hidden="true"></i>
+                        </span>
+                        <span>통계 보기</span>
+                    </a>
+                </div>
+                <div class="level-item">
+                    <a class="button is-success" onclick="excelDownload()">
+                        <span class="icon">
+                            <i class="fa fa-file-excel" aria-hidden="true"></i>
+                        </span>
+                        <span>엑셀 다운로드</span>
+                    </a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- 테이블 -->
+        <div class="table-container">
+            <table class="table is-bordered is-striped is-hoverable is-fullwidth is-fixed">
+                <caption>검색 결과</caption>
+                <colgroup>
+                    <col>
+                    <col>
+                    <col>
+                    <col>
+                    <col th:each="id, index : ${questions}">
+                    <col>
+                    <col>
+                    <col>
+                </colgroup>
+                <thead class="has-background-dark-soft">
+                <tr>
+                    <th scope="col">번호</th>
+                    <th scope="col">이름</th>
+                    <th scope="col">휴대폰 번호</th>
+                    <th scope="col">이메일</th>
+                    <th scope="col" th:each="id, index : ${questions}" th:text="${'문항' + (index.index + 1)}"></th>
+                    <th scope="col">기타</th>
+                    <th scope="col">등록일</th>
+                    <th scope="col">참여 결과</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:if="${list.isEmpty()}">
+                    <td th:colspan="${questions.size() + 7}" class="has-text-centered">검색 결과가 없습니다.</td>
+                </tr>
+                <tr class="text_cen" th:if="${!list.isEmpty()}" th:each="result : ${list}">
+                    <td class="has-text-right" th:text="${#numbers.formatInteger(list.totalElements - list.number * list.size - resultStat.index, 1, 'COMMA')}">10</td>
+                    <td th:text="${result.respondentName}">
+                        손흥민
+                    </td>
+                    <td>
+                        <span th:data-telephone="${result.respondentPhone}"></span>
+                    </td>
+                    <td th:text="${result.respondentEmail}">이메일</td>
+                    <td th:each="id, index : ${questions}"
+                        th:text="${result.questions?.get(result.id)?.get(id)}">
+                    </td>
+                    <td th:text="${( result.overallComment != null ) ? 'O' : '-'}">-</td>
+                    <td th:text="${#temporals.format(result.createdAt, 'yyyy-MM-dd')}">YYYY-MM-DD</td>
+                    <td>
+                        <button type="button" class="tag" th:data-id="${result.id}"
+                                th:data-respondent-name="${result.respondentName}"
+                                th:data-respondent-email="${result.respondentEmail}"
+                                th:data-respondent-phone="${result.respondentPhone}"
+                                th:data-overall-comment="${result.overallComment}"
+                                @click="await popupOpen($event.target.dataset);">
+                            보기
+                        </button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- 페이지네이션 -->
+        <div th:replace="~{fragments/pagination :: pagination (${list})}"></div>
+    </div>
+
+    <div class="buttons is-centered">
+        <a class="button"
+           th:href="${#uris.unescapeQueryParam('/survey' + queryStringValue)}">
+                <span class="icon">
+                    <i class="fa fa-list" aria-hidden="true"></i>
+                </span>
+            <span>목록</span>
+        </a>
+    </div>
+
+
+    <!-- 미리보기 팝업 -->
+    <div class="modal" id="previewModal" x-ref="previewModal">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+            <header class="modal-card-head">
+                <p class="modal-card-title">미리보기</p>
+                <button class="delete" aria-label="close"></button>
+            </header>
+            <div class="modal-card-body">
+                <div class="message">
+                    <div class="message-body p-4">
+                        <p><b x-text="$store.surveyStore.survey[SurveySchema.keys.title]"></b></p>
+                        <p class="is-size-7"
+                           x-text="`기간: ${$store.surveyStore.survey[SurveySchema.keys.startDate]} ~ ${$store.surveyStore.survey[SurveySchema.keys.endDate]}`">
+                            기간: 2024-01-01 ~ 2024-01-31</p>
+                    </div>
+                </div>
+
+                <!-- Participant Info -->
+                <div class="content">
+                    <div class="field">
+                        <label class="label">* 참여자 정보 입력</label>
+                        <div class="field-body">
+                            <div class="field">
+                                <div class="control">
+                                    <input class="input" type="text" :value="surveyResponse.respondentName" disabled/>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="control">
+                                    <input class="input" type="tel" x-model="Utils.telephoneFormat(surveyResponse.respondentPhone)" disabled/>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="control">
+                                    <input class="input" type="email" :value="surveyResponse.respondentEmail" disabled/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question 1 -->
+                <template x-for="(question, previewQuestionIndex) in $store.surveyStore.questions"
+                          :key="previewQuestionIndex">
+                    <div class="box">
+                        <div class="field">
+                            <label class="label"
+                                   x-text="`${(previewQuestionIndex + 1)}. ${question[Schema.keys.title]}`">1. 금번 활동이 많은
+                                도움이 되셨습니까?</label>
+                            <div :class="`is-flex-direction-column ${question[Schema.keys.answerType] === AnswerType.CHECKBOX.value ? AnswerType.CHECKBOX.value + 'e' : question[Schema.keys.answerType]}s`">
+                                <template x-for="(answer , previewAnswerIndex) in question.answers"
+                                          :key="previewAnswerIndex">
+                                    <label :class="question[Schema.keys.answerType]">
+                                        <input :type="question[Schema.keys.answerType]" :name="question.id" :checked="isAnswerSelected(question.id, answer[Schema.keys.answerId])"
+                                               @click.prevent/>
+                                        <span x-text="answer[Schema.keys.answerText]"></span>
+                                        <br/>
+                                    </label>
+                                </template>
+                                <div x-show="question[Schema.keys.useCustomAnswer] === 'Y'">
+                                    <label class="checkbox">
+                                        <input type="checkbox" :checked="isAnswerSelected(question.id, null)" @click.prevent/> 기타:
+                                    </label>
+                                    <label>
+                                        <input class="input" type="text" x-model="getCustomAnswer(question.id)" disabled/>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </template>
+
+                <!-- Additional Comments -->
+                <div class="box">
+                    <div class="field">
+                        <label class="label">기타 느낀 점이나 의견을 알려주세요. (자유 입력)</label>
+                        <div class="control">
+                            <textarea class="textarea" disabled :value="surveyResponse.overallComment"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+<script layout:fragment="javascript" th:inline="javascript">
+    const AnswerType = Object.freeze(/*[[${answerTypes}]]*/ {});
+
+    /** 테이블 구조에 따라서 변경 가능성이 있는 키값들 [설문 정보 영역] */
+    const SurveySchema = {
+        keys: {
+            id: 'id',
+            title: 'title',
+            startDate: 'startDate',
+            endDate: 'endDate',
+            viewYn: 'viewYn',
+        },
+    }
+
+    /** 테이블 구조에 따라서 변경 가능성이 있는 키값들 [문항 정보 영역] */
+    const Schema = {
+        keys: {
+            id: 'id',
+            title: 'title',
+            answerType: 'answerType',
+            useCustomAnswer: 'useCustomAnswerYn',
+            sortOrder: 'sortOrder',
+            answers: 'answers',
+            answerId: 'answerId',
+            answerText: 'text',
+            answerOrder: 'sortOrder'  // 'answers' 내부의 'order' 키를 위한 새로운 키
+        },
+    }
+
+    // 미리보기 팝업
+    function preview() {
+        return {
+            survey: {},
+            questions: [],
+            response: [],
+            // 참여자 정보
+            surveyResponse: {
+                id: 0,
+                respondentName: '',
+                respondentEmail: '',
+                respondentPhone: '',
+                overallComment: ''
+            },
+
+            getSurveyData() {
+                return Alpine.store('surveyStore').survey;
+            },
+
+            getQuestionsData() {
+                return Alpine.store('surveyStore').questions
+            },
+
+            init() {
+                this.updateData();
+            },
+
+            async popupOpen({id, respondentName, respondentEmail, respondentPhone, overallComment}) {
+                this.surveyResponse = {id, respondentName, respondentEmail, respondentPhone, overallComment}
+
+                await this.getSurveyResponse(id);
+                await this.toggle();
+            },
+
+            // 참여자가 응답한 응답 체크 여부를 확인
+            isAnswerSelected(questionId, answerId) {
+                return this.response
+                    .filter(({answerId}) => answerId !== null)
+                    .some(res =>
+                        (res.answerId === answerId && res.questionId === questionId)
+                        || (res.questionId === questionId && answerId === null)
+                    );
+            },
+
+            // 참여자가 응답한 주관식 답변을 가져오기
+            getCustomAnswer(questionId) {
+                const customAnswer = this.response.find(res => res.questionId === questionId && res.answerId === null && res.answerText);
+                return customAnswer ? customAnswer.answerText : '';
+            },
+
+            // 참여자가 응답한 결과를 보기위해 API 요청 사용자가 응답한 내역 조회
+            async getSurveyResponse(responseId) {
+                return await
+                    fetch(`/api/v1/survey/response/${responseId}`)
+                        .then(handleFetchResponse)
+                        .then(result => this.response = result.data)
+                        .catch(handleFetchError)
+            },
+
+            updateData() {
+                this.survey = this.getSurveyData();
+                this.questions = this.getQuestionsData();
+            },
+
+            toggle() {
+                this.$refs.previewModal.classList.toggle('is-active');
+                this.$refs.html.classList.toggle('is-clipped');
+            }
+        }
+    }
+
+    document.addEventListener('alpine:init', () => {
+        Alpine.store('surveyStore', {
+            modelData: /*[[${surveyPopup}]]*/ {}, // 존재하지 않을시 undefined
+            survey: {},
+            questions: [],
+            init() {
+                this.survey = this.modelData;
+                this.questions = this.modelData?.questions;
+            },
+        });
+    });
+
+    function excelDownload() {
+        const id =  Alpine.store('surveyStore').survey[Schema.keys.id];
+
+        fetch('/api/v1/survey/excel', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(id),
+        })
+            .then(async response => {
+                const contentDisposition = response.headers.get('content-disposition');
+                const pattern = /filename\*=UTF-8''(.*)/;
+                const filenameMatch = contentDisposition.match(pattern);
+
+                if (!filenameMatch) {
+                    console.error('파일명을 찾을 수 없습니다:', contentDisposition);
+                    return;
+                }
+
+                // blob 데이터 가져오기
+                const blobData = await response.blob();
+
+                const filename = decodeURIComponent(filenameMatch[1]);
+                const url = window.URL.createObjectURL(blobData);
+
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = filename;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+
+                window.URL.revokeObjectURL(url);
+            })
+            .catch(handleFetchError);
+    }
+
+
+</script>
+
+</html>

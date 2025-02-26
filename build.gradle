@@ -1,0 +1,69 @@
+buildscript {
+    ext {
+        springBootVersion = '2.7.12'
+        springDependencyManagementVersion = '1.0.15.RELEASE'
+        egovFrameVersion = '4.2.0'
+        jjwtVersion = '0.12.6'
+        queryDslVersion = '5.5'
+        poiVersion = '5.4.0'
+        thumbnailatorVersion = '0.4.20'
+    }
+}
+
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version "${springBootVersion}" apply false
+    id 'io.spring.dependency-management' version "${springDependencyManagementVersion}" apply false
+    id 'org.hidetake.ssh' version '2.11.2'
+}
+
+group = 'webbizz.crm'
+version = '1.0-SNAPSHOT'
+
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'org.springframework.boot'
+    apply plugin: 'io.spring.dependency-management'
+
+    java.sourceCompatibility = JavaVersion.VERSION_1_8
+    java.targetCompatibility = JavaVersion.VERSION_1_8
+
+    bootJar.enabled = false
+
+    configurations {
+        configureEach {
+//            exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+            exclude group: 'commons-logging', module: 'commons-logging'
+            exclude group: 'org.apache.logging.log4j', module: 'log4j-slf4j-impl'
+            exclude group: 'org.apache.logging.log4j', module: 'log4j-to-slf4j'
+            exclude group: 'org.slf4j', module: 'log4j-over-slf4j'
+        }
+    }
+
+    repositories {
+        mavenCentral()
+        maven { url 'https://maven.egovframe.go.kr/maven/' }
+    }
+
+    dependencies {
+        // Lombok
+        compileOnly 'org.projectlombok:lombok'
+        annotationProcessor 'org.projectlombok:lombok'
+
+        // Other Annotation Processor
+        annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+
+        // Test Dependency Coordinates
+        testImplementation 'org.springframework.boot:spring-boot-starter-test'
+        testImplementation 'org.springframework.security:spring-security-test'
+        testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+        // Test Dependency for JDBC Client
+        testRuntimeOnly 'com.mysql:mysql-connector-j'
+        testRuntimeOnly 'org.mariadb.jdbc:mariadb-java-client'
+    }
+
+    test {
+        useJUnitPlatform()
+    }
+}

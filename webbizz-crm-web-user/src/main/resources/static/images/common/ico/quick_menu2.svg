@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 34 34">
+  <g id="입점_icon" data-name="입점 icon" transform="translate(-2054 -582)">
+    <rect id="Rectangle_6_copy" data-name="Rectangle 6 copy" width="34" height="34" transform="translate(2054 582)" fill="none"/>
+    <g id="Vector_Smart_Object" data-name="Vector Smart Object">
+      <g id="Vector_Smart_Object-2" data-name="Vector Smart Object" transform="translate(1897.663 316.669)">
+        <path id="패스_31" data-name="패스 31" d="M169.237,285.443h-5.982l-2.189-7.622" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.18"/>
+        <path id="패스_32" data-name="패스 32" d="M176.436,285.443h5.982l2.189-7.622" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.18"/>
+        <rect id="사각형_21" data-name="사각형 21" width="27.842" height="19.234" transform="translate(158.916 274.574)" fill="none" stroke="#212121" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.18"/>
+        <rect id="사각형_22" data-name="사각형 22" width="2.744" height="4.68" transform="translate(171.464 283.103)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.18"/>
+        <path id="패스_33" data-name="패스 33" d="M168.3,272.347v-2.415h9.075v2.415" fill="none" stroke="#212121" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.18"/>
+        <line id="선_6" data-name="선 6" x2="3.14" transform="translate(158.916 295.73)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.158"/>
+        <line id="선_7" data-name="선 7" x1="3.14" transform="translate(183.618 295.73)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.158"/>
+      </g>
+      <path id="Color_Overlay" data-name="Color Overlay" d="M2081.281,612.4h0Zm-24.7,0h0Zm0-1.922V591.242h27.842v19.235Zm9.383-21.461V586.6h9.075v2.415Z" fill="none" stroke="#fff" stroke-width="1.2"/>
+    </g>
+  </g>
+</svg>

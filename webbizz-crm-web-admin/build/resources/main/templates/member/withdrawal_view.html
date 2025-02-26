@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+<head>
+    <title>회원 관리 &gt; 탈퇴 회원 &gt; 상세</title>
+</head>
+
+<aside layout:fragment="lnb" th:replace="~{fragments/lnb_member :: lnb}"></aside>
+<section layout:fragment="content">
+    <!-- 브레드크럼 -->
+    <nav class="breadcrumb" aria-label="breadcrumbs">
+        <ul>
+            <li><a href="/">홈</a></li>
+            <li><a href="/member">회원 관리</a></li>
+            <li><a href="/member/withdrawal">탈퇴 회원</a></li>
+            <li class="is-active"><a href="#" aria-current="page">상세</a></li>
+        </ul>
+    </nav>
+
+    <!-- 제목 -->
+    <h2 class="title is-4">탈퇴 회원 상세</h2>
+
+    <!-- 검색 결과 -->
+    <div class="card">
+        <div class="card-header">
+            <p class="card-header-title icon-text">
+                <span class="icon">
+                    <i class="fa fa-id-card" aria-hidden="true"></i>
+                </span>
+                <span>회원 정보</span>
+            </p>
+        </div>
+        <div class="card-content">
+            <form>
+                <div class="field is-horizontal">
+                    <div class="field-label">
+                        <span class="label">아이디</span>
+                    </div>
+                    <div class="field-body">
+                        <div class="field" th:text="${dto.getLoginId()}"></div>
+                    </div>
+                </div>
+
+                <div class="field is-horizontal">
+                    <div class="field-label">
+                        <span class="label">이름</span>
+                    </div>
+                    <div class="field-body">
+                        <div class="field" th:text="${dto.realName}">홍길동</div>
+                    </div>
+                </div>
+
+                <div class="field is-horizontal">
+                    <div class="field-label">
+                        <span class="label">휴대폰 번호</span>
+                    </div>
+                    <div class="field-body">
+                        <div class="field"
+                             th:text="${dto.mobileNumber}"
+                             th:data-telephone="${dto.mobileNumber}">010-0000-0000</div>
+                    </div>
+                </div>
+
+                <div class="field is-horizontal">
+                    <div class="field-label">
+                        <span class="label">이메일</span>
+                    </div>
+                    <div class="field-body">
+                        <div class="field" th:text="${dto.email}">host@domain.com</div>
+                    </div>
+                </div>
+
+                <div class="field is-horizontal">
+                    <div class="field-label">
+                        <span class="label">가입 일시</span>
+                    </div>
+                    <div class="field-body">
+                        <div class="field" th:text="${#temporals.format(dto.createdAt, 'yyyy-MM-dd HH:mm:ss')}"></div>
+                    </div>
+                </div>
+
+                <div class="field is-horizontal">
+                    <div class="field-label">
+                        <span class="label">탈퇴 일시</span>
+                    </div>
+                    <div class="field-body">
+                        <div class="field" th:text="${#temporals.format(dto.withdrawalAt, 'yyyy-MM-dd HH:mm:ss')}"></div>
+                    </div>
+                </div>
+
+                <div class="field is-horizontal">
+                    <div class="field-label">
+                        <span class="label">탈퇴 사유</span>
+                    </div>
+                    <div class="field-body">
+                        <div class="field">
+                            <label>
+                                <textarea name="withdrawalReason" class="textarea" disabled th:text="${dto.withdrawalReason}"></textarea>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field is-horizontal">
+                    <div class="field-label"></div>
+                    <div class="field-body">
+                        <div class="field is-grouped">
+                            <div class="control">
+                                <a class="button" th:href="${#uris.unescapeQueryParam('/member/withdrawal' + queryStringValue)}">
+                                    <span class="icon">
+                                        <i class="fa-solid fa-table-list" aria-hidden="true"></i>
+                                    </span>
+                                    <span>목록</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+</html>

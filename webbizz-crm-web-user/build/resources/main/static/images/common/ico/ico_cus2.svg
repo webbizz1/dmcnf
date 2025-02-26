@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="70" height="70" viewBox="0 0 70 70">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="사각형_26620" data-name="사각형 26620" width="70" height="70" transform="translate(651 226)" fill="#fff"/>
+    </clipPath>
+    <linearGradient id="linear-gradient" x1="0.306" y1="0.237" x2="0.78" y2="0.892" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#fbe342"/>
+      <stop offset="1" stop-color="#ffc404"/>
+    </linearGradient>
+  </defs>
+  <g id="마스크_그룹_53516" data-name="마스크 그룹 53516" transform="translate(-651 -226)" clip-path="url(#clip-path)">
+    <g id="그룹_55474" data-name="그룹 55474" transform="translate(-3.92 -3.92)">
+      <g id="Gradient_Mail_happy-face--smiley-chat-message-smile-emoji-face-satisfied" data-name="Gradient/Mail/happy-face--smiley-chat-message-smile-emoji-face-satisfied" transform="translate(661.92 236.92)">
+        <path id="Subtract" d="M0,28A28,28,0,1,1,28,56,28,28,0,0,1,0,28ZM18.667,16.333v7h4.667v-7Zm14,7v-7h4.667v7ZM28,37.333A9.333,9.333,0,0,1,18.667,28H14a14,14,0,0,0,28,0H37.333A9.333,9.333,0,0,1,28,37.333Z" fill-rule="evenodd" fill="url(#linear-gradient)"/>
+      </g>
+      <path id="패스_64992" data-name="패스 64992" d="M175.426,236.213a7.043,7.043,0,1,1-7.043-7.043A7.043,7.043,0,0,1,175.426,236.213Z" transform="translate(541.546 7.75)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+    </g>
+  </g>
+</svg>

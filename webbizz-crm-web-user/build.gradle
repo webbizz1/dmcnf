@@ -1,0 +1,26 @@
+group = 'webbizz.crm.web.user'
+version = "1.0-SNAPSHOT-${new Date().format('yyMMdd_HHmmss')}"
+
+bootJar.enabled = true
+
+dependencies {
+    // Module Dependencies
+    implementation project(':webbizz-crm-core')
+    implementation project(':webbizz-crm-domain')
+    implementation project(':webbizz-crm-service')
+
+    // Spring Boot Managed Dependency Coordinates - starter
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+
+    // Spring Boot managed Dependency Coordinates - external
+    implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
+    implementation 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect'
+    runtimeOnly 'org.mariadb.jdbc:mariadb-java-client:3.0.11'
+
+    // eGovFrame - additional
+//    implementation "org.egovframe.rte:org.egovframe.rte.fdl.property:${egovFrameVersion}"
+//    runtimeOnly 'org.glassfish:jakarta.el'
+//    runtimeOnly "org.hsqldb:hsqldb"
+
+    // Other Dependency Coordinates
+}

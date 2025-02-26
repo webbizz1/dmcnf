@@ -1,0 +1,33 @@
+{
+  "groups": [
+    {
+      "name": "webbizz.jwt",
+      "type": "webbizz.crm.config.properties.JwtProperties",
+      "sourceType": "webbizz.crm.config.properties.JwtProperties"
+    }
+  ],
+  "properties": [
+    {
+      "name": "webbizz.jwt.algorithm",
+      "type": "java.lang.String",
+      "description": "JWT 서명 알고리즘",
+      "sourceType": "webbizz.crm.config.properties.JwtProperties",
+      "defaultValue": "HS256"
+    },
+    {
+      "name": "webbizz.jwt.expiration-time",
+      "type": "java.time.Duration",
+      "description": "JWT 만료 시간",
+      "sourceType": "webbizz.crm.config.properties.JwtProperties",
+      "defaultValue": "10m"
+    },
+    {
+      "name": "webbizz.jwt.secret-key",
+      "type": "java.lang.String",
+      "description": "JWT 서명 키",
+      "sourceType": "webbizz.crm.config.properties.JwtProperties",
+      "defaultValue": "webbizzcrmapplicationjwtsecret!@"
+    }
+  ],
+  "hints": []
+}

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+
+<!--/*@thymesVar id="menuPage" type="webbizz.crm.domain.menu.dto.MenuPageDto"*/-->
+<head>
+    <title th:text="${menuPage.navigator}">타이틀</title>
+    <meta name="keywords" th:content="${menuPage.menu.seoKeyword}" />
+    <meta name="description" th:content="${menuPage.menu.seoDescription}" />
+</head>
+
+<!--/*@thymesVar id="menuPage" type="webbizz.crm.domain.menu.dto.MenuPageDto"*/-->
+<!--/*@thymesVar id="board" type="webbizz.crm.domain.board.dto.BoardDto"*/-->
+<!--/*@thymesVar id="article" type="webbizz.crm.domain.boardarticle.dto.BoardArticleDto"*/-->
+<!--/*@thymesVar id="queryStringValue" type="java.lang.String"*/-->
+<main layout:fragment="content">
+    <div class="sub-content">
+        <div class="board-wrap">
+            <div class="cont-top">
+                <!--/* Breadcrumb 및 공유하기 */-->
+                <div th:replace="~{fragments/sub_navigation :: breadcrumb (${menuPage})}"></div>
+
+                <div class="title-wrap">
+                    <h2 class="title" th:text="${menuPage.menu.name}"></h2>
+                </div>
+            </div>
+
+            <div class="cont-btm">
+                <div class="board-view w-set2">
+                    <div class="view-wrap">
+                        <div class="view-top">
+                            <p class="tit" th:text="${article.title}">제목</p>
+                            <div class="info-area">
+                                <span class="hits" th:text="${#numbers.formatInteger(article.readCount, 1, 'COMMA')}">0</span>
+                                <span class="line"></span>
+                                <span class="date" th:text="${#temporals.format(article.createdAt, 'yyyy-MM-dd')}"></span>
+                            </div>
+                        </div>
+
+                        <div class="view-cont">
+                            <div class="ck-content">
+                                <figure class="image" th:if="${not article.images.isEmpty()}">
+                                    <img th:each="image : ${article.images}"
+                                         th:src="@{/api/v1/attachment/{uuid}(uuid = ${image.uuid})}" alt="이미지" />
+                                </figure>
+
+                                <th:block th:utext="${article.content}" />
+                            </div>
+                        </div>
+
+                        <div class="view-cont" th:if="${article.pdf ne null}">
+                            <iframe style="width: 100%; height: calc(100vh - 200px);"
+                                    th:src="@{/pdf-viewer(file = ${article.pdf.uuid})}"></iframe>
+                        </div>
+
+                        <div class="view-attachment" th:if="${not article.attachments.isEmpty() or article.pdf ne null}">
+                            <div class="attachment"
+                                 th:each="attachment : ${article.attachments}">
+                                <a th:href="@{/api/v1/attachment/{id}/download(id = ${attachment.uuid})}"
+                                   th:text="${attachment.originalName}">첨부파일</a>
+                            </div>
+                            <div class="attachment"
+                                 th:if="${article.pdf ne null}">
+                                <a th:href="@{/api/v1/attachment/{id}/download(id = ${article.pdf.uuid})}"
+                                   th:text="${article.pdf.originalName}">첨부파일</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="btn-wrap type-center">
+                        <a class="btn color5"
+                           th:href="${#uris.unescapeQueryParam('/pages/' + menuPage.menu.id + queryStringValue)}">목록</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+</html>

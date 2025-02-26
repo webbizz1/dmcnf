@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org">
+
+<!--/*@thymesVar id="menuPageVars" type="webbizz.crm.domain.menu.dto.MenuPageDto"*/-->
+<div th:fragment="breadcrumb (menuPageVars)" class="sub-nav">
+    <div class="w-set">
+        <div class="location-wrap">
+            <a href="/" class="location home">홈</a>
+            <th:block th:each="parent : ${menuPageVars.parents}"
+                      th:with="isLink = ${parent.type.code == T(webbizz.crm.domain.menu.enumset.MenuType).LINK.code}">
+                <a class="location"
+                   th:classappend="${parentStat.last} ? 'on' : ''"
+                   th:href="@{${isLink ? parent.linkUrl : '/pages/' + parent.id}}"
+                   th:target="${isLink ? '_' + #strings.toLowerCase(parent.linkTarget) : ''}"
+                   th:attrappend="aria-current = ${parentStat.last} ? 'page'"
+                   th:text="${parent.name}">공지사항</a>
+            </th:block>
+
+            <!--/* 개선된 브레드크럼 */-->
+            <!--/*
+            <ul>
+                <li th:each="menu : ${menuPageVars.menuBreadcrumbs}">
+                    <a href="javascript:" class="dep-tit"
+                       th:each="subMenu : ${menu}"
+                       th:if="${menuPageVars.parents.contains(subMenu)}"
+                       th:text="${subMenu.name}">
+                    </a>
+
+                    <div class="depth-list-wrap">
+                        <ul class="depth-list">
+                            <li th:each="subMenu : ${menu}"
+                                th:with="isLink = ${subMenu.type eq T(webbizz.crm.domain.menu.enumset.MenuType).LINK},
+                                             isTargetBlank = ${subMenu.linkTarget eq T(webbizz.crm.domain.menu.enumset.LinkTarget).BLANK}">
+                                <a th:href="${isLink ? subMenu.linkUrl : '/pages/' + subMenu.id}"
+                                   th:target="${isLink and isTargetBlank} ? '_blank'"
+                                   th:text="${subMenu.name}"></a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+            */-->
+        </div>
+
+        <div class="function-wrap">
+            <div class="func share">
+                <a href="javascript:" class="btn-share">공유하기</a>
+                <div class="share-wrap">
+                    <button type="button" class="btn-close">닫기</button>
+                    <ul class="share-list">
+                        <li class="copy">
+                            <a href="javascript:"><span>링크복사</span></a>
+                        </li>
+                        <li class="kakao">
+                            <a href="javascript:"><span>카카오톡</span></a>
+                        </li>
+                        <li class="facebook">
+                            <a href="javascript:"><span>페이스북</span></a>
+                        </li>
+                        <li class="instagram">
+                            <a href="javascript:"><span>인스타그램</span></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="func print hide-t">
+                <button id="test" type="button" class="btn-print" onclick="window.print();">인쇄하기</button>
+            </div>
+        </div>
+    </div>
+
+    <script th:inline="javascript">
+
+        document.addEventListener('DOMContentLoaded', ()=>{
+
+
+            let url = location.href;
+
+            // 공유하기 버튼 클릭 시 공유 리스트 보이기
+            let btnShare = document.querySelector('.btn-share');
+            let shareWrap = document.querySelector('.share-wrap');
+            let btnClose = document.querySelector('.btn-close');
+
+            btnShare.addEventListener('click', function() {
+                shareWrap.style.display = 'block';
+            });
+
+            // 닫기 버튼 클릭 시 공유 리스트 숨기기
+            btnClose.addEventListener('click', function() {
+                shareWrap.style.display = 'none';
+            });
+
+            // 링크 복사
+            let copyBtn = document.querySelector('.copy a');
+            copyBtn.addEventListener('click', function() {
+                url_copy();
+            });
+
+            // 카카오톡 공유
+            let kakaoBtn = document.querySelector('.kakao a');
+            kakaoBtn.addEventListener('click', function() {
+                Kakao.init('174d16c99831e8487d88167c217700e4');
+                Kakao.isInitialized();
+
+                Kakao.Share.sendScrap({
+                    requestUrl: url,
+                });
+                // let go_url = "https://story.kakao.com/share?url=" + encodeURIComponent(url);
+                // window.open(go_url, "_blank", "width=560,height=870");
+            });
+
+            // 페이스북 공유
+            let facebookBtn = document.querySelector('.facebook a');
+            facebookBtn.addEventListener('click', function() {
+                let go_url = "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(url);
+                window.open(go_url, "_blank", "width=610,height=870");
+            });
+
+            // 인스타그램 공유 (웹에서 직접 URL을 공유하는 방법은 제한적)
+            let instagramBtn = document.querySelector('.instagram a');
+            instagramBtn.addEventListener('click', function() {
+                const url = window.location.href;
+                navigator.clipboard.writeText(url);
+
+                let go_url = "https://www.instagram.com";
+                window.open(go_url, "_blank", "width=560,height=870");
+            });
+
+            // URL 복사 함수
+            function url_copy() {
+                const url = window.location.href;
+
+                navigator.clipboard.writeText(url)
+                    .then(() => {
+                        alert("주소가 복사되었습니다.");
+                    })
+                    .catch(error => {
+                        console.error(error);
+                        alert("주소복사에 실패했습니다.");
+                    });
+            }
+
+        });
+
+    </script>
+
+</div>
+</html>

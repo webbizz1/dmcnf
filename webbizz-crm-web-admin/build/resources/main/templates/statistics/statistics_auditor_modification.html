@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+<head>
+    <title>통계·분석 &gt; 운영자 로그 &gt; 정보 수정 현황</title>
+</head>
+
+<aside layout:fragment="lnb" th:replace="~{fragments/lnb_statistics :: lnb}"></aside>
+<section layout:fragment="content">
+    <!-- 브레드크럼 -->
+    <nav class="breadcrumb" aria-label="breadcrumbs">
+        <ul>
+            <li><a href="/">홈</a></li>
+            <li><a href="/statistics">통계·분석</a></li>
+            <li><a href="/statistics/operator">운영자 로그</a></li>
+            <li class="is-active"><a href="#" aria-current="page">정보 수정 현황</a></li>
+        </ul>
+    </nav>
+
+    <!-- 제목 -->
+    <h2 class="title is-4">정보 수정 현황</h2>
+
+    <!-- 검색 필터 -->
+    <form class="box fixed-grid">
+        <div class="grid">
+            <div class="cell is-col-span-2 is-col-span-1-desktop">
+                <div class="field is-horizontal">
+                    <div class="field-label is-normal">
+                        <label class="label" for="loginId">아이디</label>
+                    </div>
+                    <div class="field-body">
+                        <div class="field">
+                            <div class="control is-expanded">
+                                <input type="text" id="loginId" name="loginId" placeholder="아이디" class="input"
+                                       th:field="*{condition.loginId}">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="cell is-col-span-2 is-col-span-1-desktop">
+                <div class="field is-horizontal">
+                    <div class="field-label is-normal">
+                        <label class="label" for="realName">이름</label>
+                    </div>
+                    <div class="field-body">
+                        <div class="field">
+                            <div class="control is-expanded">
+                                <input type="text" id="realName" name="realName" placeholder="검색어" class="input"
+                                       th:field="*{condition.realName}">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="cell is-col-span-2 is-col-span-1-desktop">
+                <div class="field is-horizontal">
+                    <div class="field-label is-normal">
+                        <label class="label">기간</label>
+                    </div>
+                    <div class="field-body">
+                        <div class="field has-addons datepicker-range">
+                            <div class="control has-icons-left">
+                                <label>
+                                    <input type="text" name="startDate" placeholder="시작일" class="input"
+                                           th:value="${condition.startDate}" />
+                                    <span class="icon is-left">
+                                        <i class="fa-regular fa-calendar" aria-hidden="true"></i>
+                                    </span>
+                                </label>
+                            </div>
+                            <div class="control">
+                                <span class="button is-static">~</span>
+                            </div>
+                            <div class="control has-icons-left">
+                                <label>
+                                    <input type="text" name="endDate" placeholder="종료일" class="input"
+                                           th:value="${condition.endDate}" />
+                                    <span class="icon is-left">
+                                        <i class="fa-regular fa-calendar" aria-hidden="true"></i>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="cell is-col-span-2">
+                <div class="buttons is-centered">
+                    <button type="submit" class="button is-dark">
+                        <span class="icon">
+                            <i class="fa fa-search" aria-hidden="true"></i>
+                        </span>
+                        <span>검색</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <!-- 검색 결과 -->
+    <div class="box">
+        <!-- 요약 정보 및 버튼 -->
+        <nav class="level is-flex-direction-row">
+            <div class="level-left">
+                <div class="level-item">
+                    <p class="subtitle is-6">총 <strong class="has-text-danger" th:text="${#numbers.formatInteger(pageVars.totalElements, 1, 'COMMA')}">123</strong> 건</p>
+                </div>
+            </div>
+            <div class="level-right">
+                <div class="level-item">
+                    <a class="button is-success" id="btnExcelDownload">
+                        <span class="icon">
+                            <i class="fa fa-file-excel" aria-hidden="true"></i>
+                        </span>
+                        <span>엑셀 다운로드</span>
+                    </a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- 테이블 -->
+        <div class="table-container">
+            <table class="table is-bordered is-striped is-hoverable is-fullwidth is-fixed">
+                <caption>검색 결과</caption>
+                <colgroup>
+                    <col style="width: 70px" />
+                    <col style="width: 150px" />
+                    <col style="width: 150px" />
+                    <col style="width: 150px" />
+                    <col style="width: 200px" />
+                    <col style="width: 150px" />
+                </colgroup>
+                <thead class="has-background-dark-soft">
+                <tr>
+                    <th scope="col">번호</th>
+                    <th scope="col">아이디</th>
+                    <th scope="col">이름</th>
+                    <th scope="col">발생 IP</th>
+                    <th scope="col">발생 일시</th>
+                    <th scope="col">내용</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:if="${pageVars.isEmpty()}">
+                    <td colspan="6" class="has-text-centered">검색 결과가 없습니다.</td>
+                </tr>
+                <tr th:each="item : ${pageVars}">
+                    <td class="has-text-right" th:text="${pageVars.totalElements - pageVars.number * pageVars.size - itemStat.index}">1</td>
+                    <td class="has-text-centered" th:text="${item.loginId}">webbizz</td>
+                    <td class="has-text-centered" th:text="${item.realName}">홍길동</td>
+                    <td class="has-text-centered" th:text="${item.remoteAddr}">121.167.147.150</td>
+                    <td class="has-text-centered" th:text="${#temporals.format(item.createdAt, 'yyyy-MM-dd HH:mm:ss')}">yyyy-MM-dd HH:mm:ss</td>
+                    <td class="has-text-centered" th:text="${item.type.detail}">내용</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- 페이지네이션 -->
+        <nav th:replace="~{fragments/pagination :: pagination (${pageVars})}"></nav>
+    </div>
+</section>
+
+<script layout:fragment="javascript" th:inline="javascript">
+    document.getElementById('btnExcelDownload').addEventListener('click', () => {
+        fetch(`/api/v1/statistics/modification-auditor/excel-download${location.search}`)
+            .then(handleExcelExport)
+            .catch(handleFetchError);
+    });
+</script>
+
+</html>
