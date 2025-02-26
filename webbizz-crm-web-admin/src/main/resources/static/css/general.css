@@ -4,6 +4,7 @@
 @import url('common.min.css');
 @import url('layout.min.css');
 @import url('sub.css');
+@import url('etc.css');
 @import url('pretendard-gov-subset.css');
 @font-face {
     font-family: 'Inconsolata';
