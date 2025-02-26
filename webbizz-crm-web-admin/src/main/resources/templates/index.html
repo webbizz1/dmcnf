@@ -7,10 +7,10 @@
 
 <section layout:fragment="content">
     <div class="container is-fullhd">
-        <p class="title is-4 c-primary has-text-dark">
+        <strong class="title is-5 saira">
             <i class="fa-regular fa-clock"></i>
             <th:block th:text="${#temporals.format(#temporals.createNow(), 'yyyy. MM. dd (EEE)', #locale.KOREA)}">2024. 11. 28 (목)</th:block>
-        </p>
+        </strong>
         <div class="columns is-4">
             <div class="column is-one-quarter">
                 <div class="block-wrap block">
