@@ -1,0 +1,362 @@
+@import "utility";
+.survey-view-wrap{
+    .info-box{
+        margin-top:40px;
+        padding:20px 20px 20px 60px;
+        border: 1px solid #DDD;
+        font-weight: 500;
+        font-size: 18px;
+        margin-bottom:40px;
+        background: url(../images/common/ico_empty.svg) no-repeat 20px 20px;
+        background-size: 24px auto;
+        span{
+			font-size:16px;
+		}
+    }
+    .survey-view{
+        border-top: 3px solid #707070;
+        .input-row{
+            display: flex;
+            align-items: center;
+            height:90px;
+            border-bottom: 1px solid #ddd;
+            & > div:first-child{
+                width:200px;
+                font-size: 20px;
+                font-weight: 600;
+                padding-left:20px;
+            }
+            & > div:last-child{
+                flex:1;
+            }
+        }
+        .w_30{
+            width:30%;
+        }
+        .essential{
+            position: relative;
+            span{
+                font-size: 0;
+            }
+            &:after{
+                content:'*';
+                display:block;
+                font-size:1.5rem;
+                position:absolute;
+                top:0;
+                left:0;
+                color:#F60D0D;
+            }
+        }       
+    }
+    .private-box{
+        padding:42px 0;
+        border-bottom: 1px solid #DDD;
+        p{
+            font-size: 24px;
+            color:#222;
+            font-weight: 600;   
+            padding-bottom: 60px;      
+        }
+        dl{
+            padding-left:30px;
+            dt{
+                padding-bottom: 10px;
+                font-size: 20px;
+                font-weight: 600;
+            }
+            dd{
+                padding:0 0 30px 20px;
+                font-size: 20px;
+            }
+        }
+
+    }
+    .btn-wrap {
+        .btn {
+          width: 285px;
+          height: 70px;
+          line-height: 66px;
+          font-size: 20px;
+          border-radius: 10px;
+        }
+      }
+    .agree{
+        margin-top:80px;
+        display: flex;
+        .checkbox{
+            margin-left: auto;
+        }
+        .label {
+            font-size: 20px;
+            color:#333;
+            &:before {
+                content: "";
+                width: 30px;
+                height: 30px;
+                background-color: #fff;
+                border: 1px solid #888;
+                border-radius: 3px;
+                box-sizing: border-box;
+            }
+        }
+        input:checked + .label:before {
+            border-color: $main-color;
+            background: #0042A6 url("../images/common/ico_chkbox_on.svg") no-repeat center;
+        }
+    }
+    //응답자 정보
+    .basic-info-box{
+        margin-top:40px;
+        border: 1px solid #333;
+        padding:20px 30px 10px 30px;
+        .title{
+            padding:20px;
+            font-size:24px;
+            font-weight: 700;
+            border-bottom: 1px solid #ddd;
+        }
+        .info{
+            padding:20px;
+            font-size:18px;
+            font-weight: 500;
+            dl{
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                dt{
+                    display: flex;
+                    align-items: center;
+                    gap:10px;
+                    span{
+                        border-right: 1px solid #ddd;
+                        padding:0 15px;
+                        font-weight: 500;
+                        color:#0042A6;
+                        &:last-child{
+                            border-right:0;
+                        }
+                    }
+                }
+                dd{
+                    display: flex;
+                    align-items: center;
+                    gap:10px;
+                    color:#666;                    
+                }
+            }
+            i{
+                display: inline-block;
+                width:40px;
+                height:40px;
+                background-color: #F4F6FA;
+                background-position: center;
+                border-radius: 30px;
+                background-repeat: no-repeat;
+                background-size: 24px;
+            }
+            .info-01{
+                background-image:url("../images/common/ico_info_02.svg");
+            }
+            .info-02{
+                background-image:url("../images/common/ico_info_01.svg");
+            }         
+        }
+    }
+    //설문 정보
+    .survey-area{
+        margin-top: 10px;
+        .essential{
+            color:#F60D0D;
+        }
+        .survey-row{
+            border-bottom: 1px solid #ddd;
+            .question{
+                font-size: 20px;
+                color:#222;
+                font-weight: 600;
+                padding:25px 0;
+            }
+            .answer{
+                font-size: 20px;
+                color:#222;
+                font-weight: 400;
+                padding-bottom:15px;
+                ul{
+                    margin-left:20px;
+                    flex-wrap: nowrap; 
+                    display: flex;
+                    flex-grow: 1;
+                    li{
+                        display: flex;
+                        padding-right:20px;
+                        align-items: center;
+                    }
+                }
+                
+            }
+        }
+        .checkbox{
+            .label {
+                font-size: 20px;
+                color:#333;
+                &:before {
+                    content: "";
+                    width: 25px;
+                    height: 25px;
+                    background-color: #fff;
+                    border: 1px solid #888;
+                    border-radius: 3px;
+                }
+            }
+            input:checked + .label:before {
+                border-color: $main-color;
+                background: #0042A6 url("../images/common/ico_chkbox_on.svg") no-repeat center;
+                background-size: contain;
+            }
+        }
+        .radiobox{
+            .label {
+                font-size: 20px;
+                color:#333;
+                &:before {
+                    content: "";
+                    width: 25px;
+                    height: 25px;
+                    background-color: #fff;
+                    border: 1px solid #888;
+                    border-radius: 50%;
+                }
+            }
+            input:checked + .label:before {
+                border-color: $main-color;
+                background: #fff url("../images/common/ico_chk_on.svg") no-repeat center;
+                background-size: contain;
+            }
+        }
+       
+    }
+}
+@include mobile{
+    .survey-view-wrap{
+        .info-box{
+            font-size: 16px;
+            margin-bottom:20px;
+        }
+        .survey-view{
+            border-top: 3px solid #707070;
+            .input-row{
+                flex-direction: column;
+                align-items: flex-start;
+                height:auto;
+                border-bottom: 1px solid #ddd;
+                & > div:first-child{
+                    width:auto;
+                    font-size: 18px;
+                    padding-left:0;
+                    margin: 10px 0;
+                }
+                & > div:last-child{
+                    flex:inherit;
+                    width:100%;
+                    margin-bottom: 10px;
+                }
+            }
+            .w_30{
+                width:100%;
+            }
+        }
+        .private-box{
+            padding:20px 0;
+            p{
+                font-size: 20px; 
+                padding-bottom: 30px;      
+            }
+            dl{
+                padding-left:15px;
+                dt{
+                    font-size: 18px;
+                }
+                dd{
+                    font-size: 18px;
+                }
+            }
+        }
+        //응답자 정보
+        .basic-info-box{
+            margin-top:40px;
+            padding:10px;
+            .title{
+                padding:10px;
+                font-size:18px;  
+            }
+            .info{
+                padding:10px;
+                font-size:16px;
+                dl{
+                    flex-direction: column;
+                    align-items: flex-start;
+                    dt{
+                        flex-direction: column;
+                        align-items: inherit;
+                        & > div{
+                            margin:-45px 0 0  60px;
+                        }
+                        span{
+                            display:inline-block;
+                            width:100%;
+                            border-right: 0;
+                            padding-right:0;
+                            line-height: 24px;;
+                        }
+                    }
+                    dd{
+                        display: flex;
+                        align-items: center;
+                        gap:10px;
+                        color:#666;   
+                        margin-top: 10px;;                 
+                    }
+                }  
+            }
+        }
+        //설문 정보
+        .survey-area{
+            padding:10px;
+            .survey-row{
+                border-bottom: 1px solid #ddd;
+                .question{
+                    font-size: 17px;
+                    padding:15px 0;
+                }
+                .answer{
+                    font-size:17px;
+                    padding-bottom:15px;
+                    ul{
+                        margin-left:0;
+                        flex-direction: column;
+                        flex-grow: 1;
+                        li{
+                            flex-direction: column;
+                            align-items: flex-start;
+                            padding:0 20px 10px 0;
+                            .input-box{
+                                padding-left:30px;
+                            }
+                        }
+                    }
+                }
+            }
+            .checkbox{
+                .label {
+                    font-size: 17px;
+                }
+            }
+            .radiobox{
+                .label {
+                    font-size: 17px;
+                }
+            }
+        }
+    }  
+}

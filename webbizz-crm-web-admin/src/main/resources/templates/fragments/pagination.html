@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Pagination</title>
+</head>
+
+<!-- Pagination 변수 1개일 때 기본 페이지 변수: 'page' -->
+<th:block th:fragment="pagination (pageVars)" th:replace="~{:: pagination2 (${pageVars}, 'page')}"></th:block>
+
+<!-- Pagination 변수 2개일 때 기본 페이지 변수 커스터마이징 -->
+<!-- Thymeleaf 3.1 버전 부터는 urlBuilder = ${T(org.springframework.web.servlet.support.ServletUriComponentsBuilder).fromCurrentRequest()} 사용 불가 -->
+<!-- 따라서 ModelAttribute 에 등록하고 사용해야 함 -->
+
+<!--/*@thymesVar id="pageVars" type="org.springframework.data.domain.Page"*/-->
+<!--/*@thymesVar id="pageSize" type="java.lang.Integer"*/-->
+<!--/*@thymesVar id="currentPage" type="java.lang.Integer"*/-->
+<!--/*@thymesVar id="startPage" type="java.lang.Integer"*/-->
+<!--/*@thymesVar id="lastPage" type="java.lang.Integer"*/-->
+<!--/*@thymesVar id="uriBuilder" type="org.springframework.web.servlet.support.ServletUriComponentsBuilder"*/-->
+<th:block th:fragment="pagination2 (pageVars, pageParam)">
+    <!-- 페이지네이션 -->
+    <nav class="pagination is-centered" role="navigation" aria-label="pagination"
+         th:if="${pageVars ne null and #objects.nullSafe(pageVars.numberOfElements, 0) gt 0}"
+         th:with="
+            pageSize = 10,
+            currentPage = ${T(java.lang.Math).min(pageVars.pageable.pageNumber + 1, pageVars.totalPages)},
+            startPage = ${T(java.lang.Math).max(((currentPage.intValue() - 1) / pageSize.intValue()) * pageSize.intValue() + 1, 1)},
+            lastPage = ${T(java.lang.Math).min(startPage.intValue() + pageSize.intValue() - 1, pageVars.totalPages)}
+    ">
+        <ul class="pagination-list">
+            <!--/* 맨앞 */-->
+            <li th:if="${startPage gt pageSize}">
+                <a class="pagination-link"
+                   th:href="${#uris.unescapeQueryParam(uriBuilder.replaceQueryParam(pageParam, 1).toUriString())}">1</a>
+            </li>
+            <!--/* 이전 ﹤ */-->
+            <li th:if="${startPage gt pageSize}">
+                <span class="pagination-ellipsis" th:text="${startPage gt 2 ? '&hellip;' : ''}">&hellip;</span>
+            </li>
+            <li th:if="${startPage gt pageSize and startPage gt 2}">
+                <a class="pagination-link"
+                   th:href="${#uris.unescapeQueryParam(uriBuilder.replaceQueryParam(pageParam, startPage - 1).toUriString())}">
+                    <span class="icon is-small">
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                    </span>
+                </a>
+            </li>
+            <!--/* 1 2 3 4 5 6 7 8 9 10 */-->
+            <li th:each="page : ${#numbers.sequence(startPage, lastPage)}">
+                <a class="pagination-link is-current" aria-current="page"
+                   th:if="${currentPage eq page}"
+                   th:text="${page}">41</a>
+                <a class="pagination-link"
+                   th:unless="${currentPage eq page}"
+                   th:href="${#uris.unescapeQueryParam(uriBuilder.replaceQueryParam(pageParam, page).toUriString())}"
+                   th:text="${page}">41</a>
+            </li>
+            <!--/* 다음 ﹥ */-->
+            <li th:if="${lastPage lt pageVars.totalPages and pageVars.totalPages - lastPage gt 1}">
+                <a class="pagination-link"
+                   th:href="${#uris.unescapeQueryParam(uriBuilder.replaceQueryParam(pageParam, lastPage + 1).toUriString())}">
+                    <span class="icon is-small">
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </span>
+                </a>
+            </li>
+            <!--/* 다음 … */-->
+            <li th:if="${lastPage lt pageVars.totalPages}">
+                <span class="pagination-ellipsis" th:text="${pageVars.totalPages - lastPage gt 1 ? '&hellip;' : ''}">&hellip;</span>
+            </li>
+            <!--/* 맨뒤 */-->
+            <li th:if="${lastPage lt pageVars.totalPages}">
+                <a class="pagination-link"
+                   th:href="${#uris.unescapeQueryParam(uriBuilder.replaceQueryParam(pageParam, pageVars.totalPages).toUriString())}"
+                   th:text="${pageVars.totalPages}">86</a>
+            </li>
+        </ul>
+    </nav>
+</th:block>
+
+</html>

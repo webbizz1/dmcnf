@@ -1,0 +1,396 @@
+@import 'utility';
+
+:root {
+    --bulma-family-primary: Pretendard GOV, Inter, SF Pro, Segoe UI, Roboto, Oxygen, Ubuntu, Helvetica Neue, Helvetica,
+        Arial, sans-serif;
+    --bulma-button-family: var(--bulma-family-primary);
+
+    .table {
+        --bulma-table-cell-text-align: center;
+    }
+}
+
+html.is-clipped {
+    margin-right: 14px;
+}
+
+body {
+    background-color: #eaeaea;
+}
+
+.header {
+    display: flex;
+    position: relative;
+    align-items: center;
+    height: 70px;
+    padding-left: 30px;
+    padding-right: 30px;
+    border-bottom: 1px solid #ccc;
+    background-color: #fff;
+    z-index: 30;
+
+    .navbar-brand {
+        a {
+            margin-right: 50px;
+        }
+
+        .admin-title {
+            width: 200px;
+            height: 60px;
+            background: url(../images/sub/logo.svg) no-repeat bottom;
+            background-size: 80%;
+            font-size: 0;
+        }
+    }
+
+    .navbar-item {
+        display: flex;
+        margin: 0;
+        gap: 0.25rem;
+
+        &.role {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 0.8rem;
+            padding: 0.25rem 0.5rem;
+        }
+    }
+
+    .navbar-menu .navbar-end .navbar-item a {
+        color: var(--bulma-body-color);
+    }
+}
+
+// .global-navbar {
+//     display: flex;
+//     position: sticky;
+//     top: 0;
+//     min-height: 45px;
+//     padding-left: 51px;
+//     padding-right: 50px;
+//     border-bottom: 1px solid #ccc;
+
+//     .navbar-burger {
+//         color: $ci-main-color;
+//     }
+
+//     .navbar-menu {
+//         display: flex;
+//         box-shadow: initial;
+//         padding: 0;
+//         overflow-x: scroll;
+//         scrollbar-width: none;
+
+//         &::-webkit-scrollbar {
+//             display: none;
+//         }
+
+//         .navbar-start {
+//             display: flex; // add
+
+//             &::before,
+//             &::after {
+//                 content: '';
+//                 position: absolute;
+//                 top: 0;
+//                 bottom: 0;
+//                 width: 20px;
+//                 pointer-events: none;
+//                 z-index: 1;
+//                 transition: opacity 0.1s ease;
+//                 opacity: 0;
+//             }
+
+//             &::before {
+//                 left: 50px;
+//                 background: linear-gradient(to right, rgba($ci-main-color, 25%), rgba(255, 255, 255, 0) 100%);
+//             }
+
+//             &::after {
+//                 right: 0;
+//                 background: linear-gradient(to left, rgba($ci-main-color, 25%), rgba(255, 255, 255, 0) 100%);
+//             }
+
+//             &.is-gradient-left-active::before,
+//             &.is-gradient-right-active::after {
+//                 opacity: 1;
+//             }
+
+//             a {
+//                 display: flex; // add
+//                 align-items: center; // add
+//                 padding-left: 30px;
+//                 padding-right: 30px;
+//                 font-size: 1rem;
+//                 font-weight: 600;
+
+//                 &.is-active {
+//                     color: #fff;
+//                     background-color: #004a24;
+//                 }
+//             }
+//         }
+//     }
+// }
+
+.navbar-modal {
+    position: absolute;
+    z-index: 25;
+}
+
+.aside {
+    min-width: 200px;
+    max-width: 250px;
+    background-color: #eaeaea;
+    min-height: calc(100vh - 122px);
+    padding: 20px 0;
+    z-index: 29;
+    position: sticky;
+    top: 45px;
+
+    .menu-label {
+        color: #000;
+        font-weight: 600;
+        font-size: 1.2rem;
+        text-align: center;
+        letter-spacing: normal;
+    }
+
+    .menu-list {
+        li {
+            &:first-child {
+                border-top: 1px solid #ddd;
+            }
+
+            a {
+                border-radius: 0;
+                background-color: transparent;
+                padding: 13px 20px;
+                border-bottom: 1px solid #ddd;
+
+                &::before {
+                    content: '\f105';
+                    font: var(--fa-font-solid);
+                    margin-right: 10px;
+                }
+
+                &::after {
+                    float: right;
+                    font: var(--fa-font-regular);
+                }
+
+                &:hover::after {
+                    content: '\f058';
+                }
+
+                &.is-active {
+                    background-color: $ci-main-color;
+                    color: #fff;
+
+                    &::after {
+                        content: '\f058';
+                        font: var(--fa-font-solid);
+                    }
+                }
+            }
+
+            &:hover > a:not(.is-active) {
+                background-color: $ci-sub-color;
+                color: #fff;
+            }
+
+            .submenu {
+                margin: 0;
+                padding-inline-start: 0;
+
+                li a {
+                    font-size: 0.95em;
+                    padding: 10px 20px 10px 30px;
+
+                    &::before {
+                        content: '\f061';
+                        font: var(--fa-font-solid);
+                        margin-right: 10px;
+                    }
+
+                    &:hover {
+                        background-color: #ddd;
+                        color: #000;
+                    }
+
+                    &.is-active {
+                        background-color: #ccc;
+                        color: #000;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.section {
+    background-color: $article-background-color;
+    border-left: 1px solid #ccc;
+    max-width: calc(100% - min(20%, 250px));
+    min-height: calc(100vh - 122px);
+
+    &.is-fullwidth {
+        max-width: 100%;
+    }
+}
+
+.breadcrumb {
+    li {
+        a,
+        &.is-active a {
+            color: #333;
+        }
+
+        &:first-child a::before {
+            content: '\f015';
+            font: var(--fa-font-solid);
+            margin-right: 10px;
+        }
+    }
+}
+
+.pagination {
+    --bulma-pagination-item-margin: 0.1rem;
+}
+
+.modal {
+    --bulma-modal-card-head-padding: 1rem;
+    --bulma-modal-card-body-padding: 1.5rem;
+
+    .modal-card-title {
+        --bulma-modal-card-title-size: 1.2rem;
+        font-weight: 600;
+    }
+}
+
+.table-container {
+    .table {
+        &.is-fixed {
+            table-layout: fixed;
+        }
+    }
+}
+
+.login-bg {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background-image: url(../images/sub/login_bg.png);
+    background-repeat: no-repeat;
+    background-position: 0 10%;
+    background-size: cover;
+
+    .box {
+        margin: 0 auto;
+        max-width: 550px;
+    }
+
+    figure img {
+        width: 200px;
+    }
+}
+
+.ck {
+    figure.media {
+        max-width: 720px;
+    }
+
+    ol,
+    ul {
+        padding: revert;
+    }
+
+    &.ck-content {
+        overflow-x: auto;
+    }
+
+    .ck-editor__editable {
+        min-height: 200px;
+    }
+}
+
+.field.editor {
+    width: 0; // CKEditor size bug fix (when in the grid)
+}
+@media screen and (max-width: 1023px) {
+    .header {
+        .navbar-menu {
+            display: flex;
+            flex-grow: 1;
+            flex-shrink: 0;
+            box-shadow: none;
+
+            .navbar-end {
+                display: flex;
+                justify-content: flex-end;
+                margin-inline-start: auto;
+            }
+        }
+    }
+
+    .global-navbar {
+        padding-left: 0;
+        padding-right: 0;
+
+        .navbar-burger {
+            visibility: hidden;
+            margin-inline-start: 5px;
+        }
+    }
+
+    .section {
+        max-width: calc(100% - 200px);
+    }
+    .fixed-grid {
+        .grid.is-block-mobile {
+            column-gap: 0;
+        }
+    }
+}
+@media screen and (max-width: 768px) {
+    .global-navbar {
+        padding: 0;
+
+        .navbar-burger {
+            display: flex;
+            visibility: visible;
+        }
+    }
+
+    .aside {
+        position: absolute;
+        visibility: hidden;
+        left: -250px;
+        z-index: 30;
+        transition: all var(--bulma-duration);
+        top: 122px;
+
+        &.is-active {
+            visibility: visible;
+            transition: all var(--bulma-duration);
+            left: 0;
+        }
+    }
+
+    .section {
+        max-width: 100%;
+        border: 0;
+    }
+
+    .field.editor {
+        width: initial; // CKEditor size bug fix (when in the grid)
+    }
+
+    .fixed-grid {
+        .grid.is-block-mobile {
+            .cell:first-child {
+                margin-bottom: var(--bulma-column-gap);
+            }
+        }
+    }
+}

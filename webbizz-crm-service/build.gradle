@@ -1,0 +1,18 @@
+plugins {
+    id 'java-library'
+}
+
+group = 'webbizz.crm.core.service'
+version = '1.0-SNAPSHOT'
+
+dependencies {
+    // Module Dependencies
+    implementation project(':webbizz-crm-core')
+    implementation project(':webbizz-crm-domain')
+
+    // Other Dependency Coordinates - API
+    api "org.apache.poi:poi-ooxml:${poiVersion}"
+
+    // Other Dependency Coordinates - Implementation
+    implementation "net.coobird:thumbnailator:${thumbnailatorVersion}"
+}

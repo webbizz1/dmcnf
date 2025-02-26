@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+<head>
+    <title>전시 관리 &gt; [[ ${exhibitionType.detail} ]] &gt; 수정</title>
+</head>
+
+<aside layout:fragment="lnb" th:replace="~{fragments/lnb_exhibition :: lnb}"></aside>
+<section layout:fragment="content">
+    <!-- 브레드크럼 -->
+    <nav class="breadcrumb" aria-label="breadcrumbs">
+        <ul>
+            <li><a href="/">홈</a></li>
+            <li><a href="/exhibition">전시 관리</a></li>
+            <li><a th:href="${exhibitionLink}">[[ ${exhibitionType.detail} ]]</a></li>
+            <li class="is-active"><a href="#" aria-current="page">수정</a></li>
+        </ul>
+    </nav>
+
+    <!-- 제목 -->
+    <h2 class="title is-4">[[ ${exhibitionType.detail} ]] 수정</h2>
+
+    <!-- 검색 결과 -->
+    <div class="card">
+        <div class="card-header">
+            <p class="card-header-title icon-text">
+                <span class="icon">
+                    <i class="fa-regular fa-image" aria-hidden="true"></i>
+                </span>
+                <span>배너 정보</span>
+            </p>
+            <span class="is-size-7 is-align-content-end is-required m-2 before">필수 입력</span>
+        </div>
+        <div class="card-content">
+            <form x-data="exhibitionComponent" @submit.prevent="submit()">
+                <div class="field is-horizontal is-align-items-baseline"
+                     th:if="${exhibitionType eq T(webbizz.crm.domain.exhibition.enumset.ExhibitionType).TOP}"  >
+                    <div class="field-label is-normal">
+                        <label class="label">
+                            <span class="is-required">배너 유형</span>
+                        </label>
+                    </div>
+                    <div class="field-body">
+                        <div class="field">
+                            <div class="control radios">
+                                <label class="radio">
+                                    <input type="radio" name="bannerType" required
+                                           th:value="${bannerType.TEXT.code}"
+                                           x-model="exhibitionData.bannerType" />
+                                    <th:block th:text="${bannerType.TEXT.detail}" />
+                                </label>
+                                <label class="radio">
+                                    <input type="radio" name="bannerType" required
+                                           th:value="${bannerType.IMAGE.code}"
+                                           x-model="exhibitionData.bannerType" />
+                                    <th:block th:text="${bannerType.IMAGE.detail}" />
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field is-horizontal">
+                    <div class="field-label is-normal">
+                        <label class="label" for="title">
+                            <span class="is-required">제목</span>
+                        </label>
+                    </div>
+                    <div class="field-body">
+                        <div class="field">
+                            <div class="control has-icons-left">
+                                <input type="text" class="input" name="title" id="title" placeholder="제목" required
+                                       x-ref="title"
+                                       x-model="exhibitionData.title" />
+                                <span class="icon is-left">
+                                    <i class="fa-solid fa-heading" aria-hidden="true"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field is-horizontal">
+                    <div class="field-label is-normal">
+                        <label class="label" for="linkUrl">
+                            <span :class="{ 'is-required': exhibitionData.linkTarget !== 'NONE' }">링크 URL</span>
+                        </label>
+                    </div>
+                    <div class="field-body">
+                        <div class="field has-addons">
+                            <div class="control is-expanded has-icons-left">
+                                <input type="text" inputmode="url" class="input" name="linkUrl" id="linkUrl" placeholder="https:// 또는 / 로 시작"
+                                       x-ref="linkUrl"
+                                       x-model="exhibitionData.linkUrl"
+                                       :disabled="exhibitionData.linkTarget === 'NONE'" />
+                                <span class="icon is-left">
+                                    <i class="fa-solid fa-link" aria-hidden="true"></i>
+                                </span>
+                            </div>
+                            <div class="control has-icons-left">
+                                <label class="select">
+                                    <select name="target" x-model="exhibitionData.linkTarget">
+                                        <option value="SELF">현재 창</option>
+                                        <option value="BLANK">새 창</option>
+                                        <option value="NONE">링크 없음</option>
+                                    </select>
+                                </label>
+                                <span class="icon is-left">
+                                    <i class="fa-regular fa-window-restore" aria-hidden="true"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field is-horizontal"
+                     th:data-show-banner-type="${bannerType.IMAGE.code}"
+                     x-show="exhibitionData.bannerType === $el.dataset.showBannerType">
+                    <div class="field-label is-normal">
+                        <label class="label">
+                            <span class="is-required">PC 이미지</span>
+                        </label>
+                    </div>
+                    <div class="field-body">
+                        <div class="field">
+                            <div class="control">
+                                <div class="file has-name is-fullwidth">
+                                    <label class="file-label">
+                                        <input type="file" class="file-input" accept="image/*"
+                                               data-name="pcImageUUID"
+                                               data-source="top-banner-pc-image"
+                                               data-preview="help-pc-image"
+                                               data-max-files="1" />
+                                        <span class="file-cta">
+                                            <span class="file-icon">
+                                                <i class="fas fa-upload" aria-hidden="true"></i>
+                                            </span>
+                                            <span class="file-label">찾아보기</span>
+                                        </span>
+                                        <span class="file-name">
+                                            <th:block th:if="${dto.pcImage ne null}" th:text="${dto.pcImage.originalName}" />
+                                            <th:block th:unless="${dto.pcImage ne null}">파일을 선택해 주세요.</th:block>
+                                        </span>
+                                    </label>
+                                </div>
+                            </div>
+                            <p class="help is-dark">(파일 형식: gif, jpg, jpeg, png) / 사이즈: 0000x000 / 파일 용량: 5MB 이하)</p>
+                            <div id="help-pc-image">
+                                <figure class="image mt-2" style="max-width: 214px"
+                                        th:if="${dto.pcImage ne null}"
+                                        th:data-uuid="${dto.pcImage.uuid}">
+                                    <img th:src="@{/api/v1/attachment/{uuid}(uuid = ${dto.pcImage.uuid})}" th:alt="${dto.pcImage.originalName}" />
+                                    <button type="button" class="delete is-small" onclick="deleteFile(this.dataset.uuid);"
+                                            th:data-uuid="${dto.pcImage.uuid}"></button>
+                                    <input type="hidden" name="pcImageUUID" th:value="${dto.pcImage.uuid}" />
+                                </figure>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field is-horizontal"
+                     th:data-show-banner-type="${bannerType.IMAGE.code}"
+                     x-show="exhibitionData.bannerType === $el.dataset.showBannerType">
+                    <div class="field-label is-normal">
+                        <label class="label">
+                            <span class="is-required">Mobile 이미지</span>
+                        </label>
+                    </div>
+                    <div class="field-body">
+                        <div class="field">
+                            <div class="control">
+                                <div class="file has-name is-fullwidth">
+                                    <label class="file-label">
+                                        <input type="file" class="file-input" accept="image/*"
+                                               data-name="mobileImageUUID"
+                                               data-source="top-banner-mobile-image"
+                                               data-preview="help-mobile-image"
+                                               data-max-files="1" />
+                                        <span class="file-cta">
+                                            <span class="file-icon">
+                                                <i class="fas fa-upload" aria-hidden="true"></i>
+                                            </span>
+                                            <span class="file-label">찾아보기</span>
+                                        </span>
+                                        <span class="file-name">
+                                            <th:block th:if="${dto.mobileImage ne null}" th:text="${dto.mobileImage.originalName}" />
+                                            <th:block th:unless="${dto.mobileImage ne null}">파일을 선택해 주세요.</th:block>
+                                        </span>
+                                    </label>
+                                </div>
+                            </div>
+                            <p class="help is-dark">(파일 형식: gif, jpg, jpeg, png) / 사이즈: 0000x000 / 파일 용량: 5MB 이하)</p>
+                            <div id="help-mobile-image">
+                                <figure class="image mt-2" style="max-width: 214px"
+                                        th:if="${dto.mobileImage ne null}"
+                                        th:data-uuid="${dto.mobileImage.uuid}">
+                                    <img th:src="@{/api/v1/attachment/{uuid}(uuid = ${dto.mobileImage.uuid})}" th:alt="${dto.mobileImage.originalName}" />
+                                    <button type="button" class="delete is-small" onclick="deleteFile(this.dataset.uuid);"
+                                            th:data-uuid="${dto.mobileImage.uuid}"></button>
+                                    <input type="hidden" name="mobileImageUUID" th:value="${dto.mobileImage.uuid}" />
+                                </figure>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field is-horizontal">
+                    <div class="field-label is-normal">
+                        <label class="label">
+                            <span class="is-required">노출 기간</span>
+                        </label>
+                    </div>
+                    <div class="field-body">
+                        <div class="field has-addons datepicker-range">
+                            <div class="control has-icons-left">
+                                <label>
+                                    <input type="text" name="viewStartDate" placeholder="시작일" class="input" required
+                                           x-ref="viewStartDate"
+                                           x-model="exhibitionData.viewStartDate" />
+                                    <span class="icon is-left">
+                                        <i class="fa-regular fa-calendar" aria-hidden="true"></i>
+                                    </span>
+                                </label>
+                            </div>
+                            <div class="control">
+                                <span class="button is-static">~</span>
+                            </div>
+                            <div class="control has-icons-left">
+                                <label>
+                                    <input type="text" name="endDate" placeholder="종료일" class="input"
+                                           x-ref="viewEndDate"
+                                           x-model="exhibitionData.viewEndDate" />
+                                    <span class="icon is-left">
+                                        <i class="fa-regular fa-calendar" aria-hidden="true"></i>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field is-horizontal is-align-items-baseline">
+                    <div class="field-label is-normal">
+                        <label class="label">
+                            <span class="is-required">노출 상태</span>
+                        </label>
+                    </div>
+                    <div class="field-body">
+                        <div class="field">
+                            <div class="control radios">
+                                <label class="radio">
+                                    <input type="radio" name="viewYn" value="Y" required
+                                           x-model="exhibitionData.viewYn" />
+                                    노출
+                                </label>
+                                <label class="radio">
+                                    <input type="radio" name="viewYn" value="N"
+                                           x-model="exhibitionData.viewYn" />
+                                    미노출
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field is-horizontal">
+                    <div class="field-label">
+                        <label class="label">등록 일시</label>
+                    </div>
+                    <div class="field-body">
+                        <div class="field" th:text="${#temporals.format(dto.createdAt, 'yyyy-MM-dd HH:mm:ss')}"></div>
+                    </div>
+                </div>
+
+                <div class="field is-horizontal">
+                    <div class="field-label"></div>
+                    <div class="field-body">
+                        <div class="field is-grouped">
+                            <div class="control">
+                                <button type="submit" class="button is-link" x-ref="submit">
+                                    <span class="icon">
+                                        <i class="fa fa-save" aria-hidden="true"></i>
+                                    </span>
+                                    <span>저장</span>
+                                </button>
+                            </div>
+                            <div class="control">
+                                <button type="button" class="button is-danger is-light"
+                                        x-ref="delete"
+                                        @click="deleteSubmit()">
+                                    <span class="icon">
+                                        <i class="fa-regular fa-trash-can" aria-hidden="true"></i>
+                                    </span>
+                                    <span>삭제</span>
+                                </button>
+                            </div>
+                            <div class="control">
+                                <a class="button is-link is-light"
+                                   th:href="${#uris.unescapeQueryParam(exhibitionLink + queryStringValue)}"
+                                   x-ref="cancel">
+                                    <span class="icon">
+                                        <i class="fa fa-undo" aria-hidden="true"></i>
+                                    </span>
+                                    <span>취소</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+<script layout:fragment="javascript" th:inline="javascript">
+    document.addEventListener('alpine:init', () => {
+        Alpine.data('exhibitionComponent', () => ({
+            exhibitionData: {
+                id: /*[[ ${dto.id} ]]*/ null,
+                type: /*[[ ${exhibitionType.code} ]]*/ '',
+                bannerType: /*[[ ${exhibitionType.code eq 'TOP' ? 'TEXT' : 'IMAGE'} ]]*/ 'IMAGE',
+                title: /*[[ ${dto.title} ]]*/ '',
+                linkUrl: /*[[ ${dto.linkUrl} ]]*/ '',
+                linkTarget: /*[[ ${dto.linkTarget ne null ? dto.linkTarget : 'NONE'} ]]*/ 'SELF',
+                pcImageUUID: /*[[ ${dto.pcImage ne null ? dto.pcImage.uuid : ''} ]]*/ '',
+                mobileImageUUID: /*[[ ${dto.mobileImage ne null ? dto.mobileImage.uuid : ''} ]]*/ '',
+                viewStartDate: /*[[ ${#temporals.format(dto.viewStartAt, 'yyyy-MM-dd')} ]]*/ '',
+                viewEndDate: /*[[ ${#temporals.format(dto.viewEndAt, 'yyyy-MM-dd')} ]]*/ '',
+                viewYn: /*[[ ${dto.viewYn} ]]*/ 'Y'
+            },
+
+            init() {
+                this.checkTitle();
+                this.checkLinkUrl();
+                this.checkViewStartDate();
+
+                this.$watch('exhibitionData.title', () => this.checkTitle());
+                this.$watch('exhibitionData.linkUrl', () => this.checkLinkUrl());
+                this.$watch('exhibitionData.linkTarget', () => this.checkLinkUrl());
+                this.$watch('exhibitionData.viewStartDate', () => this.checkViewStartDate());
+                this.$watch('exhibitionData.viewEndDate', () => this.checkViewEndDate());
+
+                document.querySelectorAll('input[type="file"]').forEach($input => {
+                    $input.addEventListener('change', event => {
+                        uploadFiles(event.target)
+                            .then(handleUploadFilesImageResult);
+                    });
+                });
+                this.$refs.viewStartDate.addEventListener('changeDate', () => {
+                    this.exhibitionData.viewStartDate = this.$refs.viewStartDate.value;
+                });
+                this.$refs.viewEndDate.addEventListener('changeDate', () => {
+                    this.exhibitionData.viewEndDate = this.$refs.viewEndDate.value;
+                });
+            },
+
+            checkTitle() {
+                if (this.exhibitionData.title.trim().length < 1) {
+                    this.$refs.title.classList.add('is-danger');
+                    return false;
+                } else {
+                    this.$refs.title.classList.remove('is-danger');
+                    return true;
+                }
+            },
+            checkLinkUrl() {
+                this.$refs.linkUrl.classList.remove('is-danger');
+
+                if (this.exhibitionData.linkTarget === 'NONE') {
+                    return true;
+                }
+
+                if (this.exhibitionData.linkUrl === null || this.exhibitionData.linkUrl.trim().length < 1) {
+                    this.$refs.linkUrl.classList.add('is-danger');
+                    return false;
+                } else if (/^(?:https:\/\/[a-z0-9-]+(?:\.[a-z0-9-]+)*(?::[0-9]+)?(?:\/\S*)?|\/(?:[\w-]+\/?)*)/i.test(this.exhibitionData.linkUrl) === false) {
+                    this.$refs.linkUrl.classList.add('is-danger');
+                    return false;
+                }
+
+                return true;
+            },
+            checkViewStartDate() {
+                if (/^20\d{2}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$/.test(this.exhibitionData.viewStartDate)) {
+                    this.$refs.viewStartDate.classList.remove('is-danger');
+                    return true;
+                } else {
+                    this.$refs.viewStartDate.classList.add('is-danger');
+                    return false;
+                }
+            },
+            checkViewEndDate() {
+                if (this.exhibitionData.viewEndDate == null || this.exhibitionData.viewEndDate.trim().length < 1) {
+                    return true;
+                }
+
+                if (/^20\d{2}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$/.test(this.exhibitionData.viewStartDate)) {
+                    this.$refs.viewStartDate.classList.remove('is-danger');
+                    return true;
+                } else {
+                    this.$refs.viewStartDate.classList.add('is-danger');
+                    return false;
+                }
+            },
+
+            submit() {
+                console.log('submit', this.exhibitionData);
+
+                if (this.checkTitle() === false) {
+                    alert('제목을 입력해 주세요.');
+                    this.$refs.title.focus();
+                    return;
+                }
+                if (this.checkLinkUrl() === false) {
+                    alert('링크 URL 을 확인해 주세요.');
+                    this.$refs.linkUrl.focus();
+                    return;
+                }
+                if (this.exhibitionData.bannerType === /*[[ ${bannerType.IMAGE.code} ]]*/ '') {
+                    const pcImageUUID = document.querySelector('input[name="pcImageUUID"]');
+                    const mobileImageUUID = document.querySelector('input[name="mobileImageUUID"]');
+                    if (pcImageUUID === null || pcImageUUID.value.trim().length < 1) {
+                        alert('PC 이미지를 등록해 주세요.');
+                        return;
+                    }
+                    if (mobileImageUUID === null || mobileImageUUID.value.trim().length < 1) {
+                        alert('Mobile 이미지를 등록해 주세요.');
+                        return;
+                    }
+                    this.exhibitionData.pcImageUUID = pcImageUUID.value;
+                    this.exhibitionData.mobileImageUUID = mobileImageUUID.value;
+                } else {
+                    this.exhibitionData.pcImageUUID = '';
+                    this.exhibitionData.mobileImageUUID = '';
+                }
+                if (this.checkViewStartDate() === false) {
+                    alert('노출 시작 날짜를 입력해주세요.');
+                    this.$refs.viewStartDate.focus();
+                    return;
+                }
+                if (confirm('정보를 저장하시겠습니까?') === false) {
+                    return;
+                }
+
+                this.$refs.submit.classList.add('is-loading');
+
+                fetch('/api/v1/exhibition', {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(this.exhibitionData)
+                })
+                    .then(handleFetchResponse)
+                    .then(() => {
+                        this.$refs.cancel.click();
+                    })
+                    .catch(handleFetchError)
+                    .finally(() => {
+                        this.$refs.submit.classList.remove('is-loading');
+                    });
+            },
+            deleteSubmit() {
+                if (confirm('삭제하시겠습니까?') === false) {
+                    return;
+                }
+
+                fetch(`/api/v1/exhibition/${this.exhibitionData.id}`, {
+                    method: 'DELETE'
+                })
+                    .then(handleFetchResponse)
+                    .then(() => {
+                        this.$refs.cancel.click();
+                    })
+                    .catch(handleFetchError)
+                    .finally(() => {
+                        this.$refs.delete.classList.remove('is-loading');
+                    });
+            }
+        }));
+    });
+
+</script>
+
+</html>

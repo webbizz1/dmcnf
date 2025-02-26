@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+
+<head>
+    <title th:text="${menuPage.navigator}">타이틀</title>
+    <meta name="keywords" th:content="${menuPage.menu.seoKeyword}"/>
+    <meta name="description" th:content="${menuPage.menu.seoDescription}"/>
+</head>
+
+<main layout:fragment="content">
+    <div class="sub-content">
+        <div class="board-wrap">
+            <div class="cont-top">
+                <div class="sub-nav">
+                    <div class="w-set">
+                        <div class="location-wrap">
+                            <a href="./index.html" class="location home">홈</a>
+                            <span class="location">알림 &#183; 소식</span>
+                            <span class="location on">공지사항</span>
+                        </div>
+                        <div class="function-wrap">
+                            <div class="func share">
+                                <a href="javascript:;" class="btn-share">공유하기</a>
+                                <div class="share-wrap">
+                                    <button type="button" class="btn-close">닫기</button>
+                                    <ul class="share-list">
+                                        <li class="copy">
+                                            <a href="javascript:;"><span>링크복사</span></a>
+                                        </li>
+                                        <li class="kakao">
+                                            <a href="javascript:;"><span>카카오톡</span></a>
+                                        </li>
+                                        <li class="facebook">
+                                            <a href="javascript:;"><span>페이스북</span></a>
+                                        </li>
+                                        <li class="instagram">
+                                            <a href="javascript:;"><span>인스타그램</span></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="func print hide-t">
+                                <button type="button" class="btn-print">인쇄하기</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="title-wrap">
+                    <h2 class="title">민원만족도조사</h2>
+                </div>
+            </div>
+
+            <div class="cont-btm" x-data="surveyResponse()">
+                <div class="survey-view-wrap">
+                    <div class="w-set">
+                        <div class="basic-info-box">
+                            <div class="title" th:text="${survey.title}">
+                                KIND 민원 만족도 조사 입니다.
+                            </div>
+                            <div class="info">
+                                <dl>
+                                    <dt><i class="info-01"></i>
+                                        <div><span th:text="${surveyResponse.respondentInfo.name}">홍길동</span>
+                                            <span th:data-telephone="${surveyResponse.respondentInfo.phone}">010-000-0000</span>
+                                            <span th:text="${surveyResponse.respondentInfo.email}">sazita@naver.com</span></div>
+                                    </dt>
+                                    <dd><i class="info-02"></i>
+                                        <th:block th:text="${#temporals.format(survey.startDate, 'yyyy-MM-dd')}"/>
+                                        ~
+                                        <th:block th:text="${#temporals.format(survey.endDate, 'yyyy-MM-dd')}"/>
+                                    </dd>
+                                </dl>
+                            </div>
+                        </div>
+                        <div class="survey-area" x-data="surveyContents()">
+                            <template x-for="(question, questionIndex) in survey.questions" :key="index">
+                                <div class="survey-row">
+                                    <div class="question">
+                                        <span class="num" x-text="questionIndex + 1 + '. '">2.</span>
+                                        <strong class="essential">[필수]</strong>
+                                        <strong x-text="question.title"></strong>
+                                        <strong x-text="`(${question.answerType === AnswerType.RADIO.code ? AnswerType.RADIO.label : AnswerType.CHECKBOX.label})`"></strong>
+                                    </div>
+                                    <div class="answer">
+                                        <ul>
+                                            <template x-for="(answer, answerIndex) in question.answers" :key="answerIndex">
+                                                <li>
+                                                    <div :class="question.answerType === AnswerType.RADIO.code ? AnswerType.RADIO.value + 'box' : AnswerType.CHECKBOX.value" x-id="['answers-contents']">
+                                                        <input :type="question.answerType === AnswerType.RADIO.code ? AnswerType.RADIO.value : AnswerType.CHECKBOX.value"
+                                                               :id="$id('answers-contents')" :name="'question_' + questionIndex"
+                                                               :value="answer.answerId"
+                                                               x-model="answers[questionIndex].selectedAnswerId"
+                                                        >
+                                                        <label class="label" :for="$id('answers-contents')" x-text="answer.text">친절했다</label>
+                                                    </div>
+                                                </li>
+                                            </template>
+                                            <template x-if="question.useCustomAnswerYn === 'Y' && question.answerType === AnswerType.CHECKBOX.code">
+                                                <li>
+                                                    <div class="input-box" x-id="['answers-custom']">
+                                                        <input type="text" name="" :id="$id('answers-custom')" class="w_30" x-model="answers[questionIndex].customAnswer">
+                                                        <label :for="$id('answers-custom')" class="is-blind">이름</label>
+                                                    </div>
+                                                </li>
+                                            </template>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </template>
+                            <div class="survey-row">
+                                <div class="question">기타 느낀 점이나 의견을 알려주세요 (자유 입력)</div>
+                                <div class="answer" x-id="['overall-comment']">
+                                    <textarea name="" :id="$id('overall-comment')" placeholder="자유롭게 의견을 남겨주세요" x-model="surveyData.overallComment"></textarea>
+                                    <label :for="$id('overall-comment')" class="is-blind">자유롭게 의견을 남겨주세요</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="btn-wrap type-center">
+                            <button type="button" class="btn" :disabled="isDisabled" @click="submitSurveyResponse()">저장</button>
+                            <button type="button" class="btn color5">취소</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</main>
+<script layout:fragment="javascript" th:inline="javascript">
+    const AnswerType = Object.freeze(/*[[${answerTypes}]]*/ {});
+
+    /**
+     * 해당 설문의 정보영역
+     */
+    function surveyContents() {
+        return {
+            get survey() {
+                return Alpine.store('surveyViewStore').survey
+            },
+        }
+    }
+
+    /**
+     * 설문 응답 영역
+     */
+    function surveyResponse() {
+        return {
+            surveyData: null,
+            answers: null,
+            questions: Alpine.store('surveyViewStore').survey.questions,
+            isDisabled: false,
+
+            init() {
+                this.answers = this.defaultAnswersData();
+                this.surveyData = this.defaultResponseData();
+            },
+
+            // 보낼 값 셋팅
+            defaultResponseData() {
+                const storeResponse = Alpine.store('surveyViewStore').response;
+
+                return {
+                    surveyId: storeResponse?.surveyId,
+                    ...storeResponse,
+                    overallComment: null,
+                    answers: this.answers,
+                }
+            },
+
+            // 값을 입력 받을 answers 데이터 셋팅
+            defaultAnswersData() {
+                return this.answers = this.questions.map((question) => ({
+                    questionId: question.id,
+                    selectedAnswerId: question.answerType === AnswerType.CHECKBOX.code ? [] : null,
+                    customAnswer: null,
+                }));
+            },
+
+            // 데이터 전송
+            submitSurveyResponse() {
+                this.surveyData.answers = this.questions.flatMap((question, idx) => {
+                    const selected = this.answers[idx].selectedAnswerId;
+                    const customAnswer = this.answers[idx].customAnswer;
+                    const baseAnswer = {
+                        questionId: question.id,
+                        customAnswer: null
+                    };
+
+                    // 일반 답변 배열 생성
+                    const normalAnswers = Array.isArray(selected)
+                        ? selected.map(answerId => ({...baseAnswer, answerId}))
+                        : [{...baseAnswer, answerId: selected}];
+
+                    // customAnswer 있는 경우 추가 답변 생성
+                    const customAnswers = customAnswer
+                        ? [{...baseAnswer, answerId: null, customAnswer}]
+                        : [];
+
+                    // 두 배열 합치기
+                    return [...normalAnswers, ...customAnswers];
+                });
+
+                this.isDisabled = true;
+                fetch('/api/v1/survey/response', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(this.surveyData),
+                })
+                    .then(handleFetchResponse)
+                    .then(_result => {
+                        alert('참여 되었습니다.');
+                        window.location.href = '/survey';
+                    })
+                    .catch(handleFetchError)
+                    .finally(() => {
+                        this.isDisabled = false;
+                    });
+
+            }
+        }
+    }
+
+
+    document.addEventListener('alpine:init', () => {
+
+        Alpine.data('surveyContents', surveyContents);
+        Alpine.data('surveyResponse', surveyResponse);
+
+        /**
+         *  스토어 영역
+         */
+        Alpine.store('surveyViewStore', {
+            survey: /*[[${survey}]]*/ {}, // 존재하지 않을시 undefined
+            response: /*[[${surveyResponse}]]*/ {}, // 존재하지 않을시 undefined
+            init() {
+            }
+        });
+    });
+</script>
+
+</html>

@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+<head>
+    <title>회원 관리 &gt; 활동 회원 &gt; 상세</title>
+</head>
+
+<aside layout:fragment="lnb" th:replace="~{fragments/lnb_member :: lnb}"></aside>
+<section layout:fragment="content">
+    <!-- 브레드크럼 -->
+    <nav class="breadcrumb" aria-label="breadcrumbs">
+        <ul>
+            <li><a href="/">홈</a></li>
+            <li><a href="/member">회원 관리</a></li>
+            <li><a href="/member/active">활동 회원</a></li>
+            <li class="is-active"><a href="#" aria-current="page">상세</a></li>
+        </ul>
+    </nav>
+
+    <!-- 제목 -->
+    <h2 class="title is-4">활동 회원 상세</h2>
+
+    <!-- 검색 결과 -->
+    <div class="card">
+        <div class="card-header">
+            <p class="card-header-title icon-text">
+                <span class="icon">
+                    <i class="fa fa-id-card" aria-hidden="true"></i>
+                </span>
+                <span>회원 정보</span>
+            </p>
+        </div>
+        <div class="card-content">
+            <form>
+                <div class="field is-horizontal">
+                    <div class="field-label is-normal">
+                        <label class="label" for="loginId">아이디</label>
+                    </div>
+                    <div class="field-body">
+                        <div class="field">
+                            <div class="control has-icons-left">
+                                <input type="text" id="loginId" placeholder="아이디" class="input" disabled
+                                       th:value="${dto.getLoginId()}" />
+                                <span class="icon is-left">
+                                    <i class="fa fa-id-badge" aria-hidden="true"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field is-horizontal">
+                    <div class="field-label is-normal">
+                        <label class="label" for="password">비밀번호</label>
+                    </div>
+                    <div class="field-body">
+                        <div class="field is-grouped">
+                            <div class="control is-expanded has-icons-left">
+                                <input type="password" id="password" autocomplete="new-password" placeholder="비밀번호" class="input" disabled
+                                       value="**********" />
+                                <span class="icon is-left">
+                                    <i class="fas fa-key" aria-hidden="true"></i>
+                                </span>
+                            </div>
+                            <div class="control">
+                                <button type="button" id="resetPassword" class="button is-primary">
+                                    <span class="icon">
+                                        <i class="fa-solid fa-rotate" aria-hidden="true"></i>
+                                    </span>
+                                    <span>비밀번호 초기화</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field is-horizontal">
+                    <div class="field-label is-normal">
+                        <label class="label" for="realName">이름</label>
+                    </div>
+                    <div class="field-body">
+                        <div class="field">
+                            <div class="control has-icons-left">
+                                <input type="text" id="realName" autocomplete="email" placeholder="이름" class="input" disabled
+                                       th:value="${dto.realName}" />
+                                <span class="icon is-left">
+                                    <i class="fa fa-user" aria-hidden="true"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field is-horizontal">
+                    <div class="field-label is-normal">
+                        <label class="label" for="mobileNumber">휴대폰 번호</label>
+                    </div>
+                    <div class="field-body">
+                        <div class="field">
+                            <div class="control has-icons-left">
+                                <input type="tel" id="mobileNumber" placeholder="휴대폰 번호" class="input" disabled
+                                       th:value="${dto.mobileNumber}" th:data-telephone="${dto.mobileNumber}" />
+                                <span class="icon is-left">
+                                    <i class="fa fa-mobile-alt" aria-hidden="true"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field is-horizontal">
+                    <div class="field-label is-normal">
+                        <label class="label" for="email">이메일</label>
+                    </div>
+                    <div class="field-body">
+                        <div class="field">
+                            <div class="control has-icons-left">
+                                <input type="email" id="email" autocomplete="off" placeholder="이메일" class="input" disabled
+                                       th:value="${dto.email}" />
+                                <span class="icon is-left">
+                                    <i class="fa fa-at" aria-hidden="true"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field is-horizontal">
+                    <div class="field-label">
+                        <span class="label">가입 일시</span>
+                    </div>
+                    <div class="field-body">
+                        <div class="field" th:text="${#temporals.format(dto.createdAt, 'yyyy-MM-dd HH:mm:ss')}"></div>
+                    </div>
+                </div>
+
+                <div class="field is-horizontal">
+                    <div class="field-label">
+                        <span class="label">최근 방문 일시</span>
+                    </div>
+                    <div class="field-body">
+                        <div class="field">
+                            <th:block th:if="${dto.lastLoginAt ne null}"
+                                      th:text="${#temporals.format(dto.lastLoginAt, 'yyyy-MM-dd HH:mm')}"></th:block>
+                            <th:block th:unless="${dto.lastLoginAt ne null}">-</th:block>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field is-horizontal">
+                    <div class="field-label">
+                        <span class="label">상태</span>
+                    </div>
+                    <div class="field-body">
+                        <div class="field">
+                            <div class="control" th:text="${dto.status.detail}"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field is-horizontal">
+                    <div class="field-label"></div>
+                    <div class="field-body">
+                        <div class="field is-grouped">
+                            <div class="control">
+                                <a class="button" th:href="${#uris.unescapeQueryParam('/member/active' + queryStringValue)}">
+                                    <span class="icon">
+                                        <i class="fa-solid fa-table-list" aria-hidden="true"></i>
+                                    </span>
+                                    <span>목록</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <input type="hidden" name="id" th:value="${dto.id}" />
+            </form>
+        </div>
+    </div>
+</section>
+
+<script layout:fragment="javascript" th:inline="javascript">
+    document.getElementById('resetPassword').addEventListener('click', () => {
+        if (confirm('비밀번호를 초기화 하시겠습니까?') === false) {
+            return;
+        }
+
+        fetch('/api/v1/member/active/reset-password', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ id: parseInt(document.forms[0].id.value) })
+        })
+            .then(handleFetchResponse)
+            .then(result => {
+                alert(`비밀번호가 ${result.data} 로 초기화 되었습니다.`);
+            })
+            .catch(handleFetchError);
+    });
+</script>
+
+</html>

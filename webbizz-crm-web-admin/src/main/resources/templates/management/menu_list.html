@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+<head>
+    <title>운영 &gt; 메뉴 관리</title>
+    <link rel="stylesheet" href="/css/ckeditor-wbz.min.css" />
+    <script type="module" src="/js/ckeditor-wbz.min.js"></script>
+</head>
+
+<aside layout:fragment="lnb" th:replace="~{fragments/lnb_management :: lnb}"></aside>
+<section layout:fragment="content" x-data="menuComponent">
+    <!-- 브레드크럼 -->
+    <nav class="breadcrumb" aria-label="breadcrumbs">
+        <ul>
+            <li><a href="/">홈</a></li>
+            <li><a href="/management">운영</a></li>
+            <li class="is-active"><a href="#" aria-current="page">메뉴 관리</a></li>
+        </ul>
+    </nav>
+
+    <!-- 제목 -->
+    <h2 class="title is-4">메뉴 관리</h2>
+
+    <!-- 메뉴 관리 버튼 -->
+    <div class="buttons">
+        <button type="button" class="button is-info" @click="addMenu()">
+            <span class="icon">
+                <i class="fa fa-plus" aria-hidden="true"></i>
+            </span>
+            <span>메뉴 추가</span>
+        </button>
+        <button type="button" class="button is-danger is-light" @click="deleteMenuConfirm()">
+            <span class="icon">
+                <i class="fa-regular fa-trash-can" aria-hidden="true"></i>
+            </span>
+            <span>메뉴 삭제</span>
+        </button>
+        <button type="button" class="button is-primary is-light" @click="toggleOrderChangeMenu()">
+            <span class="icon">
+                <i class="fa-solid fa-arrow-down-up-across-line" aria-hidden="true"></i>
+            </span>
+            <span>순서 변경</span>
+        </button>
+            <button type="submit" class="button is-link"
+                    x-ref="submit" @click="submit()"
+                    :disabled="isModified === false">
+                <span class="icon">
+                    <i class="fa fa-save" aria-hidden="true"></i>
+                </span>
+                <span>저장</span>
+            </button>
+    </div>
+
+    <!-- 메뉴 -->
+    <div class="fixed-grid has-1-cols has-5-cols-tablet">
+        <div class="grid is-block-mobile">
+            <div class="cell is-col-span-2-tablet">
+                <div class="card">
+                    <div class="card-header">
+                        <p class="card-header-title icon-text">
+                            <span class="icon">
+                                <i class="fa-solid fa-sitemap" aria-hidden="true"></i>
+                            </span>
+                            <span>메뉴 구조</span>
+                        </p>
+                    </div>
+                    <div class="card-content card-menu">
+                        <aside class="menu">
+                            <ul class="menu-list"
+                                x-sort.ghost
+                                x-sort:group="menu"
+                                x-sort:config="{ handle: '[x-sort\\:handle]' }"
+                                @sort="sortListener($event)"
+                                x-html="renderMenu(menuTree)">
+                            </ul>
+                            <ul class="menu-list" x-show="menuData.length === 0">
+                                <li class="has-text-centered" x-cloak>
+                                    등록된 메뉴가 없습니다.<br />
+                                    메뉴 추가 버튼을 눌러 등록해주세요.
+                                </li>
+                            </ul>
+                        </aside>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cell is-col-span-3-tablet" x-cloak x-show="selectedMenuId !== null">
+                <div class="card">
+                    <div class="card-header">
+                        <p class="card-header-title icon-text">
+                            <span class="icon">
+                                <i class="fa-regular fa-newspaper" aria-hidden="true"></i>
+                            </span>
+                            <span>메뉴 정보</span>
+                        </p>
+                        <span class="is-size-7 is-align-content-end is-required m-2 before">필수 입력</span>
+                    </div>
+                    <div class="card-content my-1">
+                        <form>
+                            <div class="field">
+                                <label class="label" for="menuName">
+                                    <span class="is-required">메뉴명</span>
+                                </label>
+                                <div class="control has-icons-left">
+                                    <input type="text" name="menuName" id="menuName" x-ref="menuName"
+                                           placeholder="메뉴명" class="input" required
+                                           x-model="selectedMenu.name" @input="updateRenderMenuName(selectedMenu)" />
+                                    <span class="icon is-left">
+                                        <i class="fa-solid fa-heading" aria-hidden="true"></i>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="field">
+                                <label class="label icon-text">
+                                    <span>SEO 설정</span>
+                                    <span class="dropdown is-hoverable is-centered">
+                                        <span class="dropdown-trigger">
+                                            <span class="icon" aria-haspopup="true" aria-controls="seoHelp" style="cursor: pointer;">
+                                                <i class="fa-solid fa-question-circle is-small" aria-label="help"></i>
+                                            </span>
+                                        </span>
+                                        <span class="dropdown-menu" id="seoHelp" role="menu" style="left: -70px;">
+                                            <span class="dropdown-content is-block" style="width: 375px;">
+                                                <span class="dropdown-item has-text-weight-normal">
+                                                    검색엔진 최적화(SEO)란 검색엔진 결과 페이지에서 자신의 웹사이트 혹은
+                                                    웹페이지의 순위와 노출도를 높여 트래픽의 양과 질을 높이는 최적화 작업입니다.<br /><br />
+                                                    페이지 별로 성격에 맞게 메타 태그에 Keyword와 Description을 작성하면
+                                                    검색 엔진에서 사람들이 특정 키워드로 검색했을 때 자신의 결과가 검색엔진 상단에 노출됩니다.
+                                                </span>
+                                            </span>
+                                        </span>
+                                    </span>
+                                </label>
+
+                                <div class="control">
+                                    <div class="field has-addons">
+                                        <div class="control">
+                                            <a class="button is-static">Keyword</a>
+                                        </div>
+                                        <div class="control is-expanded">
+                                            <label>
+                                                <input type="text" name="seoKeyword" placeholder="키워드" class="input"
+                                                       x-model="selectedMenu.seoKeyword" />
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="field">
+                                <div class="control">
+                                    <div class="field has-addons">
+                                        <div class="control">
+                                            <a class="button is-static">Description</a>
+                                        </div>
+                                        <div class="control is-expanded">
+                                            <label>
+                                                <input type="text" name="seoDescription" placeholder="설명" class="input"
+                                                       x-model="selectedMenu.seoDescription" />
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="field">
+                                <label class="label">담당자</label>
+                                <div class="field is-grouped">
+                                    <p class="control is-expanded has-icons-left">
+                                        <label>
+                                            <input type="text" name="managerDepartment" placeholder="담당부서" class="input"
+                                                   x-model="selectedMenu.managerDepartment" />
+                                            <span class="icon is-left">
+                                                <i class="fa-regular fa-building" aria-hidden="true"></i>
+                                            </span>
+                                        </label>
+                                    </p>
+                                    <p class="control is-expanded has-icons-left">
+                                        <label>
+                                            <input type="tel" name="managerTelephone" placeholder="연락처" class="input"
+                                                   data-telephone
+                                                   x-model="selectedMenu.managerTelephone" />
+                                            <span class="icon is-left">
+                                                <i class="fa-solid fa-phone" aria-hidden="true"></i>
+                                            </span>
+                                        </label>
+                                    </p>
+                                    <p class="control is-expanded has-icons-left">
+                                        <label>
+                                            <input type="email" name="managerEmail" placeholder="이메일" class="input"
+                                                   x-model="selectedMenu.managerEmail" />
+                                            <span class="icon is-left">
+                                                <i class="fa fa-at" aria-hidden="true"></i>
+                                            </span>
+                                        </label>
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="field">
+                                <label class="label" for="publicUseYn">공공저작물 자유 이용</label>
+                                <label class="checkbox">
+                                    <input type="checkbox" name="publicUseYn" id="publicUseYn" value="Y"
+                                           :checked="selectedMenu.publicUseYn === 'Y'"
+                                           @click="selectedMenu.publicUseYn = $event.target.checked ? 'Y' : 'N'" />
+                                    허용
+                                </label>
+                            </div>
+
+                            <div class="field">
+                                <label class="label">
+                                    <span class="is-required">메뉴 유형</span>
+                                </label>
+                                <div class="control radios">
+                                    <label class="radio"
+                                           th:each="enum : ${T(webbizz.crm.domain.menu.enumset.MenuType).values()}"
+                                           th:if="${enum.code ne null}">
+                                        <input type="radio" name="menuType" required
+                                               th:value="${enum.code}"
+                                               x-model="selectedMenu.type" />
+                                        <th:block th:text="${enum.detail}">게시판</th:block>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!--/* 메뉴 유형별 노출: 링크 */-->
+                            <div class="field has-addons" x-show="selectedMenu.type === 'LINK'">
+                                <div class="control is-expanded has-icons-left">
+                                    <label>
+                                        <input type="url" class="input" name="url" id="url" placeholder="https:// 또는 / 로 시작"
+                                               x-model="selectedMenu.linkUrl" />
+                                        <span class="icon is-left">
+                                            <i class="fa-solid fa-link" aria-hidden="true"></i>
+                                        </span>
+                                    </label>
+                                </div>
+                                <div class="control has-icons-left">
+                                    <label class="select">
+                                        <select name="target" x-model="selectedMenu.linkTarget">
+                                            <option value="SELF">현재 창</option>
+                                            <option value="BLANK">새 창</option>
+                                        </select>
+                                    </label>
+                                    <span class="icon is-left">
+                                            <i class="fa-regular fa-window-restore" aria-hidden="true"></i>
+                                        </span>
+                                </div>
+                            </div>
+
+                            <!--/* 메뉴 유형별 노출: 콘텐츠 */-->
+                            <div class="field" x-show="selectedMenu.type === 'CONTENT'">
+                                <label>
+                                    <textarea name="content" placeholder="내용" class="ck-editor"></textarea>
+                                </label>
+                            </div>
+
+                            <!--/* 메뉴 유형별 노출: 게시판 */-->
+                            <div class="field" x-show="selectedMenu.type === 'BOARD'">
+                                <label class="select">
+                                    <select name="boardId" x-model.number="selectedMenu.board.id">
+                                        <option value="">게시판 선택</option>
+                                        <option th:each="board: ${@boardService.getBoardCompactList()}"
+                                                th:value="${board.id}"
+                                                th:text="${board.name}"></option>
+                                    </select>
+                                </label>
+                            </div>
+
+                            <div class="field">
+                                <label class="label">
+                                    <span class="is-required">노출 상태</span>
+                                </label>
+                                <div class="control radios">
+                                    <label class="radio">
+                                        <input type="radio" name="viewYn" value="Y" required
+                                               x-model="selectedMenu.viewYn" />
+                                        노출
+                                    </label>
+                                    <label class="radio">
+                                        <input type="radio" name="viewYn" value="N"
+                                               x-model="selectedMenu.viewYn" />
+                                        미노출
+                                    </label>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script layout:fragment="javascript" th:inline="javascript">
+    document.addEventListener('alpine:init', () => {
+        const _template = {
+            menu: {
+                id: null,
+                parentId: null,
+                groupId: null,
+                depth: 0,
+                sortOrder: 1,
+                name: '',
+                type: 'LINK',
+                board: {...this.board},
+                content: null,
+                linkUrl: null,
+                linkTarget: null,
+                seoKeyword: null,
+                seoDescription: null,
+                managerDepartment: null,
+                managerTelephone: null,
+                managerEmail: null,
+                publicUseYn: 'N',
+                viewYn: 'Y'
+            },
+            board: {
+                id: null
+            }
+        }
+        Object.freeze(_template);
+        Object.freeze(_template.menu);
+        Object.freeze(_template.board);
+
+        Alpine.data('menuComponent', () => ({
+            groupId: /*[[ ${groupId} ]]*/ null,
+            menuData: /*[[ ${menuDtos} ]]*/ [],
+            menuTree: [],
+            openMenus: [],
+            selectedMenu: {..._template.menu},
+            selectedMenuId: null,
+            createdMenuId: -1,
+            isRefreshing: false,
+            isModified: false,
+            isOrderChanging: false,
+
+            init() {
+                console.log(this.selectedMenu);
+                // 메뉴 데이터 로드
+                this.loadMenuData();
+
+                // 메뉴 변경 여부 감지
+                this.$watch('menuData', () => {
+                    console.log('menuData $watch');
+                    this.isModified = true;
+                    console.log(this.menuData);
+                    console.log(this.menuTree);
+                });
+
+                this.$watch('selectedMenu', () => {
+                    console.log(this.selectedMenu);
+                });
+
+                // CKEditor 변경 이벤트 리스너 등록
+                document.addEventListener('DOMContentLoaded', () => {
+                    window.EditorInstance[0].model.document.on('change:data', () => {
+                        this.selectedMenu.content = window.EditorInstance[0].getData();
+                    });
+                });
+
+                // 페이지 이동 시 변경 여부 확인
+                window.addEventListener('beforeunload', (event) => {
+                    if (this.isModified === true) {
+                        event.preventDefault();
+                    }
+                });
+            },
+            fetchMenuData() {
+                fetch(`/api/v1/management/menu?groupId=${this.groupId}`)
+                    .then(handleFetchResponse)
+                    .then(result => {
+                        this.menuData = result.data;
+                        this.loadMenuData(true);
+                    })
+                    .catch(handleFetchError);
+            },
+            loadMenuData(isForced = false) {
+                // 메뉴 데이터를 정렬
+                this.menuData.sort((a, b) => a.depth - b.depth || a.sortOrder - b.sortOrder);
+
+                // 메뉴를 트리 구조로 변환
+                this.menuTree = this.buildMenuTree();
+
+                if (isForced === true) {
+                    this.$nextTick(() => {
+                        this.isModified = false;
+                    });
+                }
+            },
+            buildMenuTree() {
+                // 배열 작업을 위해 배열 복사, Proxy 복사되는 것을 방지하기 위해 직접 순회 (1단계까지만 가능)
+                const copyData = this.menuData.map(item => ({...item}));
+
+                // 결과 트리 구조를 담을 배열과 부모-자식 관계를 담을 객체 생성
+                const tree = [];
+
+                // 부모-자식 관계를 담을 객체 생성
+                const children = [];
+
+                // 부모-자식 관계를 생성
+                copyData.forEach(item => {
+                    const {id, parentId = null} = item;
+                    children[id] = children[id] || [];
+                    item.children = children[id];
+                    if (parentId === null) {
+                        tree.push(item);
+                    } else {
+                        children[parentId] = children[parentId] || [];
+                        children[parentId].push(item);
+                    }
+                });
+
+                return tree;
+            },
+            renderMenu(menus) {
+                let html = '';
+                menus.forEach(menu => {
+                    html += `
+                        <li x-sort:item="${menu.id}" :data-id="${menu.id}">
+                            <a  @click="selectMenu(${menu.id})" :class="{ 'is-active': selectedMenuId === ${menu.id} }" class="py-3">
+                                <span class="icon">
+                                    <i @click.stop="toggleMenu(${menu.id})" class="${this.getMenuIcon(menu)}" aria-hidden="true"></i>
+                                </span>
+                                <span>${menu.name}</span>
+                                <span class="icon is-float-right" x-show="isOrderChanging === true" x-sort:handle>
+                                    <i class="fa-solid fa-grip-lines has-text-grey-light" aria-hidden="true"></i>
+                                </span>
+                            </a>
+                            <ul x-sort.ghost
+                                x-sort:group="menu"
+                                x-sort:config="{ handle: '[x-sort\\\\:handle]' }"
+                                x-show="openMenus.includes(${menu.id})">
+                                ${this.renderMenu(menu.children)}
+                            </ul>
+                        </li>
+                    `;
+                });
+
+                return html;
+            },
+            updateRenderMenuName(menu) {
+                const updateMenu = m => {
+                    for (let item of m) {
+                        if (item.id === menu.id) {
+                            item.name = menu.name;
+                            return true;
+                        }
+
+                        if (item.children && item.children.length > 0) {
+                            if (updateMenu(item.children)) {
+                                return true;
+                            }
+                        }
+                    }
+
+                    return false;
+                };
+
+                return updateMenu(this.menuTree);
+            },
+            selectMenu(menuId) {
+                if (this.checkMenuValidate()) {
+                    return;
+                }
+
+                // 선택한 메뉴가 이미 선택된 메뉴와 같은 경우 선택 해제
+                if (this.selectedMenuId === menuId) {
+                    this.selectedMenuId = null;
+                    return;
+                }
+
+                // 선택한 메뉴를 찾기
+                const menu = this.menuData.find(m => m.id === menuId);
+
+                // 선택한 메뉴로 변경, 찾지 못하면 새로운 템플릿 메뉴 데이터 할당
+                this.selectedMenu = menu !== undefined ? menu : {..._template.menu};
+                this.selectedMenuId = menuId;
+
+                // CKEditor 에 데이터를 설정
+                window.EditorInstance[0].setData(this.selectedMenu.content || '');
+            },
+            addMenu() {
+                // 메뉴 변경 전 필수 값 입력 체크
+                if (this.checkMenuValidate())
+                    return;
+
+                // 부모 메뉴를 찾기
+                const parentMenu = this.menuData.find(m => m.id === this.selectedMenuId) || {..._template.menu};
+
+                // 새로운 메뉴 객체 생성 후 기본 값 할당
+                // 현재 선택된 메뉴 기준으로 하위 메뉴를 추가 (선택되어 있지 않으면 최상위 메뉴로 추가)
+                const newMenu = {..._template.menu};
+                newMenu.id = this.createdMenuId--;
+                newMenu.parentId = parentMenu.id;
+                newMenu.depth = parentMenu.depth + 1;
+                newMenu.sortOrder = this.menuData
+                    .filter(m => m.parentId === parentMenu.id)
+                    .map(m => m.sortOrder)
+                    .reduce((a, b) => Math.max(a, b), 0) + 1;
+
+                console.log('newMenu', newMenu);
+
+                this.menuData.push(newMenu);
+                this.openMenus.push(newMenu.parentId);
+                this.selectMenu(newMenu.id);
+                this.loadMenuData();
+                this.$nextTick(() => {
+                    this.$refs.menuName.focus();
+                });
+            },
+            deleteMenuConfirm() {
+                if (this.selectedMenuId === null) {
+                    alert('삭제할 메뉴를 선택해 주세요.');
+                    return;
+                }
+
+                if (confirm('선택한 메뉴를 삭제하시겠습니까?')) {
+                    this.deleteMenu(this.selectedMenuId);
+                    this.selectedMenuId = null;
+                    this.loadMenuData();
+                }
+            },
+            deleteMenu(menuId) {
+                const menu = this.menuData.find(m => m.id === menuId);
+                if (menu === undefined) {
+                    return;
+                }
+
+                const childrenMenus = this.menuData.filter(m => m.parentId === menu.id);
+                childrenMenus.forEach(m => this.deleteMenu(m.id));
+
+                this.menuData = this.menuData.filter(m => m.id !== menu.id);
+            },
+            toggleMenu(menuId) {
+                if (this.openMenus.includes(menuId)) {
+                    this.openMenus = this.openMenus.filter(id => id !== menuId);
+                } else {
+                    this.openMenus.push(menuId);
+                }
+            },
+            toggleOrderChangeMenu() {
+                this.isOrderChanging = !this.isOrderChanging;
+            },
+            getMenuIcon(menu) {
+                if (menu.children.length === 0) {
+                    return 'fa-regular fa-file';
+                }
+
+                return this.openMenus.includes(menu.id) ? 'fa-regular fa-folder-open' : 'fa-solid fa-folder-plus';
+            },
+
+            updateChildMenuProperty(menu) {
+                console.log('updateChildMenuProperty', menu);
+
+                this.menuData
+                    .filter(m => m.parentId === menu.id)
+                    .forEach((children, index) => {
+                        children.parentId = menu.id;
+                        children.depth = menu.depth + 1;
+                        children.sortOrder = index + 1;
+
+                        this.updateChildMenuProperty(children);
+                    });
+            },
+            checkMenuValidate() {
+                if (this.selectedMenuId === null) {
+                    return false;
+                }
+                if (this.selectedMenu.name === '') {
+                    alert('메뉴명을 입력해주세요.');
+                    this.$refs.menuName.focus();
+                    return true;
+                }
+                if (this.selectedMenu.type === null) {
+                    alert('메뉴 유형을 선택해 주세요.');
+                    return true;
+                }
+                if (this.selectedMenu.viewYn === null) {
+                    alert('노출 상태를 선택해 주세요.');
+                    return true;
+                }
+
+                return false;
+            },
+            sortListener(event) {
+                // Sortable onEnd 이벤트가 발생할 경우 menuTree 를 업데이트
+                console.log('sortListener', arguments);
+
+                if (this.isRefreshing === true) return;
+                this.isRefreshing = true;
+
+                this.$nextTick(() => {
+                    const {item, newIndex} = event;
+
+                    // 이동한 메뉴와 상위 메뉴를 찾음
+                    const menu = this.menuData.find(m => m.id === parseInt(item.dataset.id));
+                    const parentMenu = this.menuData.find(m => m.id === parseInt(item.closest('ul').closest('li')?.dataset.id)) || null;
+
+                    // 이동한 메뉴의 속성 값을 조정
+                    menu.parentId = parentMenu?.id || null;
+                    menu.depth = parentMenu?.depth + 1 || 1;
+                    menu.sortOrder = newIndex + 1; // SortableJS 의 인덱스는 0부터 시작
+
+                    // 이동한 메뉴의 하위 메뉴들의 속성 값을 조정
+                    this.updateChildMenuProperty(menu);
+
+                    // 이동한 메뉴의 형제 메뉴들을 찾음
+                    const siblingMenus = this.menuData.filter(m => m.parentId === menu.parentId && m.id !== menu.id);
+
+                    // 이동한 메뉴의 형제 메뉴들의 속성 값을 조정
+                    let sortOrder = 1;
+                    siblingMenus.forEach((m, index) => {
+                        if (index === newIndex) {
+                            sortOrder++;
+                        }
+
+                        m.sortOrder = sortOrder++;
+                    });
+
+                    // 메뉴 트리를 재구성
+                    this.loadMenuData();
+
+                    this.isRefreshing = false;
+                });
+            },
+
+            submit() {
+                if (this.checkMenuValidate()) {
+                    return;
+                }
+
+                const prevModified = this.isModified;
+                let isSuccess = false;
+                this.isModified = false;
+                this.$refs.submit.classList.add('is-loading');
+
+                fetch(`/api/v1/management/menu?groupId=${this.groupId}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(this.menuData),
+                })
+                    .then(handleFetchResponse)
+                    .then(() => {
+                        $notify('메뉴를 저장했습니다.', 'success');
+
+                        isSuccess = true;
+                        this.selectedMenu = {..._template.menu};
+                        this.selectedMenuId = null;
+                        this.isOrderChanging = false;
+                        this.fetchMenuData();
+                    })
+                    .catch(handleFetchError)
+                    .finally(() => {
+                        isSuccess === true ? this.isModified = false : this.isModified = prevModified;
+                        this.$refs.submit.classList.remove('is-loading');
+                    });
+            }
+        }));
+    });
+</script>
+
+</html>
