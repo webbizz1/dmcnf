@@ -185,6 +185,9 @@ html[data-theme=dark] .has-background-white-ter {
   .search-table {
     table-layout: initial;
   }
+  .search-table colgroup {
+    display: none;
+  }
   .search-table table,
   .search-table tr,
   .search-table th,

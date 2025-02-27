@@ -244,6 +244,9 @@ html[data-theme="dark"] {
 @media screen and (max-width: 1280px) {
     .search-table {
         table-layout: initial;
+        colgroup {
+            display: none;
+        }
         table,
         tr,
         th,
