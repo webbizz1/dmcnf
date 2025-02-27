@@ -165,26 +165,30 @@
                         <!--               sec:authorize-expr="${hasPermission(#vars.url, 'LINK')}">구글 애널리틱스</a>-->
                         <!--        </li>-->
                         <li th:with="url = '/statistics/operator'">
-                            <a class="navbar-item" th:classappend="${requestURI.startsWith(url)} ? 'is-active'"
-                                th:href="${url}" sec:authorize-expr="${hasPermission(#vars.url, 'LINK')}">운영자 로그</a>
-                            <ul class="submenu">
-                                <li th:with="url = '/statistics/operator/login-auditor'">
-                                    <a class="navbar-item" th:classappend="${requestURI.startsWith(url)} ? 'is-active'"
-                                        th:href="${url}" sec:authorize-expr="${hasPermission(#vars.url, 'LINK')}">운영자 접속 현황</a>
-                                </li>
-                                <!--                <li th:with="url = '/statistics/operator/output-status'">-->
-                                <!--                    <a class="navbar-item" th:classappend="${requestURI.startsWith(url)} ? 'is-active'" th:href="${url}"-->
-                                <!--                       sec:authorize-expr="${hasPermission(#vars.url, 'LINK')}">출력 현황</a>-->
-                                <!--                </li>-->
-                                <!--                <li th:with="url = '/statistics/operator/search-status'">-->
-                                <!--                    <a class="navbar-item" th:classappend="${requestURI.startsWith(url)} ? 'is-active'" th:href="${url}"-->
-                                <!--                       sec:authorize-expr="${hasPermission(#vars.url, 'LINK')}">정보 검색 현황</a>-->
-                                <!--                </li>-->
-                                <li th:with="url = '/statistics/operator/modification-auditor'">
-                                    <a class="navbar-item" th:classappend="${requestURI.startsWith(url)} ? 'is-active'"
-                                        th:href="${url}" sec:authorize-expr="${hasPermission(#vars.url, 'LINK')}">정보 수정 현황</a>
-                                </li>
-                            </ul>
+                            <div class="navbar-item has-dropdown is-hoverable">
+                                <a class="navbar-link" th:classappend="${requestURI.startsWith(url)} ? 'is-active'" th:href="${url}"
+                                   sec:authorize-expr="${hasPermission(#vars.url, 'LINK')}">
+                                    운영자 로그
+                                </a>
+                                <ul class="dep3">
+                                    <li th:with="url = '/statistics/operator/login-auditor'">
+                                        <a class="navbar-item" th:classappend="${requestURI.startsWith(url)} ? 'is-active'" th:href="${url}"
+                                           sec:authorize-expr="${hasPermission(#vars.url, 'LINK')}">운영자 접속 현황</a>
+                                    </li>
+                                    <!--                <li th:with="url = '/statistics/operator/output-status'">-->
+                                    <!--                    <a th:classappend="${requestURI.startsWith(url)} ? 'is-active'" th:href="${url}"-->
+                                    <!--                       sec:authorize-expr="${hasPermission(#vars.url, 'LINK')}">출력 현황</a>-->
+                                    <!--                </li>-->
+                                    <!--                <li th:with="url = '/statistics/operator/search-status'">-->
+                                    <!--                    <a th:classappend="${requestURI.startsWith(url)} ? 'is-active'" th:href="${url}"-->
+                                    <!--                       sec:authorize-expr="${hasPermission(#vars.url, 'LINK')}">정보 검색 현황</a>-->
+                                    <!--                </li>-->
+                                    <li th:with="url = '/statistics/operator/modification-auditor'">
+                                        <a class="navbar-item"  th:classappend="${requestURI.startsWith(url)} ? 'is-active'" th:href="${url}"
+                                           sec:authorize-expr="${hasPermission(#vars.url, 'LINK')}">정보 수정 현황</a>
+                                    </li>
+                                </ul>
+                            </div>
                         </li>
                     </ul>
                 </div>
