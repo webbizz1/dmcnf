@@ -245,7 +245,7 @@
                     <td class="has-text-centered" th:text="${#temporals.format(item.createdAt, 'yyyy-MM-dd')}">yyyy-MM-dd</td>
                     <td class="has-text-centered" th:text="${item.viewYn.isBool() ? '노출' : '미노출'}">미노출</td>
                     <td class="has-text-centered">
-                        <a class="tag is-light"
+                        <a class="tag"
                            th:href="@{/board/board/{boardId}/articles(boardId = ${item.id})}" >게시물 보기</a>
                     </td>
                 </tr>
