@@ -90,7 +90,7 @@
                     <td colspan="5" class="has-text-centered">검색 결과가 없습니다.</td>
                 </tr>
                 <tr th:each="item : ${pageVars}">
-                    <td class="has-text-right" th:text="${pageVars.totalElements - pageVars.number * pageVars.size - itemStat.index}">1</td>
+                    <td class="has-text-centered" th:text="${pageVars.totalElements - pageVars.number * pageVars.size - itemStat.index}">1</td>
                     <td class="is-ellipsis">
                         <a th:href="@{{exhibitionLink}/{id}(exhibitionLink = ${exhibitionLink}, id = ${item.id}, q = ${queryString})}"
                            th:text="${item.title}">배너 제목이 표기됩니다.</a>

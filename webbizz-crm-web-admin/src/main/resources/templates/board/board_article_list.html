@@ -49,13 +49,14 @@
     <!-- 검색 필터 -->
     <form class="box">
         <table class="table is-fullwidth search-table">
+            <caption>검색 필터</caption>
             <colgroup>
                 <col style="width: 10%;" />
                 <col style="width: auto;" />
             </colgroup>
             <tbody>
                 <tr>
-                    <th>키워드</th>
+                    <th scope="col">키워드</th>
                     <td>
                         <div class="field is-grouped">
                             <div class="control">
@@ -146,7 +147,7 @@
                     <td colspan="6" class="has-text-centered">검색 결과가 없습니다.</td>
                 </tr>
                 <tr th:each="item : ${pageVars}">
-                    <td th:class="${item.noticeYn.isBool() ? 'has-text-centered' : 'has-text-right'}">
+                    <td th:class="${item.noticeYn.isBool() ? 'has-text-centered' : 'has-text-centered'}">
                         <th:block th:if="${item.noticeYn.isBool()}">
                             <span class="tag is-info">공지</span>
                         </th:block>

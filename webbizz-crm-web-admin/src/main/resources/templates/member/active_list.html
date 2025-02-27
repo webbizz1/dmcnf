@@ -32,16 +32,18 @@
             </nav>
         </div>
     </div>
+
     <!-- 검색 필터 -->
     <form class="box">
         <table class="table is-fullwidth search-table">
+            <caption>검색 필터</caption>
             <colgroup>
                 <col style="width: 10%;" />
                 <col style="width: auto;" />
             </colgroup>
             <tbody>
                 <tr>
-                    <th>키워드</th>
+                    <th scope="col">키워드</th>
                     <td>
                         <div class="field is-grouped">
                             <div class="control">
@@ -61,7 +63,7 @@
                                 </label>
                             </div>
                             <div class="control">
-                                <button class="button is-dark">
+                                <button type="submit" class="button is-dark">
                                         <span class="icon">
                                             <i class="ri-search-line" aria-hidden="true"></i>
                                         </span>
@@ -72,7 +74,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <th>가입일</th>
+                    <th scope="col">가입일</th>
                     <td>
                         <div class="field has-addons datepicker-range">
                             <div class="control has-icons-left">
@@ -226,7 +228,7 @@
                     <td colspan="7" class="has-text-centered">검색 결과가 없습니다.</td>
                 </tr>
                 <tr th:each="item : ${pageVars}">
-                    <td class="has-text-right" th:text="${pageVars.totalElements - pageVars.number * pageVars.size - itemStat.index}">1</td>
+                    <td class="has-text-centered" th:text="${pageVars.totalElements - pageVars.number * pageVars.size - itemStat.index}">1</td>
                     <td>
                         <a th:href="@{/member/active/{id}(id = ${item.id}, q = ${queryString})}" th:text="${item.loginId}">sonny07</a>
                     </td>
