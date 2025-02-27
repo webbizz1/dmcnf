@@ -10,9 +10,9 @@
 .header {
     .navbar-brand {
         .admin-title {
-            width: calc(253px * 0.8);
-            height: calc(21px * 0.8);
-            background-image: url(../images/sub/logo_white.svg);
+            width: calc(112px * 0.6);
+            height: calc(71px * 0.6);
+            background-image: url(../images/sub/logo_white.png);
         }
     }
 }
@@ -90,7 +90,7 @@
         }
         .member-info {
             position: absolute;
-            bottom: 40px;
+            bottom: 20px;
             right: 20px;
         }
     }

@@ -42,7 +42,7 @@ html.is-clipped {
 .header .navbar-brand .admin-title {
   width: 131px;
   height: 39px;
-  background: url(../images/sub/logo.svg) no-repeat center/cover;
+  background: url(../images/sub/logo.png) no-repeat center/cover;
   font-size: 0;
 }
 .header .navbar-brand + .navbar-item {

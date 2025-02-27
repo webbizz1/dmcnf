@@ -7,9 +7,9 @@
 }
 
 .header .navbar-brand .admin-title {
-  width: 202.4px;
-  height: 16.8px;
-  background-image: url(../images/sub/logo_white.svg);
+  width: 67.2px;
+  height: 42.6px;
+  background-image: url(../images/sub/logo_white.png);
 }
 
 .section {
@@ -79,7 +79,7 @@
 }
 .main-container .box-bg1 .member-info {
   position: absolute;
-  bottom: 40px;
+  bottom: 20px;
   right: 20px;
 }
 .main-container .box-bg2 {
