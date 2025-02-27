@@ -43,9 +43,9 @@ public class IndexServiceImpl extends EgovAbstractServiceImpl implements IndexSe
 
         modelAndView.addObject("recentNotice", boardArticleService.searchRecentNotice());
         modelAndView.addObject("recentMyArticles",
-                boardArticleService.searchRecentBy(memberUserDetails.getMember().getId(), 5));
+                boardArticleService.searchRecentBy(memberUserDetails.getMember().getId(), 3));
         modelAndView.addObject("recentArticles",
-                boardArticleService.searchRecentByCount(5));
+                boardArticleService.searchRecentByCount(3));
 
         StatisticsCondition statisticsCondition = new StatisticsCondition();
         statisticsCondition.setStartDate(LocalDate.now().withDayOfMonth(1));
