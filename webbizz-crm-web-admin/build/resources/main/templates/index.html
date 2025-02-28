@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-    xmlns:sec="http://www.thymeleaf.org/extras/spring-security" layout:decorate="~{layouts/layout_main}">
+    xmlns:sec="http://www.thymeleaf.org/extras/spring-security" layout:decorate="~{layouts/layout}">
 
+<aside layout:fragment="lnb" th:replace="~{fragments/lnb :: lnb}"></aside>
 <section layout:fragment="content">
     <strong class="title is-5 saira">
         <i class="ri-calendar-line" aria-hidden="true"></i>

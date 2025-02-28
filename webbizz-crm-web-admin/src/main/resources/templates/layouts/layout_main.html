@@ -29,6 +29,9 @@
     <nav th:replace="~{fragments/header :: gnb}"></nav>
 
     <main class="main-container">
+        <!--/* LNB */-->
+        <aside layout:fragment="lnb"></aside>
+        
         <!--/* 본문 */-->
         <section layout:fragment="content" class="section"></section>
     </main>

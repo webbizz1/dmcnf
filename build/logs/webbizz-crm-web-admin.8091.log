@@ -1,0 +1,73 @@
+2025-02-28 14:33:28.429  INFO 21976 [           main] w.crm.WebbizzCrmWebAdminApplication      : [                  anonymousUser] Starting WebbizzCrmWebAdminApplication using Java 11.0.0.1 on DESKTOP-V8TTFAH with PID 21976 (C:\Users\webbizz79\Documents\dmcnf\webbizz-crm-web-admin\build\classes\java\main started by webbizz79 in C:\Users\webbizz79\Documents\dmcnf)
+2025-02-28 14:33:28.461  INFO 21976 [           main] w.crm.WebbizzCrmWebAdminApplication      : [                  anonymousUser] The following 1 profile is active: "prod"
+2025-02-28 14:33:31.798  INFO 21976 [           main] .s.d.r.c.RepositoryConfigurationDelegate : [                  anonymousUser] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-02-28 14:33:32.488  INFO 21976 [           main] .s.d.r.c.RepositoryConfigurationDelegate : [                  anonymousUser] Finished Spring Data repository scanning in 665 ms. Found 17 JPA repository interfaces.
+2025-02-28 14:33:35.404  INFO 21976 [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : [                  anonymousUser] Tomcat initialized with port(s): 8091 (http)
+2025-02-28 14:33:35.435  INFO 21976 [           main] o.a.coyote.http11.Http11NioProtocol      : [                  anonymousUser] Initializing ProtocolHandler ["http-nio-8091"]
+2025-02-28 14:33:35.437  INFO 21976 [           main] o.apache.catalina.core.StandardService   : [                  anonymousUser] Starting service [Tomcat]
+2025-02-28 14:33:35.437  INFO 21976 [           main] org.apache.catalina.core.StandardEngine  : [                  anonymousUser] Starting Servlet engine: [Apache Tomcat/9.0.75]
+2025-02-28 14:33:35.963  INFO 21976 [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : [                  anonymousUser] Initializing Spring embedded WebApplicationContext
+2025-02-28 14:33:35.964  INFO 21976 [           main] w.s.c.ServletWebServerApplicationContext : [                  anonymousUser] Root WebApplicationContext: initialization completed in 6576 ms
+2025-02-28 14:33:37.225  INFO 21976 [           main] com.zaxxer.hikari.HikariDataSource       : [                  anonymousUser] HikariPool-1 - Starting...
+2025-02-28 14:33:39.097  INFO 21976 [           main] com.zaxxer.hikari.HikariDataSource       : [                  anonymousUser] HikariPool-1 - Start completed.
+2025-02-28 14:33:44.033  INFO 21976 [           main] jdbc.sqltiming                           : [                  anonymousUser] 2. executed in 12 ms | executeQuery()
+[35m[log4jdbc][0m 
+    [34mselect[0m
+        table_name 
+    [34mfrom[0m
+        information_schema.tables 
+    [34mwhere[0m
+        table_schema = database() 
+        [34mand[0m table_type = [36m'[34mSEQUENCE[0m'[0m
+
+2025-02-28 14:33:44.068  INFO 21976 [           main] jdbc.resultsettable                      : [                  anonymousUser] 
+|-----------|
+|table_name |
+|-----------|
+|-----------|
+
+2025-02-28 14:33:44.208  INFO 21976 [           main] j.LocalContainerEntityManagerFactoryBean : [                  anonymousUser] Initialized JPA EntityManagerFactory for persistence unit 'primaryEntityManager'
+2025-02-28 14:33:51.923  INFO 21976 [           main] o.s.s.web.DefaultSecurityFilterChain     : [                  anonymousUser] Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@7d440378, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@6d1c15cb, org.springframework.security.web.context.SecurityContextPersistenceFilter@7ff26b29, org.springframework.security.web.header.HeaderWriterFilter@3debeb5e, org.springframework.security.web.authentication.logout.LogoutFilter@619dc070, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@12581426, org.springframework.security.web.session.ConcurrentSessionFilter@38293d23, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@2a1fce44, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@48d6248d, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7597ae32, org.springframework.security.web.session.SessionManagementFilter@7fcc8d9f, org.springframework.security.web.access.ExceptionTranslationFilter@1227ea21, org.springframework.security.web.access.intercept.AuthorizationFilter@4a2c69a6]
+2025-02-28 14:33:52.323  INFO 21976 [           main] o.s.b.a.w.s.WelcomePageHandlerMapping    : [                  anonymousUser] Adding welcome page template: index
+2025-02-28 14:33:53.111  INFO 21976 [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : [                  anonymousUser] Tomcat started on port(s): 8091 (http) with context path ''
+2025-02-28 14:33:53.133  INFO 21976 [           main] w.crm.WebbizzCrmWebAdminApplication      : [                  anonymousUser] Started WebbizzCrmWebAdminApplication in 26.946 seconds (JVM running for 34.212)
+2025-02-28 14:33:53.275  INFO 21976 [ionShutdownHook] j.LocalContainerEntityManagerFactoryBean : [                  anonymousUser] Closing JPA EntityManagerFactory for persistence unit 'primaryEntityManager'
+2025-02-28 14:33:53.277  INFO 21976 [ionShutdownHook] com.zaxxer.hikari.HikariDataSource       : [                  anonymousUser] HikariPool-1 - Shutdown initiated...
+2025-02-28 14:33:53.289  INFO 21976 [ionShutdownHook] com.zaxxer.hikari.HikariDataSource       : [                  anonymousUser] HikariPool-1 - Shutdown completed.
+2025-02-28 14:34:04.457  INFO 27460 [           main] w.crm.WebbizzCrmWebAdminApplication      : [                  anonymousUser] Starting WebbizzCrmWebAdminApplication using Java 11.0.0.1 on DESKTOP-V8TTFAH with PID 27460 (C:\Users\webbizz79\Documents\dmcnf\webbizz-crm-web-admin\build\classes\java\main started by webbizz79 in C:\Users\webbizz79\Documents\dmcnf)
+2025-02-28 14:34:04.479  INFO 27460 [           main] w.crm.WebbizzCrmWebAdminApplication      : [                  anonymousUser] The following 1 profile is active: "prod"
+2025-02-28 14:34:06.378  INFO 27460 [           main] .s.d.r.c.RepositoryConfigurationDelegate : [                  anonymousUser] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-02-28 14:34:06.923  INFO 27460 [           main] .s.d.r.c.RepositoryConfigurationDelegate : [                  anonymousUser] Finished Spring Data repository scanning in 519 ms. Found 17 JPA repository interfaces.
+2025-02-28 14:34:08.756  INFO 27460 [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : [                  anonymousUser] Tomcat initialized with port(s): 8091 (http)
+2025-02-28 14:34:08.772  INFO 27460 [           main] o.a.coyote.http11.Http11NioProtocol      : [                  anonymousUser] Initializing ProtocolHandler ["http-nio-8091"]
+2025-02-28 14:34:08.773  INFO 27460 [           main] o.apache.catalina.core.StandardService   : [                  anonymousUser] Starting service [Tomcat]
+2025-02-28 14:34:08.774  INFO 27460 [           main] org.apache.catalina.core.StandardEngine  : [                  anonymousUser] Starting Servlet engine: [Apache Tomcat/9.0.75]
+2025-02-28 14:34:09.012  INFO 27460 [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : [                  anonymousUser] Initializing Spring embedded WebApplicationContext
+2025-02-28 14:34:09.013  INFO 27460 [           main] w.s.c.ServletWebServerApplicationContext : [                  anonymousUser] Root WebApplicationContext: initialization completed in 4156 ms
+2025-02-28 14:34:10.074  INFO 27460 [           main] com.zaxxer.hikari.HikariDataSource       : [                  anonymousUser] HikariPool-1 - Starting...
+2025-02-28 14:34:10.374  INFO 27460 [           main] com.zaxxer.hikari.HikariDataSource       : [                  anonymousUser] HikariPool-1 - Start completed.
+2025-02-28 14:34:12.430  INFO 27460 [           main] jdbc.sqltiming                           : [                  anonymousUser] 2. executed in 8 ms | executeQuery()
+[35m[log4jdbc][0m 
+    [34mselect[0m
+        table_name 
+    [34mfrom[0m
+        information_schema.tables 
+    [34mwhere[0m
+        table_schema = database() 
+        [34mand[0m table_type = [36m'[34mSEQUENCE[0m'[0m
+
+2025-02-28 14:34:12.440  INFO 27460 [           main] jdbc.resultsettable                      : [                  anonymousUser] 
+|-----------|
+|table_name |
+|-----------|
+|-----------|
+
+2025-02-28 14:34:12.533  INFO 27460 [           main] j.LocalContainerEntityManagerFactoryBean : [                  anonymousUser] Initialized JPA EntityManagerFactory for persistence unit 'primaryEntityManager'
+2025-02-28 14:34:16.300  INFO 27460 [           main] o.s.s.web.DefaultSecurityFilterChain     : [                  anonymousUser] Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@3af17313, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@1737acc0, org.springframework.security.web.context.SecurityContextPersistenceFilter@363751f2, org.springframework.security.web.header.HeaderWriterFilter@4eb313ed, org.springframework.security.web.authentication.logout.LogoutFilter@17524c36, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@588b02a0, org.springframework.security.web.session.ConcurrentSessionFilter@63fe055, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7315264e, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@11c68269, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@30ffc3c0, org.springframework.security.web.session.SessionManagementFilter@63d8590c, org.springframework.security.web.access.ExceptionTranslationFilter@440309c5, org.springframework.security.web.access.intercept.AuthorizationFilter@c32908c]
+2025-02-28 14:34:16.678  INFO 27460 [           main] o.s.b.a.w.s.WelcomePageHandlerMapping    : [                  anonymousUser] Adding welcome page template: index
+2025-02-28 14:34:17.321  INFO 27460 [           main] o.a.coyote.http11.Http11NioProtocol      : [                  anonymousUser] Starting ProtocolHandler ["http-nio-8091"]
+2025-02-28 14:34:17.351  INFO 27460 [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : [                  anonymousUser] Tomcat started on port(s): 8091 (http) with context path ''
+2025-02-28 14:34:17.373  INFO 27460 [           main] w.crm.WebbizzCrmWebAdminApplication      : [                  anonymousUser] Started WebbizzCrmWebAdminApplication in 13.833 seconds (JVM running for 15.202)
+2025-02-28 14:43:33.231  INFO 27460 [ionShutdownHook] j.LocalContainerEntityManagerFactoryBean : [                  anonymousUser] Closing JPA EntityManagerFactory for persistence unit 'primaryEntityManager'
+2025-02-28 14:43:33.231  INFO 27460 [ionShutdownHook] com.zaxxer.hikari.HikariDataSource       : [                  anonymousUser] HikariPool-1 - Shutdown initiated...
+2025-02-28 14:43:33.272  INFO 27460 [ionShutdownHook] com.zaxxer.hikari.HikariDataSource       : [                  anonymousUser] HikariPool-1 - Shutdown completed.
