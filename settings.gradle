@@ -1,6 +1,0 @@
-rootProject.name = 'dmc_cnf_crm'
-include 'webbizz-crm-core'
-include 'webbizz-crm-domain'
-include 'webbizz-crm-service'
-include 'webbizz-crm-web-admin'
-include 'webbizz-crm-web-user'
