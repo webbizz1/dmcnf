@@ -1,8 +1,7 @@
 <!DOCTYPE html>
-<html lang="ko"
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{layouts/layout}">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layouts/layout}">
+
 <head>
     <title>통계·분석 &gt; 회원 통계</title>
     <script src="/js/chart.umd.js"></script>
@@ -10,32 +9,53 @@
 
 <aside layout:fragment="lnb" th:replace="~{fragments/lnb_statistics :: lnb}"></aside>
 <section layout:fragment="content">
-    <!-- 브레드크럼 -->
-    <nav class="breadcrumb" aria-label="breadcrumbs">
-        <ul>
-            <li><a href="/">홈</a></li>
-            <li><a href="/statistics">통계·분석</a></li>
-            <li class="is-active"><a href="#" aria-current="page">회원 통계</a></li>
-        </ul>
-    </nav>
-
-    <!-- 제목 -->
-    <h2 class="title is-4">회원 통계</h2>
+    <div class="level">
+        <div class="level-left">
+            <!-- 제목 -->
+            <h2 class="title is-4">회원 통계</h2>
+        </div>
+        <div class="level-right">
+            <!-- 브레드크럼 -->
+            <nav class="breadcrumb" aria-label="breadcrumbs">
+                <ul>
+                    <li>
+                        <div>
+                            <span class="icon is-small">
+                                <i class="fas fa-home" aria-hidden="true"></i>
+                            </span>
+                            <span>홈</span>
+                        </div>
+                    </li>
+                    <li>
+                        <div>통계·분석</div>
+                    </li>
+                    <li class="is-active">
+                        <div>회원 통계</div>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
 
     <!-- 검색 필터 -->
-    <form class="box fixed-grid">
-        <div class="grid">
-            <div class="cell is-col-span-2 is-col-span-1-desktop">
-                <div class="field is-horizontal">
-                    <div class="field-label is-normal">
-                        <label class="label">기간</label>
-                    </div>
-                    <div class="field-body">
+    <form class="box">
+        <table class="table is-fullwidth search-table">
+            <caption>검색 필터</caption>
+            <colgroup>
+                <col style="width: 10%;" />
+                <col style="width: auto;" />
+                <col style="width: 10%;" />
+                <col style="width: auto;" />
+            </colgroup>
+            <tbody>
+                <tr>
+                    <th scope="col">기간</th>
+                    <td>
                         <div class="field has-addons datepicker-range">
                             <div class="control has-icons-left">
                                 <label>
                                     <input type="text" name="startDate" placeholder="시작일" class="input"
-                                           th:value="${condition.startDate}" />
+                                        th:field="*{condition.startDate}" />
                                     <span class="icon is-left">
                                         <i class="fa-regular fa-calendar" aria-hidden="true"></i>
                                     </span>
@@ -47,7 +67,51 @@
                             <div class="control has-icons-left">
                                 <label>
                                     <input type="text" name="endDate" placeholder="종료일" class="input"
-                                           th:value="${condition.endDate}" />
+                                        th:field="*{condition.endDate}" />
+                                    <span class="icon is-left">
+                                        <i class="fa-regular fa-calendar" aria-hidden="true"></i>
+                                    </span>
+                                </label>
+                            </div>
+                            <div class="control">
+                                <button type="submit" class="button is-dark">
+                                    <span class="icon">
+                                        <i class="fa fa-search" aria-hidden="true"></i>
+                                    </span>
+                                    <span>검색</span>
+                                </button>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+    <!-- <form class="box fixed-grid">
+        <div class="grid">
+            <div class="cell is-col-span-2 is-col-span-1-desktop">
+                <div class="field is-horizontal">
+                    <div class="field-label is-normal">
+                        <label class="label">기간</label>
+                    </div>
+                    <div class="field-body">
+                        <div class="field has-addons datepicker-range">
+                            <div class="control has-icons-left">
+                                <label>
+                                    <input type="text" name="startDate" placeholder="시작일" class="input"
+                                        th:value="${condition.startDate}" />
+                                    <span class="icon is-left">
+                                        <i class="fa-regular fa-calendar" aria-hidden="true"></i>
+                                    </span>
+                                </label>
+                            </div>
+                            <div class="control">
+                                <span class="button is-static">~</span>
+                            </div>
+                            <div class="control has-icons-left">
+                                <label>
+                                    <input type="text" name="endDate" placeholder="종료일" class="input"
+                                        th:value="${condition.endDate}" />
                                     <span class="icon is-left">
                                         <i class="fa-regular fa-calendar" aria-hidden="true"></i>
                                     </span>
@@ -68,7 +132,7 @@
                 </div>
             </div>
         </div>
-    </form>
+    </form> -->
 
     <!-- 차트 -->
     <div class="card">
@@ -83,10 +147,10 @@
                 <div class="level-item">
                     <p class="subtitle is-6">
                         <strong class="has-text-danger"
-                                th:text="${#temporals.format(condition.startDate, 'yyyy-MM-dd')}">2021-01-01</strong>
+                            th:text="${#temporals.format(condition.startDate, 'yyyy-MM-dd')}">2021-01-01</strong>
                         일 부터
                         <strong class="has-text-danger"
-                                th:text="${#temporals.format(condition.endDate, 'yyyy-MM-dd')}">2021-12-31</strong>
+                            th:text="${#temporals.format(condition.endDate, 'yyyy-MM-dd')}">2021-12-31</strong>
                         일 까지의 검색 결과
                     </p>
                 </div>
@@ -114,32 +178,35 @@
                     <col />
                 </colgroup>
                 <thead class="has-background-dark-soft">
-                <tr>
-                    <th scope="col">날짜</th>
-                    <th scope="col">가입자 수</th>
-                    <th scope="col">비율</th>
-                </tr>
+                    <tr>
+                        <th scope="col">날짜</th>
+                        <th scope="col">가입자 수</th>
+                        <th scope="col">비율</th>
+                    </tr>
                 </thead>
                 <tbody>
-                <tr th:if="${dto.items.isEmpty()}">
-                    <td colspan="3" class="has-text-centered">검색 결과가 없습니다.</td>
-                </tr>
-                <tr th:each="item : ${dto.items}">
-                    <td class="has-text-centered" th:text="${#temporals.format(item.date, 'yyyy-MM-dd')}">2021-01-01</td>
-                    <td class="has-text-right" th:text="${#numbers.formatInteger(item.value, 1, 'COMMA')}">123</td>
-                    <td class="has-text-right">
-                        <th:block th:if="${item.ratio gt 0}"
-                                  th:text="${#numbers.formatPercent(item.ratio, 1, 1)}">0.0%</th:block>
-                        <th:block th:unless="${item.ratio gt 0}">-</th:block>
-                    </td>
-                </tr>
+                    <tr th:if="${dto.items.isEmpty()}">
+                        <td colspan="3" class="has-text-centered">검색 결과가 없습니다.</td>
+                    </tr>
+                    <tr th:each="item : ${dto.items}">
+                        <td class="has-text-centered" th:text="${#temporals.format(item.date, 'yyyy-MM-dd')}">2021-01-01
+                        </td>
+                        <td class="has-text-right" th:text="${#numbers.formatInteger(item.value, 1, 'COMMA')}">123</td>
+                        <td class="has-text-right">
+                            <th:block th:if="${item.ratio gt 0}" th:text="${#numbers.formatPercent(item.ratio, 1, 1)}">
+                                0.0%</th:block>
+                            <th:block th:unless="${item.ratio gt 0}">-</th:block>
+                        </td>
+                    </tr>
                 </tbody>
                 <tfoot class="has-background-dark-soft">
-                <tr>
-                    <th scope="row">합계</th>
-                    <td class="has-text-right" th:text="${#numbers.formatInteger(#aggregates.sum(dto.items.![value]), 1, 'COMMA')}">123</td>
-                    <td class="has-text-right">&nbsp;</td>
-                </tr>
+                    <tr>
+                        <th scope="row">합계</th>
+                        <td class="has-text-right"
+                            th:text="${#numbers.formatInteger(#aggregates.sum(dto.items.![value]), 1, 'COMMA')}">123
+                        </td>
+                        <td class="has-text-right">&nbsp;</td>
+                    </tr>
                 </tfoot>
             </table>
         </div>
@@ -151,8 +218,8 @@
     let chart = new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: /*[[ ${dto.labels} ]]*/ [],
-            datasets: /*[[ ${dto.datasets} ]]*/ []
+            labels: /*[[ ${dto.labels} ]]*/[],
+            datasets: /*[[ ${dto.datasets} ]]*/[]
         },
         options: {
             scales: {

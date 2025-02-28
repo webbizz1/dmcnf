@@ -9,20 +9,77 @@
 
 <aside layout:fragment="lnb" th:replace="~{fragments/lnb_management :: lnb}"></aside>
 <section layout:fragment="content">
-    <!-- 브레드크럼 -->
-    <nav class="breadcrumb" aria-label="breadcrumbs">
-        <ul>
-            <li><a href="/">홈</a></li>
-            <li><a href="/management">운영</a></li>
-            <li class="is-active"><a href="#" aria-current="page">운영자 관리</a></li>
-        </ul>
-    </nav>
-
-    <!-- 제목 -->
-    <h2 class="title is-4">운영자 관리</h2>
+    <div class="level">
+        <div class="level-left">
+            <!-- 제목 -->
+            <h2 class="title is-4">운영자 관리</h2>
+        </div>
+        <div class="level-right">
+            <!-- 브레드크럼 -->
+            <nav class="breadcrumb" aria-label="breadcrumbs">
+                <ul>
+                    <li>
+                        <div>
+                            <span class="icon is-small">
+                                <i class="fas fa-home" aria-hidden="true"></i>
+                            </span>
+                            <span>홈</span>
+                        </div>
+                    </li>
+                    <li>
+                        <div>운영</div>
+                    </li>
+                    <li class="is-active">
+                        <div>운영자 관리</div>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
 
     <!-- 검색 필터 -->
-    <form class="box fixed-grid">
+    <form class="box">
+        <table class="table is-fullwidth search-table">
+            <caption>검색 필터</caption>
+            <colgroup>
+                <col style="width: 10%;" />
+                <col style="width: auto;" />
+            </colgroup>
+            <tbody>
+                <tr>
+                    <th scope="col">키워드</th>
+                    <td>
+                        <div class="field has-addons">
+                            <div class="control">
+                                <label class="select">
+                                    <select name="searchField" th:field="*{condition.searchField}">
+                                        <option value="all">전체</option>
+                                        <option value="title">제목</option>
+                                        <option value="content">내용</option>
+                                    </select>
+                                </label>
+                            </div>
+                            <div class="control">
+                                <label>
+                                    <input type="text" name="searchText" placeholder="검색어" class="input"
+                                           th:field="*{condition.searchText}" />
+                                </label>
+                            </div>
+                            <div class="control">
+                                <button type="submit" class="button is-dark">
+                                    <span class="icon">
+                                        <i class="ri-search-line" aria-hidden="true"></i>
+                                    </span>
+                                    <span>검색</span>
+                                </button>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+    <!-- <form class="box fixed-grid">
         <div class="grid">
             <div class="cell is-col-span-2 is-col-span-1-desktop">
                 <div class="field is-horizontal">
@@ -62,7 +119,7 @@
                 </div>
             </div>
         </div>
-    </form>
+    </form> -->
 
     <!-- 검색 결과 -->
     <div class="box">
@@ -114,7 +171,7 @@
                     <td colspan="7" class="has-text-centered">검색 결과가 없습니다.</td>
                 </tr>
                 <tr th:each="item : ${pageVars}">
-                    <td class="has-text-right" th:text="${pageVars.totalElements - pageVars.number * pageVars.size - itemStat.index}">1</td>
+                    <td class="has-text-centered" th:text="${pageVars.totalElements - pageVars.number * pageVars.size - itemStat.index}">1</td>
                     <td>
                         <a th:href="@{/management/admin/{id}(id = ${item.id}, q = ${queryString})}" th:text="${item.loginId}">gbhong</a>
                     </td>

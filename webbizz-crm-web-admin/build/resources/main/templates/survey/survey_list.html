@@ -1,55 +1,73 @@
 <!DOCTYPE html>
-<html lang="ko"
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{layouts/layout}">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layouts/layout}">
+
 <head>
     <title>설문 관리 &gt; 설문</title>
 </head>
 
 <aside layout:fragment="lnb" th:replace="~{fragments/lnb_survey :: lnb}"></aside>
 <section layout:fragment="content">
-    <!-- 브레드크럼 -->
-    <nav class="breadcrumb" aria-label="breadcrumbs">
-        <ul>
-            <li><a href="/">홈</a></li>
-            <li><a href="/survey">설문 관리</a></li>
-            <li class="is-active"><a href="#" aria-current="page">설문</a></li>
-        </ul>
-    </nav>
-
-    <!-- 제목 -->
-    <h2 class="title is-4">설문</h2>
+    <div class="level">
+        <div class="level-left">
+            <!-- 제목 -->
+            <h2 class="title is-4">설문</h2>
+        </div>
+        <div class="level-right">
+            <!-- 브레드크럼 -->
+            <nav class="breadcrumb" aria-label="breadcrumbs">
+                <ul>
+                    <li>
+                        <div>
+                            <span class="icon is-small">
+                                <i class="fas fa-home" aria-hidden="true"></i>
+                            </span>
+                            <span>홈</span>
+                        </div>
+                    </li>
+                    <li>
+                        <div>설문 관리</div>
+                    </li>
+                    <li class="is-active">
+                        <div>설문</div>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
 
     <!-- 검색 필터 -->
-    <form class="box fixed-grid" th:action th:object="${condition}">
-        <div class="grid">
-            <div class="cell is-col-span-2 is-col-span-1-desktop">
-                <div class="field is-horizontal">
-                    <div class="field-label is-normal">
+    <form class="box" th:action th:object="${condition}">
+        <table class="table is-fullwidth search-table">
+            <caption>검색 필터</caption>
+            <colgroup>
+                <col style="width: 10%;" />
+                <col style="width: auto;" />
+            </colgroup>
+            <tbody>
+                <tr>
+                    <th scope="col">
                         <label class="label" for="searchText">제목</label>
-                    </div>
-                    <div class="field-body">
-                        <div class="field">
-                            <div class="control is-expanded">
+                    </th>
+                    <td>
+                        <div class="field has-addons">
+                            <div class="control">
                                 <input type="text" id="searchText" name="searchText" placeholder="검색어" class="input"
-                                       th:value="${(condition.searchText != null || condition.searchText != '') ? condition.searchText : ''}"/>
+                                    th:value="${(condition.searchText != null || condition.searchText != '') ? condition.searchText : ''}" />
+                            </div>
+                            <div class="control">
+                                <button type="submit" class="button is-dark">
+                                    <span class="icon">
+                                        <i class="fa fa-search" aria-hidden="true"></i>
+                                    </span>
+                                    <span>검색</span>
+                                </button>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-            <div class="cell is-col-span-2">
-                <div class="buttons is-centered">
-                    <button type="submit" class="button is-dark">
-                        <span class="icon">
-                            <i class="fa fa-search" aria-hidden="true"></i>
-                        </span>
-                        <span>검색</span>
-                    </button>
-                </div>
-            </div>
-        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </form>
 
     <!-- 검색 결과 -->
@@ -58,7 +76,8 @@
         <nav class="level is-flex-direction-row">
             <div class="level-left">
                 <div class="level-item">
-                    <p class="subtitle is-6">총 <strong class="has-text-danger" th:text="${#numbers.formatInteger(list.totalElements, 1, 'COMMA')}">123</strong> 건</p>
+                    <p class="subtitle is-6">총 <strong class="has-text-danger"
+                            th:text="${#numbers.formatInteger(list.totalElements, 1, 'COMMA')}">123</strong> 건</p>
                 </div>
             </div>
             <div class="level-right">
@@ -87,35 +106,41 @@
                     <col style="width: 100px" />
                 </colgroup>
                 <thead class="has-background-dark-soft">
-                <tr>
-                    <th scope="col">번호</th>
-                    <th scope="col">제목</th>
-                    <th scope="col">조사 기간</th>
-                    <th scope="col">노출 상태</th>
-                    <th scope="col">진행 상태</th>
-                    <th scope="col">결과 보기</th>
-                    <th scope="col">통계 보기</th>
-                </tr>
+                    <tr>
+                        <th scope="col">번호</th>
+                        <th scope="col">제목</th>
+                        <th scope="col">조사 기간</th>
+                        <th scope="col">노출 상태</th>
+                        <th scope="col">진행 상태</th>
+                        <th scope="col">결과 보기</th>
+                        <th scope="col">통계 보기</th>
+                    </tr>
                 </thead>
                 <tbody>
-                <tr th:if="${list.isEmpty()}">
-                    <td colspan="7" class="has-text-centered">검색 결과가 없습니다.</td>
-                </tr>
-                <tr th:if="${!list.isEmpty()}" th:each="survey : ${list}">
-                    <td class="has-text-right" th:text="${#numbers.formatInteger(list.totalElements - list.number * list.size - surveyStat.index, 1, 'COMMA')}">10</td>
-                    <td class="is-ellipsis">
-                        <a th:href="@{/survey/{id}(id=${survey.id}, q=${queryString})}" th:text="${survey.title}">2024년 2학기 만족도 조사입니다.</a>
-                    </td>
-                    <td class="has-text-centered">
-                        <th:block th:text="${#temporals.format(survey.startDate, 'yyyy-MM-dd')}"/>
-                        ~
-                        <th:block th:text="${#temporals.format(survey.endDate, 'yyyy-MM-dd')}"/>
-                    </td>
-                    <td class="has-text-centered" th:text="${survey.viewYn.yn == 'Y' ? '노출' : '미노출' }">노출</td>
-                    <td class="has-text-centered" th:text="${survey.status}"> status -> 대기, 종료, 진행</td>
-                    <td class="has-text-centered"><a th:href="@{/survey/result/{surveyId}(surveyId=${survey.id}, q=${queryString})}">결과 보기</a></td>
-                    <td class="has-text-centered"><a th:href="@{/survey/{id}/statistics(id=${survey.id}, q=${queryString})}">통계 보기</a></td>
-                </tr>
+                    <tr th:if="${list.isEmpty()}">
+                        <td colspan="7" class="has-text-centered">검색 결과가 없습니다.</td>
+                    </tr>
+                    <tr th:if="${!list.isEmpty()}" th:each="survey : ${list}">
+                        <td class="has-text-centered"
+                            th:text="${#numbers.formatInteger(list.totalElements - list.number * list.size - surveyStat.index, 1, 'COMMA')}">
+                            10</td>
+                        <td class="is-ellipsis">
+                            <a th:href="@{/survey/{id}(id=${survey.id}, q=${queryString})}"
+                                th:text="${survey.title}">2024년 2학기 만족도 조사입니다.</a>
+                        </td>
+                        <td class="has-text-centered">
+                            <th:block th:text="${#temporals.format(survey.startDate, 'yyyy-MM-dd')}" />
+                            ~
+                            <th:block th:text="${#temporals.format(survey.endDate, 'yyyy-MM-dd')}" />
+                        </td>
+                        <td class="has-text-centered" th:text="${survey.viewYn.yn == 'Y' ? '노출' : '미노출' }">노출</td>
+                        <td class="has-text-centered" th:text="${survey.status}"> status -> 대기, 종료, 진행</td>
+                        <td class="has-text-centered"><a
+                                th:href="@{/survey/result/{surveyId}(surveyId=${survey.id}, q=${queryString})}">결과
+                                보기</a></td>
+                        <td class="has-text-centered"><a
+                                th:href="@{/survey/{id}/statistics(id=${survey.id}, q=${queryString})}">통계 보기</a></td>
+                    </tr>
                 </tbody>
             </table>
         </div>

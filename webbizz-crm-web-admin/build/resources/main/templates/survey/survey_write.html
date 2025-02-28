@@ -1,26 +1,43 @@
 <!DOCTYPE html>
-<html lang="ko"
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{layouts/layout}">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layouts/layout}">
+
 <head>
     <title>설문 관리 &gt; 설문 &gt; 등록</title>
 </head>
 
 <aside layout:fragment="lnb" th:replace="~{fragments/lnb_survey :: lnb}"></aside>
 <section layout:fragment="content">
-    <!-- 브레드크럼 -->
-    <nav class="breadcrumb" aria-label="breadcrumbs">
-        <ul>
-            <li><a href="/">홈</a></li>
-            <li><a href="/survey">설문 관리</a></li>
-            <li><a href="/survey">설문</a></li>
-            <li class="is-active"><a href="#" aria-current="page">등록</a></li>
-        </ul>
-    </nav>
-
-    <!-- 제목 -->
-    <h2 class="title is-4">설문 등록</h2>
+    <div class="level">
+        <div class="level-left">
+            <!-- 제목 -->
+            <h2 class="title is-4">설문 등록</h2>
+        </div>
+        <div class="level-right">
+            <!-- 브레드크럼 -->
+            <nav class="breadcrumb" aria-label="breadcrumbs">
+                <ul>
+                    <li>
+                        <div>
+                            <span class="icon is-small">
+                                <i class="fas fa-home" aria-hidden="true"></i>
+                            </span>
+                            <span>홈</span>
+                        </div>
+                    </li>
+                    <li>
+                        <div>설문 관리</div>
+                    </li>
+                    <li>
+                        <div>설문</div>
+                    </li>
+                    <li class="is-active">
+                        <div>등록</div>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
 
     <!-- 검색 결과 -->
     <div class="card" x-data="surveyManage()">
@@ -45,7 +62,7 @@
                         <div class="field">
                             <div class="control has-icons-left">
                                 <input type="text" name="title" id="title" placeholder="제목" class="input" required
-                                       x-model="survey[SurveySchema.keys.title]"/>
+                                    x-model="survey[SurveySchema.keys.title]" />
                                 <span class="icon is-left">
                                     <i class="fa-solid fa-heading" aria-hidden="true"></i>
                                 </span>
@@ -65,10 +82,9 @@
                             <div class="control has-icons-left">
                                 <label>
                                     <input type="text" name="startDate" placeholder="시작일" class="input"
-                                           x-ref="startDate" x-model="survey[SurveySchema.keys.startDate]"
-                                           @input="$event => survey[SurveySchema.keys.startDate] = $event.target.value"
-                                           required/>
-
+                                        x-ref="startDate" x-model="survey[SurveySchema.keys.startDate]"
+                                        @input="$event => survey[SurveySchema.keys.startDate] = $event.target.value"
+                                        required />
                                     <span class="icon is-left">
                                         <i class="fa-regular fa-calendar" aria-hidden="true"></i>
                                     </span>
@@ -80,9 +96,9 @@
                             <div class="control has-icons-left">
                                 <label>
                                     <input type="text" name="endDate" placeholder="종료일" class="input" x-ref="endDate"
-                                           x-model="survey[SurveySchema.keys.endDate]"
-                                           @input="$event => survey[SurveySchema.keys.endDate] = $event.target.value"
-                                           required/>
+                                        x-model="survey[SurveySchema.keys.endDate]"
+                                        @input="$event => survey[SurveySchema.keys.endDate] = $event.target.value"
+                                        required />
                                     <span class="icon is-left">
                                         <i class="fa-regular fa-calendar" aria-hidden="true"></i>
                                     </span>
@@ -103,12 +119,12 @@
                             <div class="control radios">
                                 <label class="radio">
                                     <input type="radio" name="viewYn" x-model="survey[SurveySchema.keys.viewYn]"
-                                           value="Y" checked required/>
+                                        value="Y" checked required />
                                     노출
                                 </label>
                                 <label class="radio">
                                     <input type="radio" name="viewYn" x-model="survey[SurveySchema.keys.viewYn]"
-                                           value="N"/>
+                                        value="N" />
                                     미노출
                                 </label>
                             </div>
@@ -134,7 +150,7 @@
                 <div class="level-left">
                     <div class="level-item">
                         <p class="is-size-7">
-                            ‘문항 추가’ 버튼을 클릭하여 문항을 만들어주세요. <u>표시된 순서대로</u> 사용자 화면에 반영됩니다.<br/>
+                            ‘문항 추가’ 버튼을 클릭하여 문항을 만들어주세요. <u>표시된 순서대로</u> 사용자 화면에 반영됩니다.<br />
                             <span class="has-text-grey-light">※ 기타 입력 선택 체크 시 응답자는 기타 자유 입력을 할 수 있습니다. 통계는 기타로
                                 분류됩니다.</span>
                         </p>
@@ -152,10 +168,10 @@
                 </div>
             </nav>
             <div class="sort" x-sort.ghost x-sort:group="questions"
-                 @sort.handle="$store.surveyStore.handleQuestionSortOrder"
-                 x-sort:config="{ handle: '[x-sort\\:handle]' }">
+                @sort.handle="$store.surveyStore.handleQuestionSortOrder"
+                x-sort:config="{ handle: '[x-sort\\:handle]' }">
                 <template x-for="(question, questionIndex) in questions"
-                          :key="question[Schema.keys.sortOrder] + '-' + questionIndex">
+                    :key="question[Schema.keys.sortOrder] + '-' + questionIndex">
                     <div class="card" x-sort:item x-id="['question']">
                         <div class="card-header">
                             <div class="card-header-title">
@@ -164,14 +180,14 @@
                                         <button type="button" class="button is-ghost is-block px-0 pr-3" x-sort:handle>
                                             <span class="icon">
                                                 <i class="fa-solid fa-grip-lines has-text-grey-light"
-                                                   aria-hidden="true"></i>
+                                                    aria-hidden="true"></i>
                                             </span>
                                         </button>
                                     </div>
                                     <div class="control is-expanded has-icons-left">
                                         <label>
                                             <input type="text" name="question" placeholder="질문 제목" class="input"
-                                                   x-ref="questionTitleInputs" x-model="question[Schema.keys.title]"/>
+                                                x-ref="questionTitleInputs" x-model="question[Schema.keys.title]" />
                                             <span class="icon is-left">
                                                 <i class="fa-solid fa-heading" aria-hidden="true"></i>
                                             </span>
@@ -179,7 +195,7 @@
                                     </div>
                                     <div class="control">
                                         <button type="button" class="button is-outlined is-danger"
-                                                @click="removeQuestion(question[Schema.keys.id])">
+                                            @click="removeQuestion(question[Schema.keys.id])">
                                             <span class="icon">
                                                 <i class="fa-solid fa-minus" aria-hidden="true"></i>
                                             </span>
@@ -202,18 +218,15 @@
                                         <div class="field">
                                             <div class="control radios" @change="answerTypeChange()">
                                                 <label class="radio">
-                                                    <input type="radio" name="answerType"
-                                                           :value="AnswerType.RADIO.code"
-                                                           x-model="question[Schema.keys.answerType]"
-                                                    />
+                                                    <input type="radio" name="answerType" :value="AnswerType.RADIO.code"
+                                                        x-model="question[Schema.keys.answerType]" />
                                                     <span x-text="' ' + AnswerType.RADIO.label"></span>
                                                 </label>
                                                 <label class="radio">
                                                     <input type="radio" name="answerType"
-                                                           :value="AnswerType.CHECKBOX.code"
-                                                           x-model="question[Schema.keys.answerType]"
-                                                           x-text="AnswerType.CHECKBOX.label"
-                                                    />
+                                                        :value="AnswerType.CHECKBOX.code"
+                                                        x-model="question[Schema.keys.answerType]"
+                                                        x-text="AnswerType.CHECKBOX.label" />
                                                     <span x-text="' ' + AnswerType.CHECKBOX.label"></span>
                                                 </label>
                                                 <!--/*
@@ -249,16 +262,16 @@
                                 </div>
                                 */-->
 
-                                <div class="field is-horizontal is-align-items-baseline" x-show="question[Schema.keys.answerType] !== AnswerType.TEXT.code">
+                                <div class="field is-horizontal is-align-items-baseline"
+                                    x-show="question[Schema.keys.answerType] !== AnswerType.TEXT.code">
                                     <div class="field-label">
                                         <label class="label" :for="'useCustomAnswer' + question.id">기타 항목</label>
                                     </div>
                                     <div class="field-body">
                                         <div class="control">
-                                            <label>
+                                            <label class="checkbox">
                                                 <input type="checkbox" :id="'useCustomAnswer' + question.id"
-                                                       @change="checkboxChange(Schema.keys.useCustomAnswer, $el)"
-                                                />
+                                                    @change="checkboxChange(Schema.keys.useCustomAnswer, $el)" />
                                                 사용
                                             </label>
                                         </div>
@@ -283,10 +296,11 @@
                                 </div>
                                 */-->
 
-                                <div class="field is-horizontal" x-show="question[Schema.keys.answerType] !== AnswerType.TEXT.code">
+                                <div class="field is-horizontal"
+                                    x-show="question[Schema.keys.answerType] !== AnswerType.TEXT.code">
                                     <div class="field-label">
                                         <button type="button" class="button is-small is-dark"
-                                                @click="addAnswer(question.answers)">
+                                            @click="addAnswer(question.answers)">
                                             <span class="icon">
                                                 <i class="fa fa-plus" aria-hidden="true"></i>
                                             </span>
@@ -295,36 +309,36 @@
                                     </div>
                                     <div class="field-body">
                                         <div class="is-flex is-flex-direction-column is-flex-grow-1 is-gap-1 sort"
-                                             x-sort x-sort:config="{ handle: '[x-sort\\:handle]' }"
-                                             @sort.stop="$store.surveyStore.handleAnswerSortOrder(questionIndex, $event)">
+                                            x-sort x-sort:config="{ handle: '[x-sort\\:handle]' }"
+                                            @sort.stop="$store.surveyStore.handleAnswerSortOrder(questionIndex, $event)">
                                             <template x-for="(answer, answerIndex) in question[Schema.keys.answers]"
-                                                      :key="'answer-' + questionIndex + '-' + answer[Schema.keys.answerOrder] + '-' + answerIndex">
+                                                :key="'answer-' + questionIndex + '-' + answer[Schema.keys.answerOrder] + '-' + answerIndex">
                                                 <div class="field is-grouped is-align-items-center" x-sort:item
-                                                     x-sort:group="'answers-' + questionIndex">
+                                                    x-sort:group="'answers-' + questionIndex">
                                                     <div class="control is-expanded">
                                                         <div class="field has-addons">
                                                             <div class="control">
                                                                 <button type="button"
-                                                                        class="button is-ghost is-block px-2" x-sort:handle>
+                                                                    class="button is-ghost is-block px-2" x-sort:handle>
                                                                     <span class="icon is-size-7">
                                                                         <i class="fa-solid fa-grip-lines has-text-grey-light"
-                                                                           aria-hidden="true"></i>
+                                                                            aria-hidden="true"></i>
                                                                     </span>
                                                                 </button>
                                                             </div>
                                                             <div class="control is-expanded">
                                                                 <label>
                                                                     <input type="text" name="answer" placeholder="답변"
-                                                                           class="input"
-                                                                           x-model="answer[Schema.keys.answerText]"
-                                                                           x-ref="answerInputs"
-                                                                           :value="answer[Schema.keys.answerText]"/>
+                                                                        class="input"
+                                                                        x-model="answer[Schema.keys.answerText]"
+                                                                        x-ref="answerInputs"
+                                                                        :value="answer[Schema.keys.answerText]" />
                                                                 </label>
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <button type="button" class="delete" aria-label="delete"
-                                                            @click="removeAnswer(questionIndex, answer[Schema.keys.answerId])"></button>
+                                                        @click="removeAnswer(questionIndex, answer[Schema.keys.answerId])"></button>
                                                 </div>
                                             </template>
                                         </div>
@@ -340,7 +354,8 @@
     </fieldset>
 
     <div class="buttons is-centered" x-data="formSubmit()">
-        <button type="button" class="button is-link" @click="submitForm()" x-ref="submit" x-show="!$store.surveyStore.isStarted">
+        <button type="button" class="button is-link" @click="submitForm()" x-ref="submit"
+            x-show="!$store.surveyStore.isStarted">
             <span class="icon">
                 <i class="fa fa-save" aria-hidden="true"></i>
             </span>
@@ -373,7 +388,7 @@
                     <div class="message-body p-4">
                         <p><b x-text="$store.surveyStore.survey[SurveySchema.keys.title]"></b></p>
                         <p class="is-size-7"
-                           x-text="`기간: ${$store.surveyStore.survey[SurveySchema.keys.startDate]} ~ ${$store.surveyStore.survey[SurveySchema.keys.endDate]}`">
+                            x-text="`기간: ${$store.surveyStore.survey[SurveySchema.keys.startDate]} ~ ${$store.surveyStore.survey[SurveySchema.keys.endDate]}`">
                             기간: 2024-01-01 ~ 2024-01-31</p>
                     </div>
                 </div>
@@ -385,17 +400,17 @@
                         <div class="field-body">
                             <div class="field">
                                 <div class="control">
-                                    <input class="input" type="text" placeholder="이름"/>
+                                    <input class="input" type="text" placeholder="이름" />
                                 </div>
                             </div>
                             <div class="field">
                                 <div class="control">
-                                    <input class="input" type="tel" placeholder="휴대폰 번호"/>
+                                    <input class="input" type="tel" placeholder="휴대폰 번호" />
                                 </div>
                             </div>
                             <div class="field">
                                 <div class="control">
-                                    <input class="input" type="email" placeholder="이메일"/>
+                                    <input class="input" type="email" placeholder="이메일" />
                                 </div>
                             </div>
                         </div>
@@ -404,7 +419,7 @@
 
                 <!-- Question 1 -->
                 <template x-for="(question, previewQuestionIndex) in $store.surveyStore.questions"
-                          :key="previewQuestionIndex">
+                    :key="previewQuestionIndex">
                     <div class="box">
                         <div class="field">
                             <!--                            <label class="label"-->
@@ -414,26 +429,32 @@
                             <!--                            ></label>-->
                             <label class="label">
                                 <span x-text="`${(previewQuestionIndex + 1)}. ${question[Schema.keys.title]}`"></span>
-                                <span style="color: red" x-text="`${question[Schema.keys.requiredYn] === 'Y' ? '(필수)' :''}`"></span>
+                                <span style="color: red"
+                                    x-text="`${question[Schema.keys.requiredYn] === 'Y' ? '(필수)' :''}`"></span>
                             </label>
-                            <div :class="`is-flex-direction-column ${question[Schema.keys.answerType] === AnswerType.CHECKBOX.value ? AnswerType.CHECKBOX.value + 'e' : question[Schema.keys.answerType]}s`">
+                            <div
+                                :class="`is-flex-direction-column ${question[Schema.keys.answerType] === AnswerType.CHECKBOX.value ? AnswerType.CHECKBOX.value + 'e' : question[Schema.keys.answerType]}s`">
                                 <template x-for="(answer, previewAnswerIndex) in question.answers"
-                                          :key="previewAnswerIndex">
-                                    <label :class="question[Schema.keys.answerType]" :id="'previewQuestions' + question.id" x-show="question[Schema.keys.answerType] !== AnswerType.TEXT.code">
-                                        <input :type="question[Schema.keys.answerType]" :name="question.id" :for="'previewQuestions' + question.id"/>
+                                    :key="previewAnswerIndex">
+                                    <label :class="question[Schema.keys.answerType]"
+                                        :id="'previewQuestions' + question.id"
+                                        x-show="question[Schema.keys.answerType] !== AnswerType.TEXT.code">
+                                        <input :type="question[Schema.keys.answerType]" :name="question.id"
+                                            :for="'previewQuestions' + question.id" />
                                         <span x-text="answer[Schema.keys.answerText]"></span>
-                                        <br/>
+                                        <br />
                                     </label>
                                 </template>
-                                <label class="is-flex-direction-column input" x-show="question[Schema.keys.answerType] === AnswerType.TEXT.code">
+                                <label class="is-flex-direction-column input"
+                                    x-show="question[Schema.keys.answerType] === AnswerType.TEXT.code">
                                 </label>
                                 <div x-show="question[Schema.keys.useCustomAnswer] === 'Y'">
                                     <label :class="question[Schema.keys.answerType]">
-                                        <input :type="question[Schema.keys.answerType]" :name="question.id"/>
+                                        <input :type="question[Schema.keys.answerType]" :name="question.id" />
                                         기타:
                                     </label>
                                     <label>
-                                        <input class="input" type="text" placeholder="기타 응답을 입력하세요"/>
+                                        <input class="input" type="text" placeholder="기타 응답을 입력하세요" />
                                     </label>
                                 </div>
                             </div>
@@ -492,10 +513,10 @@
 
             initDatePicker() {
                 this.$refs.startDate.addEventListener('changeDate', (event) => {
-                    this.updateSurvey({[SurveySchema.keys.startDate]: event.target.value});
+                    this.updateSurvey({ [SurveySchema.keys.startDate]: event.target.value });
                 });
                 this.$refs.endDate.addEventListener('changeDate', (event) => {
-                    this.updateSurvey({[SurveySchema.keys.endDate]: event.target.value});
+                    this.updateSurvey({ [SurveySchema.keys.endDate]: event.target.value });
                 });
             },
 
@@ -538,7 +559,7 @@
 
             // 질문 문항 추가
             addQuestion() {
-                Alpine.store('surveyStore').addQuestion({[Schema.keys.id]: Alpine.store('surveyStore').getCreatedSurveyId()});
+                Alpine.store('surveyStore').addQuestion({ [Schema.keys.id]: Alpine.store('surveyStore').getCreatedSurveyId() });
                 this.focusInToLastQuestion(); // 마지막 질문 포커스
             },
 
@@ -560,7 +581,7 @@
             },
 
             // 체크박스 채인지 이벤트
-            checkboxChange(key, {checked}) {
+            checkboxChange(key, { checked }) {
                 return this.question[key] = checked ? 'Y' : 'N';
             },
 
@@ -613,7 +634,7 @@
     function formSubmit() {
         return {
             submitForm() {
-                const {modelData, survey, questions} = Alpine.store('surveyStore'); // 스토어 값을 꺼냄
+                const { modelData, survey, questions } = Alpine.store('surveyStore'); // 스토어 값을 꺼냄
                 const isNew = !modelData?.id;
                 const method = isNew ? 'POST' : 'PUT';
                 this.submitClassToggle(); // 버튼의 모양을 동그라미로 바꾸면서 클릭불가능하게 만드는 클레스 토굴
@@ -624,7 +645,7 @@
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify({survey, questions}),
+                    body: JSON.stringify({ survey, questions }),
                 })
                     .then(handleFetchResponse)
                     .then(result => {
@@ -670,7 +691,7 @@
                 this.isStarted = isSurveyStarted ?? false;
 
                 if (this.modelData) {
-                    const {questions, ...surveyData} = this.modelData;
+                    const { questions, ...surveyData } = this.modelData;
 
                     this.survey = surveyData;
                     this.questions = questions ?? [this.createQuestion()];
@@ -681,7 +702,7 @@
             },
 
             updateSurvey(newSurvey) {
-                this.survey = {...this.survey, ...newSurvey};
+                this.survey = { ...this.survey, ...newSurvey };
             },
 
             createSurvey() {
@@ -740,7 +761,7 @@
             },
 
             // = 마우스로 눌러서 순서를 변경할때 실행되는 함수
-            handleQuestionSortOrder({oldIndex, newIndex}) {
+            handleQuestionSortOrder({ oldIndex, newIndex }) {
                 Alpine.nextTick(() => {
                     const movedItem = this.questions.splice(oldIndex, 1)[0];
                     this.questions.splice(newIndex, 0, movedItem);
@@ -786,7 +807,7 @@
             },
 
             // = 마우스로 눌러서 순서를 변경할때 실행되는 함수
-            async handleAnswerSortOrder(questionIndex, {oldIndex, newIndex}) {
+            async handleAnswerSortOrder(questionIndex, { oldIndex, newIndex }) {
                 await Alpine.nextTick(() => {
                     const question = this.questions[questionIndex];
                     const answers = question[Schema.keys.answers];

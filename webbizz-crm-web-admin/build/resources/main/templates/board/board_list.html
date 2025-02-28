@@ -9,7 +9,6 @@
 
 <aside layout:fragment="lnb" th:replace="~{fragments/lnb_board :: lnb}"></aside>
 <section layout:fragment="content">
-
     <div class="level">
         <div class="level-left">
             <!-- 제목 -->
@@ -48,13 +47,14 @@
     <!-- 검색 필터 -->
     <form class="box">
         <table class="table is-fullwidth search-table">
+            <caption>검색 필터</caption>
             <colgroup>
                 <col style="width: 10%;" />
                 <col style="width: auto;" />
             </colgroup>
             <tbody>
                 <tr>
-                    <th>노출 상태</th>
+                    <th scope="col">노출 상태</th>
                     <td>
                         <div class="field is-grouped">
                             <div class="control radios">
@@ -72,7 +72,7 @@
                                 </label>
                             </div>
                             <div class="control">
-                                <button class="button is-dark">
+                                <button type="submit" class="button is-dark">
                                     <span class="icon">
                                         <i class="ri-search-line" aria-hidden="true"></i>
                                     </span>
@@ -83,7 +83,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <th>등록일</th>
+                    <th scope="col">등록일</th>
                     <td>
                         <div class="field has-addons datepicker-range">
                             <div class="control has-icons-left">
@@ -235,7 +235,7 @@
                     <td colspan="7" class="has-text-centered">검색 결과가 없습니다.</td>
                 </tr>
                 <tr th:each="item : ${pageVars}">
-                    <td class="has-text-right" th:text="${pageVars.totalElements - pageVars.number * pageVars.size - itemStat.index}">1</td>
+                    <td class="has-text-centered" th:text="${pageVars.totalElements - pageVars.number * pageVars.size - itemStat.index}">1</td>
                     <td th:text="${item.type.detail}">썸네일</td>
                     <td class="is-ellipsis">
                         <a th:href="@{/board/board/{id}(id = ${item.id}, q = ${queryString})}"
@@ -245,7 +245,7 @@
                     <td class="has-text-centered" th:text="${#temporals.format(item.createdAt, 'yyyy-MM-dd')}">yyyy-MM-dd</td>
                     <td class="has-text-centered" th:text="${item.viewYn.isBool() ? '노출' : '미노출'}">미노출</td>
                     <td class="has-text-centered">
-                        <a class="tag is-light"
+                        <a class="tag"
                            th:href="@{/board/board/{boardId}/articles(boardId = ${item.id})}" >게시물 보기</a>
                     </td>
                 </tr>

@@ -9,17 +9,33 @@
 
 <aside layout:fragment="lnb" th:replace="~{fragments/lnb_management :: lnb}"></aside>
 <section layout:fragment="content">
-    <!-- 브레드크럼 -->
-    <nav class="breadcrumb" aria-label="breadcrumbs">
-        <ul>
-            <li><a href="/">홈</a></li>
-            <li><a href="/management">운영</a></li>
-            <li class="is-active"><a href="#" aria-current="page">[[ ${condition.type.detail} ]] 관리</a></li>
-        </ul>
-    </nav>
-
-    <!-- 제목 -->
-    <h2 class="title is-4">[[ ${condition.type.detail} ]] 관리</h2>
+    <div class="level">
+        <div class="level-left">
+            <!-- 제목 -->
+            <h2 class="title is-4">[[ ${condition.type.detail} ]] 관리</h2>
+        </div>
+        <div class="level-right">
+            <!-- 브레드크럼 -->
+            <nav class="breadcrumb" aria-label="breadcrumbs">
+                <ul>
+                    <li>
+                        <div>
+                            <span class="icon is-small">
+                                <i class="fas fa-home" aria-hidden="true"></i>
+                            </span>
+                            <span>홈</span>
+                        </div>
+                    </li>
+                    <li>
+                        <div>운영</div>
+                    </li>
+                    <li class="is-active">
+                        <div>[[ ${condition.type.detail} ]] 관리</div>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
 
     <!-- 검색 결과 -->
     <div class="box">
@@ -59,13 +75,13 @@
                     <td colspan="3" class="has-text-centered">검색 결과가 없습니다.</td>
                 </tr>
                 <tr th:each="item : ${listVars}">
-                    <td class="has-text-right" th:text="${itemStat.size - itemStat.index}">1</td>
+                    <td class="has-text-centered" th:text="${itemStat.size - itemStat.index}">1</td>
                     <td>
                         <a th:href="@{/management/terms/{termsType}/{id}(termsType = ${item.type.code.toLowerCase()}, id = ${item.id})}"
                            th:text="${#temporals.format(item.createdAt, 'yyyy-MM-dd HH:mm:ss')}">yyyy-MM-dd HH:mm:ss</a>
                     </td>
                     <td class="has-text-centered">
-                        <label>
+                        <label class="radio">
                             <input type="radio" name="id"
                                    th:value="${item.id}"
                                    th:checked="${item.activeYn eq T(webbizz.crm.domain.YN).Y}" />
