@@ -4,32 +4,38 @@
 
 <header th:fragment="header" class="header">
     <script>
+        let timeLeft = 3600;  // 60분 (3600초)
+
+        // 타이머 갱신 함수
         function updateTimer() {
-            console.log('sss');
+            let timerElement = document.getElementById("timer");
 
-            fetch('/session-time-left', { method: 'GET' })
-                .then(response => response.json()) // 응답을 JSON으로 변환
-                .then(secondsLeft => {
-                    console.log("세션 남은 시간:", secondsLeft, "초");
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            timerElement.innerText = `${minutes} : ${seconds < 10 ? "0" + seconds : seconds}`;
 
-                    if (secondsLeft <= 0) {
-                        document.getElementById("timer").innerText = "세션 만료";
-                        setTimeout(() => {
-                            window.location.href = "/logout"; // 자동 로그아웃
-                        }, 2000);
-                        return;
-                    }
-
-                    const minutes = Math.floor(secondsLeft / 60);
-                    const seconds = secondsLeft % 60;
-                    document.getElementById("timer").innerText = `${minutes} : ${seconds < 10 ? "0" + seconds : seconds}`;
-                })
-                .catch(error => console.error("세션 시간 가져오기 실패", error));
+            if (timeLeft <= 0) {
+                // 타임아웃 시 로그아웃
+                alert("세션이 만료되었습니다. 로그아웃합니다.");
+                window.location.href = "/logout";  // 로그아웃 URL로 리다이렉트
+            } else {
+                // 1초씩 감소
+                timeLeft--;
+            }
         }
 
-        // 1초마다 세션 시간 갱신
+        // 1초마다 타이머 업데이트
         setInterval(updateTimer, 1000);
-        updateTimer(); // 초기 실행    </script>
+
+        // 세션 유지 시간 초기화: 사용자가 활동할 때마다 타이머 리셋
+        document.addEventListener('click', resetTimer);
+        document.addEventListener('keydown', resetTimer);
+
+        // 사용자가 액션을 하면 타이머 리셋 (60분으로 초기화)
+        function resetTimer() {
+            timeLeft = 100; // 60분으로 초기화
+        }
+    </script>
     <div class="header-inner">
         <a class="navbar-brand" href="/">
             <h2 class="admin-title">ADMINISTRATOR</h2>
@@ -83,164 +89,164 @@
         <div class="navbar-start">
             <th:block th:with="url = '/', name = '홈'">
                 <a class="navbar-item" th:classappend="${requestURI.equals(#vars.url)} ? 'is-active'" th:href="${url}"
-                    th:text="${name}" sec:authorize-expr="${hasPermission(#vars.url, 'LINK')}"></a>
+                   th:text="${name}" sec:authorize-expr="${hasPermission(#vars.url, 'LINK')}"></a>
             </th:block>
             <th:block th:with="url = '/exhibition', name = '전시 관리'">
                 <div class="navbar-item has-dropdown is-hoverable">
                     <a class="navbar-link" th:classappend="${requestURI.startsWith(#vars.url)} ? 'is-active'"
-                        th:href="${url}" th:text="${name}" sec:authorize-expr="${hasPermission(#vars.url, 'LINK')}"></a>
+                       th:href="${url}" th:text="${name}" sec:authorize-expr="${hasPermission(#vars.url, 'LINK')}"></a>
                     <ul class="navbar-dropdown">
                         <li th:with="url = '/exhibition/main-banner'">
                             <a class="navbar-item" th:classappend="${requestURI.startsWith(url)} ? 'is-active'"
-                                th:href="${url}" sec:authorize-expr="${hasPermission(#vars.url, 'LINK')}">메인 배너</a>
+                               th:href="${url}" sec:authorize-expr="${hasPermission(#vars.url, 'LINK')}">메인 배너</a>
                         </li>
                         <li th:with="url = '/exhibition/popup-banner'">
                             <a class="navbar-item" th:classappend="${requestURI.startsWith(url)} ? 'is-active'"
-                                th:href="${url}" sec:authorize-expr="${hasPermission(#vars.url, 'LINK')}">팝업 배너</a>
+                               th:href="${url}" sec:authorize-expr="${hasPermission(#vars.url, 'LINK')}">팝업 배너</a>
                         </li>
                         <li th:with="url = '/exhibition/top-banner'">
                             <a class="navbar-item" th:classappend="${requestURI.startsWith(url)} ? 'is-active'"
-                                th:href="${url}" sec:authorize-expr="${hasPermission(#vars.url, 'LINK')}">상단 띠 배너</a>
+                               th:href="${url}" sec:authorize-expr="${hasPermission(#vars.url, 'LINK')}">상단 띠 배너</a>
                         </li>
                         <!--/*@thymesVar id="exhibitionLink" type="java.lang.String"*/-->
                         <li th:with="url = '/exhibition/promotion-banner'">
                             <a class="navbar-item"
-                                th:classappend="${requestURI.startsWith(url) and exhibitionLink eq url} ? 'is-active'"
-                                th:href="${url}" sec:authorize-expr="${hasPermission(#vars.url, 'LINK')}">홍보 배너</a>
+                               th:classappend="${requestURI.startsWith(url) and exhibitionLink eq url} ? 'is-active'"
+                               th:href="${url}" sec:authorize-expr="${hasPermission(#vars.url, 'LINK')}">홍보 배너</a>
                         </li>
                         <!--/*@thymesVar id="exhibitionLink" type="java.lang.String"*/-->
                         <li th:with="url = '/exhibition/promotion-banner-2'">
                             <a class="navbar-item"
-                                th:classappend="${requestURI.startsWith(url) and exhibitionLink eq url} ? 'is-active'"
-                                th:href="${url}" sec:authorize-expr="${hasPermission(#vars.url, 'LINK')}">홍보 배너 2</a>
+                               th:classappend="${requestURI.startsWith(url) and exhibitionLink eq url} ? 'is-active'"
+                               th:href="${url}" sec:authorize-expr="${hasPermission(#vars.url, 'LINK')}">홍보 배너 2</a>
                         </li>
                     </ul>
                 </div>
             </th:block>
-<!--            <th:block th:with="url = '/member', name = '회원 관리'">-->
-<!--                <div class="navbar-item has-dropdown is-hoverable">-->
-<!--                    <a class="navbar-link" th:classappend="${requestURI.startsWith(#vars.url)} ? 'is-active'"-->
-<!--                        th:href="${url}" th:text="${name}" sec:authorize-expr="${hasPermission(#vars.url, 'LINK')}"></a>-->
-<!--                    <ul class="navbar-dropdown">-->
-<!--                        <li th:with="url = '/member/active'">-->
-<!--                            <a class="navbar-item" th:classappend="${requestURI.startsWith(url)} ? 'is-active'"-->
-<!--                                th:href="${url}" sec:authorize-expr="${hasPermission(#vars.url, 'LINK')}">활동 회원</a>-->
-<!--                        </li>-->
-<!--                        <li th:with="url = '/member/withdrawal'">-->
-<!--                            <a class="navbar-item" th:classappend="${requestURI.startsWith(url)} ? 'is-active'"-->
-<!--                                th:href="${url}" sec:authorize-expr="${hasPermission(#vars.url, 'LINK')}">탈퇴 회원</a>-->
-<!--                        </li>-->
-<!--                    </ul>-->
-<!--                </div>-->
-<!--            </th:block>-->
+            <!--            <th:block th:with="url = '/member', name = '회원 관리'">-->
+            <!--                <div class="navbar-item has-dropdown is-hoverable">-->
+            <!--                    <a class="navbar-link" th:classappend="${requestURI.startsWith(#vars.url)} ? 'is-active'"-->
+            <!--                        th:href="${url}" th:text="${name}" sec:authorize-expr="${hasPermission(#vars.url, 'LINK')}"></a>-->
+            <!--                    <ul class="navbar-dropdown">-->
+            <!--                        <li th:with="url = '/member/active'">-->
+            <!--                            <a class="navbar-item" th:classappend="${requestURI.startsWith(url)} ? 'is-active'"-->
+            <!--                                th:href="${url}" sec:authorize-expr="${hasPermission(#vars.url, 'LINK')}">활동 회원</a>-->
+            <!--                        </li>-->
+            <!--                        <li th:with="url = '/member/withdrawal'">-->
+            <!--                            <a class="navbar-item" th:classappend="${requestURI.startsWith(url)} ? 'is-active'"-->
+            <!--                                th:href="${url}" sec:authorize-expr="${hasPermission(#vars.url, 'LINK')}">탈퇴 회원</a>-->
+            <!--                        </li>-->
+            <!--                    </ul>-->
+            <!--                </div>-->
+            <!--            </th:block>-->
             <th:block th:with="url = '/board', name = '게시판 관리'">
                 <div class="navbar-item has-dropdown is-hoverable">
                     <a class="navbar-link" th:classappend="${requestURI.startsWith(#vars.url)} ? 'is-active'"
-                        th:href="${url}" th:text="${name}" sec:authorize-expr="${hasPermission(#vars.url, 'LINK')}"></a>
+                       th:href="${url}" th:text="${name}" sec:authorize-expr="${hasPermission(#vars.url, 'LINK')}"></a>
                     <ul class="navbar-dropdown">
                         <li th:with="url = '/admin/board/board'">
                             <div class="navbar-item has-dropdown is-hoverable">
                                 <a class="navbar-link" th:classappend="${requestURI.startsWith(url)} ? 'is-active'"
-                                    th:href="${url}" sec:authorize-expr="${hasPermission(#vars.url, 'LINK')}">게시판 목록</a>
+                                   th:href="${url}" sec:authorize-expr="${hasPermission(#vars.url, 'LINK')}">게시판 목록</a>
                                 <ul class="dep3">
                                     <li th:each="board : ${@boardService.getBoardCompactList()}">
                                         <a class="navbar-item" th:href="@{/board/board/{id}/articles(id = ${board.id})}"
-                                            th:text="${board.name}"
-                                            th:classappend="${requestURI.equals('/board/board/' + board.id) or requestURI.startsWith('/board/board/' + board.id + '/')} ? 'is-active'"
-                                            sec:authorize-expr="${hasPermission('/board/board/' + #vars.board.id, 'LINK')}">게시판 이름</a>
+                                           th:text="${board.name}"
+                                           th:classappend="${requestURI.equals('/board/board/' + board.id) or requestURI.startsWith('/board/board/' + board.id + '/')} ? 'is-active'"
+                                           sec:authorize-expr="${hasPermission('/board/board/' + #vars.board.id, 'LINK')}">게시판 이름</a>
                                     </li>
                                 </ul>
                             </div>
                         </li>
                         <li th:with="url = '/board/faq'">
                             <a class="navbar-item" th:classappend="${requestURI.startsWith(url)} ? 'is-active'"
-                                th:href="${url}" sec:authorize-expr="${hasPermission(#vars.url, 'LINK')}">자주 묻는 질문</a>
+                               th:href="${url}" sec:authorize-expr="${hasPermission(#vars.url, 'LINK')}">자주 묻는 질문</a>
                         </li>
                     </ul>
                 </div>
             </th:block>
-<!--            <th:block th:with="url = '/survey', name = '설문 관리'">-->
-<!--                <div class="navbar-item has-dropdown is-hoverable">-->
-<!--                    <a class="navbar-item" th:classappend="${requestURI.startsWith(#vars.url)} ? 'is-active'"-->
-<!--                        th:href="${url}" th:text="${name}" sec:authorize-expr="${hasPermission(#vars.url, 'LINK')}"></a>-->
-<!--                    <ul class="navbar-dropdown">-->
-<!--                        <li th:with="url = '/survey'">-->
-<!--                            <a class="navbar-item" th:classappend="${requestURI.startsWith(url)} ? 'is-active'"-->
-<!--                                th:href="${url}" sec:authorize-expr="${hasPermission(#vars.url, 'LINK')}">설문</a>-->
-<!--                        </li>-->
-<!--                    </ul>-->
-<!--                </div>-->
-<!--            </th:block>-->
-<!--            <th:block th:with="url = '/statistics', name = '통계·분석'">-->
-<!--                <div class="navbar-item has-dropdown is-hoverable">-->
-<!--                    <a class="navbar-item" th:classappend="${requestURI.startsWith(#vars.url)} ? 'is-active'"-->
-<!--                        th:href="${url}" th:text="${name}" sec:authorize-expr="${hasPermission(#vars.url, 'LINK')}"></a>-->
-<!--                    <ul class="navbar-dropdown">-->
-<!--                        <li th:with="url = '/statistics/join-member'">-->
-<!--                            <a class="navbar-item" th:classappend="${requestURI.startsWith(url)} ? 'is-active'"-->
-<!--                                th:href="${url}" sec:authorize-expr="${hasPermission(#vars.url, 'LINK')}">회원 통계</a>-->
-<!--                        </li>-->
-<!--                        <li th:with="url = '/statistics/visitor'">-->
-<!--                            <a class="navbar-item" th:classappend="${requestURI.startsWith(url)} ? 'is-active'"-->
-<!--                                th:href="${url}" sec:authorize-expr="${hasPermission(#vars.url, 'LINK')}">방문자 통계</a>-->
-<!--                        </li>-->
-<!--                        &lt;!&ndash;        <li th:with="url = '/statistics/article'">&ndash;&gt;-->
-<!--                        &lt;!&ndash;            <a class="navbar-item" th:classappend="${requestURI.startsWith(url)} ? 'is-active'" th:href="${url}"&ndash;&gt;-->
-<!--                        &lt;!&ndash;               sec:authorize-expr="${hasPermission(#vars.url, 'LINK')}">게시물 통계</a>&ndash;&gt;-->
-<!--                        &lt;!&ndash;        </li>&ndash;&gt;-->
-<!--                        &lt;!&ndash;        <li th:with="url = '/statistics/google-analytics'">&ndash;&gt;-->
-<!--                        &lt;!&ndash;            <a class="navbar-item" th:classappend="${requestURI.startsWith(url)} ? 'is-active'" th:href="${url}"&ndash;&gt;-->
-<!--                        &lt;!&ndash;               sec:authorize-expr="${hasPermission(#vars.url, 'LINK')}">구글 애널리틱스</a>&ndash;&gt;-->
-<!--                        &lt;!&ndash;        </li>&ndash;&gt;-->
-<!--                        <li th:with="url = '/statistics/operator'">-->
-<!--                            <div class="navbar-item has-dropdown is-hoverable">-->
-<!--                                <a class="navbar-link" th:classappend="${requestURI.startsWith(url)} ? 'is-active'" th:href="${url}"-->
-<!--                                   sec:authorize-expr="${hasPermission(#vars.url, 'LINK')}">-->
-<!--                                    운영자 로그-->
-<!--                                </a>-->
-<!--                                <ul class="dep3">-->
-<!--                                    <li th:with="url = '/statistics/operator/login-auditor'">-->
-<!--                                        <a class="navbar-item" th:classappend="${requestURI.startsWith(url)} ? 'is-active'" th:href="${url}"-->
-<!--                                           sec:authorize-expr="${hasPermission(#vars.url, 'LINK')}">운영자 접속 현황</a>-->
-<!--                                    </li>-->
-<!--                                    &lt;!&ndash;                <li th:with="url = '/statistics/operator/output-status'">&ndash;&gt;-->
-<!--                                    &lt;!&ndash;                    <a th:classappend="${requestURI.startsWith(url)} ? 'is-active'" th:href="${url}"&ndash;&gt;-->
-<!--                                    &lt;!&ndash;                       sec:authorize-expr="${hasPermission(#vars.url, 'LINK')}">출력 현황</a>&ndash;&gt;-->
-<!--                                    &lt;!&ndash;                </li>&ndash;&gt;-->
-<!--                                    &lt;!&ndash;                <li th:with="url = '/statistics/operator/search-status'">&ndash;&gt;-->
-<!--                                    &lt;!&ndash;                    <a th:classappend="${requestURI.startsWith(url)} ? 'is-active'" th:href="${url}"&ndash;&gt;-->
-<!--                                    &lt;!&ndash;                       sec:authorize-expr="${hasPermission(#vars.url, 'LINK')}">정보 검색 현황</a>&ndash;&gt;-->
-<!--                                    &lt;!&ndash;                </li>&ndash;&gt;-->
-<!--                                    <li th:with="url = '/statistics/operator/modification-auditor'">-->
-<!--                                        <a class="navbar-item"  th:classappend="${requestURI.startsWith(url)} ? 'is-active'" th:href="${url}"-->
-<!--                                           sec:authorize-expr="${hasPermission(#vars.url, 'LINK')}">정보 수정 현황</a>-->
-<!--                                    </li>-->
-<!--                                </ul>-->
-<!--                            </div>-->
-<!--                        </li>-->
-<!--                    </ul>-->
-<!--                </div>-->
-<!--            </th:block>-->
+            <!--            <th:block th:with="url = '/survey', name = '설문 관리'">-->
+            <!--                <div class="navbar-item has-dropdown is-hoverable">-->
+            <!--                    <a class="navbar-item" th:classappend="${requestURI.startsWith(#vars.url)} ? 'is-active'"-->
+            <!--                        th:href="${url}" th:text="${name}" sec:authorize-expr="${hasPermission(#vars.url, 'LINK')}"></a>-->
+            <!--                    <ul class="navbar-dropdown">-->
+            <!--                        <li th:with="url = '/survey'">-->
+            <!--                            <a class="navbar-item" th:classappend="${requestURI.startsWith(url)} ? 'is-active'"-->
+            <!--                                th:href="${url}" sec:authorize-expr="${hasPermission(#vars.url, 'LINK')}">설문</a>-->
+            <!--                        </li>-->
+            <!--                    </ul>-->
+            <!--                </div>-->
+            <!--            </th:block>-->
+            <!--            <th:block th:with="url = '/statistics', name = '통계·분석'">-->
+            <!--                <div class="navbar-item has-dropdown is-hoverable">-->
+            <!--                    <a class="navbar-item" th:classappend="${requestURI.startsWith(#vars.url)} ? 'is-active'"-->
+            <!--                        th:href="${url}" th:text="${name}" sec:authorize-expr="${hasPermission(#vars.url, 'LINK')}"></a>-->
+            <!--                    <ul class="navbar-dropdown">-->
+            <!--                        <li th:with="url = '/statistics/join-member'">-->
+            <!--                            <a class="navbar-item" th:classappend="${requestURI.startsWith(url)} ? 'is-active'"-->
+            <!--                                th:href="${url}" sec:authorize-expr="${hasPermission(#vars.url, 'LINK')}">회원 통계</a>-->
+            <!--                        </li>-->
+            <!--                        <li th:with="url = '/statistics/visitor'">-->
+            <!--                            <a class="navbar-item" th:classappend="${requestURI.startsWith(url)} ? 'is-active'"-->
+            <!--                                th:href="${url}" sec:authorize-expr="${hasPermission(#vars.url, 'LINK')}">방문자 통계</a>-->
+            <!--                        </li>-->
+            <!--                        &lt;!&ndash;        <li th:with="url = '/statistics/article'">&ndash;&gt;-->
+            <!--                        &lt;!&ndash;            <a class="navbar-item" th:classappend="${requestURI.startsWith(url)} ? 'is-active'" th:href="${url}"&ndash;&gt;-->
+            <!--                        &lt;!&ndash;               sec:authorize-expr="${hasPermission(#vars.url, 'LINK')}">게시물 통계</a>&ndash;&gt;-->
+            <!--                        &lt;!&ndash;        </li>&ndash;&gt;-->
+            <!--                        &lt;!&ndash;        <li th:with="url = '/statistics/google-analytics'">&ndash;&gt;-->
+            <!--                        &lt;!&ndash;            <a class="navbar-item" th:classappend="${requestURI.startsWith(url)} ? 'is-active'" th:href="${url}"&ndash;&gt;-->
+            <!--                        &lt;!&ndash;               sec:authorize-expr="${hasPermission(#vars.url, 'LINK')}">구글 애널리틱스</a>&ndash;&gt;-->
+            <!--                        &lt;!&ndash;        </li>&ndash;&gt;-->
+            <!--                        <li th:with="url = '/statistics/operator'">-->
+            <!--                            <div class="navbar-item has-dropdown is-hoverable">-->
+            <!--                                <a class="navbar-link" th:classappend="${requestURI.startsWith(url)} ? 'is-active'" th:href="${url}"-->
+            <!--                                   sec:authorize-expr="${hasPermission(#vars.url, 'LINK')}">-->
+            <!--                                    운영자 로그-->
+            <!--                                </a>-->
+            <!--                                <ul class="dep3">-->
+            <!--                                    <li th:with="url = '/statistics/operator/login-auditor'">-->
+            <!--                                        <a class="navbar-item" th:classappend="${requestURI.startsWith(url)} ? 'is-active'" th:href="${url}"-->
+            <!--                                           sec:authorize-expr="${hasPermission(#vars.url, 'LINK')}">운영자 접속 현황</a>-->
+            <!--                                    </li>-->
+            <!--                                    &lt;!&ndash;                <li th:with="url = '/statistics/operator/output-status'">&ndash;&gt;-->
+            <!--                                    &lt;!&ndash;                    <a th:classappend="${requestURI.startsWith(url)} ? 'is-active'" th:href="${url}"&ndash;&gt;-->
+            <!--                                    &lt;!&ndash;                       sec:authorize-expr="${hasPermission(#vars.url, 'LINK')}">출력 현황</a>&ndash;&gt;-->
+            <!--                                    &lt;!&ndash;                </li>&ndash;&gt;-->
+            <!--                                    &lt;!&ndash;                <li th:with="url = '/statistics/operator/search-status'">&ndash;&gt;-->
+            <!--                                    &lt;!&ndash;                    <a th:classappend="${requestURI.startsWith(url)} ? 'is-active'" th:href="${url}"&ndash;&gt;-->
+            <!--                                    &lt;!&ndash;                       sec:authorize-expr="${hasPermission(#vars.url, 'LINK')}">정보 검색 현황</a>&ndash;&gt;-->
+            <!--                                    &lt;!&ndash;                </li>&ndash;&gt;-->
+            <!--                                    <li th:with="url = '/statistics/operator/modification-auditor'">-->
+            <!--                                        <a class="navbar-item"  th:classappend="${requestURI.startsWith(url)} ? 'is-active'" th:href="${url}"-->
+            <!--                                           sec:authorize-expr="${hasPermission(#vars.url, 'LINK')}">정보 수정 현황</a>-->
+            <!--                                    </li>-->
+            <!--                                </ul>-->
+            <!--                            </div>-->
+            <!--                        </li>-->
+            <!--                    </ul>-->
+            <!--                </div>-->
+            <!--            </th:block>-->
             <th:block th:with="url = '/management', name = '운영'">
                 <div class="navbar-item has-dropdown is-hoverable">
                     <a class="navbar-item" th:classappend="${requestURI.startsWith(#vars.url)} ? 'is-active'"
-                        th:href="${url}" th:text="${name}" sec:authorize-expr="${hasPermission(#vars.url, 'LINK')}"></a>
+                       th:href="${url}" th:text="${name}" sec:authorize-expr="${hasPermission(#vars.url, 'LINK')}"></a>
                     <ul class="navbar-dropdown">
                         <li th:with="url = '/management/admin'">
                             <a class="navbar-item" th:classappend="${requestURI.startsWith(url)} ? 'is-active'"
-                                th:href="${url}" sec:authorize-expr="${hasPermission(#vars.url, 'LINK')}">운영자 관리</a>
+                               th:href="${url}" sec:authorize-expr="${hasPermission(#vars.url, 'LINK')}">운영자 관리</a>
                         </li>
                         <li th:with="url = '/management/menu'">
                             <a class="navbar-item" th:classappend="${requestURI.startsWith(url)} ? 'is-active'"
-                                th:href="${url}" sec:authorize-expr="${hasPermission(#vars.url, 'LINK')}">메뉴 관리</a>
+                               th:href="${url}" sec:authorize-expr="${hasPermission(#vars.url, 'LINK')}">메뉴 관리</a>
                         </li>
-<!--                        <li th:with="url = '/management/terms/terms'">-->
-<!--                            <a class="navbar-item" th:classappend="${requestURI.startsWith(url)} ? 'is-active'"-->
-<!--                                th:href="${url}" sec:authorize-expr="${hasPermission(#vars.url, 'LINK')}">이용약관 관리</a>-->
-<!--                        </li>-->
+                        <!--                        <li th:with="url = '/management/terms/terms'">-->
+                        <!--                            <a class="navbar-item" th:classappend="${requestURI.startsWith(url)} ? 'is-active'"-->
+                        <!--                                th:href="${url}" sec:authorize-expr="${hasPermission(#vars.url, 'LINK')}">이용약관 관리</a>-->
+                        <!--                        </li>-->
                         <li th:with="url = '/management/terms/privacy'">
                             <a class="navbar-item" th:classappend="${requestURI.startsWith(url)} ? 'is-active'"
-                                th:href="${url}" sec:authorize-expr="${hasPermission(#vars.url, 'LINK')}">개인정보처리방침 관리</a>
+                               th:href="${url}" sec:authorize-expr="${hasPermission(#vars.url, 'LINK')}">개인정보처리방침 관리</a>
                         </li>
                     </ul>
                 </div>
