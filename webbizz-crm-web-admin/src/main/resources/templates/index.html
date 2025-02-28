@@ -91,55 +91,55 @@
             </div>
         </div>
         <div class="column is-flex is-flex-direction-column">
-            <div class="box box-bg2">
-                <div class="grid">
-                    <a href="/member" class="is-block has-text-centered">
-                        <div class="is-flex is-gap-1 is-align-items-center">
-                            <figure class="has-text-centered">
-                                <img src="/images/common/user.png" alt="회원 관리" />
-                            </figure>
-                            <strong class="is-size-5 has-text-white">회원 관리</strong>
-                        </div>
-                        <div class="count-box">
-                            <span th:text="${#numbers.formatInteger(memberCount, 1, 'COMMA')}">32</span>
-                        </div>
-                    </a>
-                    <a href="/survey" class="is-block has-text-centered">
-                        <div class="is-flex is-gap-1 is-align-items-center">
-                            <figure class="has-text-centered">
-                                <img src="/images/common/edit.png" alt="설문조사" />
-                            </figure>
-                            <strong class="is-size-5 has-text-white">설문조사</strong>
-                        </div>
-                        <div class="count-box">
-                            <span th:text="${#numbers.formatInteger(surveyCount, 1, 'COMMA')}">10</span>
-                        </div>
-                    </a>
-                    <a href="/exhibition" class="is-block has-text-centered">
-                        <div class="is-flex is-gap-1 is-align-items-center">
-                            <figure class="has-text-centered">
-                                <img src="/images/common/banner.png" alt="배너전시 관리" />
-                            </figure>
-                            <strong class="is-size-5 has-text-white">배너전시 관리</strong>
-                        </div>
-                        <div class="count-box">
-                            <span
-                                th:text="${#numbers.formatInteger(exhibitionCount - exhibitionPopupCount, 1, 'COMMA')}">0</span>
-                        </div>
-                    </a>
-                    <a href="/exhibition/popup-banner" class="is-block has-text-centered">
-                        <div class="is-flex is-gap-1 is-align-items-center">
-                            <figure class="has-text-centered">
-                                <img src="/images/common/popup.png" alt="팝업 관리" />
-                            </figure>
-                            <strong class="is-size-5 has-text-white">팝업 관리</strong>
-                        </div>
-                        <div class="count-box">
-                            <span th:text="${#numbers.formatInteger(exhibitionPopupCount, 1, 'COMMA')}">2</span>
-                        </div>
-                    </a>
-                </div>
-            </div>
+<!--            <div class="box box-bg2">-->
+<!--                <div class="grid">-->
+<!--                    <a href="/member" class="is-block has-text-centered">-->
+<!--                        <div class="is-flex is-gap-1 is-align-items-center">-->
+<!--                            <figure class="has-text-centered">-->
+<!--                                <img src="/images/common/user.png" alt="회원 관리" />-->
+<!--                            </figure>-->
+<!--                            <strong class="is-size-5 has-text-white">회원 관리</strong>-->
+<!--                        </div>-->
+<!--                        <div class="count-box">-->
+<!--                            <span th:text="${#numbers.formatInteger(memberCount, 1, 'COMMA')}">32</span>-->
+<!--                        </div>-->
+<!--                    </a>-->
+<!--                    <a href="/survey" class="is-block has-text-centered">-->
+<!--                        <div class="is-flex is-gap-1 is-align-items-center">-->
+<!--                            <figure class="has-text-centered">-->
+<!--                                <img src="/images/common/edit.png" alt="설문조사" />-->
+<!--                            </figure>-->
+<!--                            <strong class="is-size-5 has-text-white">설문조사</strong>-->
+<!--                        </div>-->
+<!--                        <div class="count-box">-->
+<!--                            <span th:text="${#numbers.formatInteger(surveyCount, 1, 'COMMA')}">10</span>-->
+<!--                        </div>-->
+<!--                    </a>-->
+<!--                    <a href="/exhibition" class="is-block has-text-centered">-->
+<!--                        <div class="is-flex is-gap-1 is-align-items-center">-->
+<!--                            <figure class="has-text-centered">-->
+<!--                                <img src="/images/common/banner.png" alt="배너전시 관리" />-->
+<!--                            </figure>-->
+<!--                            <strong class="is-size-5 has-text-white">배너전시 관리</strong>-->
+<!--                        </div>-->
+<!--                        <div class="count-box">-->
+<!--                            <span-->
+<!--                                th:text="${#numbers.formatInteger(exhibitionCount - exhibitionPopupCount, 1, 'COMMA')}">0</span>-->
+<!--                        </div>-->
+<!--                    </a>-->
+<!--                    <a href="/exhibition/popup-banner" class="is-block has-text-centered">-->
+<!--                        <div class="is-flex is-gap-1 is-align-items-center">-->
+<!--                            <figure class="has-text-centered">-->
+<!--                                <img src="/images/common/popup.png" alt="팝업 관리" />-->
+<!--                            </figure>-->
+<!--                            <strong class="is-size-5 has-text-white">팝업 관리</strong>-->
+<!--                        </div>-->
+<!--                        <div class="count-box">-->
+<!--                            <span th:text="${#numbers.formatInteger(exhibitionPopupCount, 1, 'COMMA')}">2</span>-->
+<!--                        </div>-->
+<!--                    </a>-->
+<!--                </div>-->
+<!--            </div>-->
             <div class="columns">
                 <div class="column is-half">
                     <div class="box">
