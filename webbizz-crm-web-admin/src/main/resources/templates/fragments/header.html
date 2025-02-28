@@ -9,14 +9,13 @@
         // 타이머 갱신 함수
         function updateTimer() {
             let timerElement = document.getElementById("timer");
-
             const minutes = Math.floor(timeLeft / 60);
             const seconds = timeLeft % 60;
             timerElement.innerText = `${minutes} : ${seconds < 10 ? "0" + seconds : seconds}`;
 
             if (timeLeft <= 0) {
                 // 타임아웃 시 로그아웃
-                alert("세션이 만료되었습니다. 로그아웃합니다.  ");
+                alert("세션이 만료되었습니다. 로그아웃합니다.");
                 window.location.href = "/logout";  // 로그아웃 URL로 리다이렉트
             } else {
                 // 1초씩 감소
@@ -27,14 +26,15 @@
         // 1초마다 타이머 업데이트
         setInterval(updateTimer, 1000);
 
-        // 세션 유지 시간 초기화: 사용자가 활동할 때마다 타이머 리셋
-        document.addEventListener('click', resetTimer);
-        document.addEventListener('keydown', resetTimer);
-
         // 사용자가 액션을 하면 타이머 리셋 (60분으로 초기화)
         function resetTimer() {
-            timeLeft = 100; // 60분으로 초기화
+            timeLeft = 3600; // 60분으로 초기화
         }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            resetTimer();
+        });
+
     </script>
     <div class="header-inner">
         <a class="navbar-brand" href="/">
