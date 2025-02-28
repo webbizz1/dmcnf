@@ -54,7 +54,7 @@
                     <tr class="has-background-link-light">
                         <td colspan="4"><strong th:text="${question.title}">1. 담당 직원의 친절도는 어떠하였습니까?</strong></td>
                     </tr>
-                    <tr class="text_cen has-background-white" th:each="answer : ${question.answers}">
+                    <tr class="has-background-white" th:each="answer : ${question.answers}">
                         <th:block th:with="an=${statistics.get(question.id)?.get(answer.answerId)}">
                             <td th:text="${answer.text}">1. 친절했다.</td>
                             <td>
@@ -72,7 +72,7 @@
 
                         <!-- 주관식 답변들 (question.id가 일치하는 경우에만 표시) -->
                         <th:block th:if="${statistics.get(question.id)?.values()?.stream()?.findFirst()?.get()?.customAnswers?.size() > 0}">
-                            <tr class="text_cen has-background-light"
+                            <tr class="has-background-light"
                                 th:each="custom : ${statistics.get(question.id)?.values()?.stream()?.findFirst()?.get()?.customAnswers}">
                                 <td th:text="${custom.email}">이메일</td>
                                 <td colspan="3" style="text-align: left;" th:text="${custom.text}">
@@ -85,7 +85,7 @@
                         <td colspan="4"><strong>기타 느낀 점이나 의견을 알려주세요(자유 입력)
                         </strong></td>
                     </tr>
-                    <tr class="text_cen has-background-light" th:each="response : ${surveyMember}"
+                    <tr class="has-background-light" th:each="response : ${surveyMember}"
                         th:if="${response.overallComment != null && response.overallComment != '' }">
                         <td th:text="${response.email}">gildong123@naver.com</td>
                         <td colspan="3" style="text-align: left;" th:text="${response.overallComment}">

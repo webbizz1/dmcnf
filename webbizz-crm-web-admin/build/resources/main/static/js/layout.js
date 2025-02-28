@@ -1,4 +1,21 @@
 document.addEventListener('DOMContentLoaded', () => {
+
+    const toggleModeCheckbox = document.querySelector('#toggleMode');
+    const html = document.documentElement;
+
+    // 저장된 다크모드 설정 불러오기
+    const isDarkMode = localStorage.getItem('darkMode') === 'true';
+    toggleModeCheckbox.checked = isDarkMode;
+    html.setAttribute("data-theme", isDarkMode ? "dark" : "light");
+
+    // 다크모드 변경 이벤트
+    toggleModeCheckbox.addEventListener('change', function () {
+        const newTheme = this.checked ? "dark" : "light";
+        html.setAttribute("data-theme", newTheme);
+        localStorage.setItem('darkMode', this.checked);
+    });
+
+    // lnb
     const $lnb = document.querySelector('#lnb');
     const $toggleButton = document.querySelector('#lnb .openBtn');
 

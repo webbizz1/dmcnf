@@ -4,7 +4,7 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=0.8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title layout:title-pattern="$CONTENT_TITLE | $LAYOUT_TITLE">관리자</title>
     <link rel="stylesheet" href="/css/general.css" />
     <link rel="icon" href="/images/favicon/favicon_16x16.png" sizes="16x16" />
@@ -28,9 +28,9 @@
     <!--/* GNB */-->
     <nav th:replace="~{fragments/header :: gnb}"></nav>
 
-    <main class="columns marginless main-container">
+    <main class="main-container">
         <!--/* 본문 */-->
-        <section layout:fragment="content" class="column section p-5 is-fullwidth"></section>
+        <section layout:fragment="content" class="section"></section>
     </main>
 
     <!--/* 푸터 */-->

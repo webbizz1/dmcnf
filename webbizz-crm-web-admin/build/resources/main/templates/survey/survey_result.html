@@ -90,7 +90,7 @@
                 <tr th:if="${list.isEmpty()}">
                     <td th:colspan="${questions.size() + 7}" class="has-text-centered">검색 결과가 없습니다.</td>
                 </tr>
-                <tr class="text_cen" th:if="${!list.isEmpty()}" th:each="result : ${list}">
+                <tr th:if="${!list.isEmpty()}" th:each="result : ${list}">
                     <td class="has-text-right" th:text="${#numbers.formatInteger(list.totalElements - list.number * list.size - resultStat.index, 1, 'COMMA')}">10</td>
                     <td th:text="${result.respondentName}">
                         손흥민
