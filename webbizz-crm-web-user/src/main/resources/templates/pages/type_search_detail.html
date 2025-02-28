@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+
+<!--/*@thymesVar id="menuPage" type="webbizz.crm.domain.menu.dto.MenuPageDto"*/-->
+<head>
+    <title th:text="${menuPage.navigator}">타이틀</title>
+    <meta name="keywords" th:content="${menuPage.menu.seoKeyword}" />
+    <meta name="description" th:content="${menuPage.menu.seoDescription}" />
+</head>
+
+<!--/*@thymesVar id="menuPage" type="webbizz.crm.domain.menu.dto.MenuPageDto"*/-->
+<!--/*@thymesVar id="condition" type="webbizz.crm.domain.boardarticle.dto.BoardArticleCondition"*/-->
+<!--/*@thymesVar id="board" type="webbizz.crm.domain.board.dto.BoardDto"*/-->
+<!--/*@thymesVar id="pageVars" type="org.springframework.data.domain.Page<webbizz.crm.domain.boardarticle.dto.BoardArticleDto>"*/-->
+<!--/*@thymesVar id="queryString" type="java.lang.String"*/-->
+<main layout:fragment="content">
+    <div class="sub-content">
+        <div class="result-wrap">
+            <div class="cont-top">
+                <!--/* Breadcrumb 및 공유하기 */-->
+                <div th:replace="~{fragments/sub_navigation :: breadcrumb (${menuPage})}"></div>
+
+                <div class="title-wrap">
+                    <h2 class="title" th:text="${menuPage.menu.name}"></h2>
+                </div>
+            </div>
+
+            <div class="cont-btm">
+
+                <div class="result-list">
+                    <div class="w-set2">
+
+                        <div class="list-wrap">
+                            <div class="result-txt">
+                                검색어 <strong class="c-primary"  th:text="' &#8220;'+${condition.searchText}+'&#8221; '">&#8220;해외인프라&#8221;</strong> 으(로) <strong class="c-primary" th:text="${menuPageDto.menu.name}">KIND 뉴스룸</strong>에서 총 <strong class="c-primary" th:text="${#numbers.formatInteger(pageVars.totalElements,1,'COMMA')+'건'}">2,312건</strong>이 검색 되었습니다.
+                            </div>
+                            <div class="list-btm">
+                                <div class="result-box">
+                                    <div class="result-top">
+                                        <h3 class="result-tit" th:utext="${menuPageDto.menu.name}+'&#40;총 <strong class=&quot;c-primary&quot;>' + ${#numbers.formatInteger(pageVars.totalElements, 1, 'COMMA')} + '건</strong>&#41;'">
+                                            KIND 뉴스룸
+                                            <span>&#40;총 <strong class="c-primary">142</strong>건&#41;</span>
+                                        </h3>
+<!--                                        <a href="#" class="more-btn">더보기</a>-->
+                                    </div>
+                                    <div class="result-btm"  th:each="list:${pageVars.content}">
+                                        <a th:href="@{/pages/{menuId}(menuId=${menuPageDto.menu.id},id=${list.id},menuMode = ${T(webbizz.crm.domain.menu.enumset.MenuMode).READ})}" class="result-item">
+                                            <div class="item-tit"  th:text="${list.title}">'파라과이 경전철 사업 수주 무산' 보도의 사실은 다음과 같습니다.'파라과이 경전철 사업 수주 무산' 보도의 사실은 다음과 같습니다.'파라과이 경전철 사업 수주 무산' 보도의 사실은 다음과 같습니다.</div>
+                                            <div class="item-txt" th:utext="${list.content}">한국해외인프라도시개발지원공사(사장 이강훈, 이하 ‘KIND’)는 2019년부터 파라과이 경전철 사업을 추진해 왔습니다. 이를 위해 KIND-파라과이 철도공사(이하 ‘FEPASA’)와 양해각서(MOU)를 2020년 8월에 체결하였습니다.</div>
+                                            <div class="item-info">
+                                                <p class="date" th:text="${#temporals.format(list.createdAt,'YYYY. MM. dd')}+' '+${menuPageDto.navigator}">2024. 10. 15</p>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div th:replace="~{fragments/pagination :: pagination (${pageVars})}"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+</html>

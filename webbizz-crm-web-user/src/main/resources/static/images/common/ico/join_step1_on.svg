@@ -1,0 +1,9 @@
+<svg id="user-scan" xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 35 35">
+  <path id="패스_297" data-name="패스 297" d="M0,0H35V35H0Z" fill="none"/>
+  <path id="패스_298" data-name="패스 298" d="M10,9.951A2.951,2.951,0,1,0,12.951,7,2.951,2.951,0,0,0,10,9.951" transform="translate(4.549 3.184)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+  <path id="패스_299" data-name="패스 299" d="M4,9.9V6.951A2.951,2.951,0,0,1,6.951,4H9.9" transform="translate(1.82 1.82)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+  <path id="패스_300" data-name="패스 300" d="M4,16v2.951A2.951,2.951,0,0,0,6.951,21.9H9.9" transform="translate(1.82 7.279)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+  <path id="패스_301" data-name="패스 301" d="M16,4h2.951A2.951,2.951,0,0,1,21.9,6.951V9.9" transform="translate(7.279 1.82)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+  <path id="패스_302" data-name="패스 302" d="M16,21.9h2.951A2.951,2.951,0,0,0,21.9,18.951V16" transform="translate(7.279 7.279)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+  <path id="패스_303" data-name="패스 303" d="M8,16.951A2.951,2.951,0,0,1,10.951,14h5.9A2.951,2.951,0,0,1,19.8,16.951" transform="translate(3.598 6.395)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+</svg>

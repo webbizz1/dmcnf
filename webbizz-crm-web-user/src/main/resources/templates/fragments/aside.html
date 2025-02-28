@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org">
+
+<div th:fragment="aside"
+     th:with="localeGroupId = ${#locale.language eq 'ko' ? 1 : 2},
+              menuGroupId = ${localeGroupId eq menuPage.menu.groupId ? menuPage.menu.groupId : localeGroupId}">
+    <div class="aside-bg hide-pc"></div>
+    <aside id="aside-wrap" class="aside">
+        <div class="aside-header hide-pc">
+            <div class="login-wrap">
+                <a href="../member/login.html" class="link"><i></i>로그인</a>
+                <!-- <a href="#" class="link"><i></i>로그아웃</a> -->
+                <span class="line"></span>
+                <a href="../member/join.html" class="link"><i></i>회원가입</a>
+            </div>
+        </div>
+        <div class="aside-body">
+            <nav id="sitemap">
+                <ul>
+                    <th:block
+                            th:each="depth1 : ${@menuService.getMenuHierarchy(menuGroupId)}">
+                        <li class="dep1">
+
+                            <!-- Depth 1 -->
+                            <a class="dep1-tit" th:href="@{${depth1.asideLink}}"
+                               th:target="${depth1.target}"
+                               th:text="${depth1.name}">
+                            </a>
+
+                            <div class="dep2-wrap" th:if="${depth1.hasChildren()}">
+                                <ul class="dep2-ul" th:each="depth2 : ${depth1.children}">
+                                    <!-- Depth 2 -->
+                                    <li>
+                                        <a th:href="@{${depth2.asideLink}}"
+                                           th:target="${depth2.target}">
+                                            [[${depth2.name}]]
+                                            <i th:if="${depth2.hasChildren()}" class="depth-ico"></i>
+                                        </a>
+
+                                        <!-- Depth 3 -->
+                                        <ul class="dep3-ul" th:if="${depth2.hasChildren()}">
+                                            <li th:each="depth3 : ${depth2.children}">
+                                                <a th:href="@{${depth3.asideLink}}"
+                                                   th:target="${depth3.target}">
+                                                    [[${depth3.name}]]
+                                                    <i th:if="${depth3.hasChildren()}" class="depth-ico"></i>
+                                                </a>
+
+                                                <!-- Depth 4 -->
+                                                <ul class="depth4" th:if="${depth3.hasChildren()}">
+                                                    <li th:each="depth4 : ${depth3.children}">
+                                                        <a th:href="@{${depth4.asideLink}}"
+                                                           th:target="${depth4.target}"
+                                                           th:text="${depth4.name}">
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                    </th:block>
+                </ul>
+            </nav>
+        </div>
+    </aside>
+</div>
+
+</html>

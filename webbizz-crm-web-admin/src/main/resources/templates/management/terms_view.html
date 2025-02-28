@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+<head>
+    <title>운영 &gt; [[ ${termsType.detail} ]] 관리 &gt; 수정</title>
+    <link rel="stylesheet" href="/css/ckeditor-wbz.min.css" />
+    <script type="module" src="/js/ckeditor-wbz.min.js"></script>
+</head>
+
+<aside layout:fragment="lnb" th:replace="~{fragments/lnb_management :: lnb}"></aside>
+<section layout:fragment="content">
+    <!-- 브레드크럼 -->
+    <nav class="breadcrumb" aria-label="breadcrumbs">
+        <ul>
+            <li><a href="/">홈</a></li>
+            <li><a href="/management">운영</a></li>
+            <li><a th:href="@{/management/{termsCode}(termsCode = ${termsCode})}">[[ ${termsType.detail} ]] 관리</a></li>
+            <li class="is-active"><a href="#" aria-current="page">수정</a></li>
+        </ul>
+    </nav>
+
+    <!-- 제목 -->
+    <h2 class="title is-4">[[ ${termsType.detail} ]] 수정</h2>
+
+    <!-- 검색 결과 -->
+    <form>
+        <div class="field is-horizontal">
+            <div class="field-body">
+                <div class="field editor">
+                    <label>
+                        <textarea name="content" placeholder="내용" class="ck-editor"
+                                  th:utext="${dto.content}"></textarea>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="buttons is-centered">
+            <button type="submit" class="button is-link">
+                <span class="icon">
+                    <i class="fa fa-save" aria-hidden="true"></i>
+                </span>
+                <span>저장</span>
+            </button>
+            <div class="control">
+                <a class="button is-link is-light" th:href="@{/management/terms/{termsCode}(termsCode = ${termsCode})}">
+                    <span class="icon">
+                        <i class="fa fa-undo" aria-hidden="true"></i>
+                    </span>
+                    <span>취소</span>
+                </a>
+            </div>
+        </div>
+    </form>
+</section>
+
+<script layout:fragment="javascript" th:inline="javascript">
+    document.forms[0].addEventListener('submit', event => {
+        event.preventDefault();
+
+        const termsCode = /*[[ ${termsCode} ]]*/ 'terms';
+        const content = EditorInstance[0].getData();
+
+        if (content.trim().length < 1) {
+            alert('내용을 입력해주세요.');
+            EditorInstance[0].focus();
+            return;
+        }
+        if (confirm('저장하시겠습니까?') === false) {
+            return;
+        }
+
+        fetch('/api/v1/terms', {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                id: /*[[ ${dto.id} ]]*/ null,
+                type: /*[[ ${termsType.code} ]]*/ 'TERMS',
+                content
+            })
+        })
+            .then(handleFetchResponse)
+            .then(() => {
+                location.href = `/management/terms/${termsCode}`;
+            })
+            .catch(handleFetchError);
+    });
+
+</script>
+
+</html>

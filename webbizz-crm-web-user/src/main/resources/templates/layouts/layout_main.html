@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title layout:title-pattern="$CONTENT_TITLE | $LAYOUT_TITLE">webbizz</title>
+    <link rel="stylesheet" href="/css/general.css" />
+    <link rel="stylesheet" href="/css/swiper-bundle.min.css" />
+    <link rel="icon" href="/images/favicon/favicon_16x16.png" sizes="16x16" />
+    <link rel="icon" href="/images/favicon/favicon_32x32.png" sizes="32x32" />
+    <link rel="icon" href="/images/favicon/favicon_96x96.png" sizes="96x96" />
+    <link rel="icon" href="/images/favicon/favicon_144x144.png" sizes="144x144" />
+    <link rel="icon" href="/images/favicon/favicon_180x180.png" sizes="180x180" />
+    <script src="/js/jquery-1.12.4.min.js"></script>
+    <script src="/js/swiper-bundle.min.js"></script>
+    <script src="/js/alpine.min.js" defer></script>
+    <script src="/js/wbz-popup.v1.js"></script>
+    <script src="/js/common.js"></script>
+    <script src="/js/layout.js"></script>
+</head>
+
+<body>
+
+<div id="skipNav"><a href="#contents" onclick="document.getElementById('contents').tabIndex = -1;document.getElementById('contents').focus();return false;">본문 바로가기</a></div>
+<div id="container">
+    <!--/* 헤더 */-->
+    <header th:replace="~{fragments/header :: header}"></header>
+
+    <!--/* 모바일 aside */-->
+    <div th:replace="~{fragments/aside :: aside}"></div>
+
+    <!--/* 본문 */-->
+    <main layout:fragment="content" id="contents"></main>
+
+    <!--/* 푸터 */-->
+    <footer th:replace="~{fragments/footer :: footer}"></footer>
+</div>
+
+<script layout:fragment="javascript"></script>
+<script th:inline="javascript"></script>
+</body>
+</html>

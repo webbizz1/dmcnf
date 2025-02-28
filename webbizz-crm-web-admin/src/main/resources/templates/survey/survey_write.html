@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+<head>
+    <title>설문 관리 &gt; 설문 &gt; 등록</title>
+</head>
+
+<aside layout:fragment="lnb" th:replace="~{fragments/lnb_survey :: lnb}"></aside>
+<section layout:fragment="content">
+    <!-- 브레드크럼 -->
+    <nav class="breadcrumb" aria-label="breadcrumbs">
+        <ul>
+            <li><a href="/">홈</a></li>
+            <li><a href="/survey">설문 관리</a></li>
+            <li><a href="/survey">설문</a></li>
+            <li class="is-active"><a href="#" aria-current="page">등록</a></li>
+        </ul>
+    </nav>
+
+    <!-- 제목 -->
+    <h2 class="title is-4">설문 등록</h2>
+
+    <!-- 검색 결과 -->
+    <div class="card" x-data="surveyManage()">
+        <div class="card-header">
+            <p class="card-header-title icon-text">
+                <span class="icon">
+                    <i class="fa-regular fa-newspaper" aria-hidden="true"></i>
+                </span>
+                <span>설문 정보</span>
+            </p>
+            <span class="is-size-7 is-align-content-end is-required m-2 before">필수 입력</span>
+        </div>
+        <fieldset class="card-content" :disabled="$store.surveyStore.isStarted">
+            <form>
+                <div class="field is-horizontal">
+                    <div class="field-label is-normal">
+                        <label class="label" for="title">
+                            <span class="is-required">제목</span>
+                        </label>
+                    </div>
+                    <div class="field-body">
+                        <div class="field">
+                            <div class="control has-icons-left">
+                                <input type="text" name="title" id="title" placeholder="제목" class="input" required
+                                       x-model="survey[SurveySchema.keys.title]"/>
+                                <span class="icon is-left">
+                                    <i class="fa-solid fa-heading" aria-hidden="true"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field is-horizontal">
+                    <div class="field-label is-normal">
+                        <label class="label">
+                            <span class="is-required">조사 기간</span>
+                        </label>
+                    </div>
+                    <div class="field-body">
+                        <div class="field has-addons datepicker-range">
+                            <div class="control has-icons-left">
+                                <label>
+                                    <input type="text" name="startDate" placeholder="시작일" class="input"
+                                           x-ref="startDate" x-model="survey[SurveySchema.keys.startDate]"
+                                           @input="$event => survey[SurveySchema.keys.startDate] = $event.target.value"
+                                           required/>
+
+                                    <span class="icon is-left">
+                                        <i class="fa-regular fa-calendar" aria-hidden="true"></i>
+                                    </span>
+                                </label>
+                            </div>
+                            <div class="control">
+                                <span class="button is-static">~</span>
+                            </div>
+                            <div class="control has-icons-left">
+                                <label>
+                                    <input type="text" name="endDate" placeholder="종료일" class="input" x-ref="endDate"
+                                           x-model="survey[SurveySchema.keys.endDate]"
+                                           @input="$event => survey[SurveySchema.keys.endDate] = $event.target.value"
+                                           required/>
+                                    <span class="icon is-left">
+                                        <i class="fa-regular fa-calendar" aria-hidden="true"></i>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field is-horizontal is-align-items-baseline">
+                    <div class="field-label is-normal">
+                        <label class="label">
+                            <span class="is-required">노출 상태</span>
+                        </label>
+                    </div>
+                    <div class="field-body">
+                        <div class="field">
+                            <div class="control radios">
+                                <label class="radio">
+                                    <input type="radio" name="viewYn" x-model="survey[SurveySchema.keys.viewYn]"
+                                           value="Y" checked required/>
+                                    노출
+                                </label>
+                                <label class="radio">
+                                    <input type="radio" name="viewYn" x-model="survey[SurveySchema.keys.viewYn]"
+                                           value="N"/>
+                                    미노출
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </fieldset>
+    </div>
+
+    <fieldset class="card" x-data="questionManager()" :disabled="$store.surveyStore.isStarted">
+        <div class="card-header">
+            <p class="card-header-title icon-text">
+                <span class="icon">
+                    <i class="fa-solid fa-list-check" aria-hidden="true"></i>
+                </span>
+                <span>문항 정보</span>
+            </p>
+            <span class="is-size-7 is-align-content-end is-required m-2 before">필수 입력</span>
+        </div>
+        <div class="card-content">
+            <nav class="level">
+                <div class="level-left">
+                    <div class="level-item">
+                        <p class="is-size-7">
+                            ‘문항 추가’ 버튼을 클릭하여 문항을 만들어주세요. <u>표시된 순서대로</u> 사용자 화면에 반영됩니다.<br/>
+                            <span class="has-text-grey-light">※ 기타 입력 선택 체크 시 응답자는 기타 자유 입력을 할 수 있습니다. 통계는 기타로
+                                분류됩니다.</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="level-right">
+                    <div class="level-item">
+                        <button type="button" class="button is-dark is-fullwidth" @click="addQuestion()">
+                            <span class="icon">
+                                <i class="fa fa-plus" aria-hidden="true"></i>
+                            </span>
+                            <span>문항 추가</span>
+                        </button>
+                    </div>
+                </div>
+            </nav>
+            <div class="sort" x-sort.ghost x-sort:group="questions"
+                 @sort.handle="$store.surveyStore.handleQuestionSortOrder"
+                 x-sort:config="{ handle: '[x-sort\\:handle]' }">
+                <template x-for="(question, questionIndex) in questions"
+                          :key="question[Schema.keys.sortOrder] + '-' + questionIndex">
+                    <div class="card" x-sort:item x-id="['question']">
+                        <div class="card-header">
+                            <div class="card-header-title">
+                                <div class="field has-addons" style="width: 100%;">
+                                    <div class="control">
+                                        <button type="button" class="button is-ghost is-block px-0 pr-3" x-sort:handle>
+                                            <span class="icon">
+                                                <i class="fa-solid fa-grip-lines has-text-grey-light"
+                                                   aria-hidden="true"></i>
+                                            </span>
+                                        </button>
+                                    </div>
+                                    <div class="control is-expanded has-icons-left">
+                                        <label>
+                                            <input type="text" name="question" placeholder="질문 제목" class="input"
+                                                   x-ref="questionTitleInputs" x-model="question[Schema.keys.title]"/>
+                                            <span class="icon is-left">
+                                                <i class="fa-solid fa-heading" aria-hidden="true"></i>
+                                            </span>
+                                        </label>
+                                    </div>
+                                    <div class="control">
+                                        <button type="button" class="button is-outlined is-danger"
+                                                @click="removeQuestion(question[Schema.keys.id])">
+                                            <span class="icon">
+                                                <i class="fa-solid fa-minus" aria-hidden="true"></i>
+                                            </span>
+                                            <span>문항 삭제</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--                    <button type="button" class="delete is-align-self-center mr-4" aria-label="delete"></button>-->
+                        </div>
+                        <div class="card-content">
+                            <form>
+                                <div class="field is-horizontal is-align-items-baseline">
+                                    <div class="field-label is-normal">
+                                        <label class="label">
+                                            <span class="is-required">선택 유형</span>
+                                        </label>
+                                    </div>
+                                    <div class="field-body">
+                                        <div class="field">
+                                            <div class="control radios" @change="answerTypeChange()">
+                                                <label class="radio">
+                                                    <input type="radio" name="answerType"
+                                                           :value="AnswerType.RADIO.code"
+                                                           x-model="question[Schema.keys.answerType]"
+                                                    />
+                                                    <span x-text="' ' + AnswerType.RADIO.label"></span>
+                                                </label>
+                                                <label class="radio">
+                                                    <input type="radio" name="answerType"
+                                                           :value="AnswerType.CHECKBOX.code"
+                                                           x-model="question[Schema.keys.answerType]"
+                                                           x-text="AnswerType.CHECKBOX.label"
+                                                    />
+                                                    <span x-text="' ' + AnswerType.CHECKBOX.label"></span>
+                                                </label>
+                                                <!--/*
+                                                <label class="radio">
+                                                    <input type="radio" name="answerType"
+                                                           :value="AnswerType.TEXT.code"
+                                                           x-model="question[Schema.keys.answerType]"
+                                                           x-text="AnswerType.TEXT.label"
+                                                    />
+                                                    <span x-text="' ' + AnswerType.TEXT.label"></span>
+                                                </label>
+                                                */-->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!--/*
+                                <div class="field is-horizontal">
+                                    <div class="field-label">
+                                        <label class="label" :for="'requiredYn' + question.id">필수 항목</label>
+                                    </div>
+                                    <div class="field-body">
+                                        <div class="control">
+                                            <label>
+                                                <input type="checkbox" :id="'requiredYn' + question.id"
+                                                       @change="checkboxChange(Schema.keys.requiredYn, $el)"
+                                                />
+                                                필수
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                */-->
+
+                                <div class="field is-horizontal is-align-items-baseline" x-show="question[Schema.keys.answerType] !== AnswerType.TEXT.code">
+                                    <div class="field-label">
+                                        <label class="label" :for="'useCustomAnswer' + question.id">기타 항목</label>
+                                    </div>
+                                    <div class="field-body">
+                                        <div class="control">
+                                            <label>
+                                                <input type="checkbox" :id="'useCustomAnswer' + question.id"
+                                                       @change="checkboxChange(Schema.keys.useCustomAnswer, $el)"
+                                                />
+                                                사용
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!--/*
+                                <div class="field is-horizontal is-align-items-center" x-show="question[Schema.keys.answerType] === AnswerType.CHECKBOX.code">
+                                    <div class="field-label">
+                                        <label class="label" :for="'maxSelectCount' + question.id">최대 선택 갯수</label>
+                                    </div>
+                                    <div class="field-body">
+                                        <div class="control">
+                                            <label>
+                                                <input type="text" class="input is-small"
+                                                       :id="'maxSelectCount' + question.id"
+                                                       x-model="question[Schema.keys.maxSelectCount]"
+                                                />
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                */-->
+
+                                <div class="field is-horizontal" x-show="question[Schema.keys.answerType] !== AnswerType.TEXT.code">
+                                    <div class="field-label">
+                                        <button type="button" class="button is-small is-dark"
+                                                @click="addAnswer(question.answers)">
+                                            <span class="icon">
+                                                <i class="fa fa-plus" aria-hidden="true"></i>
+                                            </span>
+                                            <span>답변 추가</span>
+                                        </button>
+                                    </div>
+                                    <div class="field-body">
+                                        <div class="is-flex is-flex-direction-column is-flex-grow-1 is-gap-1 sort"
+                                             x-sort x-sort:config="{ handle: '[x-sort\\:handle]' }"
+                                             @sort.stop="$store.surveyStore.handleAnswerSortOrder(questionIndex, $event)">
+                                            <template x-for="(answer, answerIndex) in question[Schema.keys.answers]"
+                                                      :key="'answer-' + questionIndex + '-' + answer[Schema.keys.answerOrder] + '-' + answerIndex">
+                                                <div class="field is-grouped is-align-items-center" x-sort:item
+                                                     x-sort:group="'answers-' + questionIndex">
+                                                    <div class="control is-expanded">
+                                                        <div class="field has-addons">
+                                                            <div class="control">
+                                                                <button type="button"
+                                                                        class="button is-ghost is-block px-2" x-sort:handle>
+                                                                    <span class="icon is-size-7">
+                                                                        <i class="fa-solid fa-grip-lines has-text-grey-light"
+                                                                           aria-hidden="true"></i>
+                                                                    </span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="control is-expanded">
+                                                                <label>
+                                                                    <input type="text" name="answer" placeholder="답변"
+                                                                           class="input"
+                                                                           x-model="answer[Schema.keys.answerText]"
+                                                                           x-ref="answerInputs"
+                                                                           :value="answer[Schema.keys.answerText]"/>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <button type="button" class="delete" aria-label="delete"
+                                                            @click="removeAnswer(questionIndex, answer[Schema.keys.answerId])"></button>
+                                                </div>
+                                            </template>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </template>
+            </div>
+
+        </div>
+    </fieldset>
+
+    <div class="buttons is-centered" x-data="formSubmit()">
+        <button type="button" class="button is-link" @click="submitForm()" x-ref="submit" x-show="!$store.surveyStore.isStarted">
+            <span class="icon">
+                <i class="fa fa-save" aria-hidden="true"></i>
+            </span>
+            <span x-text="$store.surveyStore.modelData?.id !== undefined ? '수정' : '저장'">저장</span>
+        </button>
+        <a class="button is-link is-light" th:href="${#uris.unescapeQueryParam('/survey' + queryStringValue)}">
+            <span class="icon">
+                <i class="fa fa-undo" aria-hidden="true"></i>
+            </span>
+            <span>취소</span>
+        </a>
+        <button type="button" class="button attach-modal" data-target="previewModal">
+            <span class="icon">
+                <i class="fa-regular fa-file-lines" aria-hidden="true"></i>
+            </span>
+            <span>미리보기</span>
+        </button>
+    </div>
+
+    <!--/* 미리보기 팝업 */-->
+    <div id="previewModal" class="modal" x-data="preview()">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+            <header class="modal-card-head">
+                <p class="modal-card-title">미리보기</p>
+                <button class="delete" aria-label="close"></button>
+            </header>
+            <div class="modal-card-body">
+                <div class="message">
+                    <div class="message-body p-4">
+                        <p><b x-text="$store.surveyStore.survey[SurveySchema.keys.title]"></b></p>
+                        <p class="is-size-7"
+                           x-text="`기간: ${$store.surveyStore.survey[SurveySchema.keys.startDate]} ~ ${$store.surveyStore.survey[SurveySchema.keys.endDate]}`">
+                            기간: 2024-01-01 ~ 2024-01-31</p>
+                    </div>
+                </div>
+
+                <!-- Participant(참가자) Info -->
+                <div class="content">
+                    <div class="field">
+                        <label class="label">* 참여자 정보 입력</label>
+                        <div class="field-body">
+                            <div class="field">
+                                <div class="control">
+                                    <input class="input" type="text" placeholder="이름"/>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="control">
+                                    <input class="input" type="tel" placeholder="휴대폰 번호"/>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="control">
+                                    <input class="input" type="email" placeholder="이메일"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question 1 -->
+                <template x-for="(question, previewQuestionIndex) in $store.surveyStore.questions"
+                          :key="previewQuestionIndex">
+                    <div class="box">
+                        <div class="field">
+                            <!--                            <label class="label"-->
+                            <!--                                   x-text="`${(previewQuestionIndex + 1)}. ${question[Schema.keys.title]}-->
+                            <!--                                   ${question[Schema.keys.maxSelectCount]  === undefined ? '' : '(' + question[Schema.keys.maxSelectCount] + ') '}-->
+                            <!--                                   ${question[Schema.keys.requiredYn] === 'Y' ? '(필수)' :''}`"-->
+                            <!--                            ></label>-->
+                            <label class="label">
+                                <span x-text="`${(previewQuestionIndex + 1)}. ${question[Schema.keys.title]}`"></span>
+                                <span style="color: red" x-text="`${question[Schema.keys.requiredYn] === 'Y' ? '(필수)' :''}`"></span>
+                            </label>
+                            <div :class="`is-flex-direction-column ${question[Schema.keys.answerType] === AnswerType.CHECKBOX.value ? AnswerType.CHECKBOX.value + 'e' : question[Schema.keys.answerType]}s`">
+                                <template x-for="(answer, previewAnswerIndex) in question.answers"
+                                          :key="previewAnswerIndex">
+                                    <label :class="question[Schema.keys.answerType]" :id="'previewQuestions' + question.id" x-show="question[Schema.keys.answerType] !== AnswerType.TEXT.code">
+                                        <input :type="question[Schema.keys.answerType]" :name="question.id" :for="'previewQuestions' + question.id"/>
+                                        <span x-text="answer[Schema.keys.answerText]"></span>
+                                        <br/>
+                                    </label>
+                                </template>
+                                <label class="is-flex-direction-column input" x-show="question[Schema.keys.answerType] === AnswerType.TEXT.code">
+                                </label>
+                                <div x-show="question[Schema.keys.useCustomAnswer] === 'Y'">
+                                    <label :class="question[Schema.keys.answerType]">
+                                        <input :type="question[Schema.keys.answerType]" :name="question.id"/>
+                                        기타:
+                                    </label>
+                                    <label>
+                                        <input class="input" type="text" placeholder="기타 응답을 입력하세요"/>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </template>
+
+                <!-- Additional Comments -->
+                <div class="box">
+                    <div class="field">
+                        <label class="label">기타 느낀 점이나 의견을 알려주세요. (자유 입력)</label>
+                        <div class="control">
+                            <textarea class="textarea"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+<script layout:fragment="javascript" th:inline="javascript">
+
+    /**
+     * const 키워드로 바인딩 된 변수를 상수화 시킨 다음, Object.freeze()로 해당 변수를 동결 객체를 만들면
+     * 객체의 재할당과 객체의 속성 둘 다 변경불가능한 불변 객체가 된다.
+     * {Readonly<{CHECKBOX: {code: string, label: string, value: string}, RADIO: {code: string, label: string, value: string}}>}
+     */
+    const AnswerType = Object.freeze(/*[[${answerTypes}]]*/ {});
+
+    /** 테이블 구조에 따라서 변경 가능성이 있는 키값들 [설문 정보 영역] */
+    const SurveySchema = {
+        keys: {
+            id: 'id',
+            title: 'title',
+            startDate: 'startDate',
+            endDate: 'endDate',
+            viewYn: 'viewYn',
+        },
+    }
+
+    function surveyManage() {
+        return {
+            get survey() {
+                return Alpine.store('surveyStore').survey;
+            },
+
+            init() {
+                this.initDatePicker();
+                this.watchSurveyStore(); // 콘솔보기위함
+            },
+
+            updateSurvey(newData) {
+                return Alpine.store('surveyStore').updateSurvey(newData);
+            },
+
+            initDatePicker() {
+                this.$refs.startDate.addEventListener('changeDate', (event) => {
+                    this.updateSurvey({[SurveySchema.keys.startDate]: event.target.value});
+                });
+                this.$refs.endDate.addEventListener('changeDate', (event) => {
+                    this.updateSurvey({[SurveySchema.keys.endDate]: event.target.value});
+                });
+            },
+
+            watchSurveyStore() {
+                Alpine.effect(() => {
+                    // console.log(JSON.parse(JSON.stringify(this.survey)));
+                });
+            },
+        }
+    }
+
+    /** 테이블 구조에 따라서 변경 가능성이 있는 키값들 [문항 정보 영역] */
+    const Schema = {
+        keys: {
+            id: 'id',
+            title: 'title',
+            answerType: 'answerType',
+            requiredYn: 'requiredYn',
+            useCustomAnswer: 'useCustomAnswerYn',
+            maxSelectCount: 'maxSelectCount',
+            sortOrder: 'sortOrder',
+            answers: 'answers',
+            answerId: 'answerId',
+            answerText: 'text',
+            answerOrder: 'sortOrder'  // 'answers' 내부의 'order' 키를 위한 새로운 키
+        },
+    }
+
+    function questionManager() {
+        return {
+            get questions() {
+                return Alpine.store('surveyStore').questions;
+            },
+            questionTitleInputs: 'questionTitleInputs', // refs 에서 사용하기위한 용도 e.g) 검정색 문항추가 버튼을 눌러서 문항 추가시 마지막항목으로 포커스( focus() ) 잡기위함
+            answerInputs: 'answerInputs',               // refs 에서 사용하기위한 용도 e.g) 해당질문의 답변추가 버튼을 눌러서 답변 추가시 마지막항목으로 포커스( focus() ) 잡기위함
+
+            init() {
+                this.watchQuestionStore(); // 콘솔보기위함
+            },
+
+            // 질문 문항 추가
+            addQuestion() {
+                Alpine.store('surveyStore').addQuestion({[Schema.keys.id]: Alpine.store('surveyStore').getCreatedSurveyId()});
+                this.focusInToLastQuestion(); // 마지막 질문 포커스
+            },
+
+            // 문항 단일선택, 다중선택 ... 체인지 이벤트
+            answerTypeChange() {
+                if (this.question[Schema.keys.answerType] === AnswerType.TEXT.code) {
+                    // answers 배열 초기화
+                    this.question[Schema.keys.answers] = [];
+
+                    // 기타 항목 체크박스 및 맥스 셀렉트 카운트 초기화
+                    this.question[Schema.keys.useCustomAnswer] = 'N';
+                    this.question[Schema.keys.maxSelectCount] = 1;
+                    return;
+                }
+
+                if (this.question[Schema.keys.answers].every(() => false))
+                    this.addAnswer(this.question[Schema.keys.answers]);
+
+            },
+
+            // 체크박스 채인지 이벤트
+            checkboxChange(key, {checked}) {
+                return this.question[key] = checked ? 'Y' : 'N';
+            },
+
+            // 질문 문항 삭제
+            removeQuestion(questionId) {
+                return Alpine.store('surveyStore').removeQuestion(questionId);
+            },
+
+            // + 답변 추가
+            addAnswer(answers) {
+                Alpine.store('surveyStore').addAnswer(answers);
+                this.focusInToLastAnswer(); // 마지막 답변 포커스
+            },
+
+            // x 답변 삭제
+            removeAnswer(questionIndex, answerId) {
+                return Alpine.store('surveyStore').removeAnswer(questionIndex, answerId);
+            },
+
+            // 문항 새로추가시 추가된거에 포커스 주기
+            focusInToLastQuestion() {
+                return Alpine.nextTick(() => this.$refs.questionTitleInputs.focus());
+            },
+
+            focusInToLastAnswer() {
+                return Alpine.nextTick(() => this.$refs.answerInputs.focus());
+            },
+
+            watchQuestionStore() {
+                Alpine.effect(() => {
+                    console.log(JSON.parse(JSON.stringify(this.questions)));
+                });
+            },
+        };
+    }
+
+    // 미리보기 팝업
+    function preview() {
+        return {
+            get survey() {
+                return Alpine.store('surveyStore').survey;
+            },
+
+            get questions() {
+                return Alpine.store('surveyStore').questions
+            }
+        }
+    }
+
+    function formSubmit() {
+        return {
+            submitForm() {
+                const {modelData, survey, questions} = Alpine.store('surveyStore'); // 스토어 값을 꺼냄
+                const isNew = !modelData?.id;
+                const method = isNew ? 'POST' : 'PUT';
+                this.submitClassToggle(); // 버튼의 모양을 동그라미로 바꾸면서 클릭불가능하게 만드는 클레스 토굴
+
+                // 데이터 전송
+                fetch('/api/v1/survey', {
+                    method,
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({survey, questions}),
+                })
+                    .then(handleFetchResponse)
+                    .then(result => {
+                        alert(`${(survey.id !== undefined && !isNew) ? '수정' : '저장'} 되었습니다.`);
+                        location.href = '/survey';
+                    })
+                    .catch(handleFetchError)
+                    .finally(() => this.submitClassToggle());
+            },
+
+            submitClassToggle() {
+                return this.$refs.submit.classList.toggle('is-loading');
+            }
+        }
+    }
+
+    // Alpine.js 데이터 초기화
+    document.addEventListener('alpine:init', () => {
+        /**
+         *  데이터 영역
+         */
+        Alpine.data('questionManager', questionManager);
+        Alpine.data('surveyManage', surveyManage);
+        Alpine.data('formSubmit', formSubmit);
+
+        /**
+         * 스토어 영역
+         */
+        Alpine.store('surveyStore', {
+            modelData: /*[[${survey}]]*/ {}, // 존재하지 않을시 undefined
+            isStarted: false,
+            survey: {},
+            questions: [],
+            createdSurveyId: -1,
+
+            getCreatedSurveyId() {
+                return this.createdSurveyId--;
+            },
+
+            init() {
+                // 설문이 시작되었는지 안시작 되었는지 확인
+                const isSurveyStarted =  /*[[${isSurveyStarted}]]*/ {};
+                this.isStarted = isSurveyStarted ?? false;
+
+                if (this.modelData) {
+                    const {questions, ...surveyData} = this.modelData;
+
+                    this.survey = surveyData;
+                    this.questions = questions ?? [this.createQuestion()];
+                } else {
+                    this.survey = this.createSurvey();
+                    this.questions = [this.createQuestion()];
+                }
+            },
+
+            updateSurvey(newSurvey) {
+                this.survey = {...this.survey, ...newSurvey};
+            },
+
+            createSurvey() {
+                return {
+                    [SurveySchema.keys.title]: '',
+                    [SurveySchema.keys.startDate]: '',
+                    [SurveySchema.keys.endDate]: '',
+                    [SurveySchema.keys.viewYn]: 'Y'
+                }
+            },
+
+            // 질문 문항 생성시 default parameter = {},  값을 전달하면 기본값 대신 전달된 값이 사용됨
+            createQuestion(overrides = {}) {
+                const newOrder = Math.max(...this.questions.map(q => q[Schema.keys.sortOrder]), 0) + 1;
+                return {
+                    [Schema.keys.id]: this.getCreatedSurveyId(),
+                    [Schema.keys.title]: '',
+                    [Schema.keys.answerType]: AnswerType.RADIO.code,
+                    [Schema.keys.requiredYn]: 'N',
+                    [Schema.keys.useCustomAnswer]: 'N',
+                    [Schema.keys.maxSelectCount]: 1,
+                    [Schema.keys.sortOrder]: newOrder,
+                    [Schema.keys.answers]: [{
+                        [Schema.keys.answerId]: this.getCreatedSurveyId(),
+                        [Schema.keys.answerText]: '',
+                        [Schema.keys.sortOrder]: 1,
+                    }],
+                    ...overrides  // 오버라이드할 속성들을 마지막에 추가
+                };
+            },
+
+            addQuestion(questionData) {
+                const newQuestion = this.createQuestion({
+                    ...questionData,
+                    // sortOrder 키는 순서를 제일큰값에서 +1 해서 새로 추가
+                    [Schema.keys.sortOrder]: Math.max(...this.questions.map(q => q[Schema.keys.sortOrder]), 0) + 1,
+                });
+                this.questions.push(newQuestion);
+            },
+
+            removeQuestion(questionId) {
+                if (this.questions.length > 1) {
+                    this.questions = this.questions.filter(question => question[Schema.keys.id] !== questionId);
+
+                    this.reorderQuestions();
+                } else {
+                    alert('삭제할 수 없습니다.');
+                }
+            },
+
+            reorderQuestions() {
+                this.questions = this.questions.map((question, index) => ({
+                    ...question,
+                    [Schema.keys.sortOrder]: index + 1
+                }));
+            },
+
+            // = 마우스로 눌러서 순서를 변경할때 실행되는 함수
+            handleQuestionSortOrder({oldIndex, newIndex}) {
+                Alpine.nextTick(() => {
+                    const movedItem = this.questions.splice(oldIndex, 1)[0];
+                    this.questions.splice(newIndex, 0, movedItem);
+                });
+
+                return Alpine.store('surveyStore').reorderQuestions();
+            },
+
+            // + 답변 추가
+            addAnswer(answers) {
+                const nextOrder = Math.max(...answers.map(answer => answer[Schema.keys.answerOrder]), 0) + 1;
+
+                answers.push({
+                    [Schema.keys.answerId]: this.getCreatedSurveyId(),
+                    [Schema.keys.answerText]: '',
+                    [Schema.keys.answerOrder]: nextOrder
+                });
+            },
+
+            removeAnswer(questionIndex, answerId) {
+                const question = this.questions.at(questionIndex);
+
+                if (question[Schema.keys.answers].length > 1) {
+                    question[Schema.keys.answers] = question[Schema.keys.answers].filter(answer => answer[Schema.keys.answerId] !== answerId);
+
+                    this.reorderAnswer(questionIndex);
+                } else {
+                    alert('삭제할 수 없습니다.');
+                }
+            },
+
+            // 중간에 질문에 해당하는 답변을 x 회색버튼 눌러서 삭제시 정렬의 순서를 맞춥니다.
+            async reorderAnswer(questionIndex) {
+                const question = this.questions.at(questionIndex);
+                if (!question) return;
+
+                question[Schema.keys.answers] = question[Schema.keys.answers].map((answer, index) => ({
+                    ...answer,
+                    [Schema.keys.answerOrder]: index + 1,
+                }));
+
+                this.questions = [...this.questions];
+            },
+
+            // = 마우스로 눌러서 순서를 변경할때 실행되는 함수
+            async handleAnswerSortOrder(questionIndex, {oldIndex, newIndex}) {
+                await Alpine.nextTick(() => {
+                    const question = this.questions[questionIndex];
+                    const answers = question[Schema.keys.answers];
+                    const movedItem = answers.splice(oldIndex, 1)[0];
+                    answers.splice(newIndex, 0, movedItem);
+                });
+
+                return await this.reorderAnswer(questionIndex);
+            }
+        });
+    });
+
+</script>
+
+</html>

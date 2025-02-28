@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<header th:fragment="header" class="header">
+    <a class="navbar-brand" href="/">
+        <h2 class="admin-title">ADMINISTRATOR</h2>
+    </a>
+    <div class="navbar-item">
+        <span class="icon">
+            <i class="fa fa-user-circle" aria-hidden="true"></i>
+        </span>
+        <strong sec:authentication="principal.member.realName">홍길동</strong>님
+    </div>
+    <div class="navbar-item is-hidden-mobile role" sec:authentication="principal.member.role.detail">관리자</div>
+
+    <nav class="navbar-menu">
+        <div class="navbar-end">
+            <div class="navbar-item">
+                <a href="/logout">
+                    <span class="icon">
+                        <i class="fa fa-sign-out-alt" aria-hidden="true"></i>
+                    </span>
+                    <span>로그아웃</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<!--/*@thymesVar id="requestURI" type="java.lang.String"*/-->
+<nav th:fragment="gnb" class="navbar global-navbar">
+    <a class="navbar-burger" role="button" aria-label="menu" aria-expanded="false" data-target="aside">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+    </a>
+    <div class="navbar-menu">
+        <div class="navbar-start">
+            <th:block th:with="url = '/', name = '홈'">
+                <a class="navbar-item" th:classappend="${requestURI.equals(#vars.url)} ? 'is-active'"
+                   th:href="${url}" th:text="${name}"
+                   sec:authorize-expr="${hasPermission(#vars.url, 'LINK')}"></a>
+            </th:block>
+            <th:block th:with="url = '/exhibition', name = '전시 관리'">
+                <a class="navbar-item" th:classappend="${requestURI.startsWith(#vars.url)} ? 'is-active'"
+                   th:href="${url}" th:text="${name}"
+                   sec:authorize-expr="${hasPermission(#vars.url, 'LINK')}"></a>
+            </th:block>
+            <th:block th:with="url = '/member', name = '회원 관리'">
+                <a class="navbar-item" th:classappend="${requestURI.startsWith(#vars.url)} ? 'is-active'"
+                   th:href="${url}" th:text="${name}"
+                   sec:authorize-expr="${hasPermission(#vars.url, 'LINK')}"></a>
+            </th:block>
+            <th:block th:with="url = '/board', name = '게시판 관리'">
+                <a class="navbar-item" th:classappend="${requestURI.startsWith(#vars.url)} ? 'is-active'"
+                   th:href="${url}" th:text="${name}"
+                   sec:authorize-expr="${hasPermission(#vars.url, 'LINK')}"></a>
+            </th:block>
+            <th:block th:with="url = '/survey', name = '설문 관리'">
+                <a class="navbar-item" th:classappend="${requestURI.startsWith(#vars.url)} ? 'is-active'"
+                   th:href="${url}" th:text="${name}"
+                   sec:authorize-expr="${hasPermission(#vars.url, 'LINK')}"></a>
+            </th:block>
+            <th:block th:with="url = '/statistics', name = '통계·분석'">
+                <a class="navbar-item" th:classappend="${requestURI.startsWith(#vars.url)} ? 'is-active'"
+                   th:href="${url}" th:text="${name}"
+                   sec:authorize-expr="${hasPermission(#vars.url, 'LINK')}"></a>
+            </th:block>
+            <th:block th:with="url = '/management', name = '운영'">
+                <a class="navbar-item" th:classappend="${requestURI.startsWith(#vars.url)} ? 'is-active'"
+                   th:href="${url}" th:text="${name}"
+                   sec:authorize-expr="${hasPermission(#vars.url, 'LINK')}"></a>
+            </th:block>
+        </div>
+    </div>
+</nav>
+
+</html>

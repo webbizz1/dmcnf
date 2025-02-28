@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<!--/*@thymesVar id="requestURI" type="java.lang.String"*/-->
+<aside th:fragment="lnb" class="column is-one-fifth aside menu">
+    <p class="menu-label">전시 관리</p>
+    <ul class="menu-list">
+        <li th:with="url = '/exhibition/main-banner'">
+            <a th:classappend="${requestURI.startsWith(url)} ? 'is-active'" th:href="${url}"
+               sec:authorize-expr="${hasPermission(#vars.url, 'LINK')}">메인 배너</a>
+        </li>
+        <li th:with="url = '/exhibition/popup-banner'">
+            <a th:classappend="${requestURI.startsWith(url)} ? 'is-active'" th:href="${url}"
+               sec:authorize-expr="${hasPermission(#vars.url, 'LINK')}">팝업 배너</a>
+        </li>
+        <li th:with="url = '/exhibition/top-banner'">
+            <a th:classappend="${requestURI.startsWith(url)} ? 'is-active'" th:href="${url}"
+               sec:authorize-expr="${hasPermission(#vars.url, 'LINK')}">상단 띠 배너</a>
+        </li>
+        <!--/*@thymesVar id="exhibitionLink" type="java.lang.String"*/-->
+        <li th:with="url = '/exhibition/promotion-banner'">
+            <a th:classappend="${requestURI.startsWith(url) and exhibitionLink eq url} ? 'is-active'" th:href="${url}"
+               sec:authorize-expr="${hasPermission(#vars.url, 'LINK')}">홍보 배너</a>
+        </li>
+        <!--/*@thymesVar id="exhibitionLink" type="java.lang.String"*/-->
+        <li th:with="url = '/exhibition/promotion-banner-2'">
+            <a th:classappend="${requestURI.startsWith(url) and exhibitionLink eq url} ? 'is-active'" th:href="${url}"
+               sec:authorize-expr="${hasPermission(#vars.url, 'LINK')}">홍보 배너 2</a>
+        </li>
+    </ul>
+</aside>
+</html>
