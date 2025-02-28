@@ -1,4 +1,4 @@
-rootProject.name = 'wBIZ_CRM'
+rootProject.name = 'DMC_CNF'
 include 'webbizz-crm-core'
 include 'webbizz-crm-domain'
 include 'webbizz-crm-service'
