@@ -9,19 +9,30 @@
 
 <aside layout:fragment="lnb" th:replace="~{fragments/lnb_member :: lnb}"></aside>
 <section layout:fragment="content">
-    <!-- 브레드크럼 -->
-    <nav class="breadcrumb" aria-label="breadcrumbs">
-        <ul>
-            <li><a href="/">홈</a></li>
-            <li><a href="/member">회원 관리</a></li>
-            <li><a href="/member/active">활동 회원</a></li>
-            <li class="is-active"><a href="#" aria-current="page">상세</a></li>
-        </ul>
-    </nav>
-
-    <!-- 제목 -->
-    <h2 class="title is-4">활동 회원 상세</h2>
-
+    <div class="level">
+        <div class="level-left">
+            <!-- 제목 -->
+            <h2 class="title is-4">활동 회원 상세</h2>
+        </div>
+        <div class="level-right">
+            <!-- 브레드크럼 -->
+            <nav class="breadcrumb" aria-label="breadcrumbs">
+                <ul>
+                    <li>
+                        <div>
+                            <span class="icon is-small">
+                                <i class="fas fa-home" aria-hidden="true"></i>
+                            </span>
+                            <span>홈</span>
+                        </div>
+                    </li>
+                    <li><div>회원 관리</div></li>
+                    <li><div>활동 회원</div></li>
+                    <li class="is-active"><div><a href="#" aria-current="page">상세</a></div></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
     <!-- 검색 결과 -->
     <div class="card">
         <div class="card-header">

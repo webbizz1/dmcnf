@@ -28,9 +28,12 @@
     <!--/* GNB */-->
     <nav th:replace="~{fragments/header :: gnb}"></nav>
 
-    <main class="columns marginless main-container">
+    <main class="main-container">
+        <!--/* LNB */-->
+        <!-- <aside layout:fragment="lnb"></aside> -->
+        
         <!--/* 본문 */-->
-        <section layout:fragment="content" class="column section p-5 is-fullwidth"></section>
+        <section layout:fragment="content" class="section"></section>
     </main>
 
     <!--/* 푸터 */-->

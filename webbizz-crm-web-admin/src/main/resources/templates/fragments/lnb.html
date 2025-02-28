@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<!--/*@thymesVar id="requestURI" type="java.lang.String"*/-->
+<aside th:fragment="lnb" class="column is-one-fifth aside menu">
+    <p class="menu-label">게시판 관리</p>
+    <ul class="menu-list">
+        <li th:with="url = '/board/board'">
+            <a th:classappend="${requestURI.startsWith(url)} ? 'is-active'" th:href="${url}"
+               sec:authorize-expr="${hasPermission(#vars.url, 'LINK')}">게시판 목록</a>
+            <ul class="submenu">
+                <li th:each="board : ${@boardService.getBoardCompactList()}">
+                    <a th:href="@{/board/board/{id}/articles(id = ${board.id})}"
+                       th:text="${board.name}"
+                       th:classappend="${requestURI.equals('/board/board/' + board.id) or requestURI.startsWith('/board/board/' + board.id + '/')} ? 'is-active'"
+                       sec:authorize-expr="${hasPermission('/board/board/' + #vars.board.id, 'LINK')}">게시판 이름</a>
+                </li>
+            </ul>
+        </li>
+        <li th:with="url = '/board/faq'">
+            <a th:classappend="${requestURI.startsWith(url)} ? 'is-active'" th:href="${url}"
+               sec:authorize-expr="${hasPermission(#vars.url, 'LINK')}">자주 묻는 질문</a>
+        </li>
+    </ul>
+</aside>
+</html>
