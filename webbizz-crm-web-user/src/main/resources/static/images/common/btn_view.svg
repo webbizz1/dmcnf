@@ -1,0 +1,5 @@
+<svg id="plus" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14">
+  <path id="패스_70601" data-name="패스 70601" d="M0,0H14V14H0Z" fill="none"/>
+  <path id="패스_70602" data-name="패스 70602" d="M12,5v8.113" transform="translate(-5 -2.056)" fill="none" stroke="#222" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+  <path id="패스_70603" data-name="패스 70603" d="M5,12h8.113" transform="translate(-2.056 -5)" fill="none" stroke="#222" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+</svg>

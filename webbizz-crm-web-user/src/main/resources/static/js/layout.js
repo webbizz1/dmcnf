@@ -1,7 +1,39 @@
 function layoutEvent() {
 
+	const container = document.querySelector('#container');
+	const mainContent = container?.querySelector('.main-content');
+	const header = document.querySelector('#header');
+
+	if (container && mainContent && header) {
+		header.style.position = 'fixed';
+		
+		const applyHeaderStyles = () => {
+			if (window.innerWidth >= 1025) {
+				header.classList.add('on');
+
+				const updateHeaderBackground = () => {
+					if (window.scrollY > 0 || header.matches(':hover')) {
+						header.classList.remove('on');
+					} else {
+						header.classList.add('on');
+					}
+				};
+
+				window.addEventListener('scroll', updateHeaderBackground);
+				header.addEventListener('mouseenter', updateHeaderBackground);
+				header.addEventListener('mouseleave', updateHeaderBackground);
+			} else {
+				header.classList.remove('on');
+			}
+
+		};
+
+		applyHeaderStyles();
+		window.addEventListener('resize', applyHeaderStyles);
+	}
+
 	// header gnb
-	function gnbEvent (event) {
+	function gnbEvent(event) {
 		const depth1 = event.target.closest('.gnb > li > a');
 		const depth3 = event.target.closest('.gnb .depth3 > li > a');
 
@@ -9,7 +41,7 @@ function layoutEvent() {
 			const nextElement = depth1.nextElementSibling;
 			if (nextElement) {
 				nextElement.classList.add('on');
-				depth1.parentElement.addEventListener('mouseleave', function() {
+				depth1.parentElement.addEventListener('mouseleave', function () {
 					nextElement.classList.remove('on');
 				});
 			}
@@ -18,7 +50,7 @@ function layoutEvent() {
 			const depthElement = depth3.nextElementSibling;
 			if (depthElement) {
 				depthElement.classList.add('on');
-				depth3.parentElement.addEventListener('mouseleave', function() {
+				depth3.parentElement.addEventListener('mouseleave', function () {
 					depthElement.classList.remove('on');
 				});
 			}
@@ -42,14 +74,14 @@ function layoutEvent() {
 	const searchBtn = document.querySelector('.hd-utils .btn-search');
 	const headSearch = document.querySelector('.hd-search-wrap');
 	searchBtn.addEventListener('click', function () {
-		if(headSearch.classList.contains('on')) {
+		if (headSearch.classList.contains('on')) {
 			headSearch.classList.remove('on');
 		} else {
 			headSearch.classList.add('on');
 		}
 		headSearch.querySelector('.search-close').addEventListener('click', function () {
-      headSearch.classList.remove('on');
-    });
+			headSearch.classList.remove('on');
+		});
 	});
 
 	// aside

@@ -1,71 +1,201 @@
-/*
-Copyright (c) 2021 Kil Hyung-jin, with Reserved Font Name Pretendard GOV.
-https://github.com/orioncactus/pretendard
-
-This Font Software is licensed under the SIL Open Font License, Version 1.1.
-This license is copied below, and is also available with a FAQ at:
-http://scripts.sil.org/OFL
-*/
-
+/* Pretendard (기본) */
+/* Thin */
 @font-face {
-	font-family: 'Pretendard GOV';
-	font-weight: 900;
-	font-display: swap;
-	src: local('Pretendard GOV Black'), url(../webfonts/PretendardGOV-Black.subset.woff2) format('woff2');
+    font-family: 'Pretendard';
+    font-style: normal;
+    font-weight: 100;
+    src: local(※),  url("../webfonts/Pretendard-Thin.woff2") format('woff2'),
+    url("../webfonts/Pretendard-Thin.woff") format('woff'),
+    url("../webfonts/Pretendard-Thin.eot") format('opentype'),
+    url("../webfonts/Pretendard-Thin.otf") format('opentype'),
+    url("../webfonts/Pretendard-Thin.ttf") format("truetype");
+}
+/* ExtraLight */
+@font-face {
+    font-family: 'Pretendard';
+    font-style: normal;
+    font-weight: 200;
+    src: local(※),  url("../webfonts/Pretendard-ExtraLight.woff2") format('woff2'),
+    url("../webfonts/Pretendard-ExtraLight.woff") format('woff'),
+    url("../webfonts/Pretendard-ExtraLight.eot") format('opentype'),
+    url("../webfonts/Pretendard-ExtraLight.otf") format('opentype'),
+    url("../webfonts/Pretendard-ExtraLight.ttf") format("truetype");
+}
+/* Light */
+@font-face {
+    font-family: 'Pretendard';
+    font-style: normal;
+    font-weight: 300;
+    src: local(※),  url("../webfonts/Pretendard-Light.woff2") format('woff2'),
+    url("../webfonts/Pretendard-Light.woff") format('woff'),
+    url("../webfonts/Pretendard-Light.eot") format('opentype'),
+    url("../webfonts/Pretendard-Light.otf") format('opentype'),
+    url("../webfonts/Pretendard-Light.ttf") format("truetype");
+}
+/* Regular */
+@font-face {
+    font-family: 'Pretendard';
+    font-style: normal;
+    font-weight: 400;
+    src: local(※),  url("../webfonts/Pretendard-Regular.woff2") format('woff2'),
+    url("../webfonts/Pretendard-Regular.woff") format('woff'),
+    url("../webfonts/Pretendard-Regular.eot") format('opentype'),
+    url("../webfonts/Pretendard-Regular.otf") format('opentype'),
+    url("../webfonts/Pretendard-Regular.ttf") format("truetype");
+}
+/* Medium */
+@font-face {
+    font-family: 'Pretendard';
+    font-style: normal;
+    font-weight: 500;
+    src: local(※),  url("../webfonts/Pretendard-Medium.woff2") format('woff2'),
+    url("../webfonts/Pretendard-Medium.woff") format('woff'),
+    url("../webfonts/Pretendard-Medium.eot") format('opentype'),
+    url("../webfonts/Pretendard-Medium.otf") format('opentype'),
+    url("../webfonts/Pretendard-Medium.ttf") format("truetype");
+}
+/* SemiBold */
+@font-face {
+    font-family: 'Pretendard';
+    font-style: normal;
+    font-weight: 600;
+    src: local(※),  url("../webfonts/Pretendard-SemiBold.woff2") format('woff2'),
+    url("../webfonts/Pretendard-SemiBold.woff") format('woff'),
+    url("../webfonts/Pretendard-SemiBold.eot") format('opentype'),
+    url("../webfonts/Pretendard-SemiBold.otf") format('opentype'),
+    url("../webfonts/Pretendard-SemiBold.ttf") format("truetype");
+}
+/* Bold */
+@font-face {
+    font-family: 'Pretendard';
+    font-style: normal;
+    font-weight: 700;
+    src: local(※),  url("../webfonts/Pretendard-Bold.woff2") format('woff2'),
+    url("../webfonts/Pretendard-Bold.woff") format('woff'),
+    url("../webfonts/Pretendard-Bold.eot") format('opentype'),
+    url("../webfonts/Pretendard-Bold.otf") format('opentype'),
+    url("../webfonts/Pretendard-Bold.ttf") format("truetype");
+}
+/* ExtraBold */
+@font-face {
+    font-family: 'Pretendard';
+    font-style: normal;
+    font-weight: 800;
+    src: local(※),  url("../webfonts/Pretendard-ExtraBold.woff2") format('woff2'),
+    url("../webfonts/Pretendard-ExtraBold.woff") format('woff'),
+    url("../webfonts/Pretendard-ExtraBold.eot") format('opentype'),
+    url("../webfonts/Pretendard-ExtraBold.otf") format('opentype'),
+    url("../webfonts/Pretendard-ExtraBold.ttf") format("truetype");
+}
+/* Black */
+@font-face {
+    font-family: 'Pretendard';
+    font-style: normal;
+    font-weight: 900;
+    src: local(※),  url("../webfonts/Pretendard-Black.woff2") format('woff2'),
+    url("../webfonts/Pretendard-Black.woff") format('woff'),
+    url("../webfonts/Pretendard-Black.eot") format('opentype'),
+    url("../webfonts/Pretendard-Black.otf") format('opentype'),
+    url("../webfonts/Pretendard-Black.ttf") format("truetype");
 }
 
+/* Outfit */
+/* Thin */
 @font-face {
-	font-family: 'Pretendard GOV';
-	font-weight: 800;
-	font-display: swap;
-	src: local('Pretendard GOV ExtraBold'), url(../webfonts/PretendardGOV-ExtraBold.subset.woff2) format('woff2');
+    font-family: 'Outfit';
+    font-style: normal;
+    font-weight: 100;
+    src: local(※),  url("../webfonts/Outfit-Thin.woff2") format('woff2'),
+    url("../webfonts/Outfit-Thin.woff") format('woff'),
+    url("../webfonts/Outfit-Thin.eot") format('opentype'),
+    url("../webfonts/Outfit-Thin.otf") format('opentype'),
+    url("../webfonts/Outfit-Thin.ttf") format("truetype");
 }
-
+/* ExtraLight */
 @font-face {
-	font-family: 'Pretendard GOV';
-	font-weight: 700;
-	font-display: swap;
-	src: local('Pretendard GOV Bold'), url(../webfonts/PretendardGOV-Bold.subset.woff2) format('woff2');
+    font-family: 'Outfit';
+    font-style: normal;
+    font-weight: 200;
+    src: local(※),  url("../webfonts/Outfit-ExtraLight.woff2") format('woff2'),
+    url("../webfonts/Outfit-ExtraLight.woff") format('woff'),
+    url("../webfonts/Outfit-ExtraLight.eot") format('opentype'),
+    url("../webfonts/Outfit-ExtraLight.otf") format('opentype'),
+    url("../webfonts/Outfit-ExtraLight.ttf") format("truetype");
 }
-
+/* Light */
 @font-face {
-	font-family: 'Pretendard GOV';
-	font-weight: 600;
-	font-display: swap;
-	src: local('Pretendard GOV SemiBold'), url(../webfonts/PretendardGOV-SemiBold.subset.woff2) format('woff2');
+    font-family: 'Outfit';
+    font-style: normal;
+    font-weight: 300;
+    src: local(※),  url("../webfonts/Outfit-Light.woff2") format('woff2'),
+    url("../webfonts/Outfit-Light.woff") format('woff'),
+    url("../webfonts/Outfit-Light.eot") format('opentype'),
+    url("../webfonts/Outfit-Light.otf") format('opentype'),
+    url("../webfonts/Outfit-Light.ttf") format("truetype");
 }
-
+/* Regular */
 @font-face {
-	font-family: 'Pretendard GOV';
-	font-weight: 500;
-	font-display: swap;
-	src: local('Pretendard GOV Medium'), url(../webfonts/PretendardGOV-Medium.subset.woff2) format('woff2');
+    font-family: 'Outfit';
+    font-style: normal;
+    font-weight: 400;
+    src: local(※),  url("../webfonts/Outfit-Regular.woff2") format('woff2'),
+    url("../webfonts/Outfit-Regular.woff") format('woff'),
+    url("../webfonts/Outfit-Regular.eot") format('opentype'),
+    url("../webfonts/Outfit-Regular.otf") format('opentype'),
+    url("../webfonts/Outfit-Regular.ttf") format("truetype");
 }
-
+/* Medium */
 @font-face {
-	font-family: 'Pretendard GOV';
-	font-weight: 400;
-	font-display: swap;
-	src: local('Pretendard GOV Regular'), url(../webfonts/PretendardGOV-Regular.subset.woff2) format('woff2');
+    font-family: 'Outfit';
+    font-style: normal;
+    font-weight: 500;
+    src: local(※),  url("../webfonts/Outfit-Medium.woff2") format('woff2'),
+    url("../webfonts/Outfit-Medium.woff") format('woff'),
+    url("../webfonts/Outfit-Medium.eot") format('opentype'),
+    url("../webfonts/Outfit-Medium.otf") format('opentype'),
+    url("../webfonts/Outfit-Medium.ttf") format("truetype");
 }
-
+/* SemiBold */
 @font-face {
-	font-family: 'Pretendard GOV';
-	font-weight: 300;
-	font-display: swap;
-	src: local('Pretendard GOV Light'), url(../webfonts/PretendardGOV-Light.subset.woff2) format('woff2');
+    font-family: 'Outfit';
+    font-style: normal;
+    font-weight: 600;
+    src: local(※),  url("../webfonts/Outfit-SemiBold.woff2") format('woff2'),
+    url("../webfonts/Outfit-SemiBold.woff") format('woff'),
+    url("../webfonts/Outfit-SemiBold.eot") format('opentype'),
+    url("../webfonts/Outfit-SemiBold.otf") format('opentype'),
+    url("../webfonts/Outfit-SemiBold.ttf") format("truetype");
 }
-
+/* Bold */
 @font-face {
-	font-family: 'Pretendard GOV';
-	font-weight: 200;
-	font-display: swap;
-	src: local('Pretendard GOV ExtraLight'), url(../webfonts/PretendardGOV-ExtraLight.subset.woff2) format('woff2');
+    font-family: 'Outfit';
+    font-style: normal;
+    font-weight: 700;
+    src: local(※),  url("../webfonts/Outfit-Bold.woff2") format('woff2'),
+    url("../webfonts/Outfit-Bold.woff") format('woff'),
+    url("../webfonts/Outfit-Bold.eot") format('opentype'),
+    url("../webfonts/Outfit-Bold.otf") format('opentype'),
+    url("../webfonts/Outfit-Bold.ttf") format("truetype");
 }
-
+/* ExtraBold */
 @font-face {
-	font-family: 'Pretendard GOV';
-	font-weight: 100;
-	font-display: swap;
-	src: local('Pretendard GOV Thin'), url(../webfonts/PretendardGOV-Thin.subset.woff2) format('woff2');
+    font-family: 'Outfit';
+    font-style: normal;
+    font-weight: 800;
+    src: local(※),  url("../webfonts/Outfit-ExtraBold.woff2") format('woff2'),
+    url("../webfonts/Outfit-ExtraBold.woff") format('woff'),
+    url("../webfonts/Outfit-ExtraBold.eot") format('opentype'),
+    url("../webfonts/Outfit-ExtraBold.otf") format('opentype'),
+    url("../webfonts/Outfit-ExtraBold.ttf") format("truetype");
+}
+/* ExtraBold */
+@font-face {
+    font-family: 'Outfit';
+    font-style: normal;
+    font-weight: 900;
+    src: local(※),  url("../webfonts/Outfit-Black.woff2") format('woff2'),
+    url("../webfonts/Outfit-Black.woff") format('woff'),
+    url("../webfonts/Outfit-Black.eot") format('opentype'),
+    url("../webfonts/Outfit-Black.otf") format('opentype'),
+    url("../webfonts/Outfit-Black.ttf") format("truetype");
 }

@@ -14,14 +14,15 @@
                             <a href="#">
                                 <div class="img">
                                     <!-- pc용 이미지 -->
-                                    <img src="../images/dummy2/a_02.png" alt="" class="">
+                                    <img src="../images/dummy/a_02.png" alt="" class="">
                                     <!-- 모바일용 이미지 -->
-                                    <img src="../images/dummy2/main_visual_slide1_m.png" alt="" class="hide-pc">
+                                    <img src="../images/dummy/main_visual_slide1_m.png" alt="" class="hide-pc">
                                 </div>
                                 <div class="txt-box">
-                                    <p class="txt">고객만족을 위한 노력<br><strong
-                                            style="font-weight: 700;color: #80DFDB;">소통과 성공을 위한 파트너</strong>로<br>새롭게
-                                        함께 합니다.</p>
+                                    <p class="txt">
+                                        일자리 질 개선을 위한<br> <strong>든든한 동반자로 함께 하겠습니다.</strong>
+                                        <span class="txt-en">To Improve Job Quality We'll be a Reliable Partner</span>
+                                    </p>
                                 </div>
                             </a>
                         </div>
@@ -36,9 +37,10 @@
                                     <img th:src="@{/api/v1/attachment/{uuid}(uuid = ${main.mobileImage.uuid})}" alt="" class="hide-pc">
                                 </div>
                                 <div class="txt-box">
-                                    <p class="txt">고객만족을 위한 노력<br><strong
-                                            style="font-weight: 700;color: #80DFDB;">소통과 성공을 위한 파트너</strong>로<br>새롭게
-                                        함께 합니다.</p>
+                                    <p class="txt">
+                                        일자리 질 개선을 위한<br> <strong>든든한 동반자로 함께 하겠습니다.</strong>
+                                        <span class="txt-en">To Improve Job Quality We'll be a Reliable Partner</span>
+                                    </p>
                                 </div>
                             </a>
                         </div>
@@ -46,8 +48,8 @@
                     <!-- <div class="swiper-slide">
                         <a href="#">
                             <div class="img">
-                                <img src="../images/dummy2/a_03.png" alt="" class="">
-                                <img src="../images/dummy2/main_visual_slide1_m.png" alt="" class="hide-pc">
+                                <img src="../images/dummy/a_03.png" alt="" class="">
+                                <img src="../images/dummy/main_visual_slide1_m.png" alt="" class="hide-pc">
                             </div>
                             <div class="txt-box">
                                 <p class="txt">웹비즈크리에이티브가<br><strong
@@ -59,8 +61,8 @@
                     <div class="swiper-slide">
                         <a href="#">
                             <div class="img">
-                                <img src="../images/dummy2/a_04.png" alt="" class="">
-                                <img src="../images/dummy2/main_visual_slide1_m.png" alt="" class="hide-pc">
+                                <img src="../images/dummy/a_04.png" alt="" class="">
+                                <img src="../images/dummy/main_visual_slide1_m.png" alt="" class="hide-pc">
                             </div>
                             <div class="txt-box">
                                 <p class="txt">웹비즈크리에이티브가<br><strong
@@ -71,14 +73,120 @@
                     </div> -->
                 </div>
             </div>
-            <div class="w-set">
-                <div class="swiper-control">
-                    <div class="pagination"></div>
+            <div class="swiper-control">
+                <div class="swiper-count">
+                    <span class="active-num"></span>
+                    <span class="all-num"></span>
+                </div>
+                <div class="pagination"></div>
+                <button type="button" class="swiper-button prev">이전</button>
+                <button type="button" class="swiper-button next">다음</button>
+                <button type="button" class="pause">정지</button>
+                <button type="button" class="play" style="display: none;">재생</button>
+            </div>
+            <div class="menu-wrap">
+                <ul class="menu-list">
+                    <li>
+                        <a href="/survey" class="menu01">
+                            <div class="txt-box">
+                                <p class="txt">설립목적</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/survey" class="menu02">
+                            <div class="txt-box">
+                                <p class="txt">연혁</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/pages/12" class="menu03">
+                            <div class="txt-box">
+                                <p class="txt">조직 구성</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/pages/7" class="menu04">
+                            <div class="txt-box">
+                                <p class="txt">홍보자료</p>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="main-section business-section">
+            <div class="business-wrap">
+                <div class="title-area">
+                    <h3 class="title">주요 사업 안내</h3>
+                    <p class="desc">DMC산학진흥재단에서 진행하는 사업 정보입니다.</p>
+                </div>
+                <div class="business-slide">
+                    <div class="swiper-navi">          
+                        <button type="button" class="swiper-button prev">이전</button>
+                        <button type="button" class="swiper-button next">다음</button>
+                    </div>
+                    <div class="swiper">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <div class="business-item">
+                                    <div class="img">
+                                        <img src="../images/sub/main_business01.png" alt="">
+                                    </div>
+                                    <div class="text-box">
+                                        <span class="label">추진목적</span>
+                                        <p class="desc">일자리매칭 프로세스의 체계적 지원을 통한 일자리 프로세스의 체계적 지원을 통한 일자리 미스매칭 해소</p>
+                                        <h4 class="title">DMC형 일자리혁신플랫폼</h4>
+                                        <a href="#" class="btn-view">자세히 보기</a>
+                                        <div class="swiper-count">
+                                            <div class="active-num"></div>
+                                            <div class="all-num"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="business-item">
+                                    <div class="img">
+                                        <img src="../images/sub/main_business01.png" alt="">
+                                    </div>
+                                    <div class="text-box">
+                                        <span class="label">추진목적</span>
+                                        <p class="desc">상암DMC 창업생태계 구축</p>
+                                        <h4 class="title">DMC이노베이션캠프 창업경진대회</h4>
+                                        <a href="#" class="btn-view">자세히 보기</a>
+                                        <div class="swiper-count">
+                                            <div class="active-num"></div>
+                                            <div class="all-num"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="business-item">
+                                    <div class="img">
+                                        <img src="../images/sub/main_business01.png" alt="">
+                                    </div>
+                                    <div class="text-box">
+                                        <span class="label">추진목적</span>
+                                        <p class="desc">특화산업(IT&middot;미디어) 관련 우수연구 상용화 촉진</p>
+                                        <h4 class="title">우수 연구성과 상용화</h4>
+                                        <a href="#" class="btn-view">자세히 보기</a>
+                                        <div class="swiper-count">
+                                            <div class="active-num"></div>
+                                            <div class="all-num"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="scroll">Scroll Down</div>
         </div>
-        <div class="main-section promotion-section">
+        <!-- <div class="main-section promotion-section">
             <div class="w-set">
                 <div class="promotion-wrap">
                     <div class="tit-wrap">
@@ -121,49 +229,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="menu-wrap">
-                    <ul class="menu-list">
-                        <li>
-                            <a href="/survey" class="menu01">
-                                <div class="txt-box">
-                                    <p class="txt">설문조사</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/survey" class="menu02">
-                                <div class="txt-box">
-                                    <p class="txt">만족도조사</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/pages/12" class="menu03">
-                                <div class="txt-box">
-                                    <p class="txt">FAQ</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/pages/7" class="menu04">
-                                <div class="txt-box">
-                                    <p class="txt">기관소개</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="menu05">
-                                <div class="txt-box">
-                                    <p class="txt">문의</p>
-                                </div>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
             </div>
-        </div>
+        </div> -->
         <div class="w-set">
-            <div class="main-section">
+            <!-- <div class="main-section">
                 <div class="board-wrap" th:if="${notice != null}">
                     <div class="tit-wrap">
                         <h3 class="tit-en">WCRM</h3>
@@ -185,80 +254,12 @@
                                         <p class="date" th:text="${#temporals.format(notice.createdAt, 'yyyy. MM. dd')}">2024. 09. 06</p>
                                     </a>
                                 </li>
-                                <!--<li>
-                                    <a href="#" class="board">
-                                        <span class="tag">공지</span>
-                                        <p class="tit">[모집] 큐텐(위메프·티몬·인터파크·AK몰), 알렛츠 정산지연 피해 기업의 이커머스 플랫폼 진출지원 소상공인,
-                                            중소기업 모집</p>
-                                        <p class="date">2024. 09. 06</p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="board">
-                                        <span class="tag type-b">입찰</span>
-                                        <p class="tit">행복한백화점 전단·포스터 기획 및 제작 용역</p>
-                                        <p class="date">2024. 09. 06</p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="board">
-                                        <span class="tag type-r">채용</span>
-                                        <p class="tit">[공고] 2024년 상반기 중소기업유통 센터 경력직 채용 공고</p>
-                                        <p class="date">2024. 09. 06</p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="board">
-                                        <span class="tag">공지</span>
-                                        <p class="tit">[모집] 큐텐(위메프·티몬·인터파크·AK몰), 알렛츠 정산지연 피해 기업의 이커머스 플랫폼 진출지원 소상공인,
-                                            중소기업 모집</p>
-                                        <p class="date">2024. 09. 06</p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="board">
-                                        <span class="tag">공지</span>
-                                        <p class="tit">[모집] 큐텐(위메프·티몬·인터파크·AK몰), 알렛츠 정산지연 피해 기업의 이커머스 플랫폼 진출지원 소상공인,
-                                            중소기업 모집</p>
-                                        <p class="date">2024. 09. 06</p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="board">
-                                        <span class="tag type-b">입찰</span>
-                                        <p class="tit">행복한백화점 전단·포스터 기획 및 제작 용역</p>
-                                        <p class="date">2024. 09. 06</p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="board">
-                                        <span class="tag type-r">채용</span>
-                                        <p class="tit">[공고] 2024년 상반기 중소기업유통 센터 경력직 채용 공고</p>
-                                        <p class="date">2024. 09. 06</p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="board">
-                                        <span class="tag">공지</span>
-                                        <p class="tit">[모집] 큐텐(위메프·티몬·인터파크·AK몰), 알렛츠 정산지연 피해 기업의 이커머스 플랫폼 진출지원 소상공인,
-                                            중소기업 모집</p>
-                                        <p class="date">2024. 09. 06</p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="board">
-                                        <span class="tag">공지</span>
-                                        <p class="tit">[모집] 큐텐(위메프·티몬·인터파크·AK몰), 알렛츠 정산지연 피해 기업의 이커머스 플랫폼 진출지원 소상공인,
-                                            중소기업 모집</p>
-                                        <p class="date">2024. 09. 06</p>
-                                    </a>
-                                </li>-->
                             </ul>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="main-section">
+            </div> -->
+            <!-- <div class="main-section">
                 <div class="news-wrap">
                     <div class="tit-wrap" th:if="${news != null}">
                         <h3 class="tit-en">WCRM</h3>
@@ -268,9 +269,9 @@
                                     <strong>웹비즈</strong>뉴스
                                 </h3>
                             </div>
-  <!--                          <div class="tit-right">
+                           <div class="tit-right">
                                 <a href="#" class="btn-more">더보기</a>
-                            </div>-->
+                            </div>
                         </div>
                     </div>
                     <div class="news-area"  th:if="${news != null}">
@@ -284,30 +285,6 @@
                                 <p class="date" th:text="${#temporals.format(news.createdAt, 'yyyy. MM. dd')}">24.08.28</p>
                             </a>
                         </th:block>
-                        <!--<a href="#" class="news">
-                            <div class="img">
-                                <img src="../images/dummy2/news2.png" alt="">
-                            </div>
-                            <span class="tag">뉴스</span>
-                            <p class="tit">웹비즈크리에이티브, 민족 명절 추석 맞아 관내 소 외된 이웃에게 기부금 전달</p>
-                            <p class="date">24.08.28</p>
-                        </a>
-                        <a href="#" class="news">
-                            <div class="img">
-                                <img src="../images/dummy2/news3.png" alt="">
-                            </div>
-                            <span class="tag">뉴스</span>
-                            <p class="tit">웹비즈크리에이티브, 민족 명절 추석 맞아 관내 소 외된 이웃에게 기부금 전달</p>
-                            <p class="date">24.08.28</p>
-                        </a>
-                        <a href="#" class="news">
-                            <div class="img">
-                                <img src="../images/dummy2/news4.png" alt="">
-                            </div>
-                            <span class="tag">뉴스</span>
-                            <p class="tit">웹비즈크리에이티브, 민족 명절 추석 맞아 관내 소 외된 이웃에게 기부금 전달</p>
-                            <p class="date">24.08.28</p>
-                        </a>-->
                     </div>
                     <div class="sns-area">
                         <div class="sns-block">
@@ -319,7 +296,7 @@
                             </div>
                             <a href="#" class="video-wrap">
                                 <i class="i-youtube"></i>
-                                <img src="../images/dummy2/main_youtube.png" alt="">
+                                <img src="../images/dummy/main_youtube.png" alt="">
                             </a>
                         </div>
                         <div class="sns-block">
@@ -334,7 +311,7 @@
                                 <li>
                                     <a href="#" class="post">
                                         <div class="img">
-                                            <img src="../images/dummy2/sns1.png" alt="">
+                                            <img src="../images/dummy/sns1.png" alt="">
                                         </div>
                                         <span class="tag">Blog</span>
                                         <p class="tit">웹비즈크리에이티브 뜯어보기 - 공공데이터 를 알아봅시다 1편</p>
@@ -343,13 +320,98 @@
                                 <li>
                                     <a href="#" class="post">
                                         <div class="img">
-                                            <img src="../images/dummy2/sns2.png" alt="">
+                                            <img src="../images/dummy/sns2.png" alt="">
                                         </div>
                                         <span class="tag type-i">Instagram</span>
                                         <p class="tit">웹비즈크리에이티브 뜯어보기 - 공공데이터 를 알아봅시다 1편</p>
                                     </a>
                                 </li>
                             </ul>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+            <div class="main-section">               
+                <div class="board-wrap">
+                    <div class="notice-wrap">
+                        <div class="title-area">
+                            <h3 class="title">공지·알림</h3>
+                            <button type="button" onclick="location.href='/pages/9'" class="btn-more">MORE</button>
+                        </div>
+                        <ul class="notice-list">
+                            
+                            <li data-href="/pages/9?id=1&amp;menuMode=READ">
+                                <div class="date">
+                                    <strong class="day">10</strong>
+                                    <p class="month">2025.03</p>
+                                </div>
+                                <div class="text-area">
+                                    <div class="title">공지사항 테스트입니다.</div>
+                                    <!--
+                                    <div class="text-editor">
+                                        <p>
+                                            <img src="https://dmc-backend-upload.s3.ap-northeast-2.amazonaws.com/files/u/test/1710136751424_406191977.png"
+                                                    width="800"></p>
+                                        <p><strong>[모집] 한국마약퇴치운동본부 제주 </strong></p>
+                                        <p>- <span style="color: #030dff;"><span style="color: rgb(0, 0, 0);">[모집] 한국마약퇴치운동본부 제주 함께한걸음센터 외부상담사 모집 </span><strong><u>[모집] 한국마약퇴치운동본부 제주 함께한걸음센터 외부상담사 모집</u></strong><span
+                                                style="color: rgb(0, 0, 0);">[모집] 한국마약퇴치운동본부 제주 함께한걸음센터 외부상담사 모집</span></span>
+                                        </p>
+                                        <p>&nbsp;</p>
+                                    </div>
+                                    -->
+                                </div>
+                            </li>
+                            
+                            
+                            
+                            <li data-href="/pages/9?id=1&amp;menuMode=READ">
+                                <div class="title">공지사항 테스트입니다.</div>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                    <div class="popup-wrap">
+                        <div class="title-area">
+                            <h3 class="title">POPUPZONE</h3>
+                            <!-- <div class="swiper-control">
+                                <button type="button" class="swiper-button prev swiper-button-lock" tabindex="0" aria-label="Previous slide" aria-controls="swiper-wrapper-6f966a1f1c999f79">이전</button>
+                                <div class="swiper-count">
+                                    <span class="active-num">2</span>
+                                    <span class="all-num">0</span>
+                                </div>
+                                <button type="button" class="swiper-button next swiper-button-lock" tabindex="0" aria-label="Next slide" aria-controls="swiper-wrapper-6f966a1f1c999f79">다음</button>
+                            </div> -->
+                            <div class="swiper-control">
+                                <button type="button" class="swiper-button prev">이전</button>
+                                <div class="swiper-count">
+                                    <span class="active-num"></span>
+                                    <span class="all-num"></span>
+                                </div>
+                                <button type="button" class="swiper-button next">다음</button>
+                            </div>
+                        </div>
+                        <!-- <div class="swiper swiper-initialized swiper-horizontal swiper-backface-hidden">
+                            <div class="swiper-wrapper" id="swiper-wrapper-6f966a1f1c999f79" aria-live="off" style="transition-duration: 0ms; transition-delay: 0ms;">
+                                
+                            </div>
+                        <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div> -->
+                        <div class="swiper">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <a href="#">
+                                        <div class="img">
+                                            <img src="../images/dummy/news2.png" alt="">
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="swiper-slide">
+                                    <a href="#">
+                                        <div class="img">
+                                            <img src="../images/dummy/news2.png" alt="">
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -475,89 +537,206 @@
                 document.body.style.overflow = 'initial';
             }
 
+            function pad(num, size) {
+                return num.toString().padStart(size, "0");
+            }
+
             //메인배너 슬라이드
             const mainSlide = new Swiper('.main-visual .swiper', {
                 slidesPerView: 1,
+					loop: true,
+					effect: 'fade',
+					speed: 800,
+					autoplay: {
+						delay: 3000,
+						disableOnInteraction: false,
+					},
+					pagination: {
+						el: ".main-visual .pagination",
+						type: "progressbar"
+					},
+					navigation: {
+						nextEl: '.main-visual .next',
+						prevEl: '.main-visual .prev',
+					},
+					watchOverflow: true,
+                    on: {
+                        beforeInit: function () {
+                            var slideCnt = this.wrapperEl.querySelectorAll(".main-visual .swiper-slide").length;
+                            if (slideCnt === 1) {
+                                $('.main-visual .swiper-control').hide();
+                            } else {
+                                $('.main-visual .active-num').text(1);
+                                $('.main-visual .all-num').text("/ " + slideCnt.toString().padStart(2, '0'));
+                            }
+                        },
+                        init: function () {
+                            var swiper = this;
+                            var $playButton = $(".main-visual .play");
+                            var $pauseButton = $(".main-visual .pause");
+
+                            $playButton.hide();
+
+                            $pauseButton.on("click", function () {
+                                swiper.autoplay.stop();
+                                $playButton.show();
+                                $pauseButton.hide();
+                            });
+
+                            $playButton.on("click", function () {
+                                swiper.autoplay.start();
+                                $playButton.hide();
+                                $pauseButton.show();
+                            });
+                        },
+                        activeIndexChange: function () {
+                            document.querySelector('.main-visual .active-num').textContent = pad((this.realIndex + 1), 2);
+                        },
+                    }
+            });
+
+            //주요사업안내 슬라이드
+            const businessSlide = new Swiper('.business-wrap .swiper', {
+                slidesPerView: 1.2,
+                spaceBetween: 20,
+                slidesOffsetAfter: 2,
+                centeredSlides: false,
                 loop: true,
-                speed: 2500,
+                speed: 800,
                 autoplay: {
-                    delay: 3000,
-                    disableOnInteraction: false,
+                	delay: 3000,
+                	disableOnInteraction: false,
+                },
+                pagination: {
+                    el: ".business-wrap .pagination",
+                    type: "progressbar"
+                },
+                navigation: {
+                    nextEl: '.business-wrap .next',
+                    prevEl: '.business-wrap .prev',
+                },
+                breakpoints: {
+                    769: {
+                        slidesPerView: 1.4,
+                        spaceBetween: 40,
+                        slidesOffsetAfter: 0,
+                        centeredSlides: true,
+                        loop: true,
+                        autoplay: {
+                            delay: 3000,
+                            disableOnInteraction: false,
+                        },
+                    },
+                    1024: {
+                        slidesPerView: 1.65,
+                        spaceBetween: 100,
+                        slidesOffsetAfter: 0,
+                        centeredSlides: true,
+                        loop: true,
+                        autoplay: {
+                            delay: 3000,
+                            disableOnInteraction: false,
+                        },
+                    }
+                },
+                watchOverflow: true,
+                on: {
+                    init: function (swiper) {
+                        updateSwiperCount(swiper);
+                    },
+                    slideChange: function (swiper) {
+                        updateSwiperCount(swiper);
+                    }
                 }
             });
 
-            //홍보배너1 슬라이드
-            const promotionSlide01 = new Swiper('.promotion-wrap .swiper.promotion01', {
-                slidesPerView: 1,
+            // 슬라이드 개수 업데이트 함수
+            function updateSwiperCount(swiper) {
+                const totalSlides = (swiper.slides.length - swiper.loopedSlides * 2).toString().padStart(2, '0'); // 전체 슬라이드 개수 (2자리)
+                swiper.slides.forEach((slide, index) => {
+                    const activeNum = slide.querySelector('.swiper-count .active-num');
+                    const allNum = slide.querySelector('.swiper-count .all-num');
+                    if (activeNum && allNum) {
+                        activeNum.textContent = (swiper.realIndex + 1).toString().padStart(2, '0'); // 현재 슬라이드 번호 (2자리)
+                        allNum.textContent = totalSlides; // 전체 슬라이드 개수 (2자리)
+                    }
+                });
+            }
+
+            // 팝업존 슬라이드
+            const popupSwiper = new Swiper(".popup-wrap .swiper", {
                 loop: true,
-                speed: 2500,
+                speed: 800,
                 autoplay: {
                     delay: 3000,
                     disableOnInteraction: false,
                 },
                 navigation: {
-                    nextEl: '.promotion-wrap .swiper-navi .next',
-                    prevEl: '.promotion-wrap .swiper-navi .prev',
+                    nextEl: '.popup-wrap .next',
+                    prevEl: '.popup-wrap .prev',
                 },
                 on: {
+                    beforeInit: function () {
+                        const slides = this.wrapperEl.querySelectorAll(".popup-wrap .swiper-slide");
+                        const controls = document.querySelector('.popup-wrap .swiper-control');
+                        const activeNum = document.querySelector('.popup-wrap .active-num');
+                        const allNum = document.querySelector('.popup-wrap .all-num');
+
+                        if (slides.length === 1) {
+                            if (controls) controls.style.display = 'none';
+                        } else {
+                            if (activeNum) activeNum.textContent = pad(1, 1);
+                            if (allNum) allNum.textContent = pad(slides.length, 1);
+                        }
+                    },
                     init: function () {
                         const swiper = this;
-                        const playButton = document.querySelector(".promotion-wrap .play");
-                        const pauseButton = document.querySelector(".promotion-wrap .pause");
+                        const playButton = document.querySelector(".popup-wrap .play");
+                        const pauseButton = document.querySelector(".popup-wrap .pause");
 
-                        playButton.style.display = "none";
+                        if (playButton) playButton.style.display = 'none';
 
-                        pauseButton.addEventListener("click", function () {
-                            swiper.autoplay.stop();
-                            playButton.style.display = "block";
-                            pauseButton.style.display = "none";
-                        });
+                        if (pauseButton) {
+                            pauseButton.addEventListener("click", function () {
+                                swiper.autoplay.stop();
+                                if (playButton) playButton.style.display = 'block';
+                                pauseButton.style.display = 'none';
+                            });
+                        }
 
-                        playButton.addEventListener("click", function () {
-                            swiper.autoplay.start();
-                            playButton.style.display = "none";
-                            pauseButton.style.display = "block";
-                        });
+                        if (playButton) {
+                            playButton.addEventListener("click", function () {
+                                swiper.autoplay.start();
+                                playButton.style.display = 'none';
+                                if (pauseButton) pauseButton.style.display = 'block';
+                            });
+                        }
                     },
-                },
+                    activeIndexChange: function () {
+                        const activeNum = document.querySelector('.popup-wrap .active-num');
+                        if (activeNum) {
+                            activeNum.textContent = pad(this.realIndex + 1, 1);
+                        }
+                    },
+                }
             });
 
-            //홍보배너2 슬라이드
-            const promotionSlide02 = new Swiper('.promotion-wrap .swiper.promotion02', {
-                slidesPerView: 1,
-                loop: true,
-                speed: 2500,
-                autoplay: {
-                    delay: 3000,
-                    disableOnInteraction: false,
-                },
-                navigation: {
-                    nextEl: '.promotion-wrap .swiper-navi .next',
-                    prevEl: '.promotion-wrap .swiper-navi .prev',
-                },
-                on: {
-                    init: function () {
-                        const swiper = this;
-                        const playButton = document.querySelector(".promotion-wrap .play");
-                        const pauseButton = document.querySelector(".promotion-wrap .pause");
+            // 공지사항,알림 
+            document.addEventListener('DOMContentLoaded', function () {
+                // 모든 li 요소를 찾아서 처리
+                var listItems = document.querySelectorAll('li[data-href]');
 
-                        playButton.style.display = "none";
-
-                        pauseButton.addEventListener("click", function () {
-                            swiper.autoplay.stop();
-                            playButton.style.display = "block";
-                            pauseButton.style.display = "none";
-                        });
-
-                        playButton.addEventListener("click", function () {
-                            swiper.autoplay.start();
-                            playButton.style.display = "none";
-                            pauseButton.style.display = "block";
-                        });
-                    },
-                },
+                listItems.forEach(function (li) {
+                    // li 요소에 클릭 이벤트 추가
+                    li.addEventListener('click', function () {
+                        // data-href 속성에서 URL을 가져와서 이동
+                        var url = li.getAttribute('data-href');
+                        if (url) {
+                            window.location.href = url;
+                        }
+                    });
+                });
             });
-
         });
     </script>
 </main>
