@@ -1,0 +1,197 @@
+@import "utility";
+.regulation-wrap {
+    margin-top: 80px;
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid #D8D8D8;
+        padding-bottom: 60px;
+        .title {
+            font-size: 36px;
+            font-weight: 700;
+            color: #222222;
+        }
+        .download {
+            max-width: 120px;
+            width: 100%;
+            max-height: 120px;
+            .link {
+                display: flex;
+                flex-direction: column;
+                align-items: center; 
+                gap: 6px; 
+                padding: 25px 14px;
+                border: 2px solid #0F3B75;
+                border-radius: 12px;
+                color: #0F3B75;
+                font-size: 15px;
+                .icon {
+                    width: 42px;
+                    height: 42px;
+                    background-image: url("../images/ico/file-download.png");
+                    background-size: contain;
+                    background-repeat: no-repeat;
+                    background-position: center;
+                }
+                .text {
+                    display: block;
+                    text-align: center;
+                }
+            }
+        }
+    }
+    .cont {
+        .info {
+            margin: 60px 0 26px;
+            text-align: right;
+            font-size: 15px;
+            color: #666;
+            div {
+                & + div {
+                    margin-top: 8px;
+                }
+            }
+        }
+        .accordion-box {
+            overflow: hidden;
+            & + .accordion-box{
+                margin-top: 12px;
+            }
+            .sub-header {
+                display: flex;
+                align-items: center;
+                justify-content: space-between; 
+                max-height: 62px;
+                min-height: 62px;
+                background-color: #F4F6FA;
+                position: relative;
+                &::before {
+                    content: "";
+                    width: 12px;
+                    height: 100%;
+                    background-color: #0F3B75;
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                }
+                .title {
+                    font-size: 20px;
+                    color: #222222;
+                    padding-left: 40px;
+                    flex-grow: 1;
+                }
+                .toggle-btn {
+                    width: 24px;
+                    height: 24px;
+                    margin-right: 40px;
+                    background: url("../images/ico/file-download.png") no-repeat center;
+                    background-size: contain;
+                    border: none; // 옮기면 없애기
+                }
+            }
+            .sub-content {
+                display: none;
+                margin: 12px 0 8px;
+                padding: 40px;
+                background: #FFFFFF 0% 0% no-repeat padding-box;
+                box-shadow: 0px 0px 12px #0000001A;
+                border-radius: 12px;
+                h4{
+                    margin-bottom: 20px;
+                    font-size: 20px;
+                }
+                ul {
+                    & + h4{
+                        margin-top: 30px;
+                    }
+                    li {
+                        list-style: none;
+                        & + li{
+                            margin-top: 20px;
+                        }
+                        p {
+                            margin-bottom: 16px;
+                            font-size: 16px;
+                            color: #222222;
+                            font-weight: 600;
+                        }
+                        span {
+                            display: block;
+                            color: #666666;
+                            font-size: 16px;
+                            word-break: keep-all;
+                            & + span{
+                                margin-top: 12px;
+                            }
+                        }
+                        ul {
+                            margin-top: 14px;
+                            padding-left: 20px;
+                            & + span{
+                                margin-top: 14px;
+                            }
+                            li {
+                                font-size: 15px;
+                                color: #666666;
+                                & + li{
+                                    margin-top: 10px;
+                                }
+                            }
+                        }
+                        .table-wrap {
+                            margin-top: 40px;
+                            h5{
+                                font-size: 20px;
+                                text-align: center;
+                            }
+                            .table-info{
+                                margin-top: 14px;
+                                text-align: right;
+                            }
+                            .tit{
+                                font-size: 18px;
+                            }
+                            .sub-txt{
+                                text-align: right;
+                                margin-bottom: 10px;
+                            }
+                            table {
+                                border-collapse: collapse;
+                                th, td {
+                                    border: 1px solid #ccc;
+                                    padding: 20px;
+                                    text-align: center;
+                                    word-break: keep-all;
+                                }
+                                th {
+                                    background-color: #f8f8f8;
+                                    font-weight: bold;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            &.active {
+                .sub-header {
+                    background-color: #2B408E; 
+                    color: #ffffff;
+                    border: 1px solid #707070;
+                    .title {
+                        color: #ffffff; 
+                    }
+                    .toggle-btn {
+                        transform: rotate(180deg);
+                    }
+                    &::before{
+                        content: none;
+                    }
+                }
+                .sub-content {
+                    display: block;
+                }
+            }
+        }            
+    }
+}
