@@ -20,13 +20,16 @@
                 display: flex;
                 flex-direction: column;
                 align-items: center; 
+                position: relative;
                 gap: 6px; 
                 padding: 25px 14px;
                 border: 2px solid #0F3B75;
                 border-radius: 12px;
                 color: #0F3B75;
                 font-size: 15px;
-                .icon {
+                &::before {
+                    content: "";
+                    display: block;
                     width: 42px;
                     height: 42px;
                     background-image: url("../images/sub/file-download.png");
@@ -66,6 +69,7 @@
                 background-color: #F4F6FA;
                 position: relative;
                 cursor: pointer;
+                padding-right: 40px;
                 &::before {
                     content: "";
                     width: 12px;
@@ -75,18 +79,23 @@
                     left: 0;
                     top: 0;
                 }
+                &::after{
+                    content: "";
+                    width: 24px;
+                    height: 24px;
+                    background: url("../images/common/select_arrow_gray.svg") no-repeat center;
+                    background-size: contain;
+                    position: absolute;
+                    right: 16px;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    cursor: pointer;
+                }
                 .title {
                     font-size: 20px;
                     color: #222222;
                     padding-left: 40px;
                     flex-grow: 1;
-                }
-                .toggle-btn {
-                    width: 24px;
-                    height: 24px;
-                    margin-right: 40px;
-                    background: url("../images/common/select_arrow_gray.svg") no-repeat center;
-                    background-size: contain;
                 }
             }
             .sub-content {
@@ -175,7 +184,8 @@
                     .title {
                         color: #ffffff; 
                     }
-                    .toggle-btn {
+                    &::after{
+                        top: 25%; // 아이콘 변경시 같이 수정
                         transform: rotate(180deg);
                     }
                     &::before{

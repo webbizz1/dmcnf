@@ -68,4 +68,28 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 
   // document.querySelector('.tab-select').addEventListener('click', (e) => toggleTab(e));
+
+  // 재단 정관
+  document.querySelectorAll(".accordion-box .sub-header").forEach(header => {
+    header.addEventListener("click", () => {
+      const accordion = header.closest(".accordion-box"); 
+      const isActive = accordion.classList.contains("active");
+
+      // 모든 아코디언 닫기
+      document.querySelectorAll(".accordion-box").forEach(acc => {
+        acc.classList.remove("active");
+      });
+
+      if (!isActive) {
+        accordion.classList.add("active");
+        setTimeout(() => {
+          const yOffset = -100; 
+          const y = accordion.getBoundingClientRect().top + window.scrollY + yOffset;
+
+          window.scrollTo({ top: y, behavior: "smooth" });
+        });
+      }
+    });
+  });
+
 });
