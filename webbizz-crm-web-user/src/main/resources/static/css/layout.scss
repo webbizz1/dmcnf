@@ -507,23 +507,6 @@
         }
       }
     }
-    .related-site {
-      a {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        width: 200px;
-        padding: 18px 24px 17px;
-        border: 1px solid #ffffff;
-        @include font(500, 16px, #fff);
-        &::after {
-          content: "";
-          width: 7px;
-          height: 12px;
-          background: url("../images/common/related_arrow.svg") no-repeat center;
-        }
-      }
-    }
   }
   .ft-btm {
     padding: 36px 0 60px;
@@ -531,18 +514,6 @@
     .w-set {
       display: flex;
       justify-content: space-between;
-    }
-    .ft-logo {
-      flex: 0 0 auto;
-      width: 113px;
-      height: 72px;
-      .logo {
-        width: 100%;
-        height: 100%;
-        background: url("../images/sub/logo_white.png") no-repeat center;
-        background-size: 100% auto;
-        font-size: 0;
-      }
     }
     .info-wrap {
       .info-row {
@@ -560,8 +531,20 @@
       margin-top: 50px;
       p {
         font-size: 14px;
+        line-height: 1.4;
         color: #afafaf;
         word-break: keep-all;
+      }
+    }
+    .ft-logo {
+      flex: 0 0 auto;
+      width: 113px;
+      height: 72px;
+      .logo {
+        width: 100%;
+        height: 100%;
+        background: url("../images/sub/logo_white.png") no-repeat center/cover;
+        font-size: 0;
       }
     }
     .sns-list {
@@ -584,32 +567,33 @@
   }
 }
 @include laptop {
+  #footer {
+    .ft-btm {
+      .w-set {
+        gap: 30px;
+      }
+      .right-wrap {
+        flex-shrink: 0;
+      }
+      .info-wrap .info-row {
+        flex-wrap: wrap;
+        gap: 14px;
+      }
+    }
+  }
 }
 @include mobile {
   #footer {
     padding-top: 54px;
     .ft-top {
-      position: relative;
-      padding: 20px 0;
       .link-list {
         a {
           font-size: 14px;
           & + a {
             margin-left: 32px;
           }
-        }
-      }
-      .related-site {
-        position: absolute;
-        top: -100%;
-        left: 0;
-        width: 100%;
-        a {
-          width: 100%;
-          color: #222222;
-          border-color: $border-color;
-          &::after {
-            background-image: url("../images/common/related_arrow_black.svg");
+          b {
+            font-size: 14px;
           }
         }
       }
@@ -617,12 +601,14 @@
     .ft-btm {
       padding: 30px 0 40px;
       .w-set {
-        flex-direction: column;
+        flex-direction: column-reverse;
         gap: 20px;
       }
-      .ft-logo {
-        width: 78px;
-        height: 24px;
+      .right-wrap {
+        display: flex;
+        gap: 20px;
+        justify-content: space-between;
+        align-items: center;
       }
       .info-wrap p {
         line-height: 1.4;
@@ -630,6 +616,17 @@
       }
       .copyright-wrap {
         margin-top: 15px;
+      }
+      .ft-logo {
+        width: calc(113px * 0.8);
+        height: calc(72px * 0.8);
+      }
+      .sns-list {
+        margin: 0;
+        [class*="sns-"] {
+          width: 34px;
+          height: 34px;
+        }
       }
     }
   }
