@@ -361,7 +361,7 @@
 }
 .main-content .board-wrap .notice-wrap {
   flex: 1;
-  max-width: 700px;
+  max-width: 670px;
 }
 .main-content .board-wrap .notice-wrap .title-area {
   border-bottom: 2px solid #000;
@@ -434,7 +434,7 @@
 }
 .main-content .board-wrap .popup-wrap {
   flex: 1;
-  max-width: 600px;
+  max-width: 670px;
 }
 .main-content .board-wrap .popup-wrap .title-area .title {
   font-family: "Outfit", sans-serif;
@@ -472,7 +472,7 @@
 }
 .main-content .board-wrap .popup-wrap .img {
   border-radius: 20px;
-  aspect-ratio: 1.68;
+  aspect-ratio: 2;
   display: block;
   overflow: hidden;
   position: relative;
