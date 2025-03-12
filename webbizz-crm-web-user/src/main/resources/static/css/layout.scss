@@ -91,8 +91,6 @@
         transform: translateX(-50%);
         z-index: 10;
         width: 100%;
-        border-top: 1px solid $border-color;
-        border-bottom: 1px solid $border-color;
         opacity: 0;
         visibility: hidden;
         transition: all 0.3s linear;
@@ -101,22 +99,24 @@
         &.on {
           opacity: 1;
           visibility: visible;
+          border-top: 1px solid $border-color;
+          border-bottom: 1px solid $border-color;
           .depth-wrap {
             display: flex;
           }
           .sub-gnb-bg {
             display: flex;
           }
-        }
-        .title-wrap {
-          position: relative;
-          z-index: 100;
-          width: 32rem;
-          height: 100%;
-          text-align: right;
-          padding: 40px 40px 0 0;
-          .title {
-            font-size: 30px;
+          .title-wrap {
+            position: relative;
+            z-index: 100;
+            width: 32rem;
+            height: 100%;
+            text-align: right;
+            padding: 40px 40px 0 0;
+            .title {
+              font-size: 30px;
+            }
           }
         }
         .depth-wrap {
@@ -631,6 +631,7 @@
     }
   }
 }
+sub-gnb-wrap
 
 // aside
 .aside-bg {
