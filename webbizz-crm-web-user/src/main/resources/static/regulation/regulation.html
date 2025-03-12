@@ -629,11 +629,9 @@
                         <div class="regulation-wrap">
                             <div class="header">
                                 <div class="title">재단법인 디엠씨산학진흥재단 정관</div>
-                                <div class="download">
-                                    <a href="#" class="link">
-                                        <span class="text">정관 다운로드</span>
-                                    </a>
-                                </div>
+                                <a href="#" class="link">
+                                    <span class="text">정관 다운로드</span>
+                                </a>
                             </div>
                             <div class="cont">
                                 <div class="info">
@@ -1186,4 +1184,27 @@
     </div>
 </footer>
 </div>
+<script>
+      document.querySelectorAll(".accordion-box .sub-header").forEach(header => {
+    header.addEventListener("click", () => {
+      const accordion = header.closest(".accordion-box"); 
+      const isActive = accordion.classList.contains("active");
+
+      // 모든 아코디언 닫기
+      document.querySelectorAll(".accordion-box").forEach(acc => {
+        acc.classList.remove("active");
+      });
+
+      if (!isActive) {
+        accordion.classList.add("active");
+        setTimeout(() => {
+          const yOffset = -100; 
+          const y = accordion.getBoundingClientRect().top + window.scrollY + yOffset;
+
+          window.scrollTo({ top: y, behavior: "smooth" });
+        });
+      }
+    });
+  });
+</script>
 </body></html>
