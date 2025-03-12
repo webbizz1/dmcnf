@@ -5,20 +5,20 @@ window.addEventListener('DOMContentLoaded', () => {
 	}
 
   // 공유 버튼 클릭 시 공유 팝업 표시/숨기기
-	const shareBtn = document.querySelector('.function-wrap .btn-share');
-  const sharePopup = shareBtn.nextElementSibling;
+	// const shareBtn = document.querySelector('.function-wrap .btn-share');
+  // const sharePopup = shareBtn.nextElementSibling;
   
-	shareBtn.addEventListener('click', function (e) {
-    e.stopPropagation();
-		if(sharePopup.classList.contains('on')) {
-			sharePopup.classList.remove('on');
-		} else {
-			sharePopup.classList.add('on');
-		}
-    sharePopup.querySelector('.btn-close').addEventListener('click', function () {
-      sharePopup.classList.remove('on');
-    });
-	});
+	// shareBtn.addEventListener('click', function (e) {
+  //   e.stopPropagation();
+	// 	if(sharePopup.classList.contains('on')) {
+	// 		sharePopup.classList.remove('on');
+	// 	} else {
+	// 		sharePopup.classList.add('on');
+	// 	}
+  //   sharePopup.querySelector('.btn-close').addEventListener('click', function () {
+  //     sharePopup.classList.remove('on');
+  //   });
+	// });
 
   // 외부 영역 클릭 시 모든 공유 팝업, custom select 등 닫기
   document.addEventListener('click', function (e) {
@@ -32,9 +32,9 @@ window.addEventListener('DOMContentLoaded', () => {
     }
     
     // 공유 팝업 닫기
-    outsideClickClose('.function-wrap', function () {
-      sharePopup.classList.remove('on');
-    });
+    // outsideClickClose('.function-wrap', function () {
+    //   sharePopup.classList.remove('on');
+    // });
   });
 
   let tabBtn = document.querySelectorAll('.tab-wrap .tab');
@@ -67,5 +67,5 @@ window.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  document.querySelector('.tab-select').addEventListener('click', (e) => toggleTab(e));
+  // document.querySelector('.tab-select').addEventListener('click', (e) => toggleTab(e));
 });

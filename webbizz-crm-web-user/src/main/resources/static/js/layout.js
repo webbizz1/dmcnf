@@ -71,18 +71,18 @@ function layoutEvent() {
 	// });
 
 	// 통합검색창
-	const searchBtn = document.querySelector('.hd-utils .btn-search');
-	const headSearch = document.querySelector('.hd-search-wrap');
-	searchBtn.addEventListener('click', function () {
-		if (headSearch.classList.contains('on')) {
-			headSearch.classList.remove('on');
-		} else {
-			headSearch.classList.add('on');
-		}
-		headSearch.querySelector('.search-close').addEventListener('click', function () {
-			headSearch.classList.remove('on');
-		});
-	});
+	// const searchBtn = document.querySelector('.hd-utils .btn-search');
+	// const headSearch = document.querySelector('.hd-search-wrap');
+	// searchBtn.addEventListener('click', function () {
+	// 	if (headSearch.classList.contains('on')) {
+	// 		headSearch.classList.remove('on');
+	// 	} else {
+	// 		headSearch.classList.add('on');
+	// 	}
+	// 	headSearch.querySelector('.search-close').addEventListener('click', function () {
+	// 		headSearch.classList.remove('on');
+	// 	});
+	// });
 
 	// aside
 	// 사이트맵

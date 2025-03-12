@@ -51,7 +51,7 @@
 }
 .main-content .main-visual .swiper-slide .txt-box {
   position: absolute;
-  top: 200px;
+  top: 20%;
   left: 50%;
   transform: translateX(-50%);
   text-align: center;
@@ -93,7 +93,7 @@
   font-family: "Outfit", sans-serif;
   margin-top: 16px;
   font-size: 24px;
-  line-height: 1.2;
+  line-height: 1.4;
 }
 .main-content .main-visual .swiper-control {
   position: absolute;
@@ -162,34 +162,6 @@
   padding: 100px 0;
   background: #d0e8ff url("../images/sub/main_bg1.png") no-repeat center/cover;
 }
-.main-content .swiper-navi {
-  display: flex;
-  gap: 16px;
-}
-.main-content .swiper-navi button {
-  font-size: 0;
-  width: 50px;
-  height: 50px;
-  border-radius: 6px;
-  background-color: #fff;
-  background-repeat: no-repeat;
-  background-position: center;
-}
-.main-content .swiper-navi .swiper-button {
-  background-image: url("../images/common/ico/arrow_left.svg");
-}
-.main-content .swiper-navi .swiper-button.next {
-  background-image: url("../images/common/ico/arrow_right.svg");
-}
-.main-content .swiper-navi .swiper-button.swiper-button-disabled {
-  opacity: 0.4;
-}
-.main-content .swiper-navi .pause, .main-content .swiper-navi .main-visual .swiper-control .play, .main-content .main-visual .swiper-control .swiper-navi .play {
-  background-image: url("../images/common/ico/swiper_pause02.svg");
-}
-.main-content .swiper-navi .play {
-  background-image: url("../images/common/ico/swiper_play02.svg");
-}
 .main-content .menu-wrap {
   position: absolute;
   width: 100%;
@@ -256,10 +228,6 @@
 }
 .main-content .business-wrap .business-slide {
   position: relative;
-  margin: -14px;
-}
-.main-content .business-wrap .business-slide .swiper {
-  padding: 14px;
 }
 .main-content .business-wrap .business-slide .swiper .swiper-slide:not(.swiper-slide-active)::after {
   content: "";
@@ -290,7 +258,7 @@
   z-index: 100;
   width: 54px;
   height: 54px;
-  background: url("../images/sub/main_swiper_prev.png") no-repeat center;
+  background: url("../images/sub/main_swiper_prev.png") no-repeat center/cover;
   font-size: 0;
 }
 .main-content .business-wrap .swiper-navi .swiper-button.next {
@@ -320,7 +288,8 @@
 .main-content .business-wrap .business-item .text-box {
   background: #fff;
   flex: 0.4;
-  padding: 60px 20px 60px 40px;
+  padding: 60px 20px;
+  padding-left: 40px;
   position: relative;
 }
 .main-content .business-wrap .business-item .text-box .label {
@@ -332,6 +301,7 @@
   margin-top: 10px;
   color: #666;
   font-size: 18px;
+  line-height: 1.4;
   word-break: keep-all;
 }
 .main-content .business-wrap .business-item .text-box .title {
@@ -339,6 +309,7 @@
   font-weight: 600;
   font-size: 28px;
   line-height: 1.4;
+  word-break: keep-all;
 }
 .main-content .business-wrap .business-item .text-box .btn-view {
   position: absolute;
@@ -678,7 +649,12 @@
 }
 @media only screen and (max-width: 1240px) {
   .main-content .main-visual .swiper-slide .txt-box {
-    padding: 0 16px 160px;
+    padding: 0 16px;
+    gap: 30px;
+  }
+  .main-content .main-visual .swiper-slide .txt-box::before, .main-content .main-visual .swiper-slide .txt-box::after {
+    width: 35px;
+    height: 198.1px;
   }
   .main-content .main-visual .swiper-slide .txt-box .txt {
     font-size: 50px;
@@ -689,8 +665,41 @@
   .main-content .main-section.business-section {
     padding: 60px 0;
   }
+  .main-content .menu-wrap .menu-list {
+    justify-content: space-around;
+  }
   .main-content .menu-wrap .menu-list li [class*=menu] {
     padding: 20px 0;
+  }
+  .main-content .business-wrap .swiper-navi {
+    max-width: 84%;
+  }
+  .main-content .business-wrap .swiper-navi .swiper-button {
+    width: 46px;
+    height: 46px;
+  }
+  .main-content .business-wrap .business-item {
+    height: 380px;
+  }
+  .main-content .business-wrap .business-item .img {
+    flex: 0.5;
+  }
+  .main-content .business-wrap .business-item .text-box {
+    flex: 0.5;
+    padding: 40px 20px;
+  }
+  .main-content .business-wrap .business-item .text-box .title {
+    font-size: 24px;
+  }
+  .main-content .business-wrap .business-item .text-box .btn-view {
+    left: 20px;
+    bottom: 30px;
+    width: 100px;
+    height: 40px;
+    line-height: 40px;
+  }
+  .main-content .business-wrap .business-item .text-box .swiper-count {
+    bottom: 30px;
   }
   .main-content .board-wrap {
     flex-direction: column;
@@ -703,38 +712,7 @@
 }
 @media only screen and (max-width: 1023px) {
   .main-content .main-visual {
-    margin-top: 56px;
-    height: 347px;
-  }
-  .main-content .main-visual .swiper-control {
-    top: auto;
-    margin-top: 0;
-    bottom: 103px;
-  }
-  .main-content .main-visual .swiper-control .pagination {
-    gap: 10px;
-    margin-right: 10px;
-  }
-  .main-content .main-visual .swiper-control .pagination .swiper-pagination-bullet {
-    width: 7px;
-    height: 7px;
-  }
-  .main-content .main-visual .swiper-control .pagination .swiper-pagination-bullet-active {
-    width: 10px;
-    height: 10px;
-  }
-  .main-content .main-visual .swiper-control .pagination .swiper-pagination-bullet-active::after {
-    width: 24px;
-    height: 24px;
-  }
-  .main-content .main-visual .swiper-control .pause, .main-content .main-visual .swiper-control .play {
-    background-size: 7px auto;
-  }
-  .main-content .main-visual .swiper-control .play {
-    background-size: 11px auto;
-  }
-  .main-content .main-visual .swiper-slide .txt-box {
-    padding-bottom: 40px;
+    margin-top: 70px;
   }
   .main-content .main-visual .swiper-slide .txt-box .txt {
     font-size: 24px;
@@ -748,45 +726,70 @@
   .main-content .main-section.business-section .tit-area {
     margin-bottom: 24px;
   }
-  .main-content .swiper-navi {
-    gap: 8px;
+  .main-content .business-wrap .title-area .title {
+    font-size: 28px;
   }
-  .main-content .swiper-navi button {
-    width: 28px;
-    height: 28px;
+  .main-content .business-wrap .swiper-navi {
+    max-width: 87%;
   }
-  .main-content .swiper-navi .swiper-button {
-    background-size: 14px;
-  }
-  .main-content .swiper-navi .pause, .main-content .swiper-navi .main-visual .swiper-control .play, .main-content .main-visual .swiper-control .swiper-navi .play {
-    background-size: 7px auto;
-  }
-  .main-content .swiper-navi .play {
-    background-size: 11px auto;
-  }
-  .main-content .menu-wrap .menu-list {
-    gap: 14px;
-    flex-wrap: wrap;
-  }
-  .main-content .menu-wrap .menu-list li {
-    flex: 0 0 auto;
-    width: calc(33.3333333333% - 10px);
-  }
-  .main-content .menu-wrap .menu-list li [class*=menu]::before {
-    width: 40px;
-    height: 40px;
+  .main-content .board-wrap .title-area .title {
+    font-size: 26px;
   }
 }
 @media only screen and (max-width: 768px) {
-  .main-content .menu-wrap .menu-list li [class*=menu] {
-    height: auto;
-    padding: 22px 0 16px;
+  .main-content .main-visual {
+    margin-top: 56px;
+    height: 600px;
+  }
+  .main-content .main-visual .swiper-slide .txt-box {
+    top: 20%;
+  }
+  .main-content .main-visual .swiper-slide .txt-box::before, .main-content .main-visual .swiper-slide .txt-box::after {
+    content: none;
+  }
+  .main-content .main-visual .swiper-slide .txt-box .txt-en {
+    font-size: 20px;
+  }
+  .main-content .main-visual .swiper-control {
+    bottom: 46%;
   }
   .main-content .menu-wrap .menu-list li [class*=menu]::before {
+    width: 54px;
+    height: 54px;
     margin-bottom: 6px;
   }
   .main-content .menu-wrap .menu-list li [class*=menu] .txt {
     font-size: 14px;
+  }
+  .main-content .business-wrap .title-area {
+    margin-bottom: 30px;
+  }
+  .main-content .business-wrap .title-area .title {
+    font-size: 24px;
+  }
+  .main-content .business-wrap .title-area .desc {
+    font-size: 16px;
+  }
+  .main-content .business-wrap .business-slide {
+    padding-left: 16px;
+  }
+  .main-content .business-wrap .swiper-navi {
+    display: none;
+  }
+  .main-content .business-wrap .business-item {
+    height: 340px;
+  }
+  .main-content .business-wrap .business-item .img {
+    display: none;
+  }
+  .main-content .business-wrap .business-item .text-box {
+    flex: 1;
+  }
+  .main-content .business-wrap .business-item .text-box .desc {
+    font-size: 16px;
+  }
+  .main-content .business-wrap .business-item .text-box .title {
+    font-size: 20px;
   }
   .main-content .board-wrap {
     gap: 40px;

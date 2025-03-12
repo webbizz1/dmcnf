@@ -166,7 +166,7 @@
               transition: all 0.3s;
             }
             &.active {
-              background: linear-gradient(259.17deg, #0019fb -18.97%, #12bc7f 84.41%);
+              background: linear-gradient(95deg, #2b408e 0%, #306aaa 100%);
               box-shadow: 4px 4px 25px rgba(0, 120, 237, 0.4);
               color: #fff;
               font-weight: 700;
@@ -287,22 +287,30 @@
       display: flex;
       align-items: center;
       .btn-link {
+        display: flex;
+        align-items: center;
+        justify-content: center;
         width: 174px;
         height: 40px;
-        background:
-          url("../images/sub/logo_dmcbiz.svg") no-repeat center,
-          linear-gradient(114deg, #0f3b75 0%, #254d82 100%);
+        background: linear-gradient(114deg, #0f3b75 0%, #254d82 100%);
         border-radius: 20px;
         font-size: 0;
         text-indent: -9999em;
         transition: all 0.3s;
+        &::after {
+          content: "";
+          display: block;
+          width: 126px;
+          height: 13px;
+          background: url("../images/sub/logo_dmcbiz.svg") no-repeat center/100% auto;
+        }
       }
       .all-menu {
         position: relative;
         width: 24px;
         height: 24px;
         padding: 4px;
-        margin-left: 20px;
+        margin-left: 16px;
         transition: all 0.4s;
         &.active {
           span {
@@ -396,7 +404,7 @@
   }
   #header .hd-wrap .gnb-wrap .sub-gnb-wrap .depth2 > li > a {
     &:hover {
-      background: linear-gradient(259.17deg, #0019fb -18.97%, #12bc7f 84.41%);
+      background: linear-gradient(95deg, #2b408e 0%, #306aaa 100%);
       box-shadow: 4px 4px 25px rgba(0, 120, 237, 0.4);
       color: #fff;
       font-weight: 700;
@@ -445,6 +453,9 @@
       .gnb-wrap {
         display: none;
       }
+      .hd-utils {
+        margin-left: auto;
+      }
     }
   }
 }
@@ -458,6 +469,14 @@
         width: 78px;
         height: 24px;
       }
+      .hd-utils .btn-link {
+        width: 110px;
+        height: 34px;
+        &::after {
+          width: calc(126px * 0.7);
+          height: calc(13px * 0.7);
+        }
+      }
     }
   }
 }
@@ -470,7 +489,8 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 26px 0 22px;
+      padding-top: 26px;
+      padding-bottom: 22px;
       border-bottom: 1px solid rgba(#fff, 0.4);
     }
     .link-list {
@@ -562,6 +582,8 @@
       }
     }
   }
+}
+@include laptop {
 }
 @include mobile {
   #footer {

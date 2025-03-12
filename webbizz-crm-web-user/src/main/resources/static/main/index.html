@@ -546,7 +546,7 @@
                                     <div class="txt-box">
                                         <p class="txt">
                                             일자리 질 개선을 위한<br> <strong>든든한 동반자로 함께 하겠습니다.</strong>
-                                            <span class="txt-en">To Improve Job Quality We'll be a Reliable
+                                            <span class="txt-en">To Improve Job Quality<br class="for-m"> We'll be a Reliable
                                                 Partner</span>
                                         </p>
                                     </div>
@@ -565,7 +565,7 @@
                                     <div class="txt-box">
                                         <p class="txt">
                                             일자리 질 개선을 위한<br> <strong>든든한 동반자로 함께 하겠습니다.</strong>
-                                            <span class="txt-en">To Improve Job Quality We'll be a Reliable
+                                            <span class="txt-en">To Improve Job Quality<br class="for-m"> We'll be a Reliable
                                                 Partner</span>
                                         </p>
                                     </div>
@@ -1160,7 +1160,7 @@
                     //주요사업안내 슬라이드
                     const businessSlide = new Swiper('.business-wrap .swiper', {
                         slidesPerView: 1.2,
-                        spaceBetween: 20,
+                        spaceBetween: 30,
                         slidesOffsetAfter: 2,
                         centeredSlides: false,
                         loop: true,
@@ -1178,9 +1178,10 @@
                             prevEl: '.business-wrap .prev',
                         },
                         breakpoints: {
+                            // tablet
                             769: {
-                                slidesPerView: 1.4,
-                                spaceBetween: 40,
+                                slidesPerView: 1.3,
+                                spaceBetween: 50,
                                 slidesOffsetAfter: 0,
                                 centeredSlides: true,
                                 loop: true,
@@ -1189,7 +1190,8 @@
                                     disableOnInteraction: false,
                                 },
                             },
-                            1024: {
+                            // laptop
+                            1241: {
                                 slidesPerView: 1.65,
                                 spaceBetween: 100,
                                 slidesOffsetAfter: 0,

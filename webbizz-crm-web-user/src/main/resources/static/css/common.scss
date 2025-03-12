@@ -362,12 +362,11 @@ textarea {
 	&:after {
 		content: "N";
 		display: block;
-		font-family: $mont;
 		@include font(600, 10px, #fff);
 	}
 }
 
-@media (max-width: 1400px) {
+@media (max-width: 1440px) {
 	.w-set {
 		padding: 0 16px;
 	}

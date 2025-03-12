@@ -86,7 +86,7 @@ textarea {
   width: 100%;
   height: 50px;
   background: #fff;
-  border: 1px solid #DDDDDD;
+  border: 1px solid #dddddd;
   border-radius: 3px;
   font-size: 15px;
   padding: 0 20px;
@@ -174,7 +174,7 @@ textarea:disabled {
   box-sizing: border-box;
 }
 .checkbox input:checked + .label:before, .radiobox input:checked + .label:before {
-  border-color: #0042A6;
+  border-color: #0f3b75;
   background: #fff url("../images/common/ico_chk_on.svg") no-repeat center;
 }
 
@@ -211,8 +211,8 @@ textarea:disabled {
   width: 100px;
   height: 40px;
   line-height: 38px;
-  background: #0042A6;
-  border: 1px solid #0042A6;
+  background: #0f3b75;
+  border: 1px solid #0f3b75;
   border-radius: 3px;
   font-size: 16px;
   text-align: center;
@@ -220,7 +220,7 @@ textarea:disabled {
 }
 .btn.color2 {
   background: #fff;
-  color: #0042A6;
+  color: #0f3b75;
 }
 .btn.color3 {
   background: #222222;
@@ -311,20 +311,19 @@ textarea:disabled {
   width: 16px;
   height: 16px;
   border-radius: 50%;
-  background: #0042A6;
+  background: #0f3b75;
   line-height: 16px;
   margin: 2px 0 0 5px;
 }
 .new-ico:after {
   content: "N";
   display: block;
-  font-family: "Montserrat", sans-serif;
   font-weight: 600;
   font-size: 10px;
   color: #fff;
 }
 
-@media (max-width: 1400px) {
+@media (max-width: 1440px) {
   .w-set {
     padding: 0 16px;
   }
