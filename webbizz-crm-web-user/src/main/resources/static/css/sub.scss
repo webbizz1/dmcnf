@@ -76,6 +76,7 @@
         .title-wrap {
             margin-top: 50px;
             .title {
+                width: 100%;
                 color: #fff;
             }
             .text {
@@ -646,22 +647,18 @@
         display: flex;
         align-items: center;
         gap: 10px;
-
         span {
             padding-left: 28px;
             background-repeat: no-repeat;
             background-position: left center;
             font-size: 14px;
             color: #666;
-
             &.hits {
                 background-image: url("../images/common/ico_hit_gray.svg");
             }
-
             &.date {
                 background-image: url("../images/common/ico_calendar_gray.svg");
             }
-
             &.line {
                 width: 1px;
                 height: 10px;
@@ -670,17 +667,13 @@
             }
         }
     }
-
     .board-list {
         .list-wrap {
             margin-top: 60px;
-
             .list-top {
                 margin-bottom: 20px;
-
                 .total-count {
                     font-size: 16px;
-
                     span {
                         padding: 0 4px;
                         @include font(600, 16px, $main-color);
@@ -688,18 +681,15 @@
                 }
             }
         }
-
         .table-wrap {
             .item-img {
                 position: relative;
-
                 .imgbox {
                     display: block;
                     @include imgBox(100%);
                 }
             }
         }
-
         // 게시판 테이블 UI
         .table-wrap {
             // 라인형
@@ -712,45 +702,38 @@
                     border-bottom: 1px solid $border-color;
                     background-color: #fff;
                     transition: background-color 0.3s;
-
                     &.table-title {
                         height: 70px;
                         border-top: 1px solid #707070;
-
                         & > div {
                             font-weight: 500;
                             font-size: 20px;
                         }
                     }
-
                     &:not(.table-title) {
                         &:hover {
                             background-color: #f9f9f9;
                         }
-
                         .title {
                             text-align: left;
-
                             a {
-                                width: 100%;
+                                // width: 100%;
                                 display: inline-block;
-                                max-width: 70%;
+                                vertical-align: middle;
+                                max-width: calc(100% - 30px);
                                 @include ellipsis(1);
                                 font-weight: 500;
                             }
                         }
                     }
-
                     & > div {
                         display: table-cell;
                         text-align: center;
                         vertical-align: middle;
                         font-size: 20px;
                     }
-
                     .no {
                         width: 80px;
-
                         .i-notice {
                             display: block;
                             width: 20px;
@@ -761,37 +744,30 @@
                             font-size: 0;
                         }
                     }
-
                     .date {
                         width: 170px;
                     }
-
                     .views {
                         width: 125px;
                     }
                 }
             }
-
             // 목록형
             &.type-news {
                 border-top: 3px solid #707070;
-
                 .list-row {
                     display: flex;
                     gap: 50px;
                     padding: 40px 0;
                     border-bottom: 1px solid #707070;
-
                     .item-img {
                         flex: 0 0 auto;
                         width: 260px;
                         height: 360px;
                         border: 1px solid $border-color;
-
                         .imgbox img {
                             object-position: top;
                         }
-
                         .download-wrap {
                             position: absolute;
                             bottom: 0;
@@ -800,7 +776,6 @@
                             height: 56px;
                             background-color: rgba(#161b4b, 0.8);
                             text-align: center;
-
                             .pdf-down {
                                 display: flex;
                                 align-items: center;
@@ -811,7 +786,6 @@
                                 line-height: 56px;
                                 font-size: 20px;
                                 color: #fff;
-
                                 &::after {
                                     content: "";
                                     width: 28px;
@@ -822,15 +796,12 @@
                             }
                         }
                     }
-
                     .text-wrap {
                         display: flex;
                         flex-direction: column;
-
                         .text-area {
                             .text-box {
                                 position: relative;
-
                                 .tit {
                                     a {
                                         word-break: keep-all;
@@ -838,7 +809,6 @@
                                         font-size: 28px;
                                     }
                                 }
-
                                 .text {
                                     margin-top: 30px;
                                     line-height: 1.5;
@@ -847,10 +817,8 @@
                                 }
                             }
                         }
-
                         .info-area {
                             margin-top: auto;
-
                             span {
                                 font-size: 16px;
                             }
@@ -858,14 +826,12 @@
                     }
                 }
             }
-
             // 갤러리형
             &.type-gallery {
                 display: grid;
                 grid-template-columns: repeat(3, minmax(auto, 400px));
                 justify-content: space-between;
                 gap: 40px 20px;
-
                 .list-row {
                     .item-img {
                         width: 100%;
@@ -874,32 +840,26 @@
                         border: 1px solid $border-color;
                         overflow: hidden;
                         transition: 0.3s;
-
                         &:hover {
                             box-shadow: 0 3px 20px #0000001a;
-
                             .imgbox {
                                 transform: scale(1.1);
                             }
                         }
-
                         .imgbox {
                             background: $background-color url("../images/sub/no_image.svg") no-repeat center;
                             transition: 0.3s;
                         }
                     }
-
                     .text-wrap {
                         .text-area {
                             margin-top: 20px;
-
                             .text-box .tit {
                                 @include ellipsis(1);
                                 font-weight: 500;
                                 font-size: 20px;
                             }
                         }
-
                         .info-area {
                             margin-top: 30px;
                         }
@@ -908,13 +868,10 @@
             }
         }
     }
-
     .board-view {
         margin-top: 40px;
-
         .btn-wrap {
             margin-top: 40px;
-
             .btn {
                 width: 285px;
                 height: 70px;
@@ -923,59 +880,49 @@
                 font-size: 20px;
             }
         }
-
         .view-wrap {
-            padding-bottom: 20px;
+            padding: 0 0 20px;
             border-bottom: 1px solid #e2e2e2;
+            border-radius: 0;
         }
-
         .view-top {
             border-top: 2px solid #222;
-
             .tit {
                 padding: 28px 20px;
                 font-weight: 500;
                 font-size: 20px;
                 word-break: keep-all;
             }
-
             .info-area {
                 justify-content: flex-end;
                 padding: 20px;
                 border-top: 1px solid #707070;
             }
         }
-
         .view-cont {
             padding: 30px 20px 50px;
             border-top: 1px solid #e2e2e2;
             font-size: 16px;
-
             p {
                 line-height: 1.4;
                 word-break: keep-all;
             }
         }
-
         .view-attachment {
             .attachment {
                 padding: 0 20px;
-
                 &:first-child {
                     padding-top: 20px;
                     border-top: 1px solid #e2e2e2;
                 }
-
                 & + .attachment {
                     margin-top: 5px;
                 }
-
                 a {
                     display: inline-flex;
                     align-items: center;
                     gap: 5px;
                     padding: 5px 0;
-
                     &::before,
                     &::after {
                         content: "";
@@ -984,11 +931,9 @@
                         background-repeat: no-repeat;
                         background-position: center;
                     }
-
                     &::before {
                         background-image: url("../images/common/ico_attach.svg");
                     }
-
                     &::after {
                         background-image: url("../images/common/ico_down.svg");
                     }
@@ -999,9 +944,6 @@
 }
 
 @include laptop {
-    .sub-content {
-        padding-top: 70px;
-    }
     .cont-top {
         .title-wrap {
             .title {
@@ -1023,8 +965,9 @@
                 .title {
                     position: absolute;
                     top: calc(50% - 25px);
-                    left: 50%;
-                    transform: translate(-50%, -50%);
+                    left: 0;
+                    right: 0;
+                    transform: translateY(-50%);
                     font-size: 36px;
                 }
                 .text {
@@ -1202,31 +1145,23 @@
 }
 
 @include mobile {
-    .sub-content {
-        padding-top: 56px;
-    }
     .cont-top {
         position: relative;
         display: flex;
         flex-direction: column;
         padding: 0 16px;
-
         &.type-bg {
             position: relative;
             margin-bottom: 100px;
-
             .m-title {
                 @include font(600, 20px, #161b4b);
             }
-
             .title-wrap {
                 height: 100%;
-
                 .title {
                     top: 50%;
                 }
             }
-
             .sub-nav {
                 position: absolute;
                 bottom: 0;
@@ -1234,33 +1169,26 @@
                 width: calc(100% - 32px);
                 height: auto;
                 padding: 26px 0 20px;
-
                 .w-set {
                     align-items: flex-start;
                     flex-direction: column;
                 }
-
                 .location-wrap {
                     margin-top: 10px;
-
                     .location {
                         color: #666;
-
                         &.on {
                             font-weight: 600;
                             color: #222;
                         }
-
                         &.home {
                             background-image: url("../images/common/location_home.svg");
                         }
                     }
                 }
-
                 .function-wrap {
                     top: 26px;
                     right: 0;
-
                     .func {
                         &.share {
                             .btn-share {

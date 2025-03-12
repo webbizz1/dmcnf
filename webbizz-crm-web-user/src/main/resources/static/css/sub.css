@@ -67,6 +67,7 @@
   margin-top: 50px;
 }
 .cont-top.type-bg .title-wrap .title {
+  width: 100%;
   color: #fff;
 }
 .cont-top.type-bg .title-wrap .text {
@@ -656,9 +657,9 @@
   text-align: left;
 }
 .board-wrap .board-list .table-wrap.type-line .list-row:not(.table-title) .title a {
-  width: 100%;
   display: inline-block;
-  max-width: 70%;
+  vertical-align: middle;
+  max-width: calc(100% - 30px);
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -808,8 +809,9 @@
   font-size: 20px;
 }
 .board-wrap .board-view .view-wrap {
-  padding-bottom: 20px;
+  padding: 0 0 20px;
   border-bottom: 1px solid #e2e2e2;
+  border-radius: 0;
 }
 .board-wrap .board-view .view-top {
   border-top: 2px solid #222;
@@ -865,9 +867,6 @@
 }
 
 @media only screen and (max-width: 1240px) {
-  .sub-content {
-    padding-top: 70px;
-  }
   .cont-top .title-wrap .title {
     font-size: 40px;
   }
@@ -888,8 +887,9 @@
   .cont-top.type-bg .title-wrap .title {
     position: absolute;
     top: calc(50% - 25px);
-    left: 50%;
-    transform: translate(-50%, -50%);
+    left: 0;
+    right: 0;
+    transform: translateY(-50%);
     font-size: 36px;
   }
   .cont-top.type-bg .title-wrap .text {
@@ -1005,9 +1005,6 @@
   }
 }
 @media only screen and (max-width: 768px) {
-  .sub-content {
-    padding-top: 56px;
-  }
   .cont-top {
     position: relative;
     display: flex;
