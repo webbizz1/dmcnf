@@ -1,0 +1,348 @@
+<html lang="ko"><head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+	<title>DMC재단 사용자 마크업 리스트</title>
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<script type="text/javascript" src="./js/jquery-1.12.4.min.js"></script>
+	<style>
+		*{-webkit-text-size-adjust:none;}
+		html,body{width:100%;height:100%; min-width:800px;}
+		html, body, div, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, figure, footer, header, hgroup, menu, nav, section, summary, time, mark, audio, video{margin:0; padding:0; outline:0; font-family:NanumGothic,'나눔고딕',Dotum,'돋움',applegothic,sans-serif; font-size:13px; color:#555;}
+		body{line-height:1.2em; border:0;}
+		strong, em, span, wbr, a{display:inline-block;}
+		span{margin:0; padding:0; outline:0;}
+		hr{display:none}
+		ol, ul, dl, dt, dd{list-style:none outside none; padding:0; margin:0;}
+		fieldset, img, table, caption, tbody, tfoot, thead, tr, th, td, button, hr{border:0;}
+		address, caption, cite, code, dfn, em, strong, th, var{font-style: normal;}
+		img{vertical-align:middle;}
+		a{cursor:pointer; text-decoration:none; color:#666;}
+		table{border-collapse:collapse;}
+		#wrap{padding:12px;}
+		#header{margin-bottom:20px;position: relative;}
+		#header::after{content:''; clear:both; display:block;}
+		#header>h1{float:left; font-size:28px; color:#1a1a1a; padding-top:15px;}
+		#header>div{float:right;}
+		#header>div>p{font-size:11px; color:#888; text-align:right;}
+		h3{font-size:14px; color:#333; margin-bottom:13px;}
+		h4{font-size:14px; color:#333; margin:25px 0 8px 5px;}
+		table.htmllist th,table.htmllist td{border:1px solid #ccc;}
+		table.htmllist tr:first-child td{text-align:center; font-weight:bold; border-bottom:1px solid #111 !important; height:30px; color:#000 !important; font-size:13px !important;}
+		table.htmllist th{padding:5px 6px; text-align:left; border-bottom:2px solid #444 !important; height:32px; background-color:#f3f4f8;}
+		table.htmllist th.depth2{padding: 2px 18px; text-align:left; border-bottom:1px solid #333 !important; height:30px; font-size: 12px; background-color: #fff}
+		table.htmllist td{padding:5px 6px;}
+		table.htmllist td:first-child{text-align:center;}
+		table.htmllist td:last-child{color:#888; font-size:12px;}
+		table.htmllist td:nth-child(4),table.htmllist td:nth-child(6),table.htmllist td:nth-child(7){text-align:center;}
+		table.htmllist td:nth-child(5) a{background-color: #0042A6;}
+		table.htmllist td:nth-child(5) a:hover{background-color: #161B4B;}
+		table.htmllist td:nth-child(7){color:#0042A6; font-size:11px; font-weight:bold;text-align: left;}
+		table.htmllist td > a{display:block; width:100%; height:26px; line-height:26px; margin: 1px 0;text-align:center; color:#fff; font-size:11px; font-weight:bold; background-color:#444; border:1px solid #444; border-radius:3px;}
+		table.htmllist td > a.on01{background-color: #0042A6;}
+		table.htmllist td>a:hover{background-color:#0042A6; line-height:28px;}
+		table.htmllist tr:hover>td{background-color:#fffad2;}
+		table.htmllist tr.delete td{background: #ddd;}
+		table.htmllist td.ing{text-align:center; font-size:12px;}
+		table.htmllist td.end{text-align:center; font-size:12px; font-weight:bold; background-color:#b8bbbf; color:#1a1a1a;}
+		table.htmllist td.admin{text-align:center; font-size:12px; font-weight:bold; background-color:#b8bbbf; color:#1a1a1a;}
+		.c-red{color: red;}
+		.c-blue{color: blue;}
+		.history-box{background: #eaeaea;padding: 20px;}
+		.history-box .date{display: block;margin-bottom: 6px;}
+		.history-box li{margin-bottom: 10px;}
+		.history-box li::before{content: '- ';}
+	</style>
+</head>
+<body>
+<div id="wrap">
+	<div id="header">
+		<h1>DMC재단 사용자 마크업 리스트</h1>
+		<div>
+			<p>Version: <b>0.0.01</b></p>
+			<p>Last Update: <b>2025-03-13</b></p>
+			<p>Coding: <b>HTML5&amp;CSS3</b></p>
+		</div>
+	</div>
+	<!-- <div class="history-box">
+		<strong class="date"></strong>
+		<ul>
+			<li></li>
+		</ul>
+	</div> -->
+	<h4>코딩 목록</h4>
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="htmllist">
+		<thead>
+			<tr class="head">
+				<td>No</td>
+				<td>Path</td>
+				<td>FileName</td>
+				<td>State</td>
+				<td>Publishing</td>
+				<td>Update</td>
+				<td>Remark</td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<th colspan="7">메인</th>
+			</tr>
+			<tr>
+				<td></td>
+				<td>/main/</td>
+				<td>index</td>
+				<td class="end">end</td>
+				<td>
+					<a href="./main/index.html" target="_blank">View</a>
+				</td>
+				<td>2025-03-13</td>
+				<td>HOME > 메인</td>
+			</tr>
+			<tr>
+				<th colspan="7">공통</th>
+			</tr>
+			<!-- <tr>
+				<td></td>
+				<td>/main/</td>
+				<td>common</td>
+				<td class=""></td>
+				<td>
+					<a href="./main/common.html" target="_blank">View</a>
+				</td>
+				<td>2024-12-</td>
+				<td>공통</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>/main/</td>
+				<td>popup</td>
+				<td class="ing">ing</td>
+				<td>
+					<a href="./main/popup.html" target="_blank">View</a>
+				</td>
+				<td>2024-12-</td>
+				<td>팝업</td>
+			</tr> -->
+			<tr>
+				<th colspan="7">Digital Media City</th>
+			</tr>
+			<tr>
+				<td></td>
+				<td>/dmc/</td>
+				<td>cluster</td>
+				<td class="ing">ing</td>
+				<td>
+					<a href="./dmc/cluster.html" target="_blank">View</a>
+				</td>
+				<td>2025-03-13</td>
+				<td>HOME > Digital Media City > 상암DMC클러스터</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>/dmc/</td>
+				<td>facilities</td>
+				<td class="ing">ing</td>
+				<td>
+					<a href="./dmc/facilities.html" target="_blank">View</a>
+				</td>
+				<td>2025-03-13</td>
+				<td>HOME > Digital Media City > DMC 입주시설</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>/dmc/</td>
+				<td>industry_support</td>
+				<td class="ing">ing</td>
+				<td>
+					<a href="./dmc/industry_support.html" target="_blank">View</a>
+				</td>
+				<td>2025-03-13</td>
+				<td>HOME > Digital Media City > 주요 산업지원시설</td>
+			</tr>
+			<tr>
+				<th colspan="7">재단소개</th>
+			</tr>
+			<tr>
+				<td></td>
+				<td>/dmc/</td>
+				<td>industry_support</td>
+				<td class="ing">ing</td>
+				<td>
+					<a href="./dmc/industry_support.html" target="_blank">View</a>
+				</td>
+				<td>2025-03-13</td>
+				<td>HOME > 재단소개 > 설립목적</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>/dmc/</td>
+				<td>industry_support</td>
+				<td class="ing">ing</td>
+				<td>
+					<a href="./dmc/industry_support.html" target="_blank">View</a>
+				</td>
+				<td>2025-03-13</td>
+				<td>HOME > 재단소개 > 재단 정관</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>/dmc/</td>
+				<td>industry_support</td>
+				<td class="ing">ing</td>
+				<td>
+					<a href="./dmc/industry_support.html" target="_blank">View</a>
+				</td>
+				<td>2025-03-13</td>
+				<td>HOME > 재단소개 > 연혁</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>/dmc/</td>
+				<td>industry_support</td>
+				<td class="ing">ing</td>
+				<td>
+					<a href="./dmc/industry_support.html" target="_blank">View</a>
+				</td>
+				<td>2025-03-13</td>
+				<td>HOME > 재단소개 > 인사말</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>/dmc/</td>
+				<td>industry_support</td>
+				<td class="ing">ing</td>
+				<td>
+					<a href="./dmc/industry_support.html" target="_blank">View</a>
+				</td>
+				<td>2025-03-13</td>
+				<td>HOME > 재단소개 > 이사회</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>/dmc/</td>
+				<td>industry_support</td>
+				<td class="ing">ing</td>
+				<td>
+					<a href="./dmc/industry_support.html" target="_blank">View</a>
+				</td>
+				<td>2025-03-13</td>
+				<td>HOME > 재단소개 > 조직구성</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>/dmc/</td>
+				<td>industry_support</td>
+				<td class="ing">ing</td>
+				<td>
+					<a href="./dmc/industry_support.html" target="_blank">View</a>
+				</td>
+				<td>2025-03-13</td>
+				<td>HOME > 재단소개 > 홍보자료</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>/dmc/</td>
+				<td>industry_support</td>
+				<td class="ing">ing</td>
+				<td>
+					<a href="./dmc/industry_support.html" target="_blank">View</a>
+				</td>
+				<td>2025-03-13</td>
+				<td>HOME > 재단소개 > 오시는 길</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>/dmc/</td>
+				<td>industry_support</td>
+				<td class="admin">admin</td>
+				<td>
+					<a href="./dmc/industry_support.html" target="_blank">View</a>
+				</td>
+				<td>2025-03-13</td>
+				<td>HOME > 재단소개 > 대관 안내</td>
+			</tr>
+			<tr>
+				<th colspan="7">사업안내</th>
+			</tr>
+			<tr>
+				<td></td>
+				<td>/dmc/</td>
+				<td>industry_support</td>
+				<td class="ing">ing</td>
+				<td>
+					<a href="./dmc/industry_support.html" target="_blank">View</a>
+				</td>
+				<td>2025-03-13</td>
+				<td>HOME > 사업안내 > 주요사업</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>/dmc/</td>
+				<td>industry_support</td>
+				<td class="ing">ing</td>
+				<td>
+					<a href="./dmc/industry_support.html" target="_blank">View</a>
+				</td>
+				<td>2025-03-13</td>
+				<td>HOME > 사업안내 > 기업발굴 및 성장지원</td>
+			</tr>
+			<tr>
+				<th colspan="7">참여와 소통</th>
+			</tr>
+			<tr>
+				<td></td>
+				<td>/dmc/</td>
+				<td>industry_support</td>
+				<td class="admin">admin</td>
+				<td>
+					<a href="./dmc/industry_support.html" target="_blank">View</a>
+				</td>
+				<td>2025-03-13</td>
+				<td>HOME > 참여와 소통 > 공지사항</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>/dmc/</td>
+				<td>industry_support</td>
+				<td class="admin">admin</td>
+				<td>
+					<a href="./dmc/industry_support.html" target="_blank">View</a>
+				</td>
+				<td>2025-03-13</td>
+				<td>HOME > 참여와 소통 > 보도자료</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>/dmc/</td>
+				<td>industry_support</td>
+				<td class="admin">admin</td>
+				<td>
+					<a href="./dmc/industry_support.html" target="_blank">View</a>
+				</td>
+				<td>2025-03-13</td>
+				<td>HOME > 참여와 소통 > 영상자료</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+<script>
+	// 모든 tbody 요소를 선택합니다.
+	const tbodyList = document.querySelectorAll('tbody');
+
+	tbodyList.forEach((tbody) => {
+		let rowIndex = 1; // 넘버링 시작값 (1부터 시작)
+		const rows = tbody.querySelectorAll('tr'); // tbody 내의 모든 tr 요소를 선택
+
+		rows.forEach((row) => {
+			const firstTd = row.querySelector('td:first-child'); // 첫 번째 td 요소를 선택
+			if (firstTd) {
+				firstTd.textContent = rowIndex; // 넘버링 삽입
+				rowIndex++; // 다음 행의 번호를 증가
+			}
+		});
+	});
+</script>
+
+
+</body></html>

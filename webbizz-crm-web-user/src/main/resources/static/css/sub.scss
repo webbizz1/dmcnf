@@ -3,6 +3,9 @@
 .sub-content {
     padding: 0 0 120px;
 }
+.cont-btm {
+    padding: 80px 0 0;
+}
 
 .text-editor {
     max-height: 24px;
@@ -452,88 +455,34 @@
 }
 
 // 탭버튼
-// .tab-list {
-//   width: 100%;
-//   height: 80px;
-//   margin-bottom: 70px;
-//   border-bottom: 1px solid $border-color;
-//   .w-set {
-//     display: flex;
-//     align-items: center;
-//     height: 100%;
-//   }
-//   a,
-//   button {
-//     position: relative;
-//     flex: 1;
-//     height: 100%;
-//     padding: 27px 0;
-//     text-align: center;
-//     @include font(600, 20px, #333);
-//     &.on {
-//       font-size: 22px;
-//       color: $main-color;
-//       &::after {
-//         transform: scaleX(1);
-//       }
-//     }
-//     &::after {
-//       content: '';
-//       position: absolute;
-//       bottom: 0;
-//       left: 0;
-//       width: 100%;
-//       height: 2px;
-//       background-color: $main-color;
-//       transform: scaleX(0);
-//       transition: transform 0.3s;
-//     }
-//     span {
-//       font-size: 20px;
-//     }
-//   }
-// }
-
-//모바일 탭
-.tab-wrap {
-    width: 100%;
-    height: 80px;
-    margin-bottom: 70px;
-    border-bottom: 1px solid $border-color;
-    .tab-select {
-        display: none;
-    }
-    .w-set {
-        .select-list {
-            display: flex;
-            align-items: center;
-        }
-        .tab {
-            position: relative;
-            flex: 1;
-            padding: 28px 0;
-            text-align: center;
-            @include font(600, 20px, #333);
-            &.on {
-                font-size: 22px;
-                color: $main-color;
-                &::after {
-                    transform: scaleX(1);
-                }
-            }
+.tab-list {
+    display: flex;
+    gap: 16px;
+    a,
+    button {
+        position: relative;
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 64px;
+        color: #666;
+        font-size: 20px;
+        box-shadow: 0px 3px 12px #00000014;
+        border-radius: 10px;
+        padding: 0 70px;
+        &.on {
+            background: linear-gradient(95deg, #2b408e 0%, #306aaa 100%);
+            color: #fbfbfb;
+            font-size: 22px;
             &::after {
                 content: "";
+                display: block;
+                width: 26px;
+                height: 26px;
+                background: url("../images/sub/accordion_active_arrow.svg") no-repeat center/cover;
                 position: absolute;
-                bottom: 0;
-                left: 0;
-                width: 100%;
-                height: 2px;
-                background-color: $main-color;
-                transform: scaleX(0);
-                transition: transform 0.3s;
-            }
-            span {
-                font-size: 20px;
+                right: 40px;
             }
         }
     }
@@ -943,6 +892,46 @@
     }
 }
 
+@media (min-width: 769px) {
+    //모바일 탭
+    .tab-wrap {
+        .tab-select {
+            display: none;
+        }
+        .select-list {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .tab {
+            position: relative;
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 64px;
+            color: #666;
+            font-size: 20px;
+            box-shadow: 0px 3px 12px #00000014;
+            border-radius: 10px;
+            &.on {
+                background: linear-gradient(95deg, #2b408e 0%, #306aaa 100%);
+                color: #fbfbfb;
+                font-weight: 600;
+                &::after {
+                    content: "";
+                    display: block;
+                    width: 26px;
+                    height: 26px;
+                    background: url("../images/sub/accordion_active_arrow.svg") no-repeat center/cover;
+                    position: absolute;
+                    right: 40px;
+                }
+            }
+        }
+    }
+}
+
 @include laptop {
     .cont-top {
         .title-wrap {
@@ -1059,34 +1048,15 @@
 }
 
 @include tablet {
-    // 탭버튼
-    // .tab-list {
-    //   height: 70px;
-    //   margin-bottom: 60px;
-    //   a,
-    //   button {
-    //     padding: 24px 0;
-    //     &.on {
-    //       font-size: 20px;
-    //     }
-    //     span {
-    //       font-size: 16px;
-    //     }
-    //   }
-    // }
     //모바일 탭
     .tab-wrap {
-        height: 70px;
-        margin-bottom: 60px;
-        .select-list {
-            .tab {
-                padding: 23px 0;
-                &.on {
-                    font-size: 20px;
-                }
-                span {
-                    font-size: 16px;
-                }
+        .tab {
+            font-size: 16px;
+            height: 50px;
+            &.on::after {
+                right: 14px;
+                width: 20px;
+                height: 20px;
             }
         }
     }
@@ -1145,6 +1115,77 @@
 }
 
 @include mobile {
+    //모바일 탭
+    .tab-wrap {
+        position: relative;
+        .tab-select {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            height: 50px;
+            padding: 0 15px;
+            border: 1px solid #dddddd;
+            border-top: 2px solid $main-color;
+            background-color: #fff;
+            @include font(600, 16px, $main-color);
+            text-align: left;
+            line-height: 48px;
+            &::after {
+                content: "";
+                width: 18px;
+                height: 18px;
+                background: url("../images/common/select_arrow.svg") no-repeat center;
+                transition: 0.3s;
+            }
+            &.on {
+                &::after {
+                    transform: rotate(180deg);
+                }
+                & + .tab-inner {
+                    opacity: 1;
+                }
+            }
+        }
+        .tab-inner {
+            position: absolute;
+            top: calc(100% - 1px);
+            left: 0;
+            right: 0;
+            z-index: 100;
+            // height: 0;
+            // padding: 0;
+            border: 1px solid #dddddd;
+            overflow: hidden;
+            opacity: 0;
+            transition: all 0.35s;
+            .select-list {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .tab {
+                position: relative;
+                flex: 1;
+                width: 100%;
+                height: 50px;
+                line-height: 48px;
+                background-color: rgba(#f8f8f8, 0.8);
+                padding: 0 15px;
+                text-align: center;
+                font-weight: 600;
+                font-size: 16px;
+                color: #333;
+                text-align: left;
+                &:not(:last-of-type) {
+                    border-bottom: 1px solid #ddd;
+                }
+                span {
+                    font-size: 20px;
+                }
+            }
+        }
+    }
     .cont-top {
         position: relative;
         display: flex;
@@ -1370,140 +1411,6 @@
                     label input {
                         min-width: auto;
                     }
-                }
-            }
-        }
-    }
-
-    // 탭버튼
-    // .tab-list {
-    //   position: relative;
-    //   height: auto;
-    //   padding: 20px 16px 0;
-    //   margin-bottom: 30px;
-    //   border-bottom: 0;
-    //   .w-set {
-    //     position: absolute;
-    //     top: calc(100% - 1px);
-    //     left: 0;
-    //     right: 0;
-    //     z-index: 100;
-    //     flex-direction: column;
-    //     align-items: flex-start;
-    //     width: calc(100% - 32px);
-    //     height: 0;
-    //     padding: 0;
-    //     border: 1px solid #dddddd;
-    //     overflow: hidden;
-    //   }
-    //   .tab-select {
-    //     width: 100%;
-    //     height: 50px;
-    //     padding: 0 15px;
-    //     border: 1px solid #DDDDDD;
-    //     border-top: 2px solid $main-color;
-    //     background-color: #fff;
-    //     background: #fff url("../images/common/select_arrow.svg") no-repeat right 18px center;
-    //     @include font(600, 16px, $main-color);
-    //     text-align: left;
-    //     line-height: 48px;
-    //     &.on {
-    //       font-size: 16px;
-    //       &::after {
-    //         display: none;
-    //       }
-    //     }
-    //   }
-    //   a:not(.tab-select),
-    //   button:not(.tab-select) {
-    //     width: 100%;
-    //     height: 50px;
-    //     padding: 0 15px;
-    //     background-color: rgba(#F8F8F8, 0.8);
-    //     font-size: 16px;
-    //     line-height: 48px;
-    //     text-align: left;
-    //     &:not(:last-of-type) {
-    //       border-bottom: 1px solid #ddd;
-    //     }
-    //     &.on {
-    //       display: none;
-    //     }
-    //     &::after {
-    //       display: none;
-    //     }
-    //   }
-    // }
-
-    //모바일 탭
-    .tab-wrap {
-        position: relative;
-        height: auto;
-        padding: 20px 16px 0;
-        margin-bottom: 30px;
-        border-bottom: 0;
-        .tab-select {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            width: 100%;
-            height: 50px;
-            padding: 0 15px;
-            border: 1px solid #dddddd;
-            border-top: 2px solid $main-color;
-            background-color: #fff;
-            @include font(600, 16px, $main-color);
-            text-align: left;
-            line-height: 48px;
-            &::after {
-                content: "";
-                width: 18px;
-                height: 18px;
-                background: url("../images/common/select_arrow.svg") no-repeat center;
-                transition: 0.3s;
-            }
-            &.on {
-                &::after {
-                    transform: rotate(180deg);
-                }
-                & + .w-set {
-                    opacity: 1;
-                }
-            }
-        }
-        .w-set {
-            position: absolute;
-            top: calc(100% - 1px);
-            left: 0;
-            right: 0;
-            z-index: 100;
-            width: calc(100% - 32px);
-            height: 0;
-            padding: 0;
-            border: 1px solid #dddddd;
-            overflow: hidden;
-            opacity: 0;
-            transition: all 0.35s;
-            .select-list {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            .tab {
-                width: 100%;
-                height: 50px;
-                padding: 0 15px;
-                background-color: rgba(#f8f8f8, 0.8);
-                font-size: 16px;
-                line-height: 48px;
-                text-align: left;
-                &:not(:last-of-type) {
-                    border-bottom: 1px solid #ddd;
-                }
-                &.on {
-                    display: none;
-                }
-                &::after {
-                    display: none;
                 }
             }
         }

@@ -108,6 +108,7 @@
             display: flex;
           }
           .title-wrap {
+            opacity: 1;
             position: relative;
             z-index: 100;
             width: 32rem;
@@ -128,6 +129,9 @@
           margin: 0 auto;
           flex-wrap: wrap;
           padding: 40px 0 20px 40px;
+        }
+        .title-wrap {
+          opacity: 0;
         }
         .depth2 {
           flex: 1 1 calc(100% / 5 - 24px);
@@ -631,7 +635,6 @@
     }
   }
 }
-sub-gnb-wrap
 
 // aside
 .aside-bg {
