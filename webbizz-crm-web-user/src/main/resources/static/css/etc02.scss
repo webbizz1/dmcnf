@@ -80,7 +80,7 @@
                     content: "";
                     width: 24px;
                     height: 24px;
-                    background: url("../images/common/select_arrow_gray.svg") no-repeat center;
+                    background: url("../images/sub/accordion_arrow.svg") no-repeat center;
                     background-size: contain;
                     position: absolute;
                     right: 16px;
@@ -145,6 +145,10 @@
                             }
                         }
                         .table-wrap {
+                            @include rowscroll; 
+                            & + .table-wrap{
+                                margin-top: 20px;
+                            }
                             .table-info{
                                 margin-top: 14px;
                                 text-align: right;
@@ -182,8 +186,9 @@
                         color: #ffffff; 
                     }
                     &::after{
-                        top: 25%; // 아이콘 변경시 같이 수정
-                        transform: rotate(180deg);
+                        width: 26px;
+                        height: 26px;
+                        background: url("../images/sub/accordion_active_arrow.svg") no-repeat center;
                     }
                     &::before{
                         content: none;
@@ -194,5 +199,40 @@
                 }
             }
         }            
+    }
+}
+
+@include tablet {
+    .regulation-wrap {
+        .cont {
+            .accordion-box {
+                .sub-header {
+                    .title {
+                        font-size: 18px;
+                    }
+                }
+                .sub-content {
+                    padding: 30px;
+                    h4{
+                        font-size: 18px;
+                    }
+                    ul {
+                        li {
+                            .table-wrap {
+                                .table-info{
+                                    font-size: 14px;
+                                }
+                                .tit{
+                                    font-size: 16px;
+                                }
+                                .sub-txt{
+                                    font-size: 14px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }            
+        }
     }
 }

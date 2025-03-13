@@ -79,7 +79,7 @@
   content: "";
   width: 24px;
   height: 24px;
-  background: url("../images/common/select_arrow_gray.svg") no-repeat center;
+  background: url("../images/sub/accordion_arrow.svg") no-repeat center;
   background-size: contain;
   position: absolute;
   right: 16px;
@@ -143,6 +143,22 @@
 .regulation-wrap .cont .accordion-box .sub-content ul li ul li + li {
   margin-top: 10px;
 }
+.regulation-wrap .cont .accordion-box .sub-content ul li .table-wrap {
+  overflow: auto;
+  padding-bottom: 10px;
+}
+.regulation-wrap .cont .accordion-box .sub-content ul li .table-wrap::-webkit-scrollbar {
+  height: 4px;
+  background: none;
+}
+.regulation-wrap .cont .accordion-box .sub-content ul li .table-wrap::-webkit-scrollbar-thumb {
+  height: 4px;
+  border-radius: 60px;
+  background: rgba(153, 153, 153, 0.3);
+}
+.regulation-wrap .cont .accordion-box .sub-content ul li .table-wrap + .table-wrap {
+  margin-top: 20px;
+}
 .regulation-wrap .cont .accordion-box .sub-content ul li .table-wrap .table-info {
   margin-top: 14px;
   text-align: right;
@@ -176,12 +192,34 @@
   color: #ffffff;
 }
 .regulation-wrap .cont .accordion-box.active .sub-header::after {
-  top: 25%;
-  transform: rotate(180deg);
+  width: 26px;
+  height: 26px;
+  background: url("../images/sub/accordion_active_arrow.svg") no-repeat center;
 }
 .regulation-wrap .cont .accordion-box.active .sub-header::before {
   content: none;
 }
 .regulation-wrap .cont .accordion-box.active .sub-content {
   display: block;
+}
+
+@media only screen and (max-width: 1023px) {
+  .regulation-wrap .cont .accordion-box .sub-header .title {
+    font-size: 18px;
+  }
+  .regulation-wrap .cont .accordion-box .sub-content {
+    padding: 30px;
+  }
+  .regulation-wrap .cont .accordion-box .sub-content h4 {
+    font-size: 18px;
+  }
+  .regulation-wrap .cont .accordion-box .sub-content ul li .table-wrap .table-info {
+    font-size: 14px;
+  }
+  .regulation-wrap .cont .accordion-box .sub-content ul li .table-wrap .tit {
+    font-size: 16px;
+  }
+  .regulation-wrap .cont .accordion-box .sub-content ul li .table-wrap .sub-txt {
+    font-size: 14px;
+  }
 }/*# sourceMappingURL=etc02.css.map */
