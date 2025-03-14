@@ -434,9 +434,6 @@
     height: 9.1px;
   }
 }
-#footer {
-  width: 100%;
-}
 #footer .ft-top {
   background-color: #232426;
 }
@@ -529,9 +526,6 @@
   }
 }
 @media only screen and (max-width: 768px) {
-  #footer {
-    padding-top: 54px;
-  }
   #footer .ft-top .link-list a {
     font-size: 14px;
   }
