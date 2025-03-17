@@ -97,7 +97,7 @@
   box-sizing: border-box;
 }
 .survey-view-wrap .agree input:checked + .label:before {
-  border-color: #0042A6;
+  border-color: #0f3b75;
   background: #0042A6 url("../images/common/ico_chkbox_on.svg") no-repeat center;
 }
 .survey-view-wrap .basic-info-box {
@@ -202,7 +202,7 @@
   border-radius: 3px;
 }
 .survey-view-wrap .survey-area .checkbox input:checked + .label:before {
-  border-color: #0042A6;
+  border-color: #0f3b75;
   background: #0042A6 url("../images/common/ico_chkbox_on.svg") no-repeat center;
   background-size: contain;
 }
@@ -219,7 +219,7 @@
   border-radius: 50%;
 }
 .survey-view-wrap .survey-area .radiobox input:checked + .label:before {
-  border-color: #0042A6;
+  border-color: #0f3b75;
   background: #fff url("../images/common/ico_chk_on.svg") no-repeat center;
   background-size: contain;
 }
