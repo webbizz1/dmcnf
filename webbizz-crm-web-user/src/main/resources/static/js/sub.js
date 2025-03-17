@@ -67,7 +67,7 @@ window.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // document.querySelector('.tab-select').addEventListener('click', (e) => toggleTab(e));
+  document.querySelector('.tab-select').addEventListener('click', (e) => toggleTab(e));
 
   // 재단 정관
   document.querySelectorAll(".accordion-box .sub-header").forEach(header => {

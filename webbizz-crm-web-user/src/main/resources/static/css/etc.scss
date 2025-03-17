@@ -1,95 +1,245 @@
 @import "utility";
-.survey-view-wrap{
-    .info-box{
-        margin-top:40px;
-        padding:20px 20px 20px 60px;
-        border: 1px solid #DDD;
-        font-weight: 500;
-        font-size: 18px;
-        margin-bottom:40px;
-        background: url(../images/common/ico_empty.svg) no-repeat 20px 20px;
-        background-size: 24px auto;
-        span{
-			font-size:16px;
-		}
+
+.cont-title {
+    display: flex;
+    gap: 80px;
+    padding-bottom: 80px;
+    margin-bottom: 80px;
+    border-bottom: 1px solid #d8d8d8;
+    h4.title {
+        flex-shrink: 0;
+        font-weight: 700;
+        font-size: 36px;
+        line-height: 1.4;
     }
-    .survey-view{
-        border-top: 3px solid #707070;
-        .input-row{
+    .desc {
+        p {
+            word-break: keep-all;
+            color: #495566;
+            font-size: 20px;
+            line-height: 1.4;
+            &.be {
+                position: relative;
+                padding-left: 23px;
+                &::before {
+                    content: "";
+                    display: block;
+                    width: 3px;
+                    height: 3px;
+                    border-radius: 50%;
+                    background: #000;
+                    position: absolute;
+                    left: 0;
+                    top: 12px;
+                }
+                & + .be {
+                    margin-top: 12px;
+                }
+            }
+        }
+    }
+}
+
+.cont-common {
+    &.type-square {
+        .cont-item {
+            gap: 40px;
+            .img {
+                max-width: 460px;
+            }
+        }
+    }
+    .cont-item {
+        display: flex;
+        align-items: center;
+        gap: 100px;
+        & + .cont-item {
+            margin-top: 80px;
+        }
+        &.type-right {
+            flex-direction: row-reverse;
+        }
+        .img {
+            flex-shrink: 0;
+            max-width: 400px;
+            border-radius: 50%;
+            img {
+                width: 100%;
+            }
+        }
+        .text-wrap {
+            width: 100%;
+            flex: 1;
+            h5.title {
+                margin-bottom: 40px;
+                font-weight: 700;
+                font-size: 28px;
+                line-height: 1.4;
+            }
+            .text-area {
+                p {
+                    display: flex;
+                    gap: 20px;
+                    color: #666;
+                    font-size: 20px;
+                    line-height: 1.4;
+                    word-break: keep-all;
+                    & + p {
+                        margin-top: 20px;
+                    }
+                    &.be {
+                        position: relative;
+                        padding-left: 23px;
+                        &::before {
+                            content: "";
+                            display: block;
+                            width: 3px;
+                            height: 3px;
+                            border-radius: 50%;
+                            background: #666;
+                            position: absolute;
+                            left: 0;
+                            top: 12px;
+                        }
+                    }
+                    strong {
+                        flex-shrink: 0;
+                        font-weight: 700;
+                        font-size: 20px;
+                        line-height: 1.4;
+                        color: #666;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.facility-wrap {
+    .img {
+        border: 1px solid #666;
+    }
+    .facility-list {
+        background: #f9f9f9;
+        padding: 60px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 30px;
+        dl {
+            width: calc(100% / 2 - 15px);
             display: flex;
             align-items: center;
-            height:90px;
+            gap: 40px;
+            dt {
+                flex-shrink: 0;
+                border-radius: 10px;
+                background: #434040;
+                width: 114px;
+                height: 50px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 24px;
+                color: #f5ffff;
+            }
+            dd {
+                font-weight: 700;
+                font-size: 24px;
+            }
+        }
+    }
+}
+
+.survey-view-wrap {
+    .info-box {
+        margin-top: 40px;
+        padding: 20px 20px 20px 60px;
+        border: 1px solid #ddd;
+        font-weight: 500;
+        font-size: 18px;
+        margin-bottom: 40px;
+        background: url(../images/common/ico_empty.svg) no-repeat 20px 20px;
+        background-size: 24px auto;
+        span {
+            font-size: 16px;
+        }
+    }
+    .survey-view {
+        border-top: 3px solid #707070;
+        .input-row {
+            display: flex;
+            align-items: center;
+            height: 90px;
             border-bottom: 1px solid #ddd;
-            & > div:first-child{
-                width:200px;
+            & > div:first-child {
+                width: 200px;
                 font-size: 20px;
                 font-weight: 600;
-                padding-left:20px;
+                padding-left: 20px;
             }
-            & > div:last-child{
-                flex:1;
+            & > div:last-child {
+                flex: 1;
             }
         }
-        .w_30{
-            width:30%;
+        .w_30 {
+            width: 30%;
         }
-        .essential{
+        .essential {
             position: relative;
-            span{
+            span {
                 font-size: 0;
             }
-            &:after{
-                content:'*';
-                display:block;
-                font-size:1.5rem;
-                position:absolute;
-                top:0;
-                left:0;
-                color:#F60D0D;
+            &:after {
+                content: "*";
+                display: block;
+                font-size: 1.5rem;
+                position: absolute;
+                top: 0;
+                left: 0;
+                color: #f60d0d;
             }
-        }       
-    }
-    .private-box{
-        padding:42px 0;
-        border-bottom: 1px solid #DDD;
-        p{
-            font-size: 24px;
-            color:#222;
-            font-weight: 600;   
-            padding-bottom: 60px;      
         }
-        dl{
-            padding-left:30px;
-            dt{
+    }
+    .private-box {
+        padding: 42px 0;
+        border-bottom: 1px solid #ddd;
+        p {
+            font-size: 24px;
+            color: #222;
+            font-weight: 600;
+            padding-bottom: 60px;
+        }
+        dl {
+            padding-left: 30px;
+            dt {
                 padding-bottom: 10px;
                 font-size: 20px;
                 font-weight: 600;
             }
-            dd{
-                padding:0 0 30px 20px;
+            dd {
+                padding: 0 0 30px 20px;
                 font-size: 20px;
             }
         }
-
     }
     .btn-wrap {
         .btn {
-          width: 285px;
-          height: 70px;
-          line-height: 66px;
-          font-size: 20px;
-          border-radius: 10px;
+            width: 285px;
+            height: 70px;
+            line-height: 66px;
+            font-size: 20px;
+            border-radius: 10px;
         }
-      }
-    .agree{
-        margin-top:80px;
+    }
+    .agree {
+        margin-top: 80px;
         display: flex;
-        .checkbox{
+        .checkbox {
             margin-left: auto;
         }
         .label {
             font-size: 20px;
-            color:#333;
+            color: #333;
             &:before {
                 content: "";
                 width: 30px;
@@ -102,104 +252,103 @@
         }
         input:checked + .label:before {
             border-color: $main-color;
-            background: #0042A6 url("../images/common/ico_chkbox_on.svg") no-repeat center;
+            background: #0042a6 url("../images/common/ico_chkbox_on.svg") no-repeat center;
         }
     }
     //응답자 정보
-    .basic-info-box{
-        margin-top:40px;
+    .basic-info-box {
+        margin-top: 40px;
         border: 1px solid #333;
-        padding:20px 30px 10px 30px;
-        .title{
-            padding:20px;
-            font-size:24px;
+        padding: 20px 30px 10px 30px;
+        .title {
+            padding: 20px;
+            font-size: 24px;
             font-weight: 700;
             border-bottom: 1px solid #ddd;
         }
-        .info{
-            padding:20px;
-            font-size:18px;
+        .info {
+            padding: 20px;
+            font-size: 18px;
             font-weight: 500;
-            dl{
+            dl {
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
-                dt{
+                dt {
                     display: flex;
                     align-items: center;
-                    gap:10px;
-                    span{
+                    gap: 10px;
+                    span {
                         border-right: 1px solid #ddd;
-                        padding:0 15px;
+                        padding: 0 15px;
                         font-weight: 500;
-                        color:#0042A6;
-                        &:last-child{
-                            border-right:0;
+                        color: #0042a6;
+                        &:last-child {
+                            border-right: 0;
                         }
                     }
                 }
-                dd{
+                dd {
                     display: flex;
                     align-items: center;
-                    gap:10px;
-                    color:#666;                    
+                    gap: 10px;
+                    color: #666;
                 }
             }
-            i{
+            i {
                 display: inline-block;
-                width:40px;
-                height:40px;
-                background-color: #F4F6FA;
+                width: 40px;
+                height: 40px;
+                background-color: #f4f6fa;
                 background-position: center;
                 border-radius: 30px;
                 background-repeat: no-repeat;
                 background-size: 24px;
             }
-            .info-01{
-                background-image:url("../images/common/ico_info_02.svg");
+            .info-01 {
+                background-image: url("../images/common/ico_info_02.svg");
             }
-            .info-02{
-                background-image:url("../images/common/ico_info_01.svg");
-            }         
+            .info-02 {
+                background-image: url("../images/common/ico_info_01.svg");
+            }
         }
     }
     //설문 정보
-    .survey-area{
+    .survey-area {
         margin-top: 10px;
-        .essential{
-            color:#F60D0D;
+        .essential {
+            color: #f60d0d;
         }
-        .survey-row{
+        .survey-row {
             border-bottom: 1px solid #ddd;
-            .question{
+            .question {
                 font-size: 20px;
-                color:#222;
+                color: #222;
                 font-weight: 600;
-                padding:25px 0;
+                padding: 25px 0;
             }
-            .answer{
+            .answer {
                 font-size: 20px;
-                color:#222;
+                color: #222;
                 font-weight: 400;
-                padding-bottom:15px;
-                ul{
-                    margin-left:20px;
-                    flex-wrap: nowrap; 
+                padding-bottom: 15px;
+                ul {
+                    margin-left: 20px;
+                    flex-wrap: nowrap;
                     display: flex;
                     flex-grow: 1;
-                    li{
+                    li {
                         display: flex;
-                        padding-right:20px;
+                        padding-right: 20px;
                         align-items: center;
                     }
                 }
-                
             }
         }
-        .checkbox{
+        .checkbox {
             .label {
                 font-size: 20px;
-                color:#333;
+                color: #333;
                 &:before {
                     content: "";
                     width: 25px;
@@ -211,14 +360,14 @@
             }
             input:checked + .label:before {
                 border-color: $main-color;
-                background: #0042A6 url("../images/common/ico_chkbox_on.svg") no-repeat center;
+                background: #0042a6 url("../images/common/ico_chkbox_on.svg") no-repeat center;
                 background-size: contain;
             }
         }
-        .radiobox{
+        .radiobox {
             .label {
                 font-size: 20px;
-                color:#333;
+                color: #333;
                 &:before {
                     content: "";
                     width: 25px;
@@ -234,129 +383,295 @@
                 background-size: contain;
             }
         }
-       
     }
 }
-@include mobile{
-    .survey-view-wrap{
-        .info-box{
-            font-size: 16px;
-            margin-bottom:20px;
+
+@include laptop {
+    .cont-title {
+        flex-direction: column;
+        gap: 20px;
+        padding-bottom: 40px;
+        margin-bottom: 40px;
+        h4.title {
+            font-size: 26px;
         }
-        .survey-view{
+    }
+
+    .cont-common {
+        &.type-square {
+            .cont-item .img {
+                max-width: 300px;
+            }
+        }
+        .cont-item {
+            gap: 40px;
+            .img {
+                max-width: 240px;
+            }
+            .text-wrap {
+                h5.title {
+                    margin-bottom: 24px;
+                    font-size: 24px;
+                }
+                .text-area p {
+                    font-size: 18px;
+                    & + p {
+                        margin-top: 14px;
+                    }
+                    strong {
+                        font-size: 18px;
+                    }
+                }
+            }
+        }
+    }
+
+    .facility-wrap {
+        .facility-list {
+            padding: 30px;
+            gap: 30px;
+            dl {
+                width: calc(100% / 2 - 15px);
+                gap: 20px;
+                dt {
+                    width: 80px;
+                    height: 44px;
+                    font-size: 20px;
+                }
+                dd {
+                    font-size: 20px;
+                }
+            }
+        }
+    }
+}
+
+@include tablet {
+    .cont-title {
+        h4.title {
+            font-size: 20px;
+        }
+        .desc {
+            p {
+                font-size: 16px;
+                &.be {
+                    padding-left: 14px;
+                    &::before {
+                        top: 10px;
+                    }
+                    & + .be {
+                        margin-top: 8px;
+                    }
+                }
+            }
+        }
+    }
+
+    .facility-wrap {
+        .facility-list {
+            gap: 20px;
+            dl {
+                width: calc(100% / 2 - 10px);
+                gap: 16px;
+                dt {
+                    width: 60px;
+                    height: 40px;
+                    font-size: 18px;
+                }
+                dd {
+                    font-size: 18px;
+                }
+            }
+        }
+    }
+}
+
+@include mobile {
+    .cont-common {
+        &.type-square {
+            .cont-item {
+                gap: 20px;
+            }
+        }
+        .cont-item {
+            flex-direction: column;
+            gap: 20px;
+            &.type-right {
+                flex-direction: column;
+            }
+            & + .cont-item {
+                margin-top: 40px;
+            }
+            .img {
+                max-width: 240px;
+            }
+            .text-wrap {
+                h5.title {
+                    margin-bottom: 10px;
+                    font-size: 20px;
+                }
+                .text-area p {
+                    font-size: 16px;
+                    & + p {
+                        margin-top: 10px;
+                    }
+                    &.be {
+                        padding-left: 14px;
+                        &::before {
+                            top: 10px;
+                        }
+                    }
+                    &:has(strong) {
+                        flex-direction: column;
+                        gap: 4px;
+                    }
+                    strong {
+                        font-size: 18px;
+                    }
+                }
+            }
+        }
+    }
+
+    .facility-wrap {
+        .facility-list {
+            gap: 16px;
+            padding-left: 16px;
+            padding-right: 16px;
+            dl {
+                width: 100%;
+                gap: 16px;
+                dt {
+                    width: 60px;
+                    height: 36px;
+                    font-size: 16px;
+                }
+                dd {
+                    font-size: 16px;
+                }
+            }
+        }
+    }
+
+    .survey-view-wrap {
+        .info-box {
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+        .survey-view {
             border-top: 3px solid #707070;
-            .input-row{
+            .input-row {
                 flex-direction: column;
                 align-items: flex-start;
-                height:auto;
+                height: auto;
                 border-bottom: 1px solid #ddd;
-                & > div:first-child{
-                    width:auto;
+                & > div:first-child {
+                    width: auto;
                     font-size: 18px;
-                    padding-left:0;
+                    padding-left: 0;
                     margin: 10px 0;
                 }
-                & > div:last-child{
-                    flex:inherit;
-                    width:100%;
+                & > div:last-child {
+                    flex: inherit;
+                    width: 100%;
                     margin-bottom: 10px;
                 }
             }
-            .w_30{
-                width:100%;
+            .w_30 {
+                width: 100%;
             }
         }
-        .private-box{
-            padding:20px 0;
-            p{
-                font-size: 20px; 
-                padding-bottom: 30px;      
+        .private-box {
+            padding: 20px 0;
+            p {
+                font-size: 20px;
+                padding-bottom: 30px;
             }
-            dl{
-                padding-left:15px;
-                dt{
+            dl {
+                padding-left: 15px;
+                dt {
                     font-size: 18px;
                 }
-                dd{
+                dd {
                     font-size: 18px;
                 }
             }
         }
         //응답자 정보
-        .basic-info-box{
-            margin-top:40px;
-            padding:10px;
-            .title{
-                padding:10px;
-                font-size:18px;  
+        .basic-info-box {
+            margin-top: 40px;
+            padding: 10px;
+            .title {
+                padding: 10px;
+                font-size: 18px;
             }
-            .info{
-                padding:10px;
-                font-size:16px;
-                dl{
+            .info {
+                padding: 10px;
+                font-size: 16px;
+                dl {
                     flex-direction: column;
                     align-items: flex-start;
-                    dt{
+                    dt {
                         flex-direction: column;
                         align-items: inherit;
-                        & > div{
-                            margin:-45px 0 0  60px;
+                        & > div {
+                            margin: -45px 0 0 60px;
                         }
-                        span{
-                            display:inline-block;
-                            width:100%;
+                        span {
+                            display: inline-block;
+                            width: 100%;
                             border-right: 0;
-                            padding-right:0;
-                            line-height: 24px;;
+                            padding-right: 0;
+                            line-height: 24px;
                         }
                     }
-                    dd{
+                    dd {
                         display: flex;
                         align-items: center;
-                        gap:10px;
-                        color:#666;   
-                        margin-top: 10px;;                 
+                        gap: 10px;
+                        color: #666;
+                        margin-top: 10px;
                     }
-                }  
+                }
             }
         }
         //설문 정보
-        .survey-area{
-            padding:10px;
-            .survey-row{
+        .survey-area {
+            padding: 10px;
+            .survey-row {
                 border-bottom: 1px solid #ddd;
-                .question{
+                .question {
                     font-size: 17px;
-                    padding:15px 0;
+                    padding: 15px 0;
                 }
-                .answer{
-                    font-size:17px;
-                    padding-bottom:15px;
-                    ul{
-                        margin-left:0;
+                .answer {
+                    font-size: 17px;
+                    padding-bottom: 15px;
+                    ul {
+                        margin-left: 0;
                         flex-direction: column;
                         flex-grow: 1;
-                        li{
+                        li {
                             flex-direction: column;
                             align-items: flex-start;
-                            padding:0 20px 10px 0;
-                            .input-box{
-                                padding-left:30px;
+                            padding: 0 20px 10px 0;
+                            .input-box {
+                                padding-left: 30px;
                             }
                         }
                     }
                 }
             }
-            .checkbox{
+            .checkbox {
                 .label {
                     font-size: 17px;
                 }
             }
-            .radiobox{
+            .radiobox {
                 .label {
                     font-size: 17px;
                 }
             }
         }
-    }  
+    }
 }

@@ -2,10 +2,6 @@
   padding: 0 0 120px;
 }
 
-.cont-btm {
-  padding: 80px 0 0;
-}
-
 .text-editor {
   max-height: 24px;
   overflow: hidden;
@@ -21,10 +17,6 @@
 }
 .text-editor p:has(img) {
   display: none;
-}
-
-.introduce-wrap .cont-top.type-bg {
-  background-image: url("../images/sub/bg_manage.jpg");
 }
 
 .cont-top .title-wrap {
@@ -48,6 +40,7 @@
 .cont-top.type-bg {
   width: 100%;
   height: 250px;
+  background-image: url("../images/sub/bg_manage.jpg");
   background-repeat: no-repeat;
   background-position: center;
 }
@@ -210,6 +203,10 @@
 }
 .sub-nav .function-wrap .share-wrap .share-list li a span {
   font-size: 14px;
+}
+
+.cont-btm {
+  padding: 80px 0 0;
 }
 
 .search-wrap .search-box {
@@ -472,35 +469,35 @@
   right: 40px;
 }
 
-.introduce-wrap .charter-wrap {
+.charter-wrap {
   padding: 70px 60px;
   background-color: #f4f6fa;
 }
-.introduce-wrap .charter-wrap .cont-wrap {
+.charter-wrap .cont-wrap {
   padding: 40px;
   background-color: #fff;
   border: 10px solid #f4f6fa;
   outline: 24px solid #fff;
 }
-.introduce-wrap .charter-wrap .cont-wrap .title-wrap {
+.charter-wrap .cont-wrap .title-wrap {
   text-align: center;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 30px;
 }
-.introduce-wrap .charter-wrap .cont-wrap .title-wrap .title span {
+.charter-wrap .cont-wrap .title-wrap .title span {
   display: block;
 }
-.introduce-wrap .charter-wrap .cont-wrap .title-wrap .title span:first-child {
+.charter-wrap .cont-wrap .title-wrap .title span:first-child {
   font-weight: 500;
   font-size: 30px;
 }
-.introduce-wrap .charter-wrap .cont-wrap .title-wrap .title span:last-child {
+.charter-wrap .cont-wrap .title-wrap .title span:last-child {
   font-weight: 700;
   font-size: 48px;
 }
-.introduce-wrap .charter-wrap .cont-wrap .title-wrap::before, .introduce-wrap .charter-wrap .cont-wrap .title-wrap::after {
+.charter-wrap .cont-wrap .title-wrap::before, .charter-wrap .cont-wrap .title-wrap::after {
   content: "";
   max-width: 43px;
   max-height: 103px;
@@ -509,33 +506,33 @@
   background-size: cover;
   background-repeat: no-repeat;
 }
-.introduce-wrap .charter-wrap .cont-wrap .title-wrap::before {
+.charter-wrap .cont-wrap .title-wrap::before {
   background-image: url("../images/common/laurel_left.svg");
 }
-.introduce-wrap .charter-wrap .cont-wrap .title-wrap::after {
+.charter-wrap .cont-wrap .title-wrap::after {
   background-image: url("../images/common/laurel_right.svg");
 }
-.introduce-wrap .charter-wrap .cont-wrap .text-wrap {
+.charter-wrap .cont-wrap .text-wrap {
   margin-top: 40px;
   text-align: center;
 }
-.introduce-wrap .charter-wrap .cont-wrap .text-wrap p {
+.charter-wrap .cont-wrap .text-wrap p {
   font-weight: 500;
   font-size: 28px;
   line-height: 1.5;
   word-break: keep-all;
 }
-.introduce-wrap .charter-wrap .cont-wrap .charter-list {
+.charter-wrap .cont-wrap .charter-list {
   margin-top: 80px;
 }
-.introduce-wrap .charter-wrap .cont-wrap .charter-list li {
+.charter-wrap .cont-wrap .charter-list li {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
   gap: 20px;
   padding-top: 20px;
 }
-.introduce-wrap .charter-wrap .cont-wrap .charter-list li::after {
+.charter-wrap .cont-wrap .charter-list li::after {
   content: "";
   width: 100%;
   height: 1px;
@@ -544,26 +541,26 @@
   background-position: bottom;
   background-repeat: repeat-x;
 }
-.introduce-wrap .charter-wrap .cont-wrap .charter-list li strong {
+.charter-wrap .cont-wrap .charter-list li strong {
   flex: 0 0 auto;
   font-weight: 700;
   font-size: 30px;
   color: #0f3b75;
 }
-.introduce-wrap .charter-wrap .cont-wrap .charter-list li span {
+.charter-wrap .cont-wrap .charter-list li span {
   flex: 1;
   font-weight: 500;
   font-size: 20px;
   color: #333;
   word-break: keep-all;
 }
-.introduce-wrap .charter-wrap .sub-txt-wrap {
+.charter-wrap .sub-txt-wrap {
   position: relative;
   padding: 60px 20px 0 20px;
   text-align: center;
   word-break: break-all;
 }
-.introduce-wrap .charter-wrap .sub-txt-wrap p {
+.charter-wrap .sub-txt-wrap p {
   font-size: 20px;
 }
 
@@ -862,6 +859,9 @@
 }
 
 @media (min-width: 769px) {
+  .tab-wrap {
+    margin-bottom: 80px;
+  }
   .tab-wrap .tab-select {
     display: none;
   }
@@ -983,6 +983,12 @@
   }
 }
 @media only screen and (max-width: 1023px) {
+  .cont-btm {
+    padding: 30px 0 0;
+  }
+  .tab-wrap {
+    margin-bottom: 40px;
+  }
   .tab-wrap .tab {
     font-size: 16px;
     height: 50px;
@@ -992,42 +998,42 @@
     width: 20px;
     height: 20px;
   }
-  .introduce-wrap .charter-wrap {
+  .charter-wrap {
     padding: 30px;
   }
-  .introduce-wrap .charter-wrap .cont-wrap {
+  .charter-wrap .cont-wrap {
     border: 10px solid #f4f6fa;
     outline: 10px solid #fff;
   }
-  .introduce-wrap .charter-wrap .cont-wrap .title-wrap .title span:first-child {
+  .charter-wrap .cont-wrap .title-wrap .title span:first-child {
     font-size: 26px;
   }
-  .introduce-wrap .charter-wrap .cont-wrap .title-wrap .title span:last-child {
+  .charter-wrap .cont-wrap .title-wrap .title span:last-child {
     font-size: 36px;
   }
-  .introduce-wrap .charter-wrap .cont-wrap .title-wrap::before, .introduce-wrap .charter-wrap .cont-wrap .title-wrap::after {
+  .charter-wrap .cont-wrap .title-wrap::before, .charter-wrap .cont-wrap .title-wrap::after {
     width: 36px;
     height: 85px;
   }
-  .introduce-wrap .charter-wrap .cont-wrap .text-wrap {
+  .charter-wrap .cont-wrap .text-wrap {
     margin-top: 30px;
   }
-  .introduce-wrap .charter-wrap .cont-wrap .text-wrap p {
+  .charter-wrap .cont-wrap .text-wrap p {
     font-size: 20px;
   }
-  .introduce-wrap .charter-wrap .cont-wrap .charter-list {
+  .charter-wrap .cont-wrap .charter-list {
     margin-top: 40px;
   }
-  .introduce-wrap .charter-wrap .cont-wrap .charter-list li strong {
+  .charter-wrap .cont-wrap .charter-list li strong {
     font-size: 24px;
   }
-  .introduce-wrap .charter-wrap .cont-wrap .charter-list li span {
+  .charter-wrap .cont-wrap .charter-list li span {
     font-size: 18px;
   }
-  .introduce-wrap .charter-wrap .sub-txt-wrap {
+  .charter-wrap .sub-txt-wrap {
     padding-top: 30px;
   }
-  .introduce-wrap .charter-wrap .sub-txt-wrap p {
+  .charter-wrap .sub-txt-wrap p {
     font-size: 18px;
   }
 }
@@ -1306,54 +1312,54 @@
   .survey-wrap .survey-btm .comment-wrap .input-wrap label input {
     min-width: auto;
   }
-  .introduce-wrap .charter-wrap {
+  .charter-wrap {
     padding: 10px;
   }
-  .introduce-wrap .charter-wrap .cont-wrap {
+  .charter-wrap .cont-wrap {
     padding: 30px 16px 40px;
     border: 0;
     outline: 0;
   }
-  .introduce-wrap .charter-wrap .cont-wrap .title-wrap {
+  .charter-wrap .cont-wrap .title-wrap {
     gap: 12px;
   }
-  .introduce-wrap .charter-wrap .cont-wrap .title-wrap .title span:first-child {
+  .charter-wrap .cont-wrap .title-wrap .title span:first-child {
     font-size: 11px;
   }
-  .introduce-wrap .charter-wrap .cont-wrap .title-wrap .title span:last-child {
+  .charter-wrap .cont-wrap .title-wrap .title span:last-child {
     font-size: 20px;
   }
-  .introduce-wrap .charter-wrap .cont-wrap .title-wrap::before, .introduce-wrap .charter-wrap .cont-wrap .title-wrap::after {
+  .charter-wrap .cont-wrap .title-wrap::before, .charter-wrap .cont-wrap .title-wrap::after {
     width: 22px;
     height: 50px;
     background-size: 100% auto;
   }
-  .introduce-wrap .charter-wrap .cont-wrap .text-wrap {
+  .charter-wrap .cont-wrap .text-wrap {
     margin-top: 24px;
     text-align: left;
   }
-  .introduce-wrap .charter-wrap .cont-wrap .text-wrap br {
+  .charter-wrap .cont-wrap .text-wrap br {
     display: none;
   }
-  .introduce-wrap .charter-wrap .cont-wrap .text-wrap p {
+  .charter-wrap .cont-wrap .text-wrap p {
     font-size: 16px;
   }
-  .introduce-wrap .charter-wrap .cont-wrap .charter-list {
+  .charter-wrap .cont-wrap .charter-list {
     margin-top: 16px;
   }
-  .introduce-wrap .charter-wrap .cont-wrap .charter-list li {
+  .charter-wrap .cont-wrap .charter-list li {
     align-items: flex-start;
   }
-  .introduce-wrap .charter-wrap .cont-wrap .charter-list li strong {
+  .charter-wrap .cont-wrap .charter-list li strong {
     font-size: 20px;
   }
-  .introduce-wrap .charter-wrap .cont-wrap .charter-list li span {
+  .charter-wrap .cont-wrap .charter-list li span {
     font-size: 15px;
   }
-  .introduce-wrap .charter-wrap .sub-txt-wrap {
+  .charter-wrap .sub-txt-wrap {
     padding-top: 15px;
   }
-  .introduce-wrap .charter-wrap .sub-txt-wrap p {
+  .charter-wrap .sub-txt-wrap p {
     font-size: 15px;
   }
   .board-wrap .board-list .list-wrap {
