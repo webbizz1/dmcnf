@@ -540,6 +540,57 @@
      object-fit: cover;
 }
 
+.directors-wrap .director-box:last-child .career {
+  padding-bottom: 0;
+}
+.directors-wrap .director-box .director-header {
+  display: flex;
+  align-items: flex-end;
+  position: relative;
+  gap: 20px;
+  padding-bottom: 24px;
+}
+.directors-wrap .director-box .director-header .position {
+  font-size: 20px;
+  color: #222222;
+  line-height: 1;
+}
+.directors-wrap .director-box .director-header .name {
+  font-size: 30px;
+  font-weight: bold;
+  color: #222222;
+  line-height: 1;
+}
+.directors-wrap .director-box .director-header::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, #32A6D8 0%, #2E6BAB 15%, #3665A5 32%, #394B95 100%);
+}
+.directors-wrap .director-box .career {
+  display: flex;
+  gap: 70px;
+  padding: 40px 20px 60px;
+}
+.directors-wrap .director-box .career .career-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #222222;
+}
+.directors-wrap .director-box .career .career-list {
+  list-style: none;
+}
+.directors-wrap .director-box .career .career-list li {
+  font-size: 18px;
+  color: #333;
+}
+.directors-wrap .director-box .career .career-list li + li {
+  margin-top: 16px;
+}
+
 @media only screen and (max-width: 1023px) {
   .regulation-wrap .header {
     margin-top: 30px;
@@ -635,6 +686,20 @@
     width: 100px;
     height: 100px;
   }
+  .directors-wrap .director-box .director-header {
+    gap: 14px;
+    padding-bottom: 20px;
+  }
+  .directors-wrap .director-box .director-header .position {
+    font-size: 18px;
+  }
+  .directors-wrap .director-box .director-header .name {
+    font-size: 26px;
+  }
+  .directors-wrap .director-box .career {
+    gap: 50px;
+    padding: 30px 20px 40px;
+  }
 }
 @media only screen and (max-width: 768px) {
   .regulation-wrap .header {
@@ -710,6 +775,28 @@
   .pr-wrap .header .link::before {
     content: none;
   }
+  .directors-wrap .director-box .director-header {
+    gap: 10px;
+  }
+  .directors-wrap .director-box .director-header .position {
+    font-size: 16px;
+  }
+  .directors-wrap .director-box .director-header .name {
+    font-size: 24px;
+  }
+  .directors-wrap .director-box .career {
+    gap: 30px;
+    padding: 20px 20px 40px;
+  }
+  .directors-wrap .director-box .career .career-title {
+    font-size: 16px;
+  }
+  .directors-wrap .director-box .career .career-list li {
+    font-size: 16px;
+  }
+  .directors-wrap .director-box .career .career-list li + li {
+    margin-top: 10px;
+  }
 }
 @media (max-width: 580px) {
   .regulation-wrap .header .title {
@@ -759,6 +846,13 @@
   }
   .pr-wrap .header .link {
     width: 100%;
+  }
+  .directors-wrap .director-box .director-header .name {
+    font-size: 20px;
+  }
+  .directors-wrap .director-box .career {
+    gap: 20px;
+    flex-direction: column;
   }
 }
 @media (max-width: 360px) {
