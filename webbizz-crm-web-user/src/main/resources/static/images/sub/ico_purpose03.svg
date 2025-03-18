@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="64" height="64" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="linear-gradient" x1="-0.97" y1="2.325" x2="3.346" y2="-3.034" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#5494bb"/>
+      <stop offset="1" stop-color="#74cdc0"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-2" x1="0.5" y1="0.896" x2="0.5" y2="-0.215" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#3e6efa"/>
+      <stop offset="1" stop-color="#8ddcfd"/>
+    </linearGradient>
+  </defs>
+  <g id="icon" transform="translate(-1304.713 -1105.714)">
+    <rect id="사각형_24799" data-name="사각형 24799" width="64" height="64" transform="translate(1304.713 1105.714)" fill="none"/>
+    <g id="그룹_51845" data-name="그룹 51845" transform="translate(1313.806 1115.326)">
+      <path id="사각형_24878" data-name="사각형 24878" d="M4.986,0h35.84a4.987,4.987,0,0,1,4.987,4.987V26.9a4.986,4.986,0,0,1-4.986,4.986H4.987A4.987,4.987,0,0,1,0,26.9V4.986A4.986,4.986,0,0,1,4.986,0Z" transform="translate(0 12.893)" opacity="0.5" fill="url(#linear-gradient)"/>
+      <g id="그룹_51843" data-name="그룹 51843" transform="translate(10.061 0.001)">
+        <path id="패스_83" data-name="패스 83" d="M606.962,231.775a4.131,4.131,0,0,0-4.132-4.131H585.4a4.131,4.131,0,0,0-4.132,4.132v39.9h25.693Z" transform="translate(-581.269 -227.644)" fill="url(#linear-gradient-2)"/>
+      </g>
+      <path id="패스_62290" data-name="패스 62290" d="M601.28,233.263a15.28,15.28,0,0,0-1.076-5.619H585.4a4.131,4.131,0,0,0-4.132,4.132v16.107a15.344,15.344,0,0,0,20.011-14.619Z" transform="translate(-571.208 -227.644)" fill="#fff" opacity="0.2"/>
+      <line id="선_1787" data-name="선 1787" x2="4.176" transform="translate(20.82 34.073)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+      <line id="선_1788" data-name="선 1788" x2="4.176" transform="translate(20.82 26.317)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+      <g id="그룹_51844" data-name="그룹 51844" transform="translate(10.061 0.001)">
+        <path id="패스_93" data-name="패스 93" d="M606.962,231.775a4.131,4.131,0,0,0-4.132-4.131H585.4a4.131,4.131,0,0,0-4.132,4.132v39.9h25.693Z" transform="translate(-581.269 -227.644)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+      </g>
+      <circle id="타원_2599" data-name="타원 2599" cx="2.918" cy="2.918" r="2.918" transform="translate(19.988 9.095)" fill="#fff"/>
+    </g>
+  </g>
+</svg>

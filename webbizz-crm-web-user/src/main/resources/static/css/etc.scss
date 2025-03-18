@@ -1,5 +1,9 @@
 @import "utility";
 
+.function-wrap {
+    display: none !important;
+}
+
 .cont-title {
     display: flex;
     gap: 80px;
@@ -115,6 +119,7 @@
     }
 }
 
+// 입주시설
 .facility-wrap {
     .img {
         border: 1px solid #666;
@@ -145,6 +150,608 @@
             dd {
                 font-weight: 700;
                 font-size: 24px;
+            }
+        }
+    }
+}
+
+// 조직도
+.organ-wrap {
+    .role {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #fff;
+        border-radius: 12px;
+        width: 290px;
+        height: 70px;
+        font-weight: 500;
+        font-size: 20px;
+    }
+    .organ-top {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        .organ01 {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba($main-color, 0.12);
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            .ceo {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background: $main-color;
+                width: 156px;
+                height: 156px;
+                border-radius: 50%;
+                font-weight: 700;
+                font-size: 30px;
+                color: #fff;
+            }
+        }
+    }
+    .organ02 {
+        position: absolute;
+        top: 24px;
+        transform: translateX(100%);
+        margin-left: 92px;
+        &::before {
+            content: "";
+            display: block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #d8d8d8;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            left: -52px;
+        }
+        .role {
+            border: 2px solid $main-color;
+            color: $main-color;
+            & + .role {
+                margin-top: 20px;
+            }
+        }
+    }
+    .organ03 {
+        margin-top: 92px;
+        position: relative;
+        .role {
+            position: relative;
+            margin: 0 auto;
+            background: #495566;
+            color: #fff;
+            &:first-child::before {
+                content: "";
+                display: block;
+                width: 12px;
+                height: 12px;
+                border-radius: 50%;
+                background: #d8d8d8;
+                position: absolute;
+                top: -52px;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            &::after {
+                content: "";
+                width: 1px;
+                height: 40px;
+                border-left: 1px dashed #666;
+                position: absolute;
+                top: 100%;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            & + .role {
+                margin-top: 40px;
+                &::after {
+                    height: 67px;
+                }
+            }
+        }
+    }
+    .organ04 {
+        padding-top: 67px;
+        margin: 70px auto 0;
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+        max-width: 1200px;
+        &::before {
+            content: "";
+            display: block;
+            width: calc(100% - 400px);
+            height: 1px;
+            border-top: 1px dashed #666;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            margin: 0 auto;
+        }
+        .organ-box {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+            &::after {
+                content: "";
+                width: 1px;
+                height: 67px;
+                border-left: 1px dashed #666;
+                position: absolute;
+                top: -67px;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            .role {
+                width: 100%;
+                background: #efefef;
+            }
+            .role-desc {
+                margin-top: 12px;
+                box-shadow: 0px 2px 12px #00000014;
+                border-radius: 12px;
+                text-align: center;
+                padding: 30px;
+                min-height: 375px;
+                p {
+                    word-break: keep-all;
+                    font-size: 18px;
+                    line-height: 1.4;
+                    position: relative;
+                    &::before {
+                        content: "·";
+                        margin: 0 4px 0 0;
+                    }
+                    & + p {
+                        margin-top: 16px;
+                    }
+                }
+            }
+        }
+    }
+    .organ-table {
+        margin-top: 80px;
+        overflow: auto;
+        thead th {
+            background: #f4f5f6;
+            border-top: 2px solid #666;
+            border-bottom: 1px solid #d8d8d8;
+            height: 60px;
+            font-weight: 600;
+            font-size: 20px;
+        }
+        tbody td {
+            border-bottom: 1px solid #d8d8d8;
+            padding: 26px 0;
+            font-size: 18px;
+            text-align: center;
+            &[rowspan] ~ td {
+                border: 0 none;
+                padding-bottom: 0;
+            }
+            .name {
+                margin-left: 16px;
+            }
+        }
+    }
+}
+
+// 연혁
+.history-wrap {
+    .history-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: url("../images/sub/history_top.png") no-repeat right center;
+        .title {
+            font-weight: 700;
+            font-size: 36px;
+            line-height: 1.4;
+        }
+        .desc {
+            margin-top: 28px;
+            font-size: 20px;
+            line-height: 1.4;
+            color: #495566;
+        }
+    }
+    .history-main {
+        display: flex;
+        gap: 30px;
+        margin-top: 70px;
+        dl {
+            flex: 1;
+            position: relative;
+            padding-top: 30px;
+            &::before {
+                content: "";
+                display: block;
+                width: 100%;
+                height: 1px;
+                background: #666;
+                position: absolute;
+                top: 0;
+            }
+            &::after {
+                content: "";
+                display: block;
+                width: 20px;
+                height: 20px;
+                background: #222;
+                border-radius: 50%;
+                position: absolute;
+                right: 0;
+                top: 0;
+                transform: translateY(-50%);
+            }
+            dt {
+                font-weight: 600;
+                font-size: 20px;
+                color: $main-color;
+                margin-bottom: 30px;
+            }
+            dd {
+                p {
+                    word-break: keep-all;
+                    font-size: 18px;
+                    line-height: 1.4;
+                    & + p {
+                        margin-top: 12px;
+                    }
+                }
+            }
+        }
+    }
+    .history-detail {
+        margin-top: 80px;
+        .title {
+            font-weight: 700;
+            font-size: 36px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid #d8d8d8;
+        }
+        .history-list {
+            margin-top: 36px;
+            dl {
+                display: flex;
+                dt {
+                    padding-bottom: 68px;
+                    font-weight: 700;
+                    font-size: 30px;
+                    line-height: 1;
+                    width: 18%;
+                    flex-shrink: 0;
+                    position: relative;
+                    &::before {
+                        content: "";
+                        display: block;
+                        width: 1px;
+                        height: 100%;
+                        border-left: 1px solid #d8d8d8;
+                        position: absolute;
+                        right: 0;
+                        top: 10px;
+                        transition: all 0.3s;
+                    }
+                    &::after {
+                        content: "";
+                        display: block;
+                        width: 10px;
+                        height: 10px;
+                        border-radius: 50%;
+                        background: #d8d8d8;
+                        position: absolute;
+                        right: 0;
+                        top: 10px;
+                        transform: translateX(50%);
+                        transition: all 0.3s;
+                    }
+                }
+                dd {
+                    padding-bottom: 68px;
+                    padding-left: 32px;
+                }
+                &.on {
+                    dt {
+                        &::before {
+                            border-color: $main-color;
+                        }
+                        &::after {
+                            background: $main-color;
+                        }
+                    }
+                    & + dl dt::after {
+                        background: $main-color;
+                    }
+                }
+            }
+            ul li {
+                font-size: 18px;
+                line-height: 1.4;
+                & + li {
+                    margin-top: 26px;
+                }
+                ul li {
+                    margin-top: 16px;
+                    & + li {
+                        margin-top: 10px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+// 설립목적
+.purpose-wrap {
+    .purpose-top {
+        min-height: 400px;
+        background: url("../images/sub/purpose_bg.png") no-repeat center/cover;
+        padding: 80px 60px 20px;
+        .title {
+            font-weight: 700;
+            font-size: 36px;
+            color: #fff;
+        }
+        .text {
+            margin-top: 40px;
+            font-weight: 600;
+            font-size: 20px;
+            color: #fff;
+            line-height: 1.4;
+        }
+    }
+    .purpose-cont {
+        .purpose-item {
+            margin-top: 120px;
+            .title-wrap {
+                margin-bottom: 80px;
+            }
+            .title {
+                font-weight: 700;
+                font-size: 36px;
+            }
+            .desc {
+                margin-top: 20px;
+                font-size: 20px;
+                line-height: 1.4;
+            }
+        }
+        .cont-common .cont-item {
+            gap: 60px;
+            & + .cont-item {
+                margin-top: 40px;
+            }
+            &.type-right {
+                text-align: right;
+                .text-wrap .text-area p {
+                    justify-content: flex-end;
+                }
+            }
+        }
+        .support-wrap {
+            width: 100%;
+            max-width: 1048px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 0 auto;
+            gap: 24px;
+            .line {
+                display: block;
+                width: 100%;
+                max-width: 176px;
+                height: 1px;
+                border-top: 1px dashed #20497f;
+            }
+            .support-item {
+                flex-shrink: 0;
+                position: relative;
+                width: 100%;
+                max-width: 200px;
+                border: 3px solid #20497f;
+                border-radius: 50%;
+                background: #fff;
+                &::after {
+                    content: "";
+                    display: block;
+                    padding-bottom: 100%;
+                }
+                .text {
+                    position: absolute;
+                    left: 50%;
+                    top: 50%;
+                    transform: translate(-50%, -50%);
+                    text-align: center;
+                    width: calc(100% - 40px);
+                    font-size: 16px;
+                    color: #20497f;
+                    &::before {
+                        content: "";
+                        display: block;
+                        width: 64px;
+                        height: 64px;
+                        margin: 0 auto 12px;
+                        background: url("../images/sub/ico_purpose01.png") no-repeat center/cover;
+                    }
+                }
+                &.item02 {
+                    .text::before {
+                        background-image: url("../images/sub/ico_purpose02.svg");
+                    }
+                }
+                &.item03 {
+                    .text::before {
+                        background-image: url("../images/sub/ico_purpose03.svg");
+                    }
+                }
+            }
+        }
+        .vision-wrap {
+            margin-top: 100px;
+            .vision-top {
+                .title {
+                    position: relative;
+                    margin: 0 auto;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 411px;
+                    height: 78px;
+                    border-radius: 50px;
+                    background: $main-color;
+                    color: #fff;
+                    font-weight: 600;
+                    font-size: 24px;
+                    box-shadow: 0 0 0 6px rgba(#0f3b75, 0.12);
+                    &::after {
+                        content: "";
+                        width: 1px;
+                        height: calc(50px - 6px);
+                        border-left: 1px solid #d8d8d8;
+                        position: absolute;
+                        top: 100%;
+                        left: 50%;
+                        transform: translate(-50%, 6px);
+                    }
+                }
+            }
+            .vision-cont {
+                position: relative;
+                display: flex;
+                justify-content: space-between;
+                padding-top: 62px;
+                margin-top: 50px;
+                &::before {
+                    content: "";
+                    display: block;
+                    width: calc(100% - 636px);
+                    height: 1px;
+                    border-top: 1px solid #d8d8d8;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    margin: 0 auto;
+                }
+                .vision-box {
+                    position: relative;
+                    width: 100%;
+                    max-width: 636px;
+                    padding: 60px 0;
+                    box-shadow: 0px 0px 12px #0000001f;
+                    border-radius: 30px;
+                    text-align: center;
+                    &::before {
+                        content: "";
+                        display: block;
+                        width: 20px;
+                        height: 20px;
+                        border-radius: 50%;
+                        background: #3261bd;
+                        position: absolute;
+                        left: 50%;
+                        top: 0;
+                        transform: translate(-50%, -50%);
+                        z-index: 10;
+                    }
+                    &::after {
+                        content: "";
+                        width: 1px;
+                        height: 62px;
+                        border-left: 1px solid #d8d8d8;
+                        position: absolute;
+                        top: -62px;
+                        left: 50%;
+                        transform: translateX(-50%);
+                    }
+                    .title {
+                        font-weight: 600;
+                        font-size: 20px;
+                        line-height: 1.4;
+                        color: $main-color;
+                        &::after {
+                            content: "";
+                            display: block;
+                            background: $main-color;
+                            width: 56px;
+                            height: 5px;
+                            border-radius: 10px;
+                            margin: 26px auto 0;
+                        }
+                    }
+                    .text {
+                        margin-top: 30px;
+                        color: #666;
+                        font-size: 18px;
+                        line-height: 1.4;
+                    }
+                }
+            }
+        }
+        .value-wrap {
+            display: flex;
+            justify-content: space-between;
+            gap: 40px;
+            .value-item {
+                position: relative;
+                width: 100%;
+                max-width: 400px;
+                border-radius: 50%;
+                background-repeat: no-repeat;
+                background-position: center;
+                background-size: cover;
+                &::after {
+                    content: "";
+                    display: block;
+                    padding-bottom: 100%;
+                }
+                &.item01 {
+                    background-image: url("../images/sub/img_purpose03.png");
+                }
+                &.item02 {
+                    background-image: url("../images/sub/img_purpose04.png");
+                }
+                &.item03 {
+                    background-image: url("../images/sub/img_purpose05.png");
+                }
+                .text-wrap {
+                    position: absolute;
+                    left: 50%;
+                    top: 50%;
+                    transform: translate(-50%, -50%);
+                    text-align: center;
+                    width: calc(100% - 60px);
+                    .title {
+                        color: #fff;
+                        font-weight: 700;
+                        font-size: 24px;
+                        line-height: 1.4;
+                        &::after {
+                            content: "";
+                            display: block;
+                            width: 40px;
+                            height: 3px;
+                            background: #fff;
+                            border-radius: 10px;
+                            margin: 30px auto 0;
+                        }
+                    }
+                    .text {
+                        margin-top: 16%;
+                        color: #fff;
+                        font-size: 18px;
+                        line-height: 1.4;
+                    }
+                }
             }
         }
     }
@@ -426,6 +1033,7 @@
         }
     }
 
+    // 입주시설
     .facility-wrap {
         .facility-list {
             padding: 30px;
@@ -441,6 +1049,72 @@
                 dd {
                     font-size: 20px;
                 }
+            }
+        }
+    }
+
+    // 연혁
+    .history-wrap {
+        .history-top {
+            background-size: 50%;
+            .title {
+                font-size: 26px;
+            }
+            .desc {
+                margin-top: 20px;
+            }
+        }
+        .history-main {
+            dl {
+                padding-top: 20px;
+                &::after {
+                    width: 16px;
+                    height: 16px;
+                }
+                dt {
+                    font-size: 18px;
+                    margin-bottom: 14px;
+                }
+                dd {
+                    p {
+                        font-size: 16px;
+                        & + p {
+                            margin-top: 6px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    // 설립목적
+    .purpose-wrap {
+        .purpose-top {
+            min-height: 300px;
+            padding: 60px 40px 20px;
+            .title {
+                font-size: 30px;
+            }
+            .text {
+                margin-top: 24px;
+                font-size: 18px;
+            }
+        }
+        .purpose-cont {
+            .purpose-item {
+                margin-top: 60px;
+                .title-wrap {
+                    margin-bottom: 30px;
+                }
+                .title {
+                    font-size: 28px;
+                }
+                .desc {
+                    font-size: 20px;
+                }
+            }
+            .value-wrap .value-item {
+                max-width: 360px;
             }
         }
     }
@@ -467,6 +1141,7 @@
         }
     }
 
+    // 입주시설
     .facility-wrap {
         .facility-list {
             gap: 20px;
@@ -480,6 +1155,142 @@
                 }
                 dd {
                     font-size: 18px;
+                }
+            }
+        }
+    }
+
+    // 조직도
+    .organ-wrap {
+        .role {
+            width: 200px;
+            height: 60px;
+            font-size: 16px;
+        }
+        .organ-top {
+            .organ01 {
+                width: 200px;
+                height: 200px;
+                .ceo {
+                    width: 150px;
+                    height: 150px;
+                    font-size: 24px;
+                }
+            }
+        }
+        .organ02 {
+            &::before {
+                left: -30px;
+            }
+        }
+        .organ03 {
+            margin-top: 40px;
+            .role {
+                &:first-child::before {
+                    top: -24px;
+                }
+                &::after {
+                    height: 20px;
+                }
+                & + .role {
+                    margin-top: 20px;
+                    &::after {
+                        content: none;
+                    }
+                }
+            }
+        }
+        .organ04 {
+            margin-top: 0;
+            padding-top: 30px;
+            flex-direction: column;
+            align-items: center;
+            &::before {
+                content: none;
+            }
+            .organ-box {
+                &::after {
+                    height: 30px;
+                    top: -30px;
+                }
+                & + .organ-box {
+                    margin-top: 30px;
+                }
+                .role-desc {
+                    padding: 24px;
+                    min-height: initial;
+                    p {
+                        font-size: 16px;
+                        & + p {
+                            margin-top: 10px;
+                        }
+                    }
+                }
+            }
+        }
+        .organ-table {
+            thead th {
+                height: 54px;
+                font-size: 18px;
+            }
+            tbody td {
+                padding: 16px 0;
+                font-size: 16px;
+                .name {
+                    margin-left: 10px;
+                }
+            }
+        }
+    }
+
+    // 연혁
+    .history-wrap {
+        .history-top {
+            background-position: right top;
+            background-size: 50%;
+            .title {
+                font-size: 20px;
+            }
+            .desc {
+                margin-top: 14px;
+                font-size: 16px;
+            }
+        }
+        .history-main {
+            gap: 30px 20px;
+        }
+    }
+
+    // 설립목적
+    .purpose-wrap {
+        .purpose-top {
+            min-height: 240px;
+            padding: 30px 30px 20px;
+            .title {
+                font-size: 28px;
+            }
+        }
+        .purpose-cont {
+            .cont-common .cont-item {
+                gap: 40px;
+            }
+            .support-wrap {
+                gap: 16px;
+                .support-item {
+                    max-width: 180px;
+                }
+            }
+            .value-wrap {
+                .value-item .text-wrap {
+                    .title {
+                        font-size: 20px;
+                        &::after {
+                            margin-top: 16px;
+                        }
+                    }
+                    .text {
+                        font-size: 16px;
+                    }
                 }
             }
         }
@@ -533,6 +1344,7 @@
         }
     }
 
+    // 입주시설
     .facility-wrap {
         .facility-list {
             gap: 16px;
@@ -548,6 +1360,127 @@
                 }
                 dd {
                     font-size: 16px;
+                }
+            }
+        }
+    }
+
+    // 조직도
+    .organ-wrap {
+        .organ-top {
+            flex-direction: column;
+            align-items: center;
+        }
+        .organ02 {
+            position: relative;
+            top: 0;
+            transform: initial;
+            margin: 40px auto 0;
+            &::before {
+                top: -24px;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+        }
+    }
+
+    // 연혁
+    .history-wrap {
+        .history-top {
+            background: none;
+        }
+        .history-main {
+            margin-top: 40px;
+            flex-wrap: wrap;
+            dl {
+                flex: 0 0 auto;
+                width: calc(100% / 3 - 14px);
+            }
+        }
+        .history-detail {
+            margin-top: 40px;
+            .title {
+                font-size: 24px;
+                padding-bottom: 20px;
+            }
+            .history-list {
+                dl {
+                    dt {
+                        font-size: 20px;
+                        width: 80px;
+                        &::before,
+                        &::after {
+                            top: 6px;
+                        }
+                    }
+                    dd {
+                        padding-bottom: 30px;
+                        padding-left: 20px;
+                    }
+                }
+                ul li {
+                    font-size: 16px;
+                    & + li {
+                        margin-top: 10px;
+                    }
+                    ul li {
+                        margin-top: 8px;
+                        & + li {
+                            margin-top: 4px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    // 설립목적
+    .purpose-wrap {
+        .purpose-top {
+            .title {
+                font-size: 24px;
+            }
+            .text {
+                margin-top: 14px;
+                font-size: 16px;
+            }
+        }
+        .purpose-cont {
+            .purpose-item {
+                .title {
+                    font-size: 22px;
+                }
+                .desc {
+                    margin-top: 10px;
+                    font-size: 16px;
+                }
+            }
+            .cont-common .cont-item {
+                &.type-right {
+                    text-align: left;
+                }
+            }
+            .support-wrap {
+                flex-wrap: wrap;
+                justify-content: space-around;
+                .line {
+                    display: none;
+                }
+                .support-item {
+                    .text {
+                        &::before {
+                            width: 50px;
+                            height: 50px;
+                        }
+                    }
+                }
+            }
+            .value-wrap {
+                justify-content: space-around;
+                flex-wrap: wrap;
+                gap: 20px;
+                .value-item {
+                    max-width: 180px;
                 }
             }
         }
@@ -671,6 +1604,17 @@
                 .label {
                     font-size: 17px;
                 }
+            }
+        }
+    }
+}
+
+@media (max-width: 500px) {
+    // 연혁
+    .history-wrap {
+        .history-main {
+            dl {
+                width: calc(100% / 2 - 10px);
             }
         }
     }

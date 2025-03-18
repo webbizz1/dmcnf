@@ -67,7 +67,9 @@ window.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  document.querySelector('.tab-select').addEventListener('click', (e) => toggleTab(e));
+  document.querySelectorAll('.tab-select').forEach((el) => {
+    el.addEventListener('click', (e) => toggleTab(e));
+  });
 
   // 재단 정관
   document.querySelectorAll(".accordion-box .sub-header").forEach(header => {
@@ -91,5 +93,40 @@ window.addEventListener('DOMContentLoaded', () => {
       }
     });
   });
+
+  // 연혁
+  const historyItems = document.querySelectorAll(".history-list dl");
+
+  function updateActiveHistory() {
+    const scrollTop = window.scrollY;
+    const windowHeight = window.innerHeight;
+    const docHeight = document.body.scrollHeight;
+    let activeIndex = 0;
+
+    // 마지막 항목 처리 (스크롤이 끝까지 내려간 경우)
+    if (windowHeight + scrollTop >= docHeight - 10) {
+      activeIndex = historyItems.length - 1;
+    } else {
+      historyItems.forEach((item, index) => {
+        const itemTop = item.offsetTop - 150; // px 여유를 둠 (조절 가능)
+        if (scrollTop >= itemTop) {
+          activeIndex = index;
+        }
+      });
+    }
+
+    // 활성화 클래스 업데이트
+    historyItems.forEach((item, index) => {
+      if (index === activeIndex) {
+        item.classList.add("on");
+      } else {
+        item.classList.remove("on");
+      }
+    });
+  }
+
+  // 초기화 & 스크롤 이벤트 추가
+  updateActiveHistory();
+  window.addEventListener("scroll", updateActiveHistory);
 
 });

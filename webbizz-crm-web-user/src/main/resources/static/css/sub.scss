@@ -1,7 +1,7 @@
 @import "utility";
 
 .sub-content {
-    padding: 0 0 120px;
+    padding: 0 0 200px;
 }
 
 // 에디터 출력
@@ -1048,6 +1048,10 @@
 }
 
 @include tablet {
+    .sub-content {
+        padding: 0 0 120px;
+    }
+
     // 컨텐츠 하단
     .cont-btm {
         padding: 30px 0 0;

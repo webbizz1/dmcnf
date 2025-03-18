@@ -41,7 +41,7 @@ html {font-size: 10px; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100
 body {width: 100%;color: #222; background-color: #fff; }
 html, body, pre {font-family: 'Pretendard', sans-serif;}
 
-ol, ul, nav {
+ol, ul, li, nav {
 	list-style: none;
 }
 
