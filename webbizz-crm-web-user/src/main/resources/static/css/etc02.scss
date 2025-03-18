@@ -542,6 +542,17 @@
 }
 @include tablet {
     .regulation-wrap {
+        .header {
+            margin-top: 30px;
+            gap: 100px;
+            .title {
+                font-size: 26px;
+            }
+            .link {
+                width: 100px;
+                height: 100px;
+            }
+        }
         .cont {
             .accordion-box {
                 .sub-header {
@@ -638,6 +649,20 @@
 }
 
 @include mobile{
+    .regulation-wrap {
+        .header {
+            margin-top: 0;
+            flex-direction: column;
+            gap: 40px;
+            .link {
+                width: 300px;
+                height: 52px;
+                &::before {
+                    content: none;
+                }
+            }
+        }
+    }
     .ceo-wrap {
         margin-top: 0px;
         .ceo-header {
@@ -687,6 +712,13 @@
 }
 
 @media (max-width:580px){
+    .regulation-wrap {
+        .header {
+            .link {
+                width: 100%;
+            }
+        }
+    }
     .ceo-wrap {
         .ceo-header {
             .text {
