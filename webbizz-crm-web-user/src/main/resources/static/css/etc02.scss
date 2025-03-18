@@ -345,133 +345,101 @@
             }
         }
     }
-    .table-wrap{
-        @include rowscroll;
-        table{
-            tbody{
-                tr{
-                    th{
-                        border: 1px solid #ddd;
-                        border-left: none;
-                        max-width: 318px;
-                        width: 100%;
-                        font-size: 18px;
+    .map-box {
+        border-top: 1px solid #222;
+        border-bottom: 1px solid #D8D8D8;
+        background-color: #F9F9F9;
+        .row {
+            display: flex;
+            border-bottom: 1px solid #EAEAEA;
+            &:last-child{
+                border-bottom: none;
+            }
+            .title {
+                width: 320px;
+                font-size: 18px;
+                font-weight: 700;
+                color: #222222;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 20px;
+                border-right: 1px solid #eaeaea;
+            }
+            .content {
+                flex: 1;
+                display: flex;
+                align-items: center;
+                padding: 40px 30px;
+                background-color: #fff;
+                .subway-info {
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                    .subway-icon {
+                        display: inline-block;
+                        width: 28px;
+                        height: 28px;
                         text-align: center;
-                        font-weight: bold;
-                        color: #222222;
-                        background-color: #F9F9F9;
+                        line-height: 28px;
+                        font-size: 12px;
+                        color: white;
+                        background-color: #B5500C;
+                        border-radius: 50%;
                     }
-                    td{
-                        border: 1px solid #ddd;
-                        border-right: none;
-                        .content {
-                            flex: 1;
-                            padding: 40px 30px;
-                            background-color: #fff;
-                            .subway-icon {
+                    .line-name {
+                        display: inline-block;
+                        width: 50px;
+                        height: 28px;
+                        font-size: 12px;
+                        padding: 7px;
+                        text-align: center;
+                        background: #73B6E4;
+                        color: white;
+                        border-radius: 14px;
+                    }
+                }
+                .desc {
+                    display: block;
+                    margin-left: 16px;
+                    font-size: 16px;
+                    color: #222;
+                    line-height: 1.4;
+                    word-break: keep-all;
+                }
+                .bus-info {
+                    strong {
+                        font-size: 16px;
+                        font-weight: 600;
+                        color: #222;
+                    }
+                    ul {
+                        margin-top: 20px;
+                        list-style: none;
+                        li {
+                            display: flex;
+                            align-items: center;
+                            gap: 10px;
+                            font-size: 16px;
+                            color: #222;
+                            &::before {
+                                content: "";
                                 display: inline-block;
-                                width: 28px;
-                                height: 28px;
-                                margin-right: 10px;
-                                text-align: center;
-                                line-height: 28px;
-                                font-size: 12px;
-                                color: white;
-                                background-color: #B5500C; 
-                                border-radius: 50%;
+                                width: 24px;
+                                height: 24px;
+                                background-size: contain;
+                                background-repeat: no-repeat;
+                                background-position: center;
                             }
-                            .line-name {
-                                display: inline-block;
-                                font-size: 12px;
-                                padding: 8px 16px;
-                                max-width: 54px;
-                                margin-right: 16px;
-                                background: #73B6E4; 
-                                color: white;
-                                border-radius: 16px;
-                            }
-                            span {
-                                font-size: 16px;
-                                color: #222222;
-                            }
-                            p {
-                                font-size: 16px;
-                                color: #222222;
-                                display: flex;
-                                align-items: center; 
-                                gap: 10px;
-                                & + p{
-                                    margin-top: 15px;
-                                }
-                                strong {
-                                    font-weight: 600;
-                                }
-                                &.green::before,
-                                &.blue::before {
-                                    content: "";
-                                    display: inline-block;
-                                    width: 24px;
-                                    height: 24px;
-                                    background-size: contain;
-                                    background-repeat: no-repeat;
-                                    background-position: center;
-                                }
-                                &.green::before {
-                                    background-image: url("../images/sub/green_bus.svg");
-                                }
-                    
-                                &.blue::before {
-                                    background-image: url("../images/sub/blue_bus.svg");
-                                }
+                            & + li{
+                                margin-top: 10px;
                             }
                         }
-                        dl{
-                            padding: 40px 30px;
-                            dt{
-                                p{
-                                    margin-bottom: 20px;
-                                }
-                            }
-                            dt, dd{
-                                ul{
-                                    li{
-                                        list-style: none;
-                                        & + li{
-                                            margin-top: 15px;
-                                        }
-                                        p {
-                                            font-size: 16px;
-                                            color: #222222;
-                                            display: flex;
-                                            align-items: center; 
-                                            gap: 10px;
-                                            & + p{
-                                                margin-top: 15px;
-                                            }
-                                            strong {
-                                                font-weight: 600;
-                                            }
-                                            &.green::before,
-                                            &.blue::before {
-                                                content: "";
-                                                display: inline-block;
-                                                width: 24px;
-                                                height: 24px;
-                                                background-size: contain;
-                                                background-repeat: no-repeat;
-                                                background-position: center;
-                                            }
-                                            &.green::before {
-                                                background-image: url("../images/sub/green_bus.svg");
-                                            }
-                                
-                                            &.blue::before {
-                                                background-image: url("../images/sub/blue_bus.svg");
-                                            }
-                                        }
-                                    }
-                                }
-                            }
+                        .green::before {
+                            background-image: url("../images/sub/green_bus.svg");
+                        }
+                        .blue::before {
+                            background-image: url("../images/sub/blue_bus.svg");
                         }
                     }
                 }
@@ -631,6 +599,29 @@
                 padding: 0 0 24px 0;
             }
         }
+        .map-box {
+            .row {
+                .title {
+                    width: 200px;
+                }
+                .content {
+                    padding: 30px 20px;
+                    .desc {
+                        margin-left: 10px;
+                    }
+                    .bus-info {
+                        ul {
+                            margin-top: 10px;
+                            li {
+                                & + li{
+                                    margin-top: 4px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
     .pr-wrap{
         .header {
@@ -697,6 +688,36 @@
             }
         }
     }
+    .location-wrap{
+        .map-box {
+            border-top: none;
+            .row {
+                flex-direction: column;
+                .title {
+                    width: 100%;
+                    justify-content: flex-start;
+                    border-top: 1px solid #222;
+                    border-right: none;
+                }
+                .content {
+                    padding: 30px 20px;
+                    .desc {
+                        margin-left: 10px;
+                    }
+                    .bus-info {
+                        ul {
+                            margin-top: 10px;
+                            li {
+                                & + li{
+                                    margin-top: 4px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
     .pr-wrap{
         .header {
             margin-top: 0;
@@ -756,6 +777,18 @@
                     &:first-child{
                         margin-bottom: 20px;
                         font-size: 20px;
+                    }
+                }
+            }
+        }
+        .map-box {
+            .row {
+                .content {
+                    flex-direction: column;
+                    align-items: flex-start;
+                    padding: 20px;
+                    .desc {
+                        margin: 10px 0 0;
                     }
                 }
             }
