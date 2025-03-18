@@ -289,9 +289,8 @@
   font-size: 20px;
   color: #333333;
   line-height: 1.3;
-}
-.ceo-wrap .ceo-content .text-wrap .txt-box p + p {
-  margin-top: 26px;
+  word-break: keep-all .ceo-wrap .ceo-content .text-wrap .txt-box pp;
+  word-break-margin-top: 26px;
 }
 .ceo-wrap .ceo-content .sign-wrap {
   display: flex;
