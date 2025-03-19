@@ -604,7 +604,8 @@
                     display: flex;
                     align-items: center;
                     justify-content: center;
-                    width: 411px;
+                    width: 100%;
+                    max-width: 411px;
                     height: 78px;
                     border-radius: 50px;
                     background: $main-color;
@@ -693,6 +694,7 @@
                         color: #666;
                         font-size: 18px;
                         line-height: 1.4;
+                        word-break: keep-all;
                     }
                 }
             }
@@ -993,6 +995,18 @@
     }
 }
 
+@media (max-width: 1440px) {
+    // 설립목적
+    .purpose-wrap .purpose-cont .vision-wrap .vision-cont {
+        &::before {
+            width: calc(100% - 47.6%);
+        }
+        .vision-box {
+            max-width: calc(100% / 2 - 30px);
+        }
+    }
+}
+
 @include laptop {
     .cont-title {
         flex-direction: column;
@@ -1111,6 +1125,16 @@
                 }
                 .desc {
                     font-size: 20px;
+                }
+            }
+            .vision-wrap .vision-cont {
+                gap: 30px;
+                &::before {
+                    width: calc(100% - 48.3%);
+                }
+                .vision-box {
+                    max-width: 480px;
+                    padding: 40px 16px;
                 }
             }
             .value-wrap .value-item {
@@ -1278,6 +1302,32 @@
                 gap: 16px;
                 .support-item {
                     max-width: 180px;
+                }
+            }
+            .vision-wrap {
+                .vision-top .title {
+                    max-width: 360px;
+                    height: 60px;
+                    font-size: 20px;
+                }
+                .vision-cont {
+                    .vision-box {
+                        &::before {
+                            width: 16px;
+                            height: 16px;
+                        }
+                        .title {
+                            font-size: 18px;
+                            &::after {
+                                width: 40px;
+                                height: 3px;
+                                margin-top: 14px;
+                            }
+                        }
+                        .text {
+                            font-size: 16px;
+                        }
+                    }
                 }
             }
             .value-wrap {
@@ -1471,6 +1521,33 @@
                         &::before {
                             width: 50px;
                             height: 50px;
+                        }
+                    }
+                }
+            }
+            .vision-wrap {
+                margin-top: 50px;
+                .vision-top .title::after {
+                    content: none;
+                }
+                .vision-cont {
+                    flex-direction: column;
+                    align-items: center;
+                    margin-top: 6px;
+                    padding-top: 40px;
+                    gap: 40px;
+                    &::before {
+                        content: none;
+                    }
+                    .vision-box {
+                        padding-top: 30px;
+                        padding-bottom: 30px;
+                        &::after {
+                            height: 40px;
+                            top: -40px;
+                        }
+                        .text {
+                            margin-top: 20px;
                         }
                     }
                 }

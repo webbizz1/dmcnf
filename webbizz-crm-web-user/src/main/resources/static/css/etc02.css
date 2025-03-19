@@ -305,8 +305,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 
 .location-wrap .tit {
@@ -337,8 +336,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 .location-wrap .sub-box .info {
   padding: 20px 0;
@@ -536,8 +534,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 
 .directors-wrap .director-box:last-child .career {
@@ -862,4 +859,4 @@
   .pr-wrap .header {
     margin: 0;
   }
-}/*# sourceMappingURL=etc02.css.map */
+}

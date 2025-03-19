@@ -573,7 +573,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 411px;
+  width: 100%;
+  max-width: 411px;
   height: 78px;
   border-radius: 50px;
   background: #0f3b75;
@@ -663,6 +664,7 @@
   color: #666;
   font-size: 18px;
   line-height: 1.4;
+  word-break: keep-all;
 }
 .purpose-wrap .purpose-cont .value-wrap {
   display: flex;
@@ -948,6 +950,14 @@
   background-size: contain;
 }
 
+@media (max-width: 1440px) {
+  .purpose-wrap .purpose-cont .vision-wrap .vision-cont::before {
+    width: 52.4%;
+  }
+  .purpose-wrap .purpose-cont .vision-wrap .vision-cont .vision-box {
+    max-width: calc(50% - 30px);
+  }
+}
 @media only screen and (max-width: 1240px) {
   .cont-title {
     flex-direction: column;
@@ -1044,6 +1054,16 @@
   }
   .purpose-wrap .purpose-cont .purpose-item .desc {
     font-size: 20px;
+  }
+  .purpose-wrap .purpose-cont .vision-wrap .vision-cont {
+    gap: 30px;
+  }
+  .purpose-wrap .purpose-cont .vision-wrap .vision-cont::before {
+    width: 51.7%;
+  }
+  .purpose-wrap .purpose-cont .vision-wrap .vision-cont .vision-box {
+    max-width: 480px;
+    padding: 40px 16px;
   }
   .purpose-wrap .purpose-cont .value-wrap .value-item {
     max-width: 360px;
@@ -1178,6 +1198,26 @@
   }
   .purpose-wrap .purpose-cont .support-wrap .support-item {
     max-width: 180px;
+  }
+  .purpose-wrap .purpose-cont .vision-wrap .vision-top .title {
+    max-width: 360px;
+    height: 60px;
+    font-size: 20px;
+  }
+  .purpose-wrap .purpose-cont .vision-wrap .vision-cont .vision-box::before {
+    width: 16px;
+    height: 16px;
+  }
+  .purpose-wrap .purpose-cont .vision-wrap .vision-cont .vision-box .title {
+    font-size: 18px;
+  }
+  .purpose-wrap .purpose-cont .vision-wrap .vision-cont .vision-box .title::after {
+    width: 40px;
+    height: 3px;
+    margin-top: 14px;
+  }
+  .purpose-wrap .purpose-cont .vision-wrap .vision-cont .vision-box .text {
+    font-size: 16px;
   }
   .purpose-wrap .purpose-cont .value-wrap .value-item .text-wrap .title {
     font-size: 20px;
@@ -1329,6 +1369,33 @@
   .purpose-wrap .purpose-cont .support-wrap .support-item .text::before {
     width: 50px;
     height: 50px;
+  }
+  .purpose-wrap .purpose-cont .vision-wrap {
+    margin-top: 50px;
+  }
+  .purpose-wrap .purpose-cont .vision-wrap .vision-top .title::after {
+    content: none;
+  }
+  .purpose-wrap .purpose-cont .vision-wrap .vision-cont {
+    flex-direction: column;
+    align-items: center;
+    margin-top: 6px;
+    padding-top: 40px;
+    gap: 40px;
+  }
+  .purpose-wrap .purpose-cont .vision-wrap .vision-cont::before {
+    content: none;
+  }
+  .purpose-wrap .purpose-cont .vision-wrap .vision-cont .vision-box {
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
+  .purpose-wrap .purpose-cont .vision-wrap .vision-cont .vision-box::after {
+    height: 40px;
+    top: -40px;
+  }
+  .purpose-wrap .purpose-cont .vision-wrap .vision-cont .vision-box .text {
+    margin-top: 20px;
   }
   .purpose-wrap .purpose-cont .value-wrap {
     justify-content: space-around;
