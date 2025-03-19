@@ -1,7 +1,7 @@
 // 공통
 window.addEventListener('DOMContentLoaded', () => {
   function isMobileDevice() {
-    return window.innerWidth <= 1241;
+    return window.innerWidth <= 768;
   }
 
   // 공유 버튼 클릭 시 공유 팝업 표시/숨기기
@@ -37,28 +37,46 @@ window.addEventListener('DOMContentLoaded', () => {
     // });
   });
 
-  let tabBtn = document.querySelectorAll('.tab-wrap .tab');
+  function initializeTabs() {
+    let tabBtn = document.querySelectorAll(".tab-wrap .tab");
 
-  tabBtn.forEach(tab => {
-    const tabWrap = tab.closest(".tab-wrap");
-    const tabSelect = tabWrap.querySelector(".tab-select");
-    const activeTab = tabWrap.querySelector(".tab.on");
+    tabBtn.forEach((tab) => {
+      const tabWrap = tab.closest(".tab-wrap");
+      const tabSelect = tabWrap.querySelector(".tab-select");
+      const activeTab = tabWrap.querySelector(".tab.on");
 
-    if (tabSelect && activeTab) {
-      tabSelect.textContent = activeTab.textContent;
-    }
-
-    tab.addEventListener("click", (e) => {
-      tabWrap.querySelectorAll(".tab").forEach((a) => a.classList.remove("on"));
-      tab.classList.add("on");
-
-      if (tabSelect) {
-        tabSelect.textContent = tab.textContent;
+      if (tabSelect && activeTab) {
+        tabSelect.textContent = activeTab.textContent;
       }
+
+      tab.addEventListener("click", (e) => {
+        tabWrap.querySelectorAll(".tab").forEach((a) => a.classList.remove("on"));
+        tab.classList.add("on");
+
+        if (tabSelect) {
+          tabSelect.textContent = tab.textContent;
+        }
+
+        if (isMobileDevice()) {
+          tabSelect.classList.remove("on"); // 모바일에서 탭 선택 후 닫기
+          const tabInner = tabWrap.querySelector(".tab-inner");
+          if (tabInner) {
+            tabInner.style.height = "0";
+          }
+        }
+      });
     });
-  });
+
+    if (isMobileDevice()) {
+      document.querySelectorAll(".tab-select").forEach((el) => {
+        el.addEventListener("click", toggleTab);
+      });
+    }
+  }
 
   function toggleTab(event) {
+    if (!isMobileDevice()) return; // 768px 이하에서만 실행
+
     const tabSelect = event.currentTarget;
     const tabWrap = tabSelect.closest(".tab-wrap");
     const tabInner = tabWrap.querySelector(".tab-inner");
@@ -66,26 +84,31 @@ window.addEventListener('DOMContentLoaded', () => {
     if (!tabInner) return;
 
     if (tabSelect.classList.contains("on")) {
-      tabInner.style.height = "0";
-      tabInner.style.opacity = "0";
       tabSelect.classList.remove("on");
+      tabInner.style.height = "0";
     } else {
       tabSelect.classList.add("on");
       tabInner.style.height = tabWrap.querySelector(".select-list").offsetHeight + "px";
       tabInner.style.opacity = "1";
     }
-    // tabBtn.forEach(tab => {
-    //   tab.addEventListener('click', () => {
-    //     tabSelect.nextElementSibling.style.height = '0';
-    //     tabSelect.classList.remove('on');
-    //     tabSelect.textContent = tab.textContent;
-    //   });
-    // });
   }
 
-  document.querySelectorAll(".tab-select").forEach((el) => {
-    el.addEventListener("click", toggleTab);
+  // 화면 크기 변경 시 다시 적용
+  window.addEventListener("resize", () => {
+    document.querySelectorAll(".tab-select").forEach((el) => {
+      el.removeEventListener("click", toggleTab);
+    });
+
+    // 화면 크기 변화 후 height 초기화
+    document.querySelectorAll(".tab-wrap .tab-inner").forEach((tabInner) => {
+      tabInner.style.height = "";  // height 초기화
+    });
+    
+    initializeTabs();
   });
+
+  // 초기 실행
+  initializeTabs();
 
   // 재단 정관
   document.querySelectorAll(".accordion-box .sub-header").forEach(header => {

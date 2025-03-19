@@ -44,7 +44,8 @@
 .cont-common.type-square .cont-item {
   gap: 40px;
 }
-.cont-common.type-square .cont-item .img {
+.cont-common.type-square .cont-item .img,
+.cont-common.type-square .cont-item .image {
   max-width: 460px;
 }
 .cont-common .cont-item {
@@ -58,12 +59,14 @@
 .cont-common .cont-item.type-right {
   flex-direction: row-reverse;
 }
-.cont-common .cont-item .img {
+.cont-common .cont-item .img,
+.cont-common .cont-item .image {
   flex-shrink: 0;
   max-width: 400px;
   border-radius: 50%;
 }
-.cont-common .cont-item .img img {
+.cont-common .cont-item .img img,
+.cont-common .cont-item .image img {
   width: 100%;
 }
 .cont-common .cont-item .text-wrap {
@@ -110,7 +113,8 @@
   color: #666;
 }
 
-.facility-wrap .img {
+.facility-wrap .img,
+.facility-wrap .image {
   border: 1px solid #666;
 }
 .facility-wrap .facility-list {
@@ -968,13 +972,15 @@
   .cont-title h4.title {
     font-size: 26px;
   }
-  .cont-common.type-square .cont-item .img {
+  .cont-common.type-square .cont-item .img,
+  .cont-common.type-square .cont-item .image {
     max-width: 300px;
   }
   .cont-common .cont-item {
     gap: 40px;
   }
-  .cont-common .cont-item .img {
+  .cont-common .cont-item .img,
+  .cont-common .cont-item .image {
     max-width: 240px;
   }
   .cont-common .cont-item .text-wrap h5.title {
@@ -1243,7 +1249,8 @@
   .cont-common .cont-item + .cont-item {
     margin-top: 40px;
   }
-  .cont-common .cont-item .img {
+  .cont-common .cont-item .img,
+  .cont-common .cont-item .image {
     max-width: 240px;
   }
   .cont-common .cont-item .text-wrap h5.title {

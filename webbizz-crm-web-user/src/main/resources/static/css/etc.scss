@@ -48,7 +48,8 @@
     &.type-square {
         .cont-item {
             gap: 40px;
-            .img {
+            .img,
+            .image {
                 max-width: 460px;
             }
         }
@@ -63,7 +64,8 @@
         &.type-right {
             flex-direction: row-reverse;
         }
-        .img {
+        .img,
+        .image {
             flex-shrink: 0;
             max-width: 400px;
             border-radius: 50%;
@@ -121,7 +123,8 @@
 
 // 입주시설
 .facility-wrap {
-    .img {
+    .img,
+    .image {
         border: 1px solid #666;
     }
     .facility-list {
@@ -1020,13 +1023,15 @@
 
     .cont-common {
         &.type-square {
-            .cont-item .img {
+            .cont-item .img,
+            .cont-item .image {
                 max-width: 300px;
             }
         }
         .cont-item {
             gap: 40px;
-            .img {
+            .img,
+            .image {
                 max-width: 240px;
             }
             .text-wrap {
@@ -1363,7 +1368,8 @@
             & + .cont-item {
                 margin-top: 40px;
             }
-            .img {
+            .img,
+            .image {
                 max-width: 240px;
             }
             .text-wrap {
