@@ -142,23 +142,24 @@
                                     margin-top: 10px;
                                 }
                             }
+                        }   
+                        .table-info{
+                            margin-top: 14px;
+                            text-align: right;
+                        }
+                        .tit{
+                            font-size: 18px;
+                        }
+                        .sub-txt{
+                            text-align: right;
+                            margin-bottom: 10px;
                         }
                         .table-wrap {
                             @include rowscroll; 
-                            & + .table-wrap{
+                            & + .tit{
                                 margin-top: 20px;
                             }
-                            .table-info{
-                                margin-top: 14px;
-                                text-align: right;
-                            }
-                            .tit{
-                                font-size: 18px;
-                            }
-                            .sub-txt{
-                                text-align: right;
-                                margin-bottom: 10px;
-                            }
+                         
                             .table{
                                 min-width: 768px;
                             }
@@ -606,16 +607,14 @@
                     }
                     ul {
                         li {
-                            .table-wrap {
-                                .table-info{
-                                    font-size: 14px;
-                                }
-                                .tit{
-                                    font-size: 16px;
-                                }
-                                .sub-txt{
-                                    font-size: 14px;
-                                }
+                            .table-info{
+                                font-size: 14px;
+                            }
+                            .tit{
+                                font-size: 16px;
+                            }
+                            .sub-txt{
+                                font-size: 14px;
                             }
                         }
                     }

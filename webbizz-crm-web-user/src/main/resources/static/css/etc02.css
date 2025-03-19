@@ -140,6 +140,17 @@
 .regulation-wrap .cont .accordion-box .sub-content ul li ul li + li {
   margin-top: 10px;
 }
+.regulation-wrap .cont .accordion-box .sub-content ul li .table-info {
+  margin-top: 14px;
+  text-align: right;
+}
+.regulation-wrap .cont .accordion-box .sub-content ul li .tit {
+  font-size: 18px;
+}
+.regulation-wrap .cont .accordion-box .sub-content ul li .sub-txt {
+  text-align: right;
+  margin-bottom: 10px;
+}
 .regulation-wrap .cont .accordion-box .sub-content ul li .table-wrap {
   overflow: auto;
   padding-bottom: 10px;
@@ -153,19 +164,8 @@
   border-radius: 60px;
   background: rgba(153, 153, 153, 0.3);
 }
-.regulation-wrap .cont .accordion-box .sub-content ul li .table-wrap + .table-wrap {
+.regulation-wrap .cont .accordion-box .sub-content ul li .table-wrap + .tit {
   margin-top: 20px;
-}
-.regulation-wrap .cont .accordion-box .sub-content ul li .table-wrap .table-info {
-  margin-top: 14px;
-  text-align: right;
-}
-.regulation-wrap .cont .accordion-box .sub-content ul li .table-wrap .tit {
-  font-size: 18px;
-}
-.regulation-wrap .cont .accordion-box .sub-content ul li .table-wrap .sub-txt {
-  text-align: right;
-  margin-bottom: 10px;
 }
 .regulation-wrap .cont .accordion-box .sub-content ul li .table-wrap .table {
   min-width: 768px;
@@ -626,13 +626,13 @@
   .regulation-wrap .cont .accordion-box .sub-content h4 {
     font-size: 18px;
   }
-  .regulation-wrap .cont .accordion-box .sub-content ul li .table-wrap .table-info {
+  .regulation-wrap .cont .accordion-box .sub-content ul li .table-info {
     font-size: 14px;
   }
-  .regulation-wrap .cont .accordion-box .sub-content ul li .table-wrap .tit {
+  .regulation-wrap .cont .accordion-box .sub-content ul li .tit {
     font-size: 16px;
   }
-  .regulation-wrap .cont .accordion-box .sub-content ul li .table-wrap .sub-txt {
+  .regulation-wrap .cont .accordion-box .sub-content ul li .sub-txt {
     font-size: 14px;
   }
   .ceo-wrap {
