@@ -1178,6 +1178,9 @@
   .organ-wrap .organ04 .organ-box .role-desc p + p {
     margin-top: 10px;
   }
+  .organ-wrap .organ-table .table {
+    min-width: 768px;
+  }
   .organ-wrap .organ-table thead th {
     height: 54px;
     font-size: 18px;

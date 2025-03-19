@@ -1272,6 +1272,9 @@
             }
         }
         .organ-table {
+            .table {
+                min-width: 768px;
+            }
             thead th {
                 height: 54px;
                 font-size: 18px;
