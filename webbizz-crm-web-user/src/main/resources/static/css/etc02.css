@@ -238,6 +238,7 @@
 .ceo-wrap .ceo-header .image {
   flex-shrink: 0;
   position: absolute;
+  margin: 0;
   bottom: 60px;
   right: 60px;
 }
@@ -291,6 +292,9 @@
 .ceo-wrap .ceo-content .sign-wrap p {
   font-size: 18px;
   color: #333;
+}
+.ceo-wrap .ceo-content .sign-wrap .image {
+  margin: 0;
 }
 .ceo-wrap .ceo-content .sign-wrap .image img {
   max-width: 161px;
