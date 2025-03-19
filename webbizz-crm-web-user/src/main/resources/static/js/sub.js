@@ -38,37 +38,53 @@ window.addEventListener('DOMContentLoaded', () => {
   });
 
   let tabBtn = document.querySelectorAll('.tab-wrap .tab');
-  tabBtn.forEach(tab => {
-    const tabSelect = tab.closest('.tab-wrap').querySelector('.tab-select');
-    tabSelect.textContent = tab.closest('.tab-wrap').querySelector('.tab.on').textContent;
 
-    tab.addEventListener('click', (e) => {
-      tabBtn.forEach(a => a.classList.remove('on'));
-      tab.classList.add('on');
+  tabBtn.forEach(tab => {
+    const tabWrap = tab.closest(".tab-wrap");
+    const tabSelect = tabWrap.querySelector(".tab-select");
+    const activeTab = tabWrap.querySelector(".tab.on");
+
+    if (tabSelect && activeTab) {
+      tabSelect.textContent = activeTab.textContent;
+    }
+
+    tab.addEventListener("click", (e) => {
+      tabWrap.querySelectorAll(".tab").forEach((a) => a.classList.remove("on"));
+      tab.classList.add("on");
+
+      if (tabSelect) {
+        tabSelect.textContent = tab.textContent;
+      }
     });
   });
 
-  function toggleTab(element) {
-    const tabSelect = element.target;
-    if (tabSelect.classList.contains('on')) {
-      tabSelect.nextElementSibling.style.height = '0';
-      tabSelect.classList.remove('on');
+  function toggleTab(event) {
+    const tabSelect = event.currentTarget;
+    const tabWrap = tabSelect.closest(".tab-wrap");
+    const tabInner = tabWrap.querySelector(".tab-inner");
+
+    if (!tabInner) return;
+
+    if (tabSelect.classList.contains("on")) {
+      tabInner.style.height = "0";
+      tabInner.style.opacity = "0";
+      tabSelect.classList.remove("on");
     } else {
-      tabSelect.classList.add('on');
-      const tabWrap = tabSelect.closest('.tab-wrap').querySelector('.tab-inner');
-      tabWrap.style.height = tabWrap.querySelector('.select-list').offsetHeight + 'px';
+      tabSelect.classList.add("on");
+      tabInner.style.height = tabWrap.querySelector(".select-list").offsetHeight + "px";
+      tabInner.style.opacity = "1";
     }
-    tabBtn.forEach(tab => {
-      tab.addEventListener('click', () => {
-        tabSelect.nextElementSibling.style.height = '0';
-        tabSelect.classList.remove('on');
-        tabSelect.textContent = tab.textContent;
-      });
-    });
+    // tabBtn.forEach(tab => {
+    //   tab.addEventListener('click', () => {
+    //     tabSelect.nextElementSibling.style.height = '0';
+    //     tabSelect.classList.remove('on');
+    //     tabSelect.textContent = tab.textContent;
+    //   });
+    // });
   }
 
-  document.querySelectorAll('.tab-select').forEach((el) => {
-    el.addEventListener('click', (e) => toggleTab(e));
+  document.querySelectorAll(".tab-select").forEach((el) => {
+    el.addEventListener("click", toggleTab);
   });
 
   // 재단 정관
