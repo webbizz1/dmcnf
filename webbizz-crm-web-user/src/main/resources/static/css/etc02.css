@@ -479,7 +479,6 @@
   gap: 200px;
   border-bottom: 1px solid #D8D8D8;
   padding-bottom: 60px;
-  margin: 0 30px;
 }
 .pr-wrap .header .title {
   word-break: keep-all;
@@ -598,6 +597,11 @@
   margin-top: 16px;
 }
 
+@media only screen and (max-width: 1240px) {
+  .pr-wrap .header {
+    margin: 0 30px;
+  }
+}
 @media only screen and (max-width: 1023px) {
   .regulation-wrap .header {
     margin-top: 30px;

@@ -458,7 +458,6 @@
         gap: 200px;
         border-bottom: 1px solid #D8D8D8;
         padding-bottom: 60px;
-        margin: 0 30px;
         .title {
             word-break: keep-all;
             p{
@@ -567,6 +566,13 @@
                     }
                 }
             }
+        }
+    }
+}
+@include laptop{
+    .pr-wrap{
+        .header {
+            margin: 0 30px;
         }
     }
 }
@@ -857,6 +863,7 @@
             }
         }
         .ceo-content {
+
             .sign-wrap {
                 .image {
                     img{
