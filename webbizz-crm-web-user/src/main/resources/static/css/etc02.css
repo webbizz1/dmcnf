@@ -235,13 +235,13 @@
 .ceo-wrap .ceo-header .text p + p {
   margin-top: 20px;
 }
-.ceo-wrap .ceo-header .img {
+.ceo-wrap .ceo-header .image {
   flex-shrink: 0;
   position: absolute;
   bottom: 60px;
   right: 60px;
 }
-.ceo-wrap .ceo-header .img img {
+.ceo-wrap .ceo-header .image img {
   max-width: 448px;
 }
 .ceo-wrap .ceo-header .btm {
@@ -292,20 +292,21 @@
   font-size: 18px;
   color: #333;
 }
-.ceo-wrap .ceo-content .sign-wrap .img img {
+.ceo-wrap .ceo-content .sign-wrap .image img {
   max-width: 161px;
   aspect-ratio: 2.11;
   display: block;
   overflow: hidden;
   position: relative;
 }
-.ceo-wrap .ceo-content .sign-wrap .img img img {
+.ceo-wrap .ceo-content .sign-wrap .image img img {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .location-wrap .tit {
@@ -317,26 +318,30 @@
 .location-wrap .sub-box {
   display: flex;
   align-items: center;
-  gap: 24px;
+  gap: 44px;
   border-top: 3px solid #707070;
   border-bottom: 1px solid #DDDDDD;
 }
 .location-wrap .sub-box + .tit {
   margin-top: 60px;
 }
-.location-wrap .sub-box .img img {
+.location-wrap .sub-box .image {
+  margin: 0;
+}
+.location-wrap .sub-box .image img {
   aspect-ratio: 1.77;
   display: block;
   overflow: hidden;
   position: relative;
 }
-.location-wrap .sub-box .img img img {
+.location-wrap .sub-box .image img img {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .location-wrap .sub-box .info {
   padding: 20px 0;
@@ -534,7 +539,8 @@
   left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .directors-wrap .director-box:last-child .career {
@@ -631,10 +637,10 @@
   .ceo-wrap .ceo-header .text p + p {
     margin-top: 14px;
   }
-  .ceo-wrap .ceo-header .img {
+  .ceo-wrap .ceo-header .image {
     right: 40px;
   }
-  .ceo-wrap .ceo-header .img img {
+  .ceo-wrap .ceo-header .image img {
     max-width: 365px;
   }
   .ceo-wrap .ceo-content {
@@ -722,7 +728,7 @@
     text-align: center;
     font-size: 20px;
   }
-  .ceo-wrap .ceo-header .img {
+  .ceo-wrap .ceo-header .image {
     display: none;
   }
   .ceo-wrap .ceo-header .btm p {
@@ -803,7 +809,7 @@
     text-align: center;
     font-size: 18px;
   }
-  .ceo-wrap .ceo-content .sign-wrap .img img {
+  .ceo-wrap .ceo-content .sign-wrap .image img {
     max-width: 120px;
   }
   .location-wrap .tit {
@@ -859,4 +865,4 @@
   .pr-wrap .header {
     margin: 0;
   }
-}
+}/*# sourceMappingURL=etc02.css.map */
