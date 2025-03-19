@@ -167,6 +167,9 @@
   text-align: right;
   margin-bottom: 10px;
 }
+.regulation-wrap .cont .accordion-box .sub-content ul li .table-wrap .table {
+  min-width: 768px;
+}
 .regulation-wrap .cont .accordion-box .sub-content ul li .table-wrap table {
   border-collapse: collapse;
 }
