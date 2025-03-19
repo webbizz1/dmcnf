@@ -733,7 +733,7 @@
     // 갤러리형
     &.type-gallery {
         display: grid;
-        grid-template-columns: repeat(3, minmax(auto, 400px));
+        grid-template-columns: repeat(3, minmax(0, 1fr));
         justify-content: space-between;
         gap: 40px 20px;
         .list-row {

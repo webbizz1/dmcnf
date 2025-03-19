@@ -696,7 +696,7 @@
 }
 .table-wrap.type-gallery {
   display: grid;
-  grid-template-columns: repeat(3, minmax(auto, 400px));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   justify-content: space-between;
   gap: 40px 20px;
 }
@@ -1726,7 +1726,7 @@
     background-size: 18px auto;
   }
 }
-@media screen and (max-width: 580px) {
+@media screen and (max-width: 500px) {
   .table-wrap.type-gallery {
     display: flex;
     flex-direction: column;

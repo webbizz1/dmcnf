@@ -165,7 +165,7 @@ $outfit: "Outfit", sans-serif;
 }
 
 @mixin minMobile {
-	@media screen and (max-width: 580px) {
+	@media screen and (max-width: 500px) {
 		@content;
 	}
 }
