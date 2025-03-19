@@ -72,76 +72,76 @@
 
     <script th:inline="javascript">
 
-        document.addEventListener('DOMContentLoaded', ()=>{
+        // document.addEventListener('DOMContentLoaded', ()=>{
 
 
-            let url = location.href;
+        //     let url = location.href;
 
-            // 공유하기 버튼 클릭 시 공유 리스트 보이기
-            let btnShare = document.querySelector('.btn-share');
-            let shareWrap = document.querySelector('.share-wrap');
-            let btnClose = document.querySelector('.btn-close');
+        //     // 공유하기 버튼 클릭 시 공유 리스트 보이기
+        //     let btnShare = document.querySelector('.btn-share');
+        //     let shareWrap = document.querySelector('.share-wrap');
+        //     let btnClose = document.querySelector('.btn-close');
 
-            btnShare.addEventListener('click', function() {
-                shareWrap.style.display = 'block';
-            });
+        //     btnShare.addEventListener('click', function() {
+        //         shareWrap.style.display = 'block';
+        //     });
 
-            // 닫기 버튼 클릭 시 공유 리스트 숨기기
-            btnClose.addEventListener('click', function() {
-                shareWrap.style.display = 'none';
-            });
+        //     // 닫기 버튼 클릭 시 공유 리스트 숨기기
+        //     btnClose.addEventListener('click', function() {
+        //         shareWrap.style.display = 'none';
+        //     });
 
-            // 링크 복사
-            let copyBtn = document.querySelector('.copy a');
-            copyBtn.addEventListener('click', function() {
-                url_copy();
-            });
+        //     // 링크 복사
+        //     let copyBtn = document.querySelector('.copy a');
+        //     copyBtn.addEventListener('click', function() {
+        //         url_copy();
+        //     });
 
-            // 카카오톡 공유
-            let kakaoBtn = document.querySelector('.kakao a');
-            kakaoBtn.addEventListener('click', function() {
-                Kakao.init('174d16c99831e8487d88167c217700e4');
-                Kakao.isInitialized();
+        //     // 카카오톡 공유
+        //     let kakaoBtn = document.querySelector('.kakao a');
+        //     kakaoBtn.addEventListener('click', function() {
+        //         Kakao.init('174d16c99831e8487d88167c217700e4');
+        //         Kakao.isInitialized();
 
-                Kakao.Share.sendScrap({
-                    requestUrl: url,
-                });
-                // let go_url = "https://story.kakao.com/share?url=" + encodeURIComponent(url);
-                // window.open(go_url, "_blank", "width=560,height=870");
-            });
+        //         Kakao.Share.sendScrap({
+        //             requestUrl: url,
+        //         });
+        //         // let go_url = "https://story.kakao.com/share?url=" + encodeURIComponent(url);
+        //         // window.open(go_url, "_blank", "width=560,height=870");
+        //     });
 
-            // 페이스북 공유
-            let facebookBtn = document.querySelector('.facebook a');
-            facebookBtn.addEventListener('click', function() {
-                let go_url = "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(url);
-                window.open(go_url, "_blank", "width=610,height=870");
-            });
+        //     // 페이스북 공유
+        //     let facebookBtn = document.querySelector('.facebook a');
+        //     facebookBtn.addEventListener('click', function() {
+        //         let go_url = "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(url);
+        //         window.open(go_url, "_blank", "width=610,height=870");
+        //     });
 
-            // 인스타그램 공유 (웹에서 직접 URL을 공유하는 방법은 제한적)
-            let instagramBtn = document.querySelector('.instagram a');
-            instagramBtn.addEventListener('click', function() {
-                const url = window.location.href;
-                navigator.clipboard.writeText(url);
+        //     // 인스타그램 공유 (웹에서 직접 URL을 공유하는 방법은 제한적)
+        //     let instagramBtn = document.querySelector('.instagram a');
+        //     instagramBtn.addEventListener('click', function() {
+        //         const url = window.location.href;
+        //         navigator.clipboard.writeText(url);
 
-                let go_url = "https://www.instagram.com";
-                window.open(go_url, "_blank", "width=560,height=870");
-            });
+        //         let go_url = "https://www.instagram.com";
+        //         window.open(go_url, "_blank", "width=560,height=870");
+        //     });
 
-            // URL 복사 함수
-            function url_copy() {
-                const url = window.location.href;
+        //     // URL 복사 함수
+        //     function url_copy() {
+        //         const url = window.location.href;
 
-                navigator.clipboard.writeText(url)
-                    .then(() => {
-                        alert("주소가 복사되었습니다.");
-                    })
-                    .catch(error => {
-                        console.error(error);
-                        alert("주소복사에 실패했습니다.");
-                    });
-            }
+        //         navigator.clipboard.writeText(url)
+        //             .then(() => {
+        //                 alert("주소가 복사되었습니다.");
+        //             })
+        //             .catch(error => {
+        //                 console.error(error);
+        //                 alert("주소복사에 실패했습니다.");
+        //             });
+        //     }
 
-        });
+        // });
 
     </script>
 

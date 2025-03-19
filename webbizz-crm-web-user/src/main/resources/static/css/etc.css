@@ -10,6 +10,9 @@
   margin-bottom: 80px;
   border-bottom: 1px solid #d8d8d8;
 }
+.cont-title:not(:has(.be)) {
+  align-items: center;
+}
 .cont-title h4.title {
   flex-shrink: 0;
   font-weight: 700;
@@ -311,16 +314,24 @@
   margin-top: 80px;
   overflow: auto;
 }
+.organ-wrap .organ-table table {
+  border: none;
+}
 .organ-wrap .organ-table thead th {
   background: #f4f5f6;
   border-top: 2px solid #666;
   border-bottom: 1px solid #d8d8d8;
+  border-left: none;
+  border-right: none;
   height: 60px;
   font-weight: 600;
   font-size: 20px;
 }
 .organ-wrap .organ-table tbody td {
   border-bottom: 1px solid #d8d8d8;
+  border-left: none;
+  border-right: none;
+  border-top: none;
   padding: 26px 0;
   font-size: 18px;
   text-align: center;
@@ -969,6 +980,9 @@
     padding-bottom: 40px;
     margin-bottom: 40px;
   }
+  .cont-title:not(:has(.be)) {
+    align-items: flex-start;
+  }
   .cont-title h4.title {
     font-size: 26px;
   }
@@ -1163,6 +1177,9 @@
   }
   .organ-wrap .organ04 .organ-box .role-desc p + p {
     margin-top: 10px;
+  }
+  .organ-wrap .organ-table .table {
+    min-width: 768px;
   }
   .organ-wrap .organ-table thead th {
     height: 54px;

@@ -10,6 +10,9 @@
     padding-bottom: 80px;
     margin-bottom: 80px;
     border-bottom: 1px solid #d8d8d8;
+    &:not(:has(.be)) {
+        align-items: center;
+    }
     h4.title {
         flex-shrink: 0;
         font-weight: 700;
@@ -323,16 +326,24 @@
     .organ-table {
         margin-top: 80px;
         overflow: auto;
+        table {
+            border: none;
+        }
         thead th {
             background: #f4f5f6;
             border-top: 2px solid #666;
             border-bottom: 1px solid #d8d8d8;
+            border-left: none;
+            border-right: none;
             height: 60px;
             font-weight: 600;
             font-size: 20px;
         }
         tbody td {
             border-bottom: 1px solid #d8d8d8;
+            border-left: none;
+            border-right: none;
+            border-top: none;
             padding: 26px 0;
             font-size: 18px;
             text-align: center;
@@ -1016,6 +1027,9 @@
         gap: 20px;
         padding-bottom: 40px;
         margin-bottom: 40px;
+        &:not(:has(.be)) {
+            align-items: flex-start;
+        }
         h4.title {
             font-size: 26px;
         }
@@ -1258,6 +1272,9 @@
             }
         }
         .organ-table {
+            .table {
+                min-width: 768px;
+            }
             thead th {
                 height: 54px;
                 font-size: 18px;

@@ -4,6 +4,13 @@
     padding: 0 0 200px;
 }
 
+.ck-content {
+    p {
+        font-weight: inherit;
+        color: inherit;
+    }
+}
+
 // 에디터 출력
 .text-editor {
     max-height: 24px;
