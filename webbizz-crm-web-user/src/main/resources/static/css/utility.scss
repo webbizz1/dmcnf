@@ -163,3 +163,9 @@ $outfit: "Outfit", sans-serif;
 		@content;
 	}
 }
+
+@mixin minMobile {
+	@media screen and (max-width: 580px) {
+		@content;
+	}
+}
