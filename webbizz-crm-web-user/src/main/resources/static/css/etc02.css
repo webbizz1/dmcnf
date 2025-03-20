@@ -38,9 +38,13 @@
   color: #0F3B75;
   font-size: 15px;
 }
+.regulation-wrap .cont {
+  display: flex;
+  flex-direction: column;
+}
 .regulation-wrap .cont .info {
-  margin: 60px 0 26px;
-  text-align: right;
+  padding: 60px 0 26px;
+  margin-left: auto;
 }
 .regulation-wrap .cont .info div {
   font-size: 15px;
@@ -123,14 +127,14 @@
   font-size: 16px;
   word-break: keep-all;
 }
-.regulation-wrap .cont .accordion-box .sub-content ul li span + span {
+.regulation-wrap .cont .accordion-box .sub-content ul li span + span, .regulation-wrap .cont .accordion-box .sub-content ul li span + p {
   margin-top: 12px;
 }
 .regulation-wrap .cont .accordion-box .sub-content ul li ul {
   margin-top: 14px;
   padding-left: 20px;
 }
-.regulation-wrap .cont .accordion-box .sub-content ul li ul + span {
+.regulation-wrap .cont .accordion-box .sub-content ul li ul + span, .regulation-wrap .cont .accordion-box .sub-content ul li ul + p {
   margin-top: 14px;
 }
 .regulation-wrap .cont .accordion-box .sub-content ul li ul li {
@@ -205,7 +209,7 @@
 
 .ceo-wrap {
   position: relative;
-  margin-top: 60px;
+  margin-top: 100px;
 }
 .ceo-wrap .ceo-header {
   display: flex;

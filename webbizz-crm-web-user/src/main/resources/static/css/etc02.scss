@@ -41,9 +41,11 @@
         }
     }
     .cont {
+        display: flex;
+        flex-direction: column;
         .info {
-            margin: 60px 0 26px;
-            text-align: right;
+            padding: 60px 0 26px;
+            margin-left: auto;
             div {
                 font-size: 15px;
                 color: #666;
@@ -125,14 +127,16 @@
                             color: #666666;
                             font-size: 16px;
                             word-break: keep-all;
-                            & + span{
+                            & + span,
+                            & + p{
                                 margin-top: 12px;
                             }
                         }
                         ul {
                             margin-top: 14px;
                             padding-left: 20px;
-                            & + span{
+                            & + span,
+                            & + p{
                                 margin-top: 14px;
                             }
                             li {
@@ -206,7 +210,7 @@
 }
 .ceo-wrap {
     position: relative;
-    margin-top: 60px;
+    margin-top: 100px;
     .ceo-header {
         display: flex;
         justify-content: space-between;
