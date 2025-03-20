@@ -4647,7 +4647,7 @@
     font-size: 16px;
   }
 }
-@media screen and (max-width: 580px) {
+@media screen and (max-width: 500px) {
   .survey-wrap .survey-btm {
     gap: 30px 0;
   }

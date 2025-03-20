@@ -497,8 +497,9 @@
 }
 #footer .ft-btm .sns-list {
   margin-top: 14px;
+  margin-right: -3px;
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   gap: 16px;
 }
 #footer .ft-btm .sns-list [class*=sns-] {
@@ -508,6 +509,9 @@
   font-size: 0;
   text-indent: -9999em;
   background: url("../images/sub/sns_blog.png") no-repeat center/cover;
+}
+#footer .ft-btm .sns-list .sns-dmcbiz {
+  background-image: url("../images/sub/sns_dmcbiz.svg");
 }
 #footer .ft-btm .sns-list .sns-youtube {
   background-image: url("../images/sub/sns_youtube.png");
