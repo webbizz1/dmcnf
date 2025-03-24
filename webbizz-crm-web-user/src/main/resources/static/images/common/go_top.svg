@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="92" height="92" viewBox="0 0 92 92">
+  <defs>
+    <filter id="타원_2530" x="0" y="0" width="92" height="92" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feFlood flood-opacity="0.102"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="그룹_33443" data-name="그룹 33443" transform="translate(-1645 -5958)">
+    <g transform="matrix(1, 0, 0, 1, 1645, 5958)" filter="url(#타원_2530)">
+      <circle id="타원_2530-2" data-name="타원 2530" cx="31" cy="31" r="31" transform="translate(15 12)" fill="#fff"/>
+    </g>
+    <g id="그룹_33442" data-name="그룹 33442" transform="translate(0.152 55.379)">
+      <path id="패스_397" data-name="패스 397" d="M-19599,5306.905v-22.758" transform="translate(21290 650.474)" fill="none" stroke="#888" stroke-width="2"/>
+      <path id="패스_398" data-name="패스 398" d="M-19603.939,5288.993l5.148-5.15,5.15,5.15" transform="translate(21289.789 650.778)" fill="none" stroke="#888" stroke-width="2"/>
+    </g>
+  </g>
+</svg>

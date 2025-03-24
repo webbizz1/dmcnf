@@ -6,7 +6,7 @@ function layoutEvent() {
 
 	if (container && mainContent && header) {
 		header.style.position = 'fixed';
-		
+
 		const applyHeaderStyles = () => {
 			if (window.innerWidth >= 1025) {
 				header.classList.add('on');
@@ -342,6 +342,13 @@ function layoutEvent() {
 	// 		}
 	// 	});
 	// });
+
+	const goTopButton = document.querySelector('.go-top');
+	if (goTopButton) {
+		goTopButton.addEventListener('click', () => {
+			window.scrollTo({ top: 0, behavior: 'smooth' });
+		});
+	}
 }
 
 
