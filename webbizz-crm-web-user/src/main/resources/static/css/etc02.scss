@@ -49,6 +49,7 @@
             div {
                 font-size: 15px;
                 color: #666;
+                font-variant-numeric: tabular-nums;
                 & + div {
                     margin-top: 8px;
                 }
