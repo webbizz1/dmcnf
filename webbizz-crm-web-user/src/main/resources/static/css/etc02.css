@@ -2,7 +2,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid #D8D8D8;
+  border-bottom: 1px solid #d8d8d8;
   padding-bottom: 60px;
 }
 .regulation-wrap .header .title {
@@ -19,7 +19,7 @@
   justify-content: center;
   position: relative;
   gap: 6px;
-  border: 2px solid #0F3B75;
+  border: 2px solid #0f3b75;
   border-radius: 12px;
 }
 .regulation-wrap .header .link::before {
@@ -35,7 +35,7 @@
 .regulation-wrap .header .link .text {
   display: block;
   text-align: center;
-  color: #0F3B75;
+  color: #0f3b75;
   font-size: 15px;
 }
 .regulation-wrap .cont {
@@ -63,7 +63,7 @@
   justify-content: space-between;
   max-height: 62px;
   min-height: 62px;
-  background-color: #F4F6FA;
+  background-color: #f4f6fa;
   position: relative;
   cursor: pointer;
   padding-right: 40px;
@@ -72,7 +72,7 @@
   content: "";
   width: 12px;
   height: 100%;
-  background-color: #0F3B75;
+  background-color: #0f3b75;
   position: absolute;
   left: 0;
   top: 0;
@@ -99,7 +99,7 @@
   display: none;
   margin: 12px 0 20px;
   padding: 40px;
-  background: #FFFFFF;
+  background: #ffffff;
   box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.1019607843);
   border-radius: 12px;
 }
@@ -178,7 +178,8 @@
 .regulation-wrap .cont .accordion-box .sub-content ul li .table-wrap table {
   border-collapse: collapse;
 }
-.regulation-wrap .cont .accordion-box .sub-content ul li .table-wrap table th, .regulation-wrap .cont .accordion-box .sub-content ul li .table-wrap table td {
+.regulation-wrap .cont .accordion-box .sub-content ul li .table-wrap table th,
+.regulation-wrap .cont .accordion-box .sub-content ul li .table-wrap table td {
   border: 1px solid #ccc;
   padding: 20px;
   text-align: center;
@@ -189,7 +190,7 @@
   font-weight: bold;
 }
 .regulation-wrap .cont .accordion-box.active .sub-header {
-  background-color: #2B408E;
+  background-color: #2b408e;
   color: #ffffff;
   border: 1px solid #707070;
 }
@@ -331,7 +332,7 @@
   align-items: center;
   gap: 44px;
   border-top: 3px solid #707070;
-  border-bottom: 1px solid #DDDDDD;
+  border-bottom: 1px solid #dddddd;
 }
 .location-wrap .sub-box + .tit {
   margin-top: 60px;
@@ -380,12 +381,12 @@
 }
 .location-wrap .map-box {
   border-top: 1px solid #222;
-  border-bottom: 1px solid #D8D8D8;
-  background-color: #F9F9F9;
+  border-bottom: 1px solid #d8d8d8;
+  background-color: #f9f9f9;
 }
 .location-wrap .map-box .row {
   display: flex;
-  border-bottom: 1px solid #EAEAEA;
+  border-bottom: 1px solid #eaeaea;
 }
 .location-wrap .map-box .row:last-child {
   border-bottom: none;
@@ -421,7 +422,7 @@
   line-height: 28px;
   font-size: 12px;
   color: white;
-  background-color: #B5500C;
+  background-color: #b5500c;
   border-radius: 50%;
 }
 .location-wrap .map-box .row .content .subway-info .line-name {
@@ -431,7 +432,7 @@
   font-size: 12px;
   padding: 7px;
   text-align: center;
-  background: #73B6E4;
+  background: #73b6e4;
   color: white;
   border-radius: 14px;
 }
@@ -483,18 +484,20 @@
   justify-content: space-between;
   align-items: center;
   gap: 200px;
-  border-bottom: 1px solid #D8D8D8;
+  border-bottom: 1px solid #d8d8d8;
   padding-bottom: 60px;
 }
 .pr-wrap .header .title {
   word-break: keep-all;
 }
 .pr-wrap .header .title p {
-  margin-bottom: 24px;
   font-size: 26px;
   font-weight: 700;
   line-height: 1.4;
   color: #222222;
+}
+.pr-wrap .header .title p + p {
+  margin-top: 24px;
 }
 .pr-wrap .header .title span {
   display: inline-block;
@@ -512,7 +515,7 @@
   flex-shrink: 0;
   position: relative;
   gap: 6px;
-  border: 2px solid #0F3B75;
+  border: 2px solid #0f3b75;
   border-radius: 12px;
 }
 .pr-wrap .header .link::before {
@@ -528,7 +531,7 @@
 .pr-wrap .header .link .text {
   display: block;
   text-align: center;
-  color: #0F3B75;
+  color: #0f3b75;
   font-size: 15px;
 }
 .pr-wrap .cont {
@@ -579,7 +582,7 @@
   left: 0;
   width: 100%;
   height: 4px;
-  background: linear-gradient(90deg, #32A6D8 0%, #2E6BAB 15%, #3665A5 32%, #394B95 100%);
+  background: linear-gradient(90deg, #32a6d8 0%, #2e6bab 15%, #3665a5 32%, #394b95 100%);
 }
 .directors-wrap .director-box .career {
   display: flex;
