@@ -633,10 +633,6 @@
     transition: all 0.3s;
     color: #0f3b75 !important;
   }
-  .main-content .board-wrap .popup-wrap .img:hover img {
-    transition: all 0.3s;
-    transform: scale(1.1);
-  }
 }
 @media screen and (max-width: 1440px) {
   .main-content .board-wrap {
