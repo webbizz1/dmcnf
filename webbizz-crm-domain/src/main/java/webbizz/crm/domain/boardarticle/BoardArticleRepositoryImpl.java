@@ -136,6 +136,7 @@ public class BoardArticleRepositoryImpl implements BoardArticleRepositoryCustom 
                 )
                 .groupBy(boardArticle.id)
                 .orderBy(
+                        boardArticle.noticeYn.desc(),
                         boardArticle.id.desc()
                 )
                 .limit(condition.getSize())

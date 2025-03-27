@@ -387,37 +387,26 @@
                     <div class="notice-wrap">
                         <div class="title-area">
                             <h3 class="title">공지·알림</h3>
-                            <button type="button" onclick="location.href='/pages/9'" class="btn-more">MORE</button>
+                            <button type="button" onclick="location.href='/pages/44'" class="btn-more">MORE</button>
                         </div>
                         <ul class="notice-list">
-
-                            <li data-href="/pages/9?id=1&amp;menuMode=READ">
+                            <li th:each="item : ${notice}"
+                                th:if="${item.noticeYn.yn == 'Y'}"
+                                th:attr="data-href='/pages/44?id=' + ${item.id} + '&amp;menuMode=READ'">
                                 <div class="date">
                                     <strong class="day">10</strong>
                                     <p class="month">2025.03</p>
                                 </div>
                                 <div class="text-area">
-                                    <div class="title">공지사항 테스트입니다.</div>
-                                    <!--
-                                    <div class="text-editor">
-                                        <p>
-                                            <img src="https://dmc-backend-upload.s3.ap-northeast-2.amazonaws.com/files/u/test/1710136751424_406191977.png"
-                                                    width="800"></p>
-                                        <p><strong>[모집] 한국마약퇴치운동본부 제주 </strong></p>
-                                        <p>- <span style="color: #030dff;"><span style="color: rgb(0, 0, 0);">[모집] 한국마약퇴치운동본부 제주 함께한걸음센터 외부상담사 모집 </span><strong><u>[모집] 한국마약퇴치운동본부 제주 함께한걸음센터 외부상담사 모집</u></strong><span
-                                                style="color: rgb(0, 0, 0);">[모집] 한국마약퇴치운동본부 제주 함께한걸음센터 외부상담사 모집</span></span>
-                                        </p>
-                                        <p>&nbsp;</p>
-                                    </div>
-                                    -->
+                                    <div class="title" th:text="${item.title}">공지사항 테스트입니다.</div>
                                 </div>
                             </li>
 
-
-                            <li data-href="/pages/9?id=1&amp;menuMode=READ">
-                                <div class="title">공지사항 테스트입니다.</div>
+                            <li th:each="item : ${notice}"
+                                th:if="${item.noticeYn.yn == 'N'}"
+                                th:attr="data-href='/pages/44?id=' + ${item.id} + '&amp;menuMode=READ'">
+                                <div class="title" th:text="${item.title}">공지사항 테스트입니다.</div>
                             </li>
-
                         </ul>
                     </div>
                     <div class="popup-wrap">
@@ -505,6 +494,7 @@
     </th:block>
 
     <script>
+
         window.addEventListener('DOMContentLoaded', () => {
             // 메인 팝업
             let handleStorage = {
@@ -530,10 +520,14 @@
 
             let popupSlides = document.querySelectorAll('#mainPopup .swiper .swiper-slide');
 
-            if (!handleStorage.getStorage('popupShowTime')) {
+            let popupBg = document.querySelector('#mainPopupBg');
+            let popup = document.querySelector('#mainPopup');
+
+            if (!handleStorage.getStorage('popupShowTime') && popupBg && popup) {
                 // Display the popup
-                document.querySelector('#mainPopupBg').style.display = '';
-                document.querySelector('#mainPopup').style.display = '';
+                popupBg.style.display = '';
+                popup.style.display = '';
+
                 document.body.style.overflow = 'hidden';
 
                 const mainPopSwiper = new Swiper('#mainPopup .swiper', {
@@ -586,9 +580,11 @@
                     }
                 });
             } else {
-                document.querySelector('#mainPopupBg').remove();
-                document.querySelector('#mainPopup').remove();
-                document.body.style.overflow = 'initial';
+                if (popupBg && popup) {
+                    document.querySelector('#mainPopupBg').remove();
+                    document.querySelector('#mainPopup').remove();
+                    document.body.style.overflow = 'initial';
+                }
             }
 
             function pad(num, size) {
@@ -776,22 +772,15 @@
                     },
                 }
             });
-
-            // 공지사항,알림 
-            document.addEventListener('DOMContentLoaded', function () {
-                // 모든 li 요소를 찾아서 처리
-                var listItems = document.querySelectorAll('li[data-href]');
-
-                listItems.forEach(function (li) {
-                    // li 요소에 클릭 이벤트 추가
-                    li.addEventListener('click', function () {
-                        // data-href 속성에서 URL을 가져와서 이동
-                        var url = li.getAttribute('data-href');
-                        if (url) {
-                            window.location.href = url;
-                        }
-                    });
-                });
+            // 공지사항,알림
+            document.body.addEventListener('click', function (event) {
+                let li = event.target.closest('li[data-href]'); // 클릭된 요소의 부모 중 li[data-href] 찾기
+                if (li) {
+                    let url = li.getAttribute('data-href');
+                    if (url) {
+                        window.location.href = url;
+                    }
+                }
             });
         });
     </script>
