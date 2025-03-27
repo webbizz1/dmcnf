@@ -65,4 +65,10 @@ public interface ExhibitionService {
      */
     void deleteExhibition(Long id);
 
+    /**
+     * 사용자 팝업
+     * @param condition 검색 조건
+     * @author Dong-Joon Oh
+     */
+    List<ExhibitionDto> searchMainAllPopup(ExhibitionCondition condition);
 }

@@ -44,6 +44,16 @@ public class ExhibitionServiceImpl extends EgovAbstractServiceImpl implements Ex
         return exhibitionRepository.searchAllByCondition(condition);
     }
 
+    /**
+     * 사용자 팝업
+     * @param condition 검색 조건
+     * @author Dong-Joon Oh
+     */
+    @Override
+    public List<ExhibitionDto> searchMainAllPopup(ExhibitionCondition condition) {
+        return exhibitionRepository.searchMainAllPopup(condition);
+    }
+
     @Override
     @Transactional(readOnly = true)
     public List<ExhibitionDto> searchAllForActive() {
@@ -124,5 +134,7 @@ public class ExhibitionServiceImpl extends EgovAbstractServiceImpl implements Ex
 
         exhibition.setDelYn(YN.Y);
     }
+
+
 
 }

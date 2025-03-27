@@ -86,6 +86,27 @@ public class ExhibitionRepositoryImpl implements ExhibitionRepositoryCustom {
         return PageableExecutionUtils.getPage(content, condition.pageable(), countQuery::fetchCount);
     }
 
+    /**
+     * 사용자 팝업
+     * @param condition 검색 조건
+     * @author Dong-Joon Oh
+     */
+    @Override
+    public List<ExhibitionDto> searchMainAllPopup(ExhibitionCondition condition) {
+        return queryFactory
+                .select(this.selectExhibitionDtoFields)
+                .from(exhibition)
+                .where(
+                        condEqOrAllFalse(exhibition.type, condition.getType()),
+                        condEq(exhibition.delYn, YN.N),
+                        condEq(exhibition.viewYn, YN.Y)
+                )
+                .orderBy(exhibition.id.desc())
+                .offset(condition.pageable().getOffset())
+                .limit(condition.pageable().getPageSize())
+                .fetch();
+    }
+
     @Override
     public List<ExhibitionDto> searchAllForActive() {
         return queryFactory
@@ -116,6 +137,8 @@ public class ExhibitionRepositoryImpl implements ExhibitionRepositoryCustom {
                 )
                 .fetchFirst();
     }
+
+
 
 
     private Predicate condViewAtIsActive() {

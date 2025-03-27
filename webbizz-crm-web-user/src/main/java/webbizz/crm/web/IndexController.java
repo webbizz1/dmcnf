@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import webbizz.crm.domain.boardarticle.dto.BoardArticleCondition;
 import webbizz.crm.domain.boardarticle.dto.BoardArticleListDto;
+import webbizz.crm.domain.exhibition.dto.ExhibitionCondition;
 import webbizz.crm.domain.exhibition.dto.ExhibitionDto;
 import webbizz.crm.domain.exhibition.enumset.ExhibitionType;
 import webbizz.crm.service.board.BoardArticleService;
@@ -24,6 +25,7 @@ public class IndexController {
     @GetMapping("/")
     public String index(Model model) {
         BoardArticleCondition condition = new BoardArticleCondition();
+        ExhibitionCondition exhibitionCondition = new ExhibitionCondition();
 
         //배너
         List<ExhibitionDto> exhibitionList = exhibitionService.searchAllForActive();
@@ -57,6 +59,11 @@ public class IndexController {
         condition.setSize(4);
         List<BoardArticleListDto> news = boardArticleService.searchAllByBoardType(condition);
         model.addAttribute("news", news);
+
+        //팝업
+        exhibitionCondition.setType(ExhibitionType.POPUP);
+        List<ExhibitionDto> popup = exhibitionService.searchMainAllPopup(exhibitionCondition);
+        model.addAttribute("popup", popup);
         return "index";
     }
 
