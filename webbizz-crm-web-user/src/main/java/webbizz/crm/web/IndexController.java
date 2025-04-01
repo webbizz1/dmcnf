@@ -50,7 +50,7 @@ public class IndexController {
 
         //메인_알림
         condition.setBoardType("notice");
-        condition.setSize(8);
+        condition.setSize(4);
         List<BoardArticleListDto> notice = boardArticleService.searchAllByBoardType(condition);
         model.addAttribute("notice", notice);
 
