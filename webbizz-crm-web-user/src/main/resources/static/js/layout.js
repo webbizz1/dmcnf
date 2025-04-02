@@ -201,7 +201,7 @@ function layoutEvent() {
 
 	function preventMobileLinkNavigation(e) {
 		if (isMobileDevice()) {
-			e.preventDefault();
+			// e.preventDefault();
 		}
 	}
 
